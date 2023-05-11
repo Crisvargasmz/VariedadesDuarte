@@ -121,11 +121,11 @@ REFERENCES dbo.Producto( IDProducto)
 
 
 ALTER TABLE dbo.Detalle_Compra
-ADD IDProveedor INT  NOT NULL
+ADD IDCompra INT  NOT NULL
 ALTER TABLE dbo.Detalle_Compra
 ADD CONSTRAINT FK_Detalle_Compra_Pdor
-FOREIGN KEY ( IDProveedor)
-REFERENCES dbo.Proveedor( IDProveedor)
+FOREIGN KEY ( IDCompra)
+REFERENCES dbo.Compra( IDCompra)
 
 
 
