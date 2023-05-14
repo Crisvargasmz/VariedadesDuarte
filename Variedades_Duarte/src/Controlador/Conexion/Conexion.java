@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Conexion {
    
-    private static Connetion conectar (){
+    private static Connection conectar (){
     String conexionUrl = "jdbc:sqlserver://localhost:1433;databaseName= BD_ELGUSTAZO;"
             + "integratedSecurity = true;" + " encrypt= true;trustServerCertificate= true;";
        try {
