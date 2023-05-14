@@ -1,13 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
-/**
- *
- * @author Darikson
- */
 public class Venta {
+    
+    int ID_venta;
+    String fecha_venta;
+
+    public Venta() {
+    }
+
+    public Venta(int ID_venta, String fecha_venta) {
+        this.ID_venta = ID_venta;
+        this.fecha_venta = fecha_venta;
+    }
+
+    public int getID_venta() {
+        return ID_venta;
+    }
+
+    public void setID_venta(int ID_venta) {
+        this.ID_venta = ID_venta;
+    }
+
+    public String getFecha_venta() {
+        return fecha_venta;
+    }
+
+    public void setFecha_venta(String fecha_venta) {
+        this.fecha_venta = fecha_venta;
+    }
+    
     
 }
