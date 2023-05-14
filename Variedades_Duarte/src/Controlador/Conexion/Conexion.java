@@ -7,13 +7,13 @@ import java.sql.SQLException;
 
 public class Conexion {
    
-    private static Connetion conectar (){
+    private static Connection conectar (){
     String conexionUrl = "jdbc:sqlserver://localhost:1433;databaseName= BD_ELGUSTAZO;"
             + "integratedSecurity = true;" + " encrypt= true;trustServerCertificate= true;";
        try {
         Connection cn = DriverManager.getConnection(conexionUrl);
         return cn;
-        } catch (SQLExeption e){
+        } catch (SQLException e){
         System.out.println("Error en la conexion" + e);
         return null;
       }
