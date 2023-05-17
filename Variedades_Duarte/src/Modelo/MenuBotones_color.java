@@ -23,7 +23,7 @@ public class MenuBotones_color {
 
         btnActivo.setBackground(new Color(0, 151, 167));
         btnActivo.setForeground(new Color(255, 255, 255));
-        btnActivo.setFont(new Font("Roboto", 1, 28));
+        btnActivo.setFont(new Font("Tahoma", 1, 18));
         btnActivo.setContentAreaFilled(true);
         btnActivo.addMouseListener(new MouseAdapter() {
 
@@ -32,7 +32,7 @@ public class MenuBotones_color {
 
                 btnActivo.setBackground(new Color(0, 151, 167));
                 btnActivo.setForeground(new Color(255, 255, 255));
-                btnActivo.setFont(new Font("Roboto", 1, 28));
+                btnActivo.setFont(new Font("Tahoma", 1, 18));
                 btnActivo.setContentAreaFilled(true);
             }
 
@@ -40,7 +40,7 @@ public class MenuBotones_color {
             public void mouseExited(MouseEvent e) {
                 btnActivo.setBackground(new Color(29, 163, 83));
                 btnActivo.setForeground(new Color(255, 255, 255));
-                btnActivo.setFont(new Font("Roboto", 1, 28));
+                btnActivo.setFont(new Font("Tahoma", 1, 18));
                 btnActivo.setContentAreaFilled(false);
             }
 
@@ -51,7 +51,7 @@ public class MenuBotones_color {
 
         btnMenu.setBackground(new Color(0, 151, 167));
         btnMenu.setForeground(new Color(255, 255, 255));
-        btnMenu.setFont(new Font("Roboto", 1, 28));
+        btnMenu.setFont(new Font("Tahoma", 1, 18));
         btnMenu.setContentAreaFilled(true);
         subMenu.setVisible(true);
         btnMenu.addMouseListener(new MouseAdapter() {
@@ -61,7 +61,7 @@ public class MenuBotones_color {
 
                 btnMenu.setBackground(new Color(0, 151, 167));
                 btnMenu.setForeground(new Color(255, 255, 255));
-                btnMenu.setFont(new Font("Roboto", 1, 28));
+                btnMenu.setFont(new Font("Tahoma", 1, 18));
                 btnMenu.setContentAreaFilled(true);
                 subMenu.setVisible(true);
 
@@ -71,7 +71,7 @@ public class MenuBotones_color {
             public void mouseExited(MouseEvent e) {
                 btnMenu.setBackground(new Color(29, 163, 83));
                 btnMenu.setForeground(new Color(255, 255, 255));
-                btnMenu.setFont(new Font("Roboto", 1, 28));
+                btnMenu.setFont(new Font("Tahoma", 1, 18));
                 btnMenu.setContentAreaFilled(false);
                 btnMenu.setVisible(false);
                 subMenu.setVisible(false);
@@ -84,7 +84,7 @@ public class MenuBotones_color {
 
         btnMenu.setBackground(new Color(29, 163, 83));
         btnMenu.setForeground(new Color(255, 255, 255));
-        btnMenu.setFont(new Font("Roboto", 1, 28));
+        btnMenu.setFont(new Font("Tahoma", 1, 18));
         btnMenu.setContentAreaFilled(false);
         btnMenu.setVisible(false);
         subMenu.setVisible(false);
@@ -95,7 +95,7 @@ public class MenuBotones_color {
 
                 btnMenu.setBackground(new Color(29, 163, 83));
                 btnMenu.setForeground(new Color(255, 255, 255));
-                btnMenu.setFont(new Font("Roboto", 1, 28));
+                btnMenu.setFont(new Font("Tahoma", 1, 18));
                 btnMenu.setContentAreaFilled(false);
                 btnMenu.setVisible(false);
                 subMenu.setVisible(false);
@@ -106,7 +106,7 @@ public class MenuBotones_color {
             public void mouseExited(MouseEvent e) {
                 btnMenu.setBackground(new Color(0, 151, 167));
                 btnMenu.setForeground(new Color(255, 255, 255));
-                btnMenu.setFont(new Font("Roboto", 1, 28));
+                btnMenu.setFont(new Font("Tahoma", 1, 18));
                 btnMenu.setContentAreaFilled(true);
                 subMenu.setVisible(true);
             }

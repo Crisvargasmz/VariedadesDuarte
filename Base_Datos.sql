@@ -63,7 +63,14 @@ usuario_sesion NVARCHAR (20) NOT NULL,
 contrasena_sesion NVARCHAR (8) NOT NULL
 )
 GO
-  
+
+CREATE TABLE [UnidadMedida](
+IDUnidadMedida INTEGER IDENTITY (1,1) PRIMARY KEY,
+nombre_unidadmedida NVARCHAR (8)
+
+)
+GO
+
 ALTER TABLE dbo.Venta
 ADD IDCliente INT NOT NULL
 ALTER TABLE dbo.Venta
@@ -133,6 +140,52 @@ ALTER TABLE dbo.Detalle_Compra
 ADD CONSTRAINT FK_Detalle_Compra_Pdor
 FOREIGN KEY ( IDCompra)
 REFERENCES dbo.Compra( IDCompra)
+GO
 
+--procedimiento almacenado para ingresar un cliente
+CREATE PROCEDURE InsertarCliente
+  @nombre_cliente1 nvarchar(15),
+  @nombre_cliente2 nvarchar(15),
+  @apellido_cliente1 nvarchar(15),
+  @apellido_cliente2 nvarchar(15),
+  @telefono_cliente nvarchar(8),
+  @genero_cliente char (1) ,
+  @direccion_cliente nvarchar(150) 
+
+  AS
+  INSERT INTO [Cliente] ([nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente],[direccion_cliente])
+  VALUES (@nombre_cliente1, @nombre_cliente2,@apellido_cliente1,@apellido_cliente2,@telefono_cliente,@genero_cliente,@direccion_cliente)
+  GO
+
+  --procedimiento almacenado para ingresar un proveedor
+CREATE PROCEDURE InsertarProveedor
+  @nombre_proveedor1 NVARCHAR(15),
+  @nombre_proveedor2 NVARCHAR(15),
+  @apellido_proveedor1 NVARCHAR(15),
+  @apellido_proveedor2 NVARCHAR(15),
+  @empresa_proveedor NVARCHAR(30),
+  @telefono_proveedor NVARCHAR(8),
+  @direccion_proveedor NVARCHAR (150)
+
+  AS
+
+  INSERT INTO [Proveedor] ([nombre_proveedor1],[nombre_proveedor2],[apellido_proveedor1],[apellido_proveedor2],[empresa_proveedor],[telefono_proveedor],[direccion_proveedor])
+  VALUES (@nombre_proveedor1, @nombre_proveedor2,@apellido_proveedor1,@apellido_proveedor2,@empresa_proveedor,@telefono_proveedor,@direccion_proveedor)
+  GO
+
+   --procedimiento almacenado para ingresar un producto
+CREATE PROCEDURE InsertarProducto
+  @nombre_producto NVARCHAR(40),
+  @cantidad_producto INTEGER ,
+  @precio_compra DECIMAL(12,2),
+  @precio_venta DECIMAL(12,2) ,
+  @descripcion NVARCHAR(200) ,
+  @fecha_vencimiento DATETIME
+
+  AS
+
+  INSERT INTO [Producto] ([nombre_producto],[cantidad_producto],[precio_compra],[precio_venta],[descripcion],[fecha_vencimiento])
+  VALUES (@nombre_producto,@cantidad_producto,@apellido_proveedor1,@apellido_proveedor2,@empresa_proveedor,@telefono_proveedor,@direccion_proveedor)
+  GO
 
 
