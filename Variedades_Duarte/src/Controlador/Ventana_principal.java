@@ -118,7 +118,6 @@ public class Ventana_principal extends javax.swing.JFrame implements Runnable {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paneltitulo.setBackground(new java.awt.Color(4, 64, 98));
         paneltitulo.setPreferredSize(new java.awt.Dimension(1600, 83));
@@ -204,8 +203,6 @@ public class Ventana_principal extends javax.swing.JFrame implements Runnable {
                 .addGap(16, 16, 16))
             .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        jPanel3.add(paneltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 83));
 
         jPanel2.setBackground(new java.awt.Color(29, 163, 83));
         jPanel2.setPreferredSize(new java.awt.Dimension(1600, 83));
@@ -352,8 +349,6 @@ public class Ventana_principal extends javax.swing.JFrame implements Runnable {
         });
         jPanel2.add(btnComprar);
 
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 1600, 80));
-
         MostrarPagina.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout MostrarPaginaLayout = new javax.swing.GroupLayout(MostrarPagina);
@@ -367,7 +362,24 @@ public class Ventana_principal extends javax.swing.JFrame implements Runnable {
             .addGap(0, 730, Short.MAX_VALUE)
         );
 
-        jPanel3.add(MostrarPagina, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1600, 730));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(paneltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(MostrarPagina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(paneltitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(MostrarPagina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
