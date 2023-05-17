@@ -45,7 +45,7 @@ CREATE TABLE [Producto] (
 GO
 
 CREATE TABLE [Categoria] (
-  [IDCategaria] INTEGER IDENTITY(1,1) PRIMARY KEY,
+  [IDCategoria] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [nombre_categoria] NVARCHAR(15) NOT NULL,
 )
 GO
@@ -64,12 +64,20 @@ contrasena_sesion NVARCHAR (8) NOT NULL
 )
 GO
 
-CREATE TABLE [UnidadMedida](
-IDUnidadMedida INTEGER IDENTITY (1,1) PRIMARY KEY,
-nombre_unidadmedida NVARCHAR (8)
+CREATE TABLE [Presentacion](
+IDPresentacion INTEGER IDENTITY (1,1) PRIMARY KEY,
+nombre_presentacion NVARCHAR (8)
 
 )
 GO
+
+--ALTER TABLE dbo.Producto
+--ADD IDPresentacion INT NOT NULL
+--ALTER TABLE dbo.Producto
+--ADD CONSTRAINT FK_UnidadMedida_Producto
+--FOREIGN KEY (IDPresentacion)
+--REFERENCES dbo.Presentacion(IDPresentacion)
+
 
 ALTER TABLE dbo.Venta
 ADD IDCliente INT NOT NULL
@@ -109,6 +117,28 @@ CREATE TABLE [Detalle_Compra] (
 
 )
 GO
+
+CREATE TABLE [ProductoPresentacion](
+ ID_PPresentacion INTEGER IDENTITY (1,1) PRIMARY KEY,
+precio_pproducto DECIMAL (12,2)
+
+)
+GO
+
+
+ALTER TABLE dbo.ProductoPresentacion
+ADD IDProducto INT  NOT NULL
+ALTER TABLE dbo.ProductoPresentacion
+ADD CONSTRAINT FK_ProductoPresentacion_Producto
+FOREIGN KEY (IDProducto)
+REFERENCES dbo.Producto(IDProducto)
+
+ALTER TABLE dbo.ProductoPresentacion
+ADD IDPresentacion INT  NOT NULL
+ALTER TABLE dbo.ProductoPresentacion
+ADD CONSTRAINT FK_Presentacion_Producto
+FOREIGN KEY (IDPresentacion)
+REFERENCES dbo.Presentacion(IDPresentacion)
 
 ALTER TABLE dbo.Detalle_Venta
 ADD IDProducto INT  NOT NULL
@@ -185,7 +215,154 @@ CREATE PROCEDURE InsertarProducto
   AS
 
   INSERT INTO [Producto] ([nombre_producto],[cantidad_producto],[precio_compra],[precio_venta],[descripcion],[fecha_vencimiento])
-  VALUES (@nombre_producto,@cantidad_producto,@apellido_proveedor1,@apellido_proveedor2,@empresa_proveedor,@telefono_proveedor,@direccion_proveedor)
+  VALUES (@nombre_producto,@cantidad_producto,@precio_compra,@precio_venta,@descripcion,@fecha_vencimiento)
   GO
 
+ --procedimiento almacenado para ingresar una categoria
+  CREATE PROCEDURE InsertarCategoria
+  @nombre_categoria NVARCHAR (15)
 
+  AS
+
+  INSERT INTO [Categoria] ([nombre_categoria])
+  VALUES (@nombre_categoria)
+  
+  GO
+
+   --procedimiento almacenado para ingresar una presentacion
+
+   CREATE PROCEDURE InsertarPresentacion
+   @nombre_presentacion NVARCHAR (8)
+
+   AS
+
+   INSERT INTO [Presentacion] ([nombre_presentacion])
+   VALUES (@nombre_presentacion)
+ 
+   GO
+-----------------------------------------------------------------------------------------------------
+
+   --procedimiento almacenado para consultar clientes
+
+   CREATE PROCEDURE ConsultarCliente
+  @nombre_cliente1 nvarchar(15),
+  @nombre_cliente2 nvarchar(15),
+  @apellido_cliente1 nvarchar(15),
+  @apellido_cliente2 nvarchar(15),
+  @telefono_cliente nvarchar(8),
+  @genero_cliente char (1) ,
+  @direccion_cliente nvarchar(150) 
+
+  AS
+
+
+  SELECT nombre_cliente1,nombre_cliente2,apellido_cliente1,apellido_cliente2,telefono_cliente,genero_cliente,direccion_cliente
+  FROM Cliente
+  --WHERE nombre_cliente1=@nombre_cliente1, nombre_cliente2=@nombre_cliente2,apellido_cliente1=@apellido_cliente1,apellido_cliente2=@apellido_cliente2,
+  --telefono_cliente=@telefono_cliente,genero_cliente=@genero_cliente,direccion_cliente=@direccion_cliente
+
+  GO
+
+--procedimiento almacenado para Consultar un proveedor
+CREATE PROCEDURE ConsultarProveedor
+  @nombre_proveedor1 NVARCHAR(15),
+  @nombre_proveedor2 NVARCHAR(15),
+  @apellido_proveedor1 NVARCHAR(15),
+  @apellido_proveedor2 NVARCHAR(15),
+  @empresa_proveedor NVARCHAR(30),
+  @telefono_proveedor NVARCHAR(8),
+  @direccion_proveedor NVARCHAR (150)
+
+  AS
+
+  SELECT nombre_proveedor1,nombre_proveedor2, apellido_proveedor1, apellido_proveedor2, empresa_proveedor, telefono_proveedor, direccion_proveedor
+  FROM Proveedor
+
+  GO
+
+--procedimiento almacenado para consultar un producto
+CREATE PROCEDURE ConsultarProducto
+  @nombre_producto NVARCHAR(40),
+  @cantidad_producto INTEGER ,
+  @precio_compra DECIMAL(12,2),
+  @precio_venta DECIMAL(12,2) ,
+  @descripcion NVARCHAR(200) ,
+  @fecha_vencimiento DATETIME
+
+  AS
+
+  SELECT nombre_producto, cantidad_producto, precio_compra, precio_venta, descripcion, fecha_vencimiento
+  FROM Producto
+
+  GO
+
+   --procedimiento almacenado para consultar una categoria
+  CREATE PROCEDURE ConsultarCategoria
+  @nombre_categoria NVARCHAR (15)
+
+  AS
+
+  SELECT nombre_categoria
+  FROM Categoria
+
+  GO
+
+  --procedimiento almacenado para consultar una presentacion
+
+   CREATE PROCEDURE ConsultarPresentacion
+   @nombre_presentacion NVARCHAR (8)
+
+   AS
+
+   SELECT nombre_presentacion
+   FROM Presentacion
+
+   GO
+
+   --------------------------------------------------------------------------------------------------
+
+
+   ---Procedimiento almacenado para eliminar cliente
+
+   CREATE PROCEDURE EliminarCliente
+  @IDCliente INTEGER
+
+  AS
+
+  DELETE Cliente
+  WHERE IDCliente = @IDCliente
+
+  GO
+
+  --procedimiento almacenado para eliminar un proveedor
+CREATE PROCEDURE EliminarProveedor
+  @IDProveedor INTEGER
+
+  AS
+
+  DELETE Proveedor
+  WHERE IDProveedor = @IDProveedor
+
+  Go
+
+  --procedimiento almacenado para eliminar un producto
+CREATE PROCEDURE EliminarProducto
+ @IDProducto INTEGER
+
+  AS
+
+  DELETE Producto
+  WHERE IDProducto = @IDProducto
+
+  GO
+
+    --procedimiento almacenado para eliminar una categoria
+  CREATE PROCEDURE EliminarCategoria
+  @IDCategoria INTEGER
+
+  AS
+
+  DELETE Categoria
+  WHERE IDCategoria = @IDCategoria
+
+  GO
