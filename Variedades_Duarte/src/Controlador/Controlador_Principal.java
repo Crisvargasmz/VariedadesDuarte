@@ -111,6 +111,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
         pnlMain.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlTitulo.setBackground(new java.awt.Color(4, 64, 98));
 
@@ -190,6 +191,8 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
                 .addComponent(bntCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(9, Short.MAX_VALUE))
         );
+
+        pnlMain.add(pnlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 80));
 
         pnlMenu.setBackground(new java.awt.Color(29, 163, 83));
         pnlMenu.setLayout(new javax.swing.BoxLayout(pnlMenu, javax.swing.BoxLayout.LINE_AXIS));
@@ -320,26 +323,11 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         });
         pnlMenu.add(btnCompra);
 
+        pnlMain.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1290, -1));
+
         pnlMostrarVentanas.setBackground(new java.awt.Color(255, 255, 255));
         pnlMostrarVentanas.setLayout(new javax.swing.OverlayLayout(pnlMostrarVentanas));
-
-        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
-        pnlMain.setLayout(pnlMainLayout);
-        pnlMainLayout.setHorizontalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1290, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(pnlMostrarVentanas, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        pnlMainLayout.setVerticalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMainLayout.createSequentialGroup()
-                .addComponent(pnlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlMostrarVentanas, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        pnlMain.add(pnlMostrarVentanas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1280, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
