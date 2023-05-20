@@ -330,8 +330,8 @@ public class Vista_cliente extends javax.swing.JPanel {
     String generoCliente = comboGenero.getSelectedItem().toString();
     String direccionCliente = txtDireccionCliente.getText();
     
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte"+
-         "integratedSecurity = true;" + " encrypt= true;trustServerCertificate= true;";
+    String url="jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;" + "integratedSecurity=true;" +
+                              "encrypt=true;trustServerCertificate=true; user=sa; password=2004";
 
      try {
         Connection conn = DriverManager.getConnection(url);
