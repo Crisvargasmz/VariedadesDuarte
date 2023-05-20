@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Controlador;
+package Vistas_menu;
 
 import Modelo.MenuBotones_color;
-import Vista.Vista_categoria;
-import Vista.Vista_cliente;
-import Vista.Vista_compra;
-import Vista.Vista_estadisticas;
-import Vista.Vista_proveedor;
-import Vista.Vista_venta;
+import Vistas_formularios.Vista_categoria;
+import Vistas_formularios.Vista_cliente;
+import Vistas_formularios.Vista_compra;
+import Vistas_formularios.Vista_estadisticas;
+import Vistas_formularios.Vista_proveedor;
+import Vistas_formularios.Vista_venta;
 import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -107,11 +107,9 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         pnlMostrarVentanas = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
         pnlMain.setBackground(new java.awt.Color(255, 255, 255));
-        pnlMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlTitulo.setBackground(new java.awt.Color(4, 64, 98));
 
@@ -191,8 +189,6 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
                 .addComponent(bntCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(9, Short.MAX_VALUE))
         );
-
-        pnlMain.add(pnlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 80));
 
         pnlMenu.setBackground(new java.awt.Color(29, 163, 83));
         pnlMenu.setLayout(new javax.swing.BoxLayout(pnlMenu, javax.swing.BoxLayout.LINE_AXIS));
@@ -323,17 +319,32 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         });
         pnlMenu.add(btnCompra);
 
-        pnlMain.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1290, -1));
-
         pnlMostrarVentanas.setBackground(new java.awt.Color(255, 255, 255));
         pnlMostrarVentanas.setLayout(new javax.swing.OverlayLayout(pnlMostrarVentanas));
-        pnlMain.add(pnlMostrarVentanas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1280, 580));
+
+        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
+        pnlMain.setLayout(pnlMainLayout);
+        pnlMainLayout.setHorizontalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1290, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlMostrarVentanas, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        pnlMainLayout.setVerticalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addComponent(pnlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlMostrarVentanas, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

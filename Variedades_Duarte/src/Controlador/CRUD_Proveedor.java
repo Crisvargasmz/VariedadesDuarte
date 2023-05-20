@@ -1,5 +1,5 @@
 
-package Controlador_Modelo;
+package Controlador;
 import Modelo.Proveedor;
 import java.sql.Connection;
 import java.sql.DriverManager;

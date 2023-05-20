@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vista;
+package Vistas_formularios;
 
 /**
  *
  * @author Windows 10
  */
-public class Formulario_compraCompletado extends javax.swing.JPanel {
+public class Formulario_ventaCompletado extends javax.swing.JPanel {
 
     /**
-     * Creates new form Formulario_compraCompletado
+     * Creates new form Formulario_ventaCompletado
      */
-    public Formulario_compraCompletado() {
+    public Formulario_ventaCompletado() {
         initComponents();
     }
 
@@ -26,21 +26,59 @@ public class Formulario_compraCompletado extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlTitulo = new javax.swing.JPanel();
-        lbLogo = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txtNombreCliente1 = new javax.swing.JTextField();
-        txtNombreCliente2 = new javax.swing.JTextField();
         txtNombreCliente3 = new javax.swing.JTextField();
+        txtNombreCliente2 = new javax.swing.JTextField();
+        txtNombreCliente1 = new javax.swing.JTextField();
+        pnlTitulo = new javax.swing.JPanel();
+        lbLogo = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(575, 546));
         setMinimumSize(new java.awt.Dimension(575, 546));
-        setPreferredSize(new java.awt.Dimension(575, 546));
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setText("Total :");
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel1.setText("Subtotal :");
+
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Productos", "Cantidad", "Monto", "Total"
+            }
+        ));
+        jTable1.setGridColor(new java.awt.Color(0, 204, 204));
+        jTable1.setOpaque(false);
+        jTable1.setRowHeight(25);
+        jTable1.setShowHorizontalLines(true);
+        jScrollPane1.setViewportView(jTable1);
+
+        txtNombreCliente3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNombreCliente3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Fecha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+
+        txtNombreCliente2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNombreCliente2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+
+        txtNombreCliente1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNombreCliente1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "N Factura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
         pnlTitulo.setBackground(new java.awt.Color(4, 64, 98));
 
@@ -73,45 +111,6 @@ public class Formulario_compraCompletado extends javax.swing.JPanel {
                     .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel2.setText("Total :");
-
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jLabel1.setText("Subtotal :");
-
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Productos", "Cantidad", "Monto", "Total"
-            }
-        ));
-        jTable1.setGridColor(new java.awt.Color(0, 204, 204));
-        jTable1.setOpaque(false);
-        jTable1.setRowHeight(25);
-        jTable1.setShowHorizontalLines(true);
-        jScrollPane1.setViewportView(jTable1);
-
-        txtNombreCliente1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "N Factura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-
-        txtNombreCliente2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Proveedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-
-        txtNombreCliente3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Fecha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -1,5 +1,5 @@
 
-package Controlador.Conexion;
+package Controlador;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +12,7 @@ public class Conexion {
             + "integratedSecurity = true;" + " encrypt= true;trustServerCertificate= true;";
        try {
         Connection cn = DriverManager.getConnection(conexionUrl);
+           System.out.println("Conexion correcta" + cn);
         return cn;
         } catch (SQLException e){
         System.out.println("Error en la conexion" + e);

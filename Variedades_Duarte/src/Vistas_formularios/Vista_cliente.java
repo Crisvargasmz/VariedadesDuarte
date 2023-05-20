@@ -2,7 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Vista;
+package Vistas_formularios;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+
 
 import java.awt.event.KeyEvent;
 
@@ -136,6 +141,11 @@ public class Vista_cliente extends javax.swing.JPanel {
         btnAgregarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnAgregarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarCliente.setText("Agregar");
+        btnAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarClienteActionPerformed(evt);
+            }
+        });
         jSplitPane2.setRightComponent(btnAgregarCliente);
 
         btnEditarCliente.setBackground(new java.awt.Color(4, 64, 98));
@@ -310,6 +320,50 @@ public class Vista_cliente extends javax.swing.JPanel {
         // Llamando metodo KeyTipedTXT
         KeyTipedTXT(evt);
     }//GEN-LAST:event_txtApellidoClienteDosKeyTyped
+
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+   String nombreCliente1 = txtNombreClienteUno.getText();
+    String nombreCliente2 = txtNombreClienteDos.getText();
+    String apellidoCliente1 = txtApellidoClienteUno.getText();
+    String apellidoCliente2 = txtApellidoClienteDos.getText();
+    String telefonoCliente = txtTelefonoCliente.getText();
+    String generoCliente = comboGenero.getSelectedItem().toString();
+    String direccionCliente = txtDireccionCliente.getText();
+    
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte"+
+         "integratedSecurity = true;" + " encrypt= true;trustServerCertificate= true;";
+
+     try {
+        Connection conn = DriverManager.getConnection(url);
+
+        // Llama al procedimiento almacenado para insertar un cliente
+        String procedureCall = "{call InsertarCliente(?, ?, ?, ?, ?, ?, ?)}";
+        CallableStatement cstmt = conn.prepareCall(procedureCall);
+
+        // Define los parámetros de entrada
+        cstmt.setString(1, nombreCliente1);
+        cstmt.setString(2, nombreCliente2);
+        cstmt.setString(3, apellidoCliente1);
+        cstmt.setString(4, apellidoCliente2);
+        cstmt.setString(5, telefonoCliente);
+        cstmt.setString(6, generoCliente);
+        cstmt.setString(7, direccionCliente);
+
+        // Ejecuta el procedimiento almacenado
+        cstmt.execute();
+
+        // Cierra la conexión y el statement
+        cstmt.close();
+        conn.close();
+
+        // Realiza cualquier acción adicional después de guardar los datos
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Maneja la excepción si ocurre algún error al guardar los datos
+    }
+ 
+    }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

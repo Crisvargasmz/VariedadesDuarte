@@ -1,5 +1,5 @@
 
-package Controlador_Modelo;
+package Controlador;
 import Modelo.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,8 @@ import java.sql.SQLException;
 
 
 public class CRUD_Cliente {
- private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;integratedSecurity=true";
+ private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte"+
+         "integratedSecurity = true;" + " encrypt= true;trustServerCertificate= true;";
 
     public void insertarCliente(Cliente cliente) {
         try (Connection connection = DriverManager.getConnection(URL)) {
