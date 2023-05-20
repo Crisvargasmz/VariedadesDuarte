@@ -3,35 +3,35 @@ package Modelo;
 
 public class Cliente {
     
-    int ID_cliente;
+    int IDCliente;
     String nombre_cliente1;
     String nombre_cliente2;
     String apellido_cliente1;
     String apellido_cliente2;
     String telefono_cliente;
-    char sexo_cliente;
+    char genero_cliente;
     String direccion_cliente;
 
     public Cliente() {
     }
 
-    public Cliente(int ID_cliente, String nombre_cliente1, String nombre_cliente2, String apellido_cliente1, String apellido_cliente2, String telefono_cliente, char sexo_cliente, String direccion_cliente) {
-        this.ID_cliente = ID_cliente;
+    public Cliente(int IDCliente, String nombre_cliente1, String nombre_cliente2, String apellido_cliente1, String apellido_cliente2, String telefono_cliente, char genero_cliente, String direccion_cliente) {
+        this.IDCliente = IDCliente;
         this.nombre_cliente1 = nombre_cliente1;
         this.nombre_cliente2 = nombre_cliente2;
         this.apellido_cliente1 = apellido_cliente1;
         this.apellido_cliente2 = apellido_cliente2;
         this.telefono_cliente = telefono_cliente;
-        this.sexo_cliente = sexo_cliente;
+        this.genero_cliente = genero_cliente;
         this.direccion_cliente = direccion_cliente;
     }
 
-    public int getID_cliente() {
-        return ID_cliente;
+    public int getIDCliente() {
+        return IDCliente;
     }
 
-    public void setID_cliente(int ID_cliente) {
-        this.ID_cliente = ID_cliente;
+    public void setIDCliente(int IDCliente) {
+        this.IDCliente = IDCliente;
     }
 
     public String getNombre_cliente1() {
@@ -74,12 +74,12 @@ public class Cliente {
         this.telefono_cliente = telefono_cliente;
     }
 
-    public char getSexo_cliente() {
-        return sexo_cliente;
+    public char getGenero_cliente() {
+        return genero_cliente;
     }
 
-    public void setSexo_cliente(char sexo_cliente) {
-        this.sexo_cliente = sexo_cliente;
+    public void setGenero_cliente(char genero_cliente) {
+        this.genero_cliente = genero_cliente;
     }
 
     public String getDireccion_cliente() {

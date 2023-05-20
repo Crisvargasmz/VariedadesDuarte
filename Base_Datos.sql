@@ -27,7 +27,8 @@ GO
 
 CREATE TABLE [Venta] (
   [IDVenta] INTEGER IDENTITY(1,1) PRIMARY KEY,
-  [fecha_venta] DATETIME,
+  [fecha_venta] DATE,
+  [hora_venta] TIME
  
 )
 GO
@@ -39,7 +40,7 @@ CREATE TABLE [Producto] (
   [precio_compra] DECIMAL(12,2) NOT NULL,
   [precio_venta] DECIMAL(12,2) NOT NULL,
   [descripcion] NVARCHAR(200) NOT NULL,
-  [fecha_vencimiento] DATETIME,
+  [fecha_vencimiento] DATE,
 
 )
 GO
@@ -52,7 +53,8 @@ GO
 
 CREATE TABLE [Compra] (
   [IDCompra] INTEGER IDENTITY(1,1) PRIMARY KEY,
-  fecha_compra DATETIME,
+  [fecha_compra] DATE,
+  [hora_compra] TIME
 
 )
 GO
