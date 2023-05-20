@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Windows 10
@@ -17,6 +19,29 @@ public class Vista_proveedor extends javax.swing.JPanel {
         initComponents();
     }
 
+    //Metodo para tipar solo letras.
+    private void KeyTipedTXT(java.awt.event.KeyEvent evt) {
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á'
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á'
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'Ü'
+                && car != 'ü'
+                && car != 'Ñ'
+                && car != 'ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,22 +53,23 @@ public class Vista_proveedor extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txtNombreCliente1 = new javax.swing.JTextField();
-        txtNombreCliente4 = new javax.swing.JTextField();
-        txtNombreCliente6 = new javax.swing.JTextField();
-        txtNombreCliente7 = new javax.swing.JTextField();
-        txtNombreCliente5 = new javax.swing.JTextField();
-        txtNombreCliente2 = new javax.swing.JTextField();
+        txtNombreProveedorUno = new javax.swing.JTextField();
+        txtNombreProveedorDos = new javax.swing.JTextField();
+        txtEmpresaProveedor = new javax.swing.JTextField();
+        txtApellidoProveedorDos = new javax.swing.JTextField();
+        txtApellidoProveedorUno = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        jSeparator1 = new javax.swing.JSeparator();
         jSplitPane3 = new javax.swing.JSplitPane();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnLimpiarCamposProveedor = new javax.swing.JButton();
+        btnEliminarProveedor = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jSplitPane2 = new javax.swing.JSplitPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAgregarProveedor = new javax.swing.JButton();
+        btnEditarProveedor = new javax.swing.JButton();
+        btnActualizarProveedor = new javax.swing.JButton();
+        txtDireccionProveedor = new javax.swing.JTextField();
+        txtBuscarProveedor = new javax.swing.JTextField();
+        txtTelefonoProveedor = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -53,19 +79,19 @@ public class Vista_proveedor extends javax.swing.JPanel {
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Proveedor", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Empresa", "Telefono"
+                "ID Proveedor", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Empresa", "Telefono", "Direccion"
             }
         ));
         jTable1.setGridColor(new java.awt.Color(0, 204, 204));
@@ -73,46 +99,69 @@ public class Vista_proveedor extends javax.swing.JPanel {
         jTable1.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(jTable1);
 
-        txtNombreCliente1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Primer Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtNombreProveedorUno.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNombreProveedorUno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNombreProveedorUno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Primer Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtNombreProveedorUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProveedorUnoKeyTyped(evt);
+            }
+        });
 
-        txtNombreCliente4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Segundo Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtNombreProveedorDos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtNombreProveedorDos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNombreProveedorDos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Segundo Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtNombreProveedorDos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProveedorDosKeyTyped(evt);
+            }
+        });
 
-        txtNombreCliente6.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Empresa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtEmpresaProveedor.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtEmpresaProveedor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtEmpresaProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Empresa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtEmpresaProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmpresaProveedorKeyTyped(evt);
+            }
+        });
 
-        txtNombreCliente7.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Telefono", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtApellidoProveedorDos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtApellidoProveedorDos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtApellidoProveedorDos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Segundo Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtApellidoProveedorDos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoProveedorDosKeyTyped(evt);
+            }
+        });
 
-        txtNombreCliente5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Segundo Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-
-        txtNombreCliente2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtNombreCliente2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Primer Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtApellidoProveedorUno.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtApellidoProveedorUno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtApellidoProveedorUno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Primer Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtApellidoProveedorUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoProveedorUnoKeyTyped(evt);
+            }
+        });
 
         jSeparator2.setBackground(new java.awt.Color(0, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(0, 204, 204));
         jSeparator2.setOpaque(true);
 
-        jSeparator1.setBackground(new java.awt.Color(0, 204, 204));
-        jSeparator1.setForeground(new java.awt.Color(0, 204, 204));
-        jSeparator1.setOpaque(true);
-
         jSplitPane3.setBackground(new java.awt.Color(4, 64, 98));
         jSplitPane3.setOpaque(false);
 
-        jButton5.setBackground(new java.awt.Color(4, 64, 98));
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Limpiar");
-        jSplitPane3.setRightComponent(jButton5);
+        btnLimpiarCamposProveedor.setBackground(new java.awt.Color(4, 64, 98));
+        btnLimpiarCamposProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnLimpiarCamposProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiarCamposProveedor.setText("Limpiar");
+        jSplitPane3.setRightComponent(btnLimpiarCamposProveedor);
 
-        jButton4.setBackground(new java.awt.Color(4, 64, 98));
-        jButton4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Elimnar");
-        jSplitPane3.setLeftComponent(jButton4);
+        btnEliminarProveedor.setBackground(new java.awt.Color(4, 64, 98));
+        btnEliminarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnEliminarProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminarProveedor.setText("Elimnar");
+        jSplitPane3.setLeftComponent(btnEliminarProveedor);
 
         jSplitPane1.setBackground(new java.awt.Color(4, 64, 98));
         jSplitPane1.setOpaque(false);
@@ -120,30 +169,46 @@ public class Vista_proveedor extends javax.swing.JPanel {
         jSplitPane2.setBackground(new java.awt.Color(4, 64, 98));
         jSplitPane2.setOpaque(false);
 
-        jButton1.setBackground(new java.awt.Color(4, 64, 98));
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Agregar");
-        jSplitPane2.setRightComponent(jButton1);
+        btnAgregarProveedor.setBackground(new java.awt.Color(4, 64, 98));
+        btnAgregarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnAgregarProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarProveedor.setText("Agregar");
+        jSplitPane2.setRightComponent(btnAgregarProveedor);
 
-        jButton2.setBackground(new java.awt.Color(4, 64, 98));
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("  Editar  ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jSplitPane2.setLeftComponent(jButton2);
+        btnEditarProveedor.setBackground(new java.awt.Color(4, 64, 98));
+        btnEditarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnEditarProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarProveedor.setText("  Editar  ");
+        jSplitPane2.setLeftComponent(btnEditarProveedor);
 
         jSplitPane1.setRightComponent(jSplitPane2);
 
-        jButton3.setBackground(new java.awt.Color(4, 64, 98));
-        jButton3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Actualizar");
-        jSplitPane1.setLeftComponent(jButton3);
+        btnActualizarProveedor.setBackground(new java.awt.Color(4, 64, 98));
+        btnActualizarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnActualizarProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizarProveedor.setText("Actualizar");
+        jSplitPane1.setLeftComponent(btnActualizarProveedor);
+
+        txtDireccionProveedor.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtDireccionProveedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDireccionProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Dirección", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+
+        txtBuscarProveedor.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtBuscarProveedor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtBuscarProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtBuscarProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarProveedorKeyTyped(evt);
+            }
+        });
+
+        txtTelefonoProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Telefono", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        try {
+            txtTelefonoProveedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtTelefonoProveedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -152,81 +217,112 @@ public class Vista_proveedor extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNombreCliente4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNombreCliente6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTelefonoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtApellidoProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNombreCliente5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNombreCliente7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(308, 308, 308))
+                        .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNombreCliente6)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNombreCliente4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombreCliente7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNombreCliente5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefonoProveedor, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellidoProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSplitPane3)
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                    .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void txtNombreProveedorUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorUnoKeyTyped
+        // Llamando metodo KeyTipedTXT
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtNombreProveedorUnoKeyTyped
+
+    private void txtNombreProveedorDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorDosKeyTyped
+        // Llamando metodo KeyTipedTXT
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtNombreProveedorDosKeyTyped
+
+    private void txtEmpresaProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpresaProveedorKeyTyped
+        // Llamando metodo KeyTipedTXT
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtEmpresaProveedorKeyTyped
+
+    private void txtApellidoProveedorUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoProveedorUnoKeyTyped
+        // Llamando metodo KeyTipedTXT
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtApellidoProveedorUnoKeyTyped
+
+    private void txtApellidoProveedorDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoProveedorDosKeyTyped
+        // Llamando metodo KeyTipedTXT
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtApellidoProveedorDosKeyTyped
+
+    private void txtBuscarProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProveedorKeyTyped
+        // Llamando metodo KeyTipedTXT
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtBuscarProveedorKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnActualizarProveedor;
+    private javax.swing.JButton btnAgregarProveedor;
+    private javax.swing.JButton btnEditarProveedor;
+    private javax.swing.JButton btnEliminarProveedor;
+    private javax.swing.JButton btnLimpiarCamposProveedor;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtNombreCliente1;
-    private javax.swing.JTextField txtNombreCliente2;
-    private javax.swing.JTextField txtNombreCliente4;
-    private javax.swing.JTextField txtNombreCliente5;
-    private javax.swing.JTextField txtNombreCliente6;
-    private javax.swing.JTextField txtNombreCliente7;
+    private javax.swing.JTextField txtApellidoProveedorDos;
+    private javax.swing.JTextField txtApellidoProveedorUno;
+    private javax.swing.JTextField txtBuscarProveedor;
+    private javax.swing.JTextField txtDireccionProveedor;
+    private javax.swing.JTextField txtEmpresaProveedor;
+    private javax.swing.JTextField txtNombreProveedorDos;
+    private javax.swing.JTextField txtNombreProveedorUno;
+    private javax.swing.JFormattedTextField txtTelefonoProveedor;
     // End of variables declaration//GEN-END:variables
 }

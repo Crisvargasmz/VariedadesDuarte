@@ -263,8 +263,8 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         btnCategoria.setBackground(new java.awt.Color(29, 163, 83));
         btnCategoria.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        btnCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BoxCategoria.png"))); // NOI18N
-        btnCategoria.setText("Categoria");
+        btnCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fast Moving Consumer GoodsProducto.png"))); // NOI18N
+        btnCategoria.setText("Producto");
         btnCategoria.setContentAreaFilled(false);
         btnCategoria.setMaximumSize(new java.awt.Dimension(190, 60));
         btnCategoria.setMinimumSize(new java.awt.Dimension(190, 60));

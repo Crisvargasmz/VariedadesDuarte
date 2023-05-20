@@ -26,6 +26,16 @@ public class Cliente {
         this.direccion_cliente = direccion_cliente;
     }
 
+    public Cliente(String nombre_cliente1, String nombre_cliente2, String apellido_cliente1, String apellido_cliente2, String telefono_cliente, char genero_cliente, String direccion_cliente) {
+        this.nombre_cliente1 = nombre_cliente1;
+        this.nombre_cliente2 = nombre_cliente2;
+        this.apellido_cliente1 = apellido_cliente1;
+        this.apellido_cliente2 = apellido_cliente2;
+        this.telefono_cliente = telefono_cliente;
+        this.genero_cliente = genero_cliente;
+        this.direccion_cliente = direccion_cliente;
+    }
+
     public int getIDCliente() {
         return IDCliente;
     }
