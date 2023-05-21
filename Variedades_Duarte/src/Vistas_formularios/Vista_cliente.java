@@ -3,12 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vistas_formularios;
+
 import Controlador.CRUD_Cliente;
+import Controlador.Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import javax.naming.spi.DirStateFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +22,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Vista_cliente extends javax.swing.JPanel {
 
+    private final Conexion con = new Conexion();
+    private final Connection cn = (Connection) con.conectar();
+
     /**
      * Creates new form Vista_cliente
      */
@@ -25,7 +32,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         initComponents();
         mostrar();
     }
-    
+
     public void mostrar() { //Método mostrar
         try {
             DefaultTableModel modelo;
@@ -56,7 +63,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                 && car != 'Ñ'
                 && car != 'ñ'
                 && (car != (char) KeyEvent.VK_SPACE)) {
-                    evt.consume();
+            evt.consume();
         }
     }
 
@@ -233,6 +240,9 @@ public class Vista_cliente extends javax.swing.JPanel {
             }
         });
         txtBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarClienteKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBuscarClienteKeyTyped(evt);
             }
@@ -260,10 +270,10 @@ public class Vista_cliente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
+                        .addGap(198, 198, 198)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -345,7 +355,7 @@ public class Vista_cliente extends javax.swing.JPanel {
 
     private void txtBuscarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+//        KeyTipedTXT(evt);
     }//GEN-LAST:event_txtBuscarClienteKeyTyped
 
     private void txtApellidoClienteDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteDosKeyTyped
@@ -354,73 +364,85 @@ public class Vista_cliente extends javax.swing.JPanel {
     }//GEN-LAST:event_txtApellidoClienteDosKeyTyped
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-   String nombreCliente1 = txtNombreClienteUno.getText();
-    String nombreCliente2 = txtNombreClienteDos.getText();
-    String apellidoCliente1 = txtApellidoClienteUno.getText();
-    String apellidoCliente2 = txtApellidoClienteDos.getText();
-    String telefonoCliente = txtTelefonoCliente.getText();
-    String generoCliente = comboGenero.getSelectedItem().toString();
-    String direccionCliente = txtDireccionCliente.getText();
-    
-    String url="jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;" + "integratedSecurity=true;" +
-                              "encrypt=true;trustServerCertificate=true; user=sa; password=2004";
+        String nombreCliente1 = txtNombreClienteUno.getText();
+        String nombreCliente2 = txtNombreClienteDos.getText();
+        String apellidoCliente1 = txtApellidoClienteUno.getText();
+        String apellidoCliente2 = txtApellidoClienteDos.getText();
+        String telefonoCliente = txtTelefonoCliente.getText();
+        String generoCliente = comboGenero.getSelectedItem().toString();
+        String direccionCliente = txtDireccionCliente.getText();
 
-     try {
-        Connection conn = DriverManager.getConnection(url);
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;"
+                + "integratedSecurity=true;" + "encript=true;trustServerCertificate=true";
 
-        // Llama al procedimiento almacenado para insertar un cliente
-        String procedureCall = "{call InsertarCliente(?, ?, ?, ?, ?, ?, ?)}";
-        CallableStatement cstmt = conn.prepareCall(procedureCall);
+//            "jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;" + "integratedSecurity=true;" +
+//                              "encrypt=true;trustServerCertificate=true; user=sa; password=2004";
+        try {
+            Connection conn = DriverManager.getConnection(url);
 
-        // Define los parámetros de entrada
-        cstmt.setString(1, nombreCliente1);
-        cstmt.setString(2, nombreCliente2);
-        cstmt.setString(3, apellidoCliente1);
-        cstmt.setString(4, apellidoCliente2);
-        cstmt.setString(5, telefonoCliente);
-        cstmt.setString(6, generoCliente);
-        cstmt.setString(7, direccionCliente);
+            // Llama al procedimiento almacenado para insertar un cliente
+            String procedureCall = "{call InsertarCliente(?, ?, ?, ?, ?, ?, ?)}";
+            CallableStatement cstmt = conn.prepareCall(procedureCall);
 
-        // Ejecuta el procedimiento almacenado
-        cstmt.execute();
+            // Define los parámetros de entrada
+            cstmt.setString(1, nombreCliente1);
+            cstmt.setString(2, nombreCliente2);
+            cstmt.setString(3, apellidoCliente1);
+            cstmt.setString(4, apellidoCliente2);
+            cstmt.setString(5, telefonoCliente);
+            cstmt.setString(6, generoCliente);
+            cstmt.setString(7, direccionCliente);
 
-        // Cierra la conexión y el statement
-        cstmt.close();
-        conn.close();
+            // Ejecuta el procedimiento almacenado
+            cstmt.execute();
 
-        // Realiza cualquier acción adicional después de guardar los datos
+            // Cierra la conexión y el statement
+            cstmt.close();
+            conn.close();
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-        // Maneja la excepción si ocurre algún error al guardar los datos
-    }
- 
+            // Realiza cualquier acción adicional después de guardar los datos
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Maneja la excepción si ocurre algún error al guardar los datos
+        }
+
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void txtBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarClienteActionPerformed
 
-       try {
-    DefaultTableModel modelo;
-    CRUD_Cliente cli = new CRUD_Cliente();
-    
-    
-  modelo = cli.buscarDatos(txtBuscarCliente.getText());
+        try {
+            DefaultTableModel modelo;
+            CRUD_Cliente cli = new CRUD_Cliente();
 
+            modelo = cli.buscarDatos(txtBuscarCliente.getText());
 
-    if (txtBuscarCliente.getText().equals("")) {
-        JOptionPane.showMessageDialog(null, "Escriba el dato a buscar");
-        mostrar();
-    } else {
-        tablaCliente.setModel(modelo);
-    }
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(null, e);
-}
+            if (txtBuscarCliente.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Escriba el dato a buscar");
+                mostrar();
+            } else {
+                tablaCliente.setModel(modelo);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_txtBuscarClienteActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void txtBuscarClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyReleased
+        // TODO add your handling code here:
+        try {
+            DefaultTableModel modelo;
+            CRUD_Cliente cliente = new CRUD_Cliente();
+            modelo = cliente.buscarDatos(txtBuscarCliente.getText());
+            tablaCliente.setModel(modelo);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_txtBuscarClienteKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
