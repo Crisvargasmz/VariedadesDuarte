@@ -7,23 +7,24 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class CRUD_Cliente {
-   
+//esto hace referencia a la conexion a la base de datos   
 private final Conexion con = new Conexion();
 private final Connection cn = (Connection) con.conectar();
 
+//este es el metodo para mostrar datos llamando a los procediminetos almacenados
     public DefaultTableModel mostrarDatos() {
         ResultSet rs;
         DefaultTableModel modelo;
         String[] titulos = {"Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
             "Telefono", "Genero", "Dirección"};
-        String[] registro = new String[7];
+        String[] registro = new String[7]; //se especifica cuantas columnas va a tener de acuerdo a nuestra base de datos
 
         modelo = new DefaultTableModel(null, titulos);
         try {
-            CallableStatement cbstc = cn.prepareCall("{call ConsultarCliente}");
+            CallableStatement cbstc = cn.prepareCall("{call ConsultarCliente}");// aqui llamamos con el nombre que se asigno al procedimiento
             rs = cbstc.executeQuery();
             while (rs.next()) {
-                registro[0] = rs.getString("nombre_cliente1");
+                registro[0] = rs.getString("nombre_cliente1");//estas variables tienen que ser las misma como se declararon en la base de datos
                 registro[1] = rs.getString("nombre_cliente2");
                 registro[2] = rs.getString("apellido_cliente1");
                 registro[3] = rs.getString("apellido_cliente2");
@@ -39,6 +40,43 @@ private final Connection cn = (Connection) con.conectar();
         }
     }
     
+public DefaultTableModel buscarDatos(String nombre_cliente1 ) {
+    ResultSet rs;
+    DefaultTableModel modelo;
+     String[] titulos = {"Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
+            "Telefono", "Genero", "Dirección"};
+    String[] registro = new String[7];
+    modelo = new DefaultTableModel(null, titulos);
+
+    try {
+        CallableStatement call = cn.prepareCall("{call BuscarCliente(?)}");
+        call.setString(1, "nombre_cliente1");
+//        call.setString(2, "nombre_cliente2");
+//        call.setString(3, "apellido_cliente1");
+//        call.setString(4, "apellido_cliente2");
+//        call.setString(5,"telefono_cliente");
+        rs = call.executeQuery();
+
+        while (rs.next()) {
+                  registro[0] = rs.getString("nombre_cliente1");//estas variables tienen que ser las misma como se declararon en la base de datos
+                registro[1] = rs.getString("nombre_cliente2");
+                registro[2] = rs.getString("apellido_cliente1");
+                registro[3] = rs.getString("apellido_cliente2");
+                registro[4] = rs.getString("telefono_cliente");
+                registro[5] = rs.getString("genero_cliente");
+                registro[6] = rs.getString("direccion_cliente");
+            modelo.addRow(registro);
+        }
+        return modelo;
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+        return null;
+    }
+}
+
+ 
+    
+   
 
 
 

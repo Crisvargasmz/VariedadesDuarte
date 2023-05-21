@@ -8,8 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
-
-
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -91,6 +89,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         tablaCliente = new javax.swing.JTable();
         txtBuscarCliente = new javax.swing.JTextField();
         txtTelefonoCliente = new javax.swing.JFormattedTextField();
+        buscar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -228,6 +227,11 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtBuscarCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtBuscarCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarClienteActionPerformed(evt);
+            }
+        });
         txtBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBuscarClienteKeyTyped(evt);
@@ -242,6 +246,13 @@ public class Vista_cliente extends javax.swing.JPanel {
         }
         txtTelefonoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        buscar.setText("jButton1");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,6 +265,8 @@ public class Vista_cliente extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
                                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -298,9 +311,13 @@ public class Vista_cliente extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBuscarCliente)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSplitPane3)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jSplitPane3)
+                                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buscar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -380,6 +397,31 @@ public class Vista_cliente extends javax.swing.JPanel {
  
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
+    private void txtBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarClienteActionPerformed
+
+       try {
+    DefaultTableModel modelo;
+    CRUD_Cliente cli = new CRUD_Cliente();
+    
+    
+  modelo = cli.buscarDatos(txtBuscarCliente.getText());
+
+
+    if (txtBuscarCliente.getText().equals("")) {
+        JOptionPane.showMessageDialog(null, "Escriba el dato a buscar");
+        mostrar();
+    } else {
+        tablaCliente.setModel(modelo);
+    }
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(null, e);
+}
+    }//GEN-LAST:event_txtBuscarClienteActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+
+    }//GEN-LAST:event_buscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarCliente;
@@ -387,6 +429,7 @@ public class Vista_cliente extends javax.swing.JPanel {
     private javax.swing.JButton btnEditarCliente;
     private javax.swing.JButton btnEliminarCliente;
     private javax.swing.JButton btnLimpiarCamposCliente;
+    private javax.swing.JButton buscar;
     private javax.swing.JComboBox<String> comboGenero;
     private javax.swing.JPanel contenedorTablaCliente;
     private javax.swing.JScrollPane jScrollPane1;
