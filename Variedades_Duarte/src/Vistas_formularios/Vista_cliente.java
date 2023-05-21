@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vistas_formularios;
+import Controlador.CRUD_Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.CallableStatement;
@@ -10,6 +11,8 @@ import java.sql.SQLException;
 
 
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +25,18 @@ public class Vista_cliente extends javax.swing.JPanel {
      */
     public Vista_cliente() {
         initComponents();
+        mostrar();
+    }
+    
+    public void mostrar() { //Método mostrar
+        try {
+            DefaultTableModel modelo;
+            CRUD_Cliente cli = new CRUD_Cliente(); //objeto de la clase CRUDCliente
+            modelo = cli.mostrarDatos();
+            tablaCliente.setModel(modelo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     //Metodo para tipar solo letras.

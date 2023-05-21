@@ -14,22 +14,22 @@ private final Connection cn = (Connection) con.conectar();
     public DefaultTableModel mostrarDatos() {
         ResultSet rs;
         DefaultTableModel modelo;
-        String[] titulos = {"Primer Nombre", "Segunfo Nombre", "Primer Apellido", "Segundo Apellido",
+        String[] titulos = {"Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
             "Telefono", "Genero", "Dirección"};
         String[] registro = new String[7];
 
         modelo = new DefaultTableModel(null, titulos);
         try {
-            CallableStatement cbstc = cn.prepareCall("{call ConsultarClientes}");
+            CallableStatement cbstc = cn.prepareCall("{call ConsultarCliente}");
             rs = cbstc.executeQuery();
             while (rs.next()) {
-                registro[0] = rs.getString("Primer Nombre");
-                registro[1] = rs.getString("Segunfo Nombre");
-                registro[2] = rs.getString("Primer Apellido");
-                registro[3] = rs.getString("Segundo Apellido");
-                registro[4] = rs.getString("Telefono");
-                registro[5] = rs.getString("Genero");
-                registro[6] = rs.getString("Dirección");
+                registro[0] = rs.getString("nombre_cliente1");
+                registro[1] = rs.getString("nombre_cliente2");
+                registro[2] = rs.getString("apellido_cliente1");
+                registro[3] = rs.getString("apellido_cliente2");
+                registro[4] = rs.getString("telefono_cliente");
+                registro[5] = rs.getString("genero_cliente");
+                registro[6] = rs.getString("direccion_cliente");
                 modelo.addRow(registro);
             }
             return modelo;
@@ -39,7 +39,7 @@ private final Connection cn = (Connection) con.conectar();
         }
     }
     
-    tablaCliente
+
 
 
 

@@ -256,7 +256,8 @@ CREATE PROCEDURE ConsultarCliente
     @direccion_cliente NVARCHAR(150) = NULL
 AS
 BEGIN
-    SELECT *
+    SELECT [nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente]
+	,[direccion_cliente]
     FROM Cliente
     WHERE (nombre_cliente1 = @nombre_cliente1 OR @nombre_cliente1 IS NULL)
         AND (nombre_cliente2 = @nombre_cliente2 OR @nombre_cliente2 IS NULL)
