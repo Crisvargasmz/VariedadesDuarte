@@ -74,10 +74,17 @@ private final Connection cn = (Connection) con.conectar();
     }
 }
 
-
+  
+    
+    
+    
+    
+    
+    
+    
     public void insertarCliente(Cliente cliente) {
         try {
-           CallableStatement callableStatement = cn.prepareCall("{call InsertarCliente(?,?,?,?,?,?)}");
+           CallableStatement callableStatement = cn.prepareCall("{call InsertarCliente(?,?,?,?,?,?,?)}");
             callableStatement.setString(1, cliente.getNombre_cliente1());
             callableStatement.setString(2, cliente.getNombre_cliente2());
             callableStatement.setString(3, cliente.getApellido_cliente1());
@@ -92,7 +99,22 @@ private final Connection cn = (Connection) con.conectar();
         }
     }
     
+    public boolean verificarDatos(String dato) {
+        ResultSet rs;
+
+        try {
+            CallableStatement call = cn.prepareCall("{call ConsultarClientes(?)}");
+            call.setString(1, dato);
+            rs = call.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+ 
 }
+
 
 //    public Cliente consultarCliente(int IDCliente) {
 //        Cliente cliente = null;

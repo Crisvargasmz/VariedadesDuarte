@@ -4,6 +4,8 @@
  */
 package Vistas_formularios;
 import Controlador.CRUD_Cliente;
+import Modelo.Cliente;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.CallableStatement;
@@ -27,6 +29,42 @@ public class Vista_cliente extends javax.swing.JPanel {
         initComponents();
         mostrar();
     }
+    
+public void guardarCliente() {
+    CRUD_Cliente cc = new CRUD_Cliente();
+    Object generoSeleccionado = comboGenero.getSelectedItem();
+    char generoChar;
+
+    if (generoSeleccionado != null && generoSeleccionado.toString().length() == 1) {
+        generoChar = generoSeleccionado.toString().charAt(0);
+    } else {
+        // Manejo de caso cuando el valor seleccionado no es válido
+        // por ejemplo, si está vacío o tiene más de un carácter
+        // Puedes asignar un valor predeterminado o mostrar un mensaje de error
+        generoChar = ' '; // Asignar un espacio en blanco como valor predeterminado
+        // O mostrar un mensaje de error
+        System.out.println("Error: el género seleccionado no es válido.");
+    }
+
+    Cliente cl = new Cliente(txtNombreClienteUno.getText(),
+                             txtNombreClienteDos.getText(),
+                             txtApellidoClienteUno.getText(),
+                             txtApellidoClienteDos.getText(),
+                             txtTelefonoCliente.getText(),
+                             generoChar,
+                             txtDireccionCliente.getText());
+
+    cc.insertarCliente(cl);
+}
+    
+    public void limpiar() {
+        txtNombreClienteUno.setText("");
+        txtNombreClienteDos.setText("");
+        txtApellidoClienteUno.setText("");
+        txtApellidoClienteDos.setText("");
+        txtTelefonoCliente.setText("");
+         txtDireccionCliente.setText("");
+    }
 
     public void mostrar() { //Método mostrar
         try {
@@ -37,7 +75,11 @@ public class Vista_cliente extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        
+        
     }
+    
+    
     //Metodo para tipar solo letras.
     private void KeyTipedTXT(java.awt.event.KeyEvent evt) {
         char car = evt.getKeyChar();
@@ -351,46 +393,120 @@ public class Vista_cliente extends javax.swing.JPanel {
     }//GEN-LAST:event_txtApellidoClienteDosKeyTyped
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-   String nombreCliente1 = txtNombreClienteUno.getText();
-    String nombreCliente2 = txtNombreClienteDos.getText();
-    String apellidoCliente1 = txtApellidoClienteUno.getText();
-    String apellidoCliente2 = txtApellidoClienteDos.getText();
-    String telefonoCliente = txtTelefonoCliente.getText();
-    String generoCliente = comboGenero.getSelectedItem().toString();
-    String direccionCliente = txtDireccionCliente.getText();
-    
-    String url="jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;" + "integratedSecurity=true;" +
-                              "encrypt=true;trustServerCertificate=true; user=sa; password=2004";
 
-     try {
-        Connection conn = DriverManager.getConnection(url);
 
-        // Llama al procedimiento almacenado para insertar un cliente
-        String procedureCall = "{call InsertarCliente(?, ?, ?, ?, ?, ?, ?)}";
-        CallableStatement cstmt = conn.prepareCall(procedureCall);
+ CRUD_Cliente cc = new CRUD_Cliente();
+try {
+    if (txtNombreClienteUno.getText().equals("")
+            || txtNombreClienteDos.getText().equals("")
+            || txtApellidoClienteUno.getText().equals("")
+            || txtApellidoClienteDos.getText().equals("")
+            || txtTelefonoCliente.getText().equals("")
+            || comboGenero.getSelectedItem().toString().equals("")
+            || txtDireccionCliente.getText().equals("")) {
 
-        // Define los parámetros de entrada
-        cstmt.setString(1, nombreCliente1);
-        cstmt.setString(2, nombreCliente2);
-        cstmt.setString(3, apellidoCliente1);
-        cstmt.setString(4, apellidoCliente2);
-        cstmt.setString(5, telefonoCliente);
-        cstmt.setString(6, generoCliente);
-        cstmt.setString(7, direccionCliente);
-
-        // Ejecuta el procedimiento almacenado
-        cstmt.execute();
-
-        // Cierra la conexión y el statement
-        cstmt.close();
-        conn.close();
-
-        // Realiza cualquier acción adicional después de guardar los datos
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-        // Maneja la excepción si ocurre algún error al guardar los datos
+        JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+    } else {
+        guardarCliente();
+        limpiar();
+        JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
     }
+} catch (HeadlessException e) {
+    JOptionPane.showMessageDialog(null, "Error: " + e);
+}
+
+
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+//        CRUD_Cliente cc = new CRUD_Cliente();
+//    try {
+//        if (txtNombreClienteUno.getText().equals("")
+//                || txtNombreClienteDos.getText().equals("")
+//                || txtApellidoClienteUno.getText().equals("")
+//                || txtApellidoClienteDos.getText().equals("")
+//                || txtTelefonoCliente.getText().equals("")
+//                || txtDireccionCliente.getText().equals("")) {
+//
+//            JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+//        } else {
+//            if (cc.verificarDatos(txtCedula.getText())) {
+//                JOptionPane.showMessageDialog(null, "Ya existe un cliente con ese número de Cédula");
+//            } else {
+//                guardarCliente();
+//                limpiar();
+//                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+//            }
+//        }
+//    } catch (HeadlessException e) {
+//        JOptionPane.showMessageDialog(null, "Error: " + e);
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   String nombreCliente1 = txtNombreClienteUno.getText();
+//    String nombreCliente2 = txtNombreClienteDos.getText();
+//    String apellidoCliente1 = txtApellidoClienteUno.getText();
+//    String apellidoCliente2 = txtApellidoClienteDos.getText();
+//    String telefonoCliente = txtTelefonoCliente.getText();
+//    String generoCliente = comboGenero.getSelectedItem().toString();
+//    String direccionCliente = txtDireccionCliente.getText();
+//    
+//    String url="jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;" + "integratedSecurity=true;" +
+//                              "encrypt=true;trustServerCertificate=true; user=sa; password=2004";
+//
+//     try {
+//        Connection conn = DriverManager.getConnection(url);
+//
+//        // Llama al procedimiento almacenado para insertar un cliente
+//        String procedureCall = "{call InsertarCliente(?, ?, ?, ?, ?, ?, ?)}";
+//        CallableStatement cstmt = conn.prepareCall(procedureCall);
+//
+//        // Define los parámetros de entrada
+//        cstmt.setString(1, nombreCliente1);
+//        cstmt.setString(2, nombreCliente2);
+//        cstmt.setString(3, apellidoCliente1);
+//        cstmt.setString(4, apellidoCliente2);
+//        cstmt.setString(5, telefonoCliente);
+//        cstmt.setString(6, generoCliente);
+//        cstmt.setString(7, direccionCliente);
+//
+//        // Ejecuta el procedimiento almacenado
+//        cstmt.execute();
+//
+//        // Cierra la conexión y el statement
+//        cstmt.close();
+//        conn.close();
+//        limpiar();
+//        // Realiza cualquier acción adicional después de guardar los datos
+//
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//        // Maneja la excepción si ocurre algún error al guardar los datos
+//    }
  
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
