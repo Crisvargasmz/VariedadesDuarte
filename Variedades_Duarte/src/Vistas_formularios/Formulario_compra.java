@@ -48,7 +48,7 @@ public class Formulario_compra extends javax.swing.JPanel {
 
         pnlTitulo.setBackground(new java.awt.Color(4, 64, 98));
 
-        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo.png"))); // NOI18N
+        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/Logo.png"))); // NOI18N
 
         jButton6.setText("Cerrar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {

@@ -15,20 +15,21 @@ private final Connection cn = (Connection) con.conectar();
         ResultSet rs;
         DefaultTableModel modelo;
         String[] titulos = {"Primer Nombre", "Segunfo Nombre", "Primer Apellido", "Segundo Apellido",
-            "Telefono", "Genero","Dirección"};
-        String[] registro = new String[6];
+            "Telefono", "Genero", "Dirección"};
+        String[] registro = new String[7];
 
         modelo = new DefaultTableModel(null, titulos);
         try {
-            CallableStatement cbstc = cn.prepareCall("{call MostrarClientes}");
+            CallableStatement cbstc = cn.prepareCall("{call ConsultarClientes}");
             rs = cbstc.executeQuery();
             while (rs.next()) {
-                registro[0] = rs.getString("cedula");
-                registro[1] = rs.getString("nombres");
-                registro[2] = rs.getString("apellidos");
-                registro[3] = rs.getString("sobrenombre");
-                registro[4] = rs.getString("telefono");
-                registro[5] = rs.getString("direccion");
+                registro[0] = rs.getString("Primer Nombre");
+                registro[1] = rs.getString("Segunfo Nombre");
+                registro[2] = rs.getString("Primer Apellido");
+                registro[3] = rs.getString("Segundo Apellido");
+                registro[4] = rs.getString("Telefono");
+                registro[5] = rs.getString("Genero");
+                registro[6] = rs.getString("Dirección");
                 modelo.addRow(registro);
             }
             return modelo;
@@ -37,6 +38,8 @@ private final Connection cn = (Connection) con.conectar();
             return null;
         }
     }
+    
+    tablaCliente
 
 
 
