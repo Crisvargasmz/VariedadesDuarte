@@ -3,16 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vistas_formularios;
-
 import Controlador.CRUD_Cliente;
-import Controlador.Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+
+
 import java.awt.event.KeyEvent;
-import java.sql.ResultSet;
-import javax.naming.spi.DirStateFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,9 +19,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Windows 10
  */
 public class Vista_cliente extends javax.swing.JPanel {
-
-    private final Conexion con = new Conexion();
-    private final Connection cn = (Connection) con.conectar();
 
     /**
      * Creates new form Vista_cliente
@@ -43,7 +38,6 @@ public class Vista_cliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
     //Metodo para tipar solo letras.
     private void KeyTipedTXT(java.awt.event.KeyEvent evt) {
         char car = evt.getKeyChar();
@@ -63,7 +57,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                 && car != 'Ñ'
                 && car != 'ñ'
                 && (car != (char) KeyEvent.VK_SPACE)) {
-            evt.consume();
+                    evt.consume();
         }
     }
 
@@ -96,7 +90,6 @@ public class Vista_cliente extends javax.swing.JPanel {
         tablaCliente = new javax.swing.JTable();
         txtBuscarCliente = new javax.swing.JTextField();
         txtTelefonoCliente = new javax.swing.JFormattedTextField();
-        buscar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -234,15 +227,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtBuscarCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtBuscarCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        txtBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarClienteActionPerformed(evt);
-            }
-        });
         txtBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarClienteKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBuscarClienteKeyTyped(evt);
             }
@@ -256,13 +241,6 @@ public class Vista_cliente extends javax.swing.JPanel {
         }
         txtTelefonoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        buscar.setText("jButton1");
-        buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -270,13 +248,11 @@ public class Vista_cliente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
+                        .addGap(136, 136, 136)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
                                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -321,13 +297,9 @@ public class Vista_cliente extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBuscarCliente)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSplitPane3)
-                                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(buscar))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSplitPane3)
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -354,63 +326,7 @@ public class Vista_cliente extends javax.swing.JPanel {
     }//GEN-LAST:event_txtApellidoClienteUnoKeyTyped
 
     private void txtBuscarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyTyped
-        // Llamando metodo KeyTipedTXT
-//        KeyTipedTXT(evt);
-    }//GEN-LAST:event_txtBuscarClienteKeyTyped
-
-    private void txtApellidoClienteDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteDosKeyTyped
-        // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
-    }//GEN-LAST:event_txtApellidoClienteDosKeyTyped
-
-    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-        String nombreCliente1 = txtNombreClienteUno.getText();
-        String nombreCliente2 = txtNombreClienteDos.getText();
-        String apellidoCliente1 = txtApellidoClienteUno.getText();
-        String apellidoCliente2 = txtApellidoClienteDos.getText();
-        String telefonoCliente = txtTelefonoCliente.getText();
-        String generoCliente = comboGenero.getSelectedItem().toString();
-        String direccionCliente = txtDireccionCliente.getText();
-
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;"
-                + "integratedSecurity=true;" + "encript=true;trustServerCertificate=true";
-
-//            "jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;" + "integratedSecurity=true;" +
-//                              "encrypt=true;trustServerCertificate=true; user=sa; password=2004";
-        try {
-            Connection conn = DriverManager.getConnection(url);
-
-            // Llama al procedimiento almacenado para insertar un cliente
-            String procedureCall = "{call InsertarCliente(?, ?, ?, ?, ?, ?, ?)}";
-            CallableStatement cstmt = conn.prepareCall(procedureCall);
-
-            // Define los parámetros de entrada
-            cstmt.setString(1, nombreCliente1);
-            cstmt.setString(2, nombreCliente2);
-            cstmt.setString(3, apellidoCliente1);
-            cstmt.setString(4, apellidoCliente2);
-            cstmt.setString(5, telefonoCliente);
-            cstmt.setString(6, generoCliente);
-            cstmt.setString(7, direccionCliente);
-
-            // Ejecuta el procedimiento almacenado
-            cstmt.execute();
-
-            // Cierra la conexión y el statement
-            cstmt.close();
-            conn.close();
-
-            // Realiza cualquier acción adicional después de guardar los datos
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Maneja la excepción si ocurre algún error al guardar los datos
-        }
-
-    }//GEN-LAST:event_btnAgregarClienteActionPerformed
-
-    private void txtBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarClienteActionPerformed
-
-        try {
+            try {
             DefaultTableModel modelo;
             CRUD_Cliente cli = new CRUD_Cliente();
 
@@ -425,24 +341,58 @@ public class Vista_cliente extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    }//GEN-LAST:event_txtBuscarClienteActionPerformed
+    
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtBuscarClienteKeyTyped
 
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+    private void txtApellidoClienteDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteDosKeyTyped
+        // Llamando metodo KeyTipedTXT
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtApellidoClienteDosKeyTyped
 
-    }//GEN-LAST:event_buscarActionPerformed
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+   String nombreCliente1 = txtNombreClienteUno.getText();
+    String nombreCliente2 = txtNombreClienteDos.getText();
+    String apellidoCliente1 = txtApellidoClienteUno.getText();
+    String apellidoCliente2 = txtApellidoClienteDos.getText();
+    String telefonoCliente = txtTelefonoCliente.getText();
+    String generoCliente = comboGenero.getSelectedItem().toString();
+    String direccionCliente = txtDireccionCliente.getText();
+    
+    String url="jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;" + "integratedSecurity=true;" +
+                              "encrypt=true;trustServerCertificate=true; user=sa; password=2004";
 
-    private void txtBuscarClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyReleased
-        // TODO add your handling code here:
-        try {
-            DefaultTableModel modelo;
-            CRUD_Cliente cliente = new CRUD_Cliente();
-            modelo = cliente.buscarDatos(txtBuscarCliente.getText());
-            tablaCliente.setModel(modelo);
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_txtBuscarClienteKeyReleased
+     try {
+        Connection conn = DriverManager.getConnection(url);
+
+        // Llama al procedimiento almacenado para insertar un cliente
+        String procedureCall = "{call InsertarCliente(?, ?, ?, ?, ?, ?, ?)}";
+        CallableStatement cstmt = conn.prepareCall(procedureCall);
+
+        // Define los parámetros de entrada
+        cstmt.setString(1, nombreCliente1);
+        cstmt.setString(2, nombreCliente2);
+        cstmt.setString(3, apellidoCliente1);
+        cstmt.setString(4, apellidoCliente2);
+        cstmt.setString(5, telefonoCliente);
+        cstmt.setString(6, generoCliente);
+        cstmt.setString(7, direccionCliente);
+
+        // Ejecuta el procedimiento almacenado
+        cstmt.execute();
+
+        // Cierra la conexión y el statement
+        cstmt.close();
+        conn.close();
+
+        // Realiza cualquier acción adicional después de guardar los datos
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Maneja la excepción si ocurre algún error al guardar los datos
+    }
+ 
+    }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -451,7 +401,6 @@ public class Vista_cliente extends javax.swing.JPanel {
     private javax.swing.JButton btnEditarCliente;
     private javax.swing.JButton btnEliminarCliente;
     private javax.swing.JButton btnLimpiarCamposCliente;
-    private javax.swing.JButton buscar;
     private javax.swing.JComboBox<String> comboGenero;
     private javax.swing.JPanel contenedorTablaCliente;
     private javax.swing.JScrollPane jScrollPane1;

@@ -127,7 +127,7 @@
             <Component class="javax.swing.JLabel" name="lbLogo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vistas_iconos/Logo.png"/>
+                  <Image iconType="3" name="/Imagenes/Logo.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -200,7 +200,7 @@
             <Component class="javax.swing.JButton" name="bntCerrarSesion">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vistas_iconos/LoginSalir.png"/>
+                  <Image iconType="3" name="/Imagenes/LoginSalir.png"/>
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -232,7 +232,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vistas_iconos/HomeInicio.png"/>
+                  <Image iconType="3" name="/Imagenes/HomeInicio.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Inicio"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -263,7 +263,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vistas_iconos/Add User MaleCliente.png"/>
+                  <Image iconType="3" name="/Imagenes/Add User MaleCliente.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -294,7 +294,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vistas_iconos/Add Shopping CartVenta.png"/>
+                  <Image iconType="3" name="/Imagenes/Add Shopping CartVenta.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Venta"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -325,7 +325,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vistas_iconos/Fast Moving Consumer GoodsProducto.png"/>
+                  <Image iconType="3" name="/Imagenes/Fast Moving Consumer GoodsProducto.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Producto"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -356,7 +356,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vistas_iconos/SupplierProveedor.png"/>
+                  <Image iconType="3" name="/Imagenes/SupplierProveedor.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proveedor"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -387,7 +387,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Vistas_iconos/Full Shopping BasketComprar.png"/>
+                  <Image iconType="3" name="/Imagenes/Full Shopping BasketComprar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Compra"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>

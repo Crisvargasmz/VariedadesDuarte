@@ -118,7 +118,7 @@
         <Component class="javax.swing.JLabel" name="lbLogo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Vistas_iconos/Logo.png"/>
+              <Image iconType="3" name="/Imagenes/Logo.png"/>
             </Property>
           </Properties>
         </Component>

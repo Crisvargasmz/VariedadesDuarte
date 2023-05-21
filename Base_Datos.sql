@@ -244,29 +244,6 @@ CREATE PROCEDURE InsertarProducto
    GO
 -----------------------------------------------------------------------------------------------------
 
-CREATE PROCEDURE BuscarCliente
-    @nombre_cliente1 NVARCHAR(15) ,
-    @nombre_cliente2 NVARCHAR(15) ,
-    @apellido_cliente1 NVARCHAR(15) ,
-    @apellido_cliente2 NVARCHAR(15),
-	@telefono_cliente NVARCHAR(8) 
-AS
-BEGIN
-    SELECT[nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente]
-	,[direccion_cliente]
-    FROM Cliente
-  WHERE (nombre_cliente1 LIKE '%' + RTRIM(@nombre_cliente1) + '%' OR nombre_cliente2 LIKE '%' + RTRIM(@nombre_cliente2) + '%')
-    AND (apellido_cliente1 LIKE '%' + RTRIM(@apellido_cliente1) + '%' OR apellido_cliente2 LIKE '%' + RTRIM(@apellido_cliente2) + '%')
-    AND (telefono_cliente LIKE '%' + RTRIM(@telefono_cliente) + '%')
-
-END
-
-
-GO
-
-
-
-
    --procedimiento almacenado para consultar cliente
 
 CREATE PROCEDURE ConsultarCliente
@@ -279,8 +256,7 @@ CREATE PROCEDURE ConsultarCliente
     @direccion_cliente NVARCHAR(150) = NULL
 AS
 BEGIN
-    SELECT [nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente]
-	,[direccion_cliente]
+    SELECT *
     FROM Cliente
     WHERE (nombre_cliente1 = @nombre_cliente1 OR @nombre_cliente1 IS NULL)
         AND (nombre_cliente2 = @nombre_cliente2 OR @nombre_cliente2 IS NULL)
