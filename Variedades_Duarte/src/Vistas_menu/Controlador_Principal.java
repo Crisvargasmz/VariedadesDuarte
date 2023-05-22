@@ -113,7 +113,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
         pnlTitulo.setBackground(new java.awt.Color(4, 64, 98));
 
-        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo.png"))); // NOI18N
+        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/Logo.png"))); // NOI18N
 
         lbDate.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         lbDate.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,6 +132,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         lbUsuario.setBackground(new java.awt.Color(255, 255, 255));
         lbUsuario.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         lbUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lbUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/Accountusers.png"))); // NOI18N
         lbUsuario.setText("Usuario ( Nombre )");
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
@@ -139,7 +140,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setOpaque(true);
 
-        bntCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LoginSalir.png"))); // NOI18N
+        bntCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/LoginSalir.png"))); // NOI18N
         bntCerrarSesion.setBorderPainted(false);
         bntCerrarSesion.setContentAreaFilled(false);
         bntCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -160,12 +161,12 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bntCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
         pnlTituloLayout.setVerticalGroup(
             pnlTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,15 +180,15 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
                                 .addComponent(lbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbLogo)))
                     .addGroup(pnlTituloLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(15, Short.MAX_VALUE)
                         .addGroup(pnlTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlTituloLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTituloLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(bntCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnlMenu.setBackground(new java.awt.Color(29, 163, 83));
@@ -196,7 +197,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         btnInicio.setBackground(new java.awt.Color(29, 163, 83));
         btnInicio.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
-        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HomeInicio.png"))); // NOI18N
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/HomeInicio.png"))); // NOI18N
         btnInicio.setText("Inicio");
         btnInicio.setContentAreaFilled(false);
         btnInicio.setMaximumSize(new java.awt.Dimension(180, 60));
@@ -217,7 +218,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         btnCliente.setBackground(new java.awt.Color(29, 163, 83));
         btnCliente.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Add User MaleCliente.png"))); // NOI18N
+        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/Add User MaleCliente.png"))); // NOI18N
         btnCliente.setText("Cliente");
         btnCliente.setContentAreaFilled(false);
         btnCliente.setMaximumSize(new java.awt.Dimension(180, 60));
@@ -238,7 +239,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         btnVenta.setBackground(new java.awt.Color(29, 163, 83));
         btnVenta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnVenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Add Shopping CartVenta.png"))); // NOI18N
+        btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/Add Shopping CartVenta.png"))); // NOI18N
         btnVenta.setText("Venta");
         btnVenta.setContentAreaFilled(false);
         btnVenta.setMaximumSize(new java.awt.Dimension(180, 60));
@@ -259,7 +260,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         btnCategoria.setBackground(new java.awt.Color(29, 163, 83));
         btnCategoria.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        btnCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fast Moving Consumer GoodsProducto.png"))); // NOI18N
+        btnCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/Fast Moving Consumer GoodsProducto.png"))); // NOI18N
         btnCategoria.setText("Producto");
         btnCategoria.setContentAreaFilled(false);
         btnCategoria.setMaximumSize(new java.awt.Dimension(190, 60));
@@ -280,7 +281,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         btnProveedor.setBackground(new java.awt.Color(29, 163, 83));
         btnProveedor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnProveedor.setForeground(new java.awt.Color(255, 255, 255));
-        btnProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SupplierProveedor.png"))); // NOI18N
+        btnProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/SupplierProveedor.png"))); // NOI18N
         btnProveedor.setText("Proveedor");
         btnProveedor.setContentAreaFilled(false);
         btnProveedor.setMaximumSize(new java.awt.Dimension(190, 60));
@@ -301,7 +302,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         btnCompra.setBackground(new java.awt.Color(29, 163, 83));
         btnCompra.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCompra.setForeground(new java.awt.Color(255, 255, 255));
-        btnCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Full Shopping BasketComprar.png"))); // NOI18N
+        btnCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/Full Shopping BasketComprar.png"))); // NOI18N
         btnCompra.setText("Compra");
         btnCompra.setContentAreaFilled(false);
         btnCompra.setMaximumSize(new java.awt.Dimension(180, 60));
@@ -326,9 +327,14 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         pnlMain.setLayout(pnlMainLayout);
         pnlMainLayout.setHorizontalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1290, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(pnlMostrarVentanas, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlMostrarVentanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +350,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

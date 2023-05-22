@@ -46,9 +46,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="pnlTitulo" min="-2" max="-2" attributes="0"/>
-              <Component id="pnlMenu" min="-2" pref="1290" max="-2" attributes="0"/>
-              <Component id="pnlMostrarVentanas" min="-2" pref="1280" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Component id="pnlMenu" min="-2" pref="1290" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="pnlTitulo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnlMostrarVentanas" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -82,12 +90,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbTime" min="-2" pref="181" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="3" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="lbUsuario" min="-2" pref="271" max="-2" attributes="0"/>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="bntCerrarSesion" min="-2" pref="69" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -106,19 +114,19 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="15" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbUsuario" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lbUsuario" alignment="0" pref="52" max="32767" attributes="0"/>
                                   <Component id="jSeparator1" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="13" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="bntCerrarSesion" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -127,7 +135,7 @@
             <Component class="javax.swing.JLabel" name="lbLogo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/Logo.png"/>
+                  <Image iconType="3" name="/Vistas_iconos/Logo.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -182,6 +190,9 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Vistas_iconos/Accountusers.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Usuario ( Nombre )"/>
               </Properties>
             </Component>
@@ -200,7 +211,7 @@
             <Component class="javax.swing.JButton" name="bntCerrarSesion">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/LoginSalir.png"/>
+                  <Image iconType="3" name="/Vistas_iconos/LoginSalir.png"/>
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -232,7 +243,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/HomeInicio.png"/>
+                  <Image iconType="3" name="/Vistas_iconos/HomeInicio.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Inicio"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -263,7 +274,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/Add User MaleCliente.png"/>
+                  <Image iconType="3" name="/Vistas_iconos/Add User MaleCliente.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -294,7 +305,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/Add Shopping CartVenta.png"/>
+                  <Image iconType="3" name="/Vistas_iconos/Add Shopping CartVenta.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Venta"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -325,7 +336,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/Fast Moving Consumer GoodsProducto.png"/>
+                  <Image iconType="3" name="/Vistas_iconos/Fast Moving Consumer GoodsProducto.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Producto"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -356,7 +367,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/SupplierProveedor.png"/>
+                  <Image iconType="3" name="/Vistas_iconos/SupplierProveedor.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proveedor"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -387,7 +398,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/Full Shopping BasketComprar.png"/>
+                  <Image iconType="3" name="/Vistas_iconos/Full Shopping BasketComprar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Compra"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
