@@ -22,12 +22,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Vista_cliente extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Vista_cliente
-     */
+    int datoSeleccionado = -1;
+     
     public Vista_cliente() {
         initComponents();
         mostrar();
+        
     }
     
 public void guardarCliente() {
@@ -40,7 +40,6 @@ public void guardarCliente() {
     } else {
         // Manejo de caso cuando el valor seleccionado no es válido
         // por ejemplo, si está vacío o tiene más de un carácter
-        // Puedes asignar un valor predeterminado o mostrar un mensaje de error
         generoChar = ' '; // Asignar un espacio en blanco como valor predeterminado
         // O mostrar un mensaje de error
         System.out.println("Error: el género seleccionado no es válido.");
@@ -78,6 +77,12 @@ public void guardarCliente() {
         
         
     }
+    
+    
+    
+    
+    
+    
     
     
     //Metodo para tipar solo letras.
@@ -221,6 +226,11 @@ public void guardarCliente() {
         btnActualizarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnActualizarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarCliente.setText("Actualizar");
+        btnActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarClienteActionPerformed(evt);
+            }
+        });
         jSplitPane1.setLeftComponent(btnActualizarCliente);
 
         jSplitPane3.setBackground(new java.awt.Color(4, 64, 98));
@@ -262,6 +272,11 @@ public void guardarCliente() {
         tablaCliente.setSelectionBackground(new java.awt.Color(204, 204, 204));
         tablaCliente.setShowHorizontalLines(true);
         tablaCliente.setSurrendersFocusOnKeystroke(true);
+        tablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClienteMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaCliente);
 
         contenedorTablaCliente.add(jScrollPane1);
@@ -509,6 +524,56 @@ try {
 //    }
  
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
+
+    private void tablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClienteMouseClicked
+  datoSeleccionado = tablaCliente.rowAtPoint(evt.getPoint());
+  if (datoSeleccionado >= 0) {
+          
+                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
+            CRUD_Cliente cli = new CRUD_Cliente();
+            if (JOptionPane.showConfirmDialog(this.getRootPane(),
+                    "Se eliminará el registro, ¿desea continuar?",
+                    "Eliminar Registro",
+                    JOptionPane.WARNING_MESSAGE,
+                    JOptionPane.YES_NO_OPTION)
+                    == JOptionPane.YES_OPTION) {
+
+                cli.eliminar(dato);
+                mostrar();
+                JOptionPane.showMessageDialog(null,
+                        "Dato eliminado correctamente");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Debe seleccionar un registro de la tabla");
+        }
+  
+    }//GEN-LAST:event_tablaClienteMouseClicked
+
+    private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
+ 
+//    try {
+//        
+//        if (txtNombreClienteUno.getText().equals("")
+//                || txtNombreClienteDos.getText().equals("")
+//                || txtApellidoClienteUno.getText().equals("")
+//                || txtApellidoClienteDos.getText().equals("")
+//                || comboGenero.getSelectedItem().toString().equals("")
+//                ||   txtTelefonoCliente.getText().equals("")
+//                || txtDireccionCliente.getText().equals("")) {
+//            JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+//        } else {
+//            editarCliente();
+//            JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+//            dispose();
+//            tablaCliente.botonmostrar.doClick();
+//        }
+//    } catch (HeadlessException e) {
+//        JOptionPane.showMessageDialog(null, "Error: " + e);
+//    }
+
+
+    }//GEN-LAST:event_btnActualizarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

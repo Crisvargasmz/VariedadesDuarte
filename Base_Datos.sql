@@ -264,6 +264,7 @@ GO
    --procedimiento almacenado para consultar cliente
 
 CREATE PROCEDURE ConsultarCliente
+    @IDCliente INTEGER =NULL,
     @nombre_cliente1 NVARCHAR(15) = NULL,
     @nombre_cliente2 NVARCHAR(15) = NULL,
     @apellido_cliente1 NVARCHAR(15) = NULL,
@@ -273,16 +274,17 @@ CREATE PROCEDURE ConsultarCliente
     @direccion_cliente NVARCHAR(150) = NULL
 AS
 BEGIN
-    SELECT [nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente]
+    SELECT [IDCliente],[nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente]
 	,[direccion_cliente]
     FROM Cliente
-    WHERE (nombre_cliente1 = @nombre_cliente1 OR @nombre_cliente1 IS NULL)
-        AND (nombre_cliente2 = @nombre_cliente2 OR @nombre_cliente2 IS NULL)
-        AND (apellido_cliente1 = @apellido_cliente1 OR @apellido_cliente1 IS NULL)
-        AND (apellido_cliente2 = @apellido_cliente2 OR @apellido_cliente2 IS NULL)
-        AND (telefono_cliente = @telefono_cliente OR @telefono_cliente IS NULL)
-        AND (genero_cliente = @genero_cliente OR @genero_cliente IS NULL)
-        AND (direccion_cliente = @direccion_cliente OR @direccion_cliente IS NULL);
+WHERE (IDCliente = @IDCliente OR @IDCliente IS NULL)
+    AND (nombre_cliente1 = @nombre_cliente1 OR @nombre_cliente1 IS NULL)
+    AND (nombre_cliente2 = @nombre_cliente2 OR @nombre_cliente2 IS NULL)
+    AND (apellido_cliente1 = @apellido_cliente1 OR @apellido_cliente1 IS NULL)
+    AND (apellido_cliente2 = @apellido_cliente2 OR @apellido_cliente2 IS NULL)
+    AND (telefono_cliente = @telefono_cliente OR @telefono_cliente IS NULL)
+    AND (genero_cliente = @genero_cliente OR @genero_cliente IS NULL)
+    AND (direccion_cliente = @direccion_cliente OR @direccion_cliente IS NULL);
 END;
 
 
