@@ -305,7 +305,12 @@ public void guardarCliente() {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1231, Short.MAX_VALUE)
+                            .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,12 +332,7 @@ public void guardarCliente() {
                                         .addComponent(txtApellidoClienteUno, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtApellidoClienteDos, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1231, Short.MAX_VALUE)
-                            .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -357,55 +357,11 @@ public void guardarCliente() {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jSplitPane3)
                         .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
-<<<<<<< HEAD
-      
-=======
-        
-      if (txtNombreClienteUno.getText().isEmpty()
-            || txtNombreClienteDos.getText().isEmpty()
-            || txtApellidoClienteUno.getText().isEmpty()
-            || txtApellidoClienteDos.getText().isEmpty()
-            || txtTelefonoCliente.getText().isEmpty()
-            || comboGenero.getSelectedItem().toString().isEmpty()
-            || txtDireccionCliente.getText().isEmpty()) {
-        // Algunos o todos los campos están vacíos, mostrar un mensaje de error o realizar alguna acción adecuada.
-
-        // Por ejemplo, mostrar un mensaje de error:
-        JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
-    } else {
-        // Todos los campos están llenos, proceder a realizar la edición.
-
-        // Realiza aquí la lógica de edición de los datos en el mismo formulario.
-        // Por ejemplo, puedes guardar los cambios en una base de datos o realizar las modificaciones necesarias.
-
-        // Ejemplo:
-        String nombreClienteUno = txtNombreClienteUno.getText();
-        String nombreClienteDos = txtNombreClienteDos.getText();
-        String apellidoClienteUno = txtApellidoClienteUno.getText();
-        String apellidoClienteDos = txtApellidoClienteDos.getText();
-        String telefonoCliente = txtTelefonoCliente.getText();
-        String genero = comboGenero.getSelectedItem().toString();
-        String direccionCliente = txtDireccionCliente.getText();
-
-        // Realiza las acciones necesarias con los datos editados, por ejemplo, guardarlos en la base de datos.
-
-        // Muestra un mensaje de éxito si es necesario.
-        JOptionPane.showMessageDialog(null, "Los datos se han editado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-        // Realiza otras acciones necesarias después de la edición.
-    }
-
-
-
->>>>>>> e9f3860ae22690f889e9c1423c2c075d0df658ae
-    }//GEN-LAST:event_btnEditarClienteActionPerformed
 
     private void txtNombreClienteUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteUnoKeyTyped
         // Llamando metodo KeyTipedTXT
@@ -571,20 +527,22 @@ try {
     int filaSeleccionada = tablaCliente.getSelectedRow();
         
         if (filaSeleccionada != -1) {
-            String nombreClienteUno = tablaCliente.getValueAt(filaSeleccionada, 0).toString();
-            String nombreClienteDos = tablaCliente.getValueAt(filaSeleccionada, 1).toString();
-            String apellidoClienteUno = tablaCliente.getValueAt(filaSeleccionada, 2).toString();
-            String apellidoClienteDos = tablaCliente.getValueAt(filaSeleccionada, 3).toString();
-            String telefonoCliente = tablaCliente.getValueAt(filaSeleccionada, 4).toString();
+//            String IDCliente = tablaCliente.getValueAt(filaSeleccionada, 0).toString();
+            String nombreClienteUno = tablaCliente.getValueAt(filaSeleccionada, 1).toString();
+            String nombreClienteDos = tablaCliente.getValueAt(filaSeleccionada, 2).toString();
+            String apellidoClienteUno = tablaCliente.getValueAt(filaSeleccionada, 3).toString();
+            String apellidoClienteDos = tablaCliente.getValueAt(filaSeleccionada, 4).toString();
             String genero = tablaCliente.getValueAt(filaSeleccionada, 5).toString();
-            String direccionCliente = tablaCliente.getValueAt(filaSeleccionada, 6).toString();
+            String telefonoCliente = tablaCliente.getValueAt(filaSeleccionada,6 ).toString();
+            String direccionCliente = tablaCliente.getValueAt(filaSeleccionada, 7).toString();
             
+//            txtIDCliente.setText(IDCliente);
             txtNombreClienteUno.setText(nombreClienteUno);
             txtNombreClienteDos.setText(nombreClienteDos);
             txtApellidoClienteUno.setText(apellidoClienteUno);
             txtApellidoClienteDos.setText(apellidoClienteDos);
-            txtTelefonoCliente.setText(telefonoCliente);
             comboGenero.setSelectedItem(genero);
+            txtTelefonoCliente.setText(telefonoCliente);
             txtDireccionCliente.setText(direccionCliente);
         }
 //    
@@ -662,6 +620,47 @@ try {
         }
   
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
+
+    private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
+
+        //         txtIDCliente.getText().isEmpty()
+        if (
+            txtNombreClienteUno.getText().isEmpty()
+            || txtNombreClienteDos.getText().isEmpty()
+            || txtApellidoClienteUno.getText().isEmpty()
+            || txtApellidoClienteDos.getText().isEmpty()
+            || comboGenero.getSelectedItem().toString().isEmpty()
+            || txtTelefonoCliente.getText().isEmpty()
+            || txtDireccionCliente.getText().isEmpty()) {
+            // Algunos o todos los campos están vacíos, mostrar un mensaje de error o realizar alguna acción adecuada.
+
+            // Por ejemplo, mostrar un mensaje de error:
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // Todos los campos están llenos, proceder a realizar la edición.
+
+            // Realiza aquí la lógica de edición de los datos en el mismo formulario.
+            // Por ejemplo, puedes guardar los cambios en una base de datos o realizar las modificaciones necesarias.
+
+            // Ejemplo:
+            //        String IDCliente = txtIDCliente.getText();
+            String nombreClienteUno = txtNombreClienteUno.getText();
+            String nombreClienteDos = txtNombreClienteDos.getText();
+            String apellidoClienteUno = txtApellidoClienteUno.getText();
+            String apellidoClienteDos = txtApellidoClienteDos.getText();
+            String telefonoCliente = txtTelefonoCliente.getText();
+            String genero = comboGenero.getSelectedItem().toString();
+            String direccionCliente = txtDireccionCliente.getText();
+
+            // Realiza las acciones necesarias con los datos editados, por ejemplo, guardarlos en la base de datos.
+
+            // Muestra un mensaje de éxito si es necesario.
+            JOptionPane.showMessageDialog(null, "Los datos se han editado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            // Realiza otras acciones necesarias después de la edición.
+        }
+
+    }//GEN-LAST:event_btnEditarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
