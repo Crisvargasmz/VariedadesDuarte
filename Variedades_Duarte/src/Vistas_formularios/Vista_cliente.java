@@ -55,6 +55,7 @@ public void guardarCliente() {
 
     cc.insertarCliente(cl);
 }
+
     
     public void limpiar() {
         txtNombreClienteUno.setText("");
@@ -246,6 +247,11 @@ public void guardarCliente() {
         btnEliminarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEliminarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarCliente.setText("Elimnar");
+        btnEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarClienteActionPerformed(evt);
+            }
+        });
         jSplitPane3.setLeftComponent(btnEliminarCliente);
 
         contenedorTablaCliente.setLayout(new javax.swing.OverlayLayout(contenedorTablaCliente));
@@ -364,7 +370,43 @@ public void guardarCliente() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
-        // Llamando metodo KeyTipedTXT
+        
+      if (txtNombreClienteUno.getText().isEmpty()
+            || txtNombreClienteDos.getText().isEmpty()
+            || txtApellidoClienteUno.getText().isEmpty()
+            || txtApellidoClienteDos.getText().isEmpty()
+            || txtTelefonoCliente.getText().isEmpty()
+            || comboGenero.getSelectedItem().toString().isEmpty()
+            || txtDireccionCliente.getText().isEmpty()) {
+        // Algunos o todos los campos están vacíos, mostrar un mensaje de error o realizar alguna acción adecuada.
+
+        // Por ejemplo, mostrar un mensaje de error:
+        JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        // Todos los campos están llenos, proceder a realizar la edición.
+
+        // Realiza aquí la lógica de edición de los datos en el mismo formulario.
+        // Por ejemplo, puedes guardar los cambios en una base de datos o realizar las modificaciones necesarias.
+
+        // Ejemplo:
+        String nombreClienteUno = txtNombreClienteUno.getText();
+        String nombreClienteDos = txtNombreClienteDos.getText();
+        String apellidoClienteUno = txtApellidoClienteUno.getText();
+        String apellidoClienteDos = txtApellidoClienteDos.getText();
+        String telefonoCliente = txtTelefonoCliente.getText();
+        String genero = comboGenero.getSelectedItem().toString();
+        String direccionCliente = txtDireccionCliente.getText();
+
+        // Realiza las acciones necesarias con los datos editados, por ejemplo, guardarlos en la base de datos.
+
+        // Muestra un mensaje de éxito si es necesario.
+        JOptionPane.showMessageDialog(null, "Los datos se han editado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        // Realiza otras acciones necesarias después de la edición.
+    }
+
+
+
     }//GEN-LAST:event_btnEditarClienteActionPerformed
 
     private void txtNombreClienteUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteUnoKeyTyped
@@ -527,6 +569,78 @@ try {
 
     private void tablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClienteMouseClicked
   datoSeleccionado = tablaCliente.rowAtPoint(evt.getPoint());
+    int filaSeleccionada = tablaCliente.getSelectedRow();
+        
+        if (filaSeleccionada != -1) {
+            String nombreClienteUno = tablaCliente.getValueAt(filaSeleccionada, 0).toString();
+            String nombreClienteDos = tablaCliente.getValueAt(filaSeleccionada, 1).toString();
+            String apellidoClienteUno = tablaCliente.getValueAt(filaSeleccionada, 2).toString();
+            String apellidoClienteDos = tablaCliente.getValueAt(filaSeleccionada, 3).toString();
+            String telefonoCliente = tablaCliente.getValueAt(filaSeleccionada, 4).toString();
+            String genero = tablaCliente.getValueAt(filaSeleccionada, 5).toString();
+            String direccionCliente = tablaCliente.getValueAt(filaSeleccionada, 6).toString();
+            
+            txtNombreClienteUno.setText(nombreClienteUno);
+            txtNombreClienteDos.setText(nombreClienteDos);
+            txtApellidoClienteUno.setText(apellidoClienteUno);
+            txtApellidoClienteDos.setText(apellidoClienteDos);
+            txtTelefonoCliente.setText(telefonoCliente);
+            comboGenero.setSelectedItem(genero);
+            txtDireccionCliente.setText(direccionCliente);
+        }
+//    
+//  if (datoSeleccionado >= 0) {
+//          
+//                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
+//            CRUD_Cliente cli = new CRUD_Cliente();
+//            if (JOptionPane.showConfirmDialog(this.getRootPane(),
+//                    "Se eliminará el registro, ¿desea continuar?",
+//                    "Eliminar Registro",
+//                    JOptionPane.WARNING_MESSAGE,
+//                    JOptionPane.YES_NO_OPTION)
+//                    == JOptionPane.YES_OPTION) {
+//
+//                cli.eliminar(dato);
+//                mostrar();
+//                JOptionPane.showMessageDialog(null,
+//                        "Dato eliminado correctamente");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null,
+//                    "Debe seleccionar un registro de la tabla");
+//        }
+//  
+  
+  
+    }//GEN-LAST:event_tablaClienteMouseClicked
+
+    private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
+ 
+    try {
+        
+        if (txtNombreClienteUno.getText().equals("")
+                || txtNombreClienteDos.getText().equals("")
+                || txtApellidoClienteUno.getText().equals("")
+                || txtApellidoClienteDos.getText().equals("")
+                || comboGenero.getSelectedItem().toString().equals("")
+                ||   txtTelefonoCliente.getText().equals("")
+                || txtDireccionCliente.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+        } else {
+           
+            JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+            
+            
+        }
+    } catch (HeadlessException e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e);
+    }
+
+
+    }//GEN-LAST:event_btnActualizarClienteActionPerformed
+
+    private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
+        
   if (datoSeleccionado >= 0) {
           
                     String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
@@ -548,32 +662,7 @@ try {
                     "Debe seleccionar un registro de la tabla");
         }
   
-    }//GEN-LAST:event_tablaClienteMouseClicked
-
-    private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
- 
-//    try {
-//        
-//        if (txtNombreClienteUno.getText().equals("")
-//                || txtNombreClienteDos.getText().equals("")
-//                || txtApellidoClienteUno.getText().equals("")
-//                || txtApellidoClienteDos.getText().equals("")
-//                || comboGenero.getSelectedItem().toString().equals("")
-//                ||   txtTelefonoCliente.getText().equals("")
-//                || txtDireccionCliente.getText().equals("")) {
-//            JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
-//        } else {
-//            editarCliente();
-//            JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
-//            dispose();
-//            tablaCliente.botonmostrar.doClick();
-//        }
-//    } catch (HeadlessException e) {
-//        JOptionPane.showMessageDialog(null, "Error: " + e);
-//    }
-
-
-    }//GEN-LAST:event_btnActualizarClienteActionPerformed
+    }//GEN-LAST:event_btnEliminarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
