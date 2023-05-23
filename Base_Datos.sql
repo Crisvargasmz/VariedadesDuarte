@@ -243,7 +243,7 @@ CREATE PROCEDURE InsertarProducto
  
    GO
 -----------------------------------------------------------------------------------------------------
-
+--Procedimiento almacenado para buscar clientes
 CREATE PROCEDURE BuscarCliente
  @Dato NVARCHAR (50)
 AS
@@ -258,7 +258,22 @@ BEGIN
 END
 GO
 
+--procedimiento almacenado para buscar proveedores
+CREATE PROCEDURE BuscarProveedores
+ @Dato NVARCHAR (50)
+AS
+BEGIN
+    SELECT[nombre_proveedor1],[nombre_proveedor2],[apellido_proveedor1],[apellido_proveedor2],[empresa_proveedor],[telefono_proveedor]
+	,[direccion_proveedor]
+    FROM Proveedor
+  WHERE nombre_proveedor1 LIKE '%' + RTRIM(@Dato) + '%' OR nombre_proveedor2 LIKE '%' + RTRIM(@Dato) + '%'
+    OR apellido_proveedor1 LIKE '%' + RTRIM(@Dato) + '%' OR apellido_proveedor2 LIKE '%' + RTRIM(@Dato) + '%'
+    OR empresa_proveedor LIKE '%' + RTRIM(@Dato) + '%' OR telefono_proveedor LIKE '%' + RTRIM(@Dato) + '%'
 
+END
+GO
+
+-----------------------------------------------------------------------------------------------------
 
 
    --procedimiento almacenado para consultar cliente
@@ -286,7 +301,7 @@ WHERE (IDCliente = @IDCliente OR @IDCliente IS NULL)
     AND (genero_cliente = @genero_cliente OR @genero_cliente IS NULL)
     AND (direccion_cliente = @direccion_cliente OR @direccion_cliente IS NULL);
 END;
-
+SELECT * FROM Cliente
 
 GO
 

@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package Vistas_formularios;
 
 import java.awt.event.KeyEvent;
 
-/**
- *
- * @author Windows 10
- */
 public class Vista_proveedor extends javax.swing.JPanel {
 
     /**

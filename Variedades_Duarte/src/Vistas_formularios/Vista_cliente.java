@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package Vistas_formularios;
 import Controlador.CRUD_Cliente;
 import Modelo.Cliente;
@@ -16,10 +13,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Windows 10
- */
+
 public class Vista_cliente extends javax.swing.JPanel {
 
     int datoSeleccionado = -1;
@@ -364,7 +358,7 @@ public void guardarCliente() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
-        // Llamando metodo KeyTipedTXT
+      
     }//GEN-LAST:event_btnEditarClienteActionPerformed
 
     private void txtNombreClienteUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteUnoKeyTyped
@@ -424,6 +418,7 @@ try {
     } else {
         guardarCliente();
         limpiar();
+        mostrar();
         JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
     }
 } catch (HeadlessException e) {
