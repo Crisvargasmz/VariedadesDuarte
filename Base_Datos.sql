@@ -1,5 +1,6 @@
 USE master
 CREATE DATABASE VariedadesDuarte
+GO
 USE VariedadesDuarte
 CREATE TABLE [Proveedor] (
   [IDProveedor] INTEGER IDENTITY (1,1)PRIMARY KEY,
@@ -8,7 +9,7 @@ CREATE TABLE [Proveedor] (
   [apellido_proveedor1] NVARCHAR(15)NOT NULL,
   [apellido_proveedor2] NVARCHAR(15)NULL,
   [empresa_proveedor] NVARCHAR(30)NOT NULL,
-  [telefono_proveedor]NVARCHAR(8)NOT NULL,
+  [telefono_proveedor]NVARCHAR(9)NOT NULL,
   [direccion_proveedor] NVARCHAR (150) NOT NULL
 )
 GO
@@ -19,7 +20,7 @@ CREATE TABLE [Cliente] (
   [nombre_cliente2] NVARCHAR(15)NULL,
   [apellido_cliente1] NVARCHAR(15)NOT NULL,
   [apellido_cliente2] NVARCHAR(15)NULL,
-  [telefono_cliente] NVARCHAR(8)NOT NULL,
+  [telefono_cliente] NVARCHAR(9)NOT NULL,
   [genero_cliente] CHAR (1) NOT NULL,
   [direccion_cliente] NVARCHAR(150) NOT NULL
 )

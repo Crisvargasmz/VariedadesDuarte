@@ -1,5 +1,5 @@
-
 package Vistas_formularios;
+
 import Controlador.CRUD_Cliente;
 import Modelo.Cliente;
 import java.awt.HeadlessException;
@@ -8,56 +8,53 @@ import java.sql.DriverManager;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 
-
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class Vista_cliente extends javax.swing.JPanel {
 
     int datoSeleccionado = -1;
-     
+
     public Vista_cliente() {
         initComponents();
         mostrar();
-        
-    }
-    
-public void guardarCliente() {
-    CRUD_Cliente cc = new CRUD_Cliente();
-    Object generoSeleccionado = comboGenero.getSelectedItem();
-    char generoChar;
 
-    if (generoSeleccionado != null && generoSeleccionado.toString().length() == 1) {
-        generoChar = generoSeleccionado.toString().charAt(0);
-    } else {
-        // Manejo de caso cuando el valor seleccionado no es válido
-        // por ejemplo, si está vacío o tiene más de un carácter
-        generoChar = ' '; // Asignar un espacio en blanco como valor predeterminado
-        // O mostrar un mensaje de error
-        System.out.println("Error: el género seleccionado no es válido.");
     }
 
-    Cliente cl = new Cliente(txtNombreClienteUno.getText(),
-                             txtNombreClienteDos.getText(),
-                             txtApellidoClienteUno.getText(),
-                             txtApellidoClienteDos.getText(),
-                             txtTelefonoCliente.getText(),
-                             generoChar,
-                             txtDireccionCliente.getText());
+    public void guardarCliente() {
+        CRUD_Cliente cc = new CRUD_Cliente();
+        Object generoSeleccionado = comboGenero.getSelectedItem();
+        char generoChar;
 
-    cc.insertarCliente(cl);
-}
+        if (generoSeleccionado != null && generoSeleccionado.toString().length() == 1) {
+            generoChar = generoSeleccionado.toString().charAt(0);
+        } else {
+            // Manejo de caso cuando el valor seleccionado no es válido
+            // por ejemplo, si está vacío o tiene más de un carácter
+            generoChar = ' '; // Asignar un espacio en blanco como valor predeterminado
+            // O mostrar un mensaje de error
+            System.out.println("Error: el género seleccionado no es válido.");
+        }
 
-    
+        Cliente cl = new Cliente(txtNombreClienteUno.getText(),
+                txtNombreClienteDos.getText(),
+                txtApellidoClienteUno.getText(),
+                txtApellidoClienteDos.getText(),
+                txtTelefonoCliente.getText(),
+                generoChar,
+                txtDireccionCliente.getText());
+
+        cc.insertarCliente(cl);
+    }
+
     public void limpiar() {
         txtNombreClienteUno.setText("");
         txtNombreClienteDos.setText("");
         txtApellidoClienteUno.setText("");
         txtApellidoClienteDos.setText("");
         txtTelefonoCliente.setText("");
-         txtDireccionCliente.setText("");
+        txtDireccionCliente.setText("");
     }
 
     public void mostrar() { //Método mostrar
@@ -69,17 +66,9 @@ public void guardarCliente() {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
-        
+
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     //Metodo para tipar solo letras.
     private void KeyTipedTXT(java.awt.event.KeyEvent evt) {
         char car = evt.getKeyChar();
@@ -99,7 +88,7 @@ public void guardarCliente() {
                 && car != 'Ñ'
                 && car != 'ñ'
                 && (car != (char) KeyEvent.VK_SPACE)) {
-                    evt.consume();
+            evt.consume();
         }
     }
 
@@ -292,7 +281,7 @@ public void guardarCliente() {
 
         txtTelefonoCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Telefono", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         try {
-            txtTelefonoCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+            txtTelefonoCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -379,7 +368,7 @@ public void guardarCliente() {
     }//GEN-LAST:event_txtApellidoClienteUnoKeyTyped
 
     private void txtBuscarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyTyped
-            try {
+        try {
             DefaultTableModel modelo;
             CRUD_Cliente cli = new CRUD_Cliente();
 
@@ -394,7 +383,7 @@ public void guardarCliente() {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    
+
         KeyTipedTXT(evt);
     }//GEN-LAST:event_txtBuscarClienteKeyTyped
 
@@ -405,42 +394,27 @@ public void guardarCliente() {
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
 
+        CRUD_Cliente cc = new CRUD_Cliente();
+        try {
+            if (txtNombreClienteUno.getText().equals("")
+                    || txtNombreClienteDos.getText().equals("")
+                    || txtApellidoClienteUno.getText().equals("")
+                    || txtApellidoClienteDos.getText().equals("")
+                    || txtTelefonoCliente.getText().equals("")
+                    || comboGenero.getSelectedItem().toString().equals("")
+                    || txtDireccionCliente.getText().equals("")) {
 
- CRUD_Cliente cc = new CRUD_Cliente();
-try {
-    if (txtNombreClienteUno.getText().equals("")
-            || txtNombreClienteDos.getText().equals("")
-            || txtApellidoClienteUno.getText().equals("")
-            || txtApellidoClienteDos.getText().equals("")
-            || txtTelefonoCliente.getText().equals("")
-            || comboGenero.getSelectedItem().toString().equals("")
-            || txtDireccionCliente.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+            } else {
+                guardarCliente();
+                limpiar();
+                mostrar();
+                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
 
-        JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
-    } else {
-        guardarCliente();
-        limpiar();
-        mostrar();
-        JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-    }
-} catch (HeadlessException e) {
-    JOptionPane.showMessageDialog(null, "Error: " + e);
-}
-
-
-
-
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
 //        CRUD_Cliente cc = new CRUD_Cliente();
 //    try {
 //        if (txtNombreClienteUno.getText().equals("")
@@ -463,22 +437,6 @@ try {
 //    } catch (HeadlessException e) {
 //        JOptionPane.showMessageDialog(null, "Error: " + e);
 //    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //   String nombreCliente1 = txtNombreClienteUno.getText();
 //    String nombreCliente2 = txtNombreClienteDos.getText();
 //    String apellidoCliente1 = txtApellidoClienteUno.getText();
@@ -519,33 +477,33 @@ try {
 //        e.printStackTrace();
 //        // Maneja la excepción si ocurre algún error al guardar los datos
 //    }
- 
+
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void tablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClienteMouseClicked
-  datoSeleccionado = tablaCliente.rowAtPoint(evt.getPoint());
-    int filaSeleccionada = tablaCliente.getSelectedRow();
-        
-        if (filaSeleccionada != -1) {
-//            String IDCliente = tablaCliente.getValueAt(filaSeleccionada, 0).toString();
-            String nombreClienteUno = tablaCliente.getValueAt(filaSeleccionada, 1).toString();
-            String nombreClienteDos = tablaCliente.getValueAt(filaSeleccionada, 2).toString();
-            String apellidoClienteUno = tablaCliente.getValueAt(filaSeleccionada, 3).toString();
-            String apellidoClienteDos = tablaCliente.getValueAt(filaSeleccionada, 4).toString();
-            String genero = tablaCliente.getValueAt(filaSeleccionada, 5).toString();
-            String telefonoCliente = tablaCliente.getValueAt(filaSeleccionada,6 ).toString();
-            String direccionCliente = tablaCliente.getValueAt(filaSeleccionada, 7).toString();
-            
-//            txtIDCliente.setText(IDCliente);
-            txtNombreClienteUno.setText(nombreClienteUno);
-            txtNombreClienteDos.setText(nombreClienteDos);
-            txtApellidoClienteUno.setText(apellidoClienteUno);
-            txtApellidoClienteDos.setText(apellidoClienteDos);
-            comboGenero.setSelectedItem(genero);
-            txtTelefonoCliente.setText(telefonoCliente);
-            txtDireccionCliente.setText(direccionCliente);
-        }
-//    
+        datoSeleccionado = tablaCliente.rowAtPoint(evt.getPoint());
+//    int filaSeleccionada = tablaCliente.getSelectedRow();
+//        
+//        if (filaSeleccionada != -1) {
+////            String IDCliente = tablaCliente.getValueAt(filaSeleccionada, 0).toString();
+//            String nombreClienteUno = tablaCliente.getValueAt(filaSeleccionada, 1).toString();
+//            String nombreClienteDos = tablaCliente.getValueAt(filaSeleccionada, 2).toString();
+//            String apellidoClienteUno = tablaCliente.getValueAt(filaSeleccionada, 3).toString();
+//            String apellidoClienteDos = tablaCliente.getValueAt(filaSeleccionada, 4).toString();
+//            String genero = tablaCliente.getValueAt(filaSeleccionada, 5).toString();
+//            String telefonoCliente = tablaCliente.getValueAt(filaSeleccionada,6 ).toString();
+//            String direccionCliente = tablaCliente.getValueAt(filaSeleccionada, 7).toString();
+//            
+////            txtIDCliente.setText(IDCliente);
+//            txtNombreClienteUno.setText(nombreClienteUno);
+//            txtNombreClienteDos.setText(nombreClienteDos);
+//            txtApellidoClienteUno.setText(apellidoClienteUno);
+//            txtApellidoClienteDos.setText(apellidoClienteDos);
+//            comboGenero.setSelectedItem(genero);
+//            txtTelefonoCliente.setText(telefonoCliente);
+//            txtDireccionCliente.setText(direccionCliente);
+//        }
+////    
 //  if (datoSeleccionado >= 0) {
 //          
 //                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
@@ -567,98 +525,142 @@ try {
 //                    "Debe seleccionar un registro de la tabla");
 //        }
 //  
-  
-  
+
+
     }//GEN-LAST:event_tablaClienteMouseClicked
 
     private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
- 
-    try {
-        
-        if (txtNombreClienteUno.getText().equals("")
-                || txtNombreClienteDos.getText().equals("")
-                || txtApellidoClienteUno.getText().equals("")
-                || txtApellidoClienteDos.getText().equals("")
-                || comboGenero.getSelectedItem().toString().equals("")
-                ||   txtTelefonoCliente.getText().equals("")
-                || txtDireccionCliente.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
-        } else {
-           
-            JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
-            
-            
+
+        try {
+
+            if (txtNombreClienteUno.getText().equals("")
+                    || txtNombreClienteDos.getText().equals("")
+                    || txtApellidoClienteUno.getText().equals("")
+                    || txtApellidoClienteDos.getText().equals("")
+                    || comboGenero.getSelectedItem().toString().equals("")
+                    || txtTelefonoCliente.getText().equals("")
+                    || txtDireccionCliente.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
         }
-    } catch (HeadlessException e) {
-        JOptionPane.showMessageDialog(null, "Error: " + e);
-    }
 
 
     }//GEN-LAST:event_btnActualizarClienteActionPerformed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
-        
-  if (datoSeleccionado >= 0) {
-          
-                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
-            CRUD_Cliente cli = new CRUD_Cliente();
-            if (JOptionPane.showConfirmDialog(this.getRootPane(),
-                    "Se eliminará el registro, ¿desea continuar?",
-                    "Eliminar Registro",
-                    JOptionPane.WARNING_MESSAGE,
-                    JOptionPane.YES_NO_OPTION)
-                    == JOptionPane.YES_OPTION) {
+//        
+//  if (datoSeleccionado >= 0) {
+//          
+//                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
+//            CRUD_Cliente cli = new CRUD_Cliente();
+//            if (JOptionPane.showConfirmDialog(this.getRootPane(),
+//                    "Se eliminará el registro, ¿desea continuar?",
+//                    "Eliminar Registro",
+//                    JOptionPane.WARNING_MESSAGE,
+//                    JOptionPane.YES_NO_OPTION)
+//                    == JOptionPane.YES_OPTION) {
+//
+//                cli.eliminar(dato);
+//                mostrar();
+//                JOptionPane.showMessageDialog(null,
+//                        "Dato eliminado correctamente");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(null,
+//                    "Debe seleccionar un registro de la tabla");
+//        }
 
-                cli.eliminar(dato);
-                mostrar();
-                JOptionPane.showMessageDialog(null,
-                        "Dato eliminado correctamente");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null,
-                    "Debe seleccionar un registro de la tabla");
-        }
-  
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
 
     private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed
+        int fila = this.tablaCliente.getSelectedRow();
 
-        //         txtIDCliente.getText().isEmpty()
-        if (
-            txtNombreClienteUno.getText().isEmpty()
-            || txtNombreClienteDos.getText().isEmpty()
-            || txtApellidoClienteUno.getText().isEmpty()
-            || txtApellidoClienteDos.getText().isEmpty()
-            || comboGenero.getSelectedItem().toString().isEmpty()
-            || txtTelefonoCliente.getText().isEmpty()
-            || txtDireccionCliente.getText().isEmpty()) {
-            // Algunos o todos los campos están vacíos, mostrar un mensaje de error o realizar alguna acción adecuada.
-
-            // Por ejemplo, mostrar un mensaje de error:
-            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione un participante de la tabla.");
         } else {
-            // Todos los campos están llenos, proceder a realizar la edición.
+            try {
+//                int numList = Integer.parseInt((String) this.tablaCliente.getValueAt(fila, 0));
+                String nomP1 = (String) this.tablaCliente.getValueAt(fila, 1);
+                String nomP2 = (String) this.tablaCliente.getValueAt(fila, 2);
+                String apell1 = (String) this.tablaCliente.getValueAt(fila, 3).toString();
+                String apell2 = (String) this.tablaCliente.getValueAt(fila, 4).toString();
+                String genero = (String) this.tablaCliente.getValueAt(fila, 6).toString();
+                String telefono =(String) this.tablaCliente.getValueAt(fila, 5).toString();
+                String direccion = (String) this.tablaCliente.getValueAt(fila, 7).toString();
+//                System.out.println(telefono);
+//                jtxtNumeroLista.setText("" + numList);
+                txtNombreClienteUno.setText(nomP1);
+                txtNombreClienteDos.setText(nomP2);
+                txtApellidoClienteUno.setText(apell1);
+                txtApellidoClienteDos.setText(apell2);
+                comboGenero.setSelectedItem(genero);
+                txtTelefonoCliente.setText(telefono);
+                txtDireccionCliente.setText(String.valueOf(direccion));
+                
 
-            // Realiza aquí la lógica de edición de los datos en el mismo formulario.
-            // Por ejemplo, puedes guardar los cambios en una base de datos o realizar las modificaciones necesarias.
-
-            // Ejemplo:
-            //        String IDCliente = txtIDCliente.getText();
-            String nombreClienteUno = txtNombreClienteUno.getText();
-            String nombreClienteDos = txtNombreClienteDos.getText();
-            String apellidoClienteUno = txtApellidoClienteUno.getText();
-            String apellidoClienteDos = txtApellidoClienteDos.getText();
-            String telefonoCliente = txtTelefonoCliente.getText();
-            String genero = comboGenero.getSelectedItem().toString();
-            String direccionCliente = txtDireccionCliente.getText();
-
-            // Realiza las acciones necesarias con los datos editados, por ejemplo, guardarlos en la base de datos.
-
-            // Muestra un mensaje de éxito si es necesario.
-            JOptionPane.showMessageDialog(null, "Los datos se han editado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-            // Realiza otras acciones necesarias después de la edición.
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+//        if (datoSeleccionado >= 0) {
+//            //mandar datos al formulario
+//            
+//            txtNombreClienteUno.setText(String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 1)));
+//            txtNombreClienteDos.setText(String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 2)));
+//            txtApellidoClienteUno.setText(String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 3)));
+//            txtApellidoClienteDos.setText(String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 4)));
+//            String genero = (String) this.tablaCliente.getValueAt(datoSeleccionado, 5).toString();
+//            txtTelefonoCliente.setText(String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 6)));
+//            txtDireccionCliente.setText(String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 7)));
+//            
+//            comboGenero.setSelectedItem(genero);
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a actualizar");
+//        }
+
+//        //         txtIDCliente.getText().isEmpty()
+//        if (
+//            txtNombreClienteUno.getText().isEmpty()
+//            || txtNombreClienteDos.getText().isEmpty()
+//            || txtApellidoClienteUno.getText().isEmpty()
+//            || txtApellidoClienteDos.getText().isEmpty()
+//            || comboGenero.getSelectedItem().toString().isEmpty()
+//            || txtTelefonoCliente.getText().isEmpty()
+//            || txtDireccionCliente.getText().isEmpty()) {
+//            // Algunos o todos los campos están vacíos, mostrar un mensaje de error o realizar alguna acción adecuada.
+//
+//            // Por ejemplo, mostrar un mensaje de error:
+//            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+//        } else {
+//            // Todos los campos están llenos, proceder a realizar la edición.
+//
+//            // Realiza aquí la lógica de edición de los datos en el mismo formulario.
+//            // Por ejemplo, puedes guardar los cambios en una base de datos o realizar las modificaciones necesarias.
+//
+//            // Ejemplo:
+//            //        String IDCliente = txtIDCliente.getText();
+//            String nombreClienteUno = txtNombreClienteUno.getText();
+//            String nombreClienteDos = txtNombreClienteDos.getText();
+//            String apellidoClienteUno = txtApellidoClienteUno.getText();
+//            String apellidoClienteDos = txtApellidoClienteDos.getText();
+//            String telefonoCliente = txtTelefonoCliente.getText();
+//            String genero = comboGenero.getSelectedItem().toString();
+//            String direccionCliente = txtDireccionCliente.getText();
+//
+//            // Realiza las acciones necesarias con los datos editados, por ejemplo, guardarlos en la base de datos.
+//
+//            // Muestra un mensaje de éxito si es necesario.
+//            JOptionPane.showMessageDialog(null, "Los datos se han editado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//
+//            // Realiza otras acciones necesarias después de la edición.
+//        }
 
     }//GEN-LAST:event_btnEditarClienteActionPerformed
 
