@@ -19,6 +19,7 @@ public class Vista_cliente extends javax.swing.JPanel {
     public Vista_cliente() {
         initComponents();
         mostrar();
+        textidcliente.setVisible(false);
 
     }
 
@@ -54,6 +55,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtNombreClienteDos.setText("");
         txtApellidoClienteUno.setText("");
         txtApellidoClienteDos.setText("");
+        comboGenero.setSelectedItem("Genero");
         txtTelefonoCliente.setText("");
         txtDireccionCliente.setText("");
     }
@@ -565,7 +567,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                     || txtNombreClienteDos.getText().equals("")
                     || txtApellidoClienteUno.getText().equals("")
                     || txtApellidoClienteDos.getText().equals("")
-                    || comboGenero.getSelectedItem().toString().equals("")
+                    || comboGenero.getSelectedItem().toString().equals("Genero")
                     || txtTelefonoCliente.getText().equals("")
                     || txtDireccionCliente.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
