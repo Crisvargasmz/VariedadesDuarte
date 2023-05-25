@@ -4,6 +4,12 @@
  */
 package Vistas_formularios;
 
+import Vistas_formularios.Vista_nueva_categoria;
+
+import Vistas_menu.Controlador_Principal;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Windows 10
@@ -36,7 +42,7 @@ public class Vista_categoria extends javax.swing.JPanel {
         txtNombreCliente6 = new javax.swing.JTextField();
         txtNombreCliente2 = new javax.swing.JTextField();
         txtNombreCliente7 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbotonagregar = new javax.swing.JButton();
         combopresentacion = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -92,9 +98,19 @@ public class Vista_categoria extends javax.swing.JPanel {
         txtNombreCliente7.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtNombreCliente7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        jButton1.setText("+");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbotonagregar.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jbotonagregar.setText("+");
+        jbotonagregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbotonagregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbotonagregarMouseClicked(evt);
+            }
+        });
+        jbotonagregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbotonagregarActionPerformed(evt);
+            }
+        });
 
         combopresentacion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         combopresentacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unidad de Medida" }));
@@ -178,22 +194,23 @@ public class Vista_categoria extends javax.swing.JPanel {
                                 .addComponent(combopresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(txtNombreCliente7)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jbotonagregar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(48, 48, 48)
+                                        .addComponent(txtNombreCliente7))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(96, 96, 96)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jButton6)))))
                         .addGap(0, 110, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(344, 344, 344)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +230,7 @@ public class Vista_categoria extends javax.swing.JPanel {
                     .addComponent(txtNombreCliente7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbotonagregar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,11 +260,23 @@ public class Vista_categoria extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreCliente6ActionPerformed
 
+    private void jbotonagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbotonagregarActionPerformed
+
+        Vista_compra vis = new Vista_compra();
+        
+        vis.setVisible(true);
+        
+    }//GEN-LAST:event_jbotonagregarActionPerformed
+
+    private void jbotonagregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbotonagregarMouseClicked
+
+
+    }//GEN-LAST:event_jbotonagregarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboGenero;
     private javax.swing.JComboBox<String> combopresentacion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -257,6 +286,7 @@ public class Vista_categoria extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
+    public static javax.swing.JButton jbotonagregar;
     private javax.swing.JTextField txtNombreCliente1;
     private javax.swing.JTextField txtNombreCliente2;
     private javax.swing.JTextField txtNombreCliente5;

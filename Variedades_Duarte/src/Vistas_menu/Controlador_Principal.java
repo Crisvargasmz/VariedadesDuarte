@@ -11,6 +11,7 @@ import Vistas_formularios.Vista_compra;
 import Vistas_formularios.Vista_estadisticas;
 import Vistas_formularios.Vista_proveedor;
 import Vistas_formularios.Vista_venta;
+import Vistas_formularios.Vista_nueva_categoria;
 import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -518,7 +519,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
     private javax.swing.JLabel lbLogo;
     private javax.swing.JLabel lbTime;
     private javax.swing.JLabel lbUsuario;
-    private javax.swing.JPanel pnlMain;
+    public static javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlMostrarVentanas;
     private javax.swing.JPanel pnlTitulo;
