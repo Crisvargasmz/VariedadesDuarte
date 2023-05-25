@@ -40,7 +40,9 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="textidcliente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="txtBuscarCliente" min="-2" pref="360" max="-2" attributes="0"/>
@@ -81,19 +83,25 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jSeparator1" min="-2" pref="9" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="txtApellidoClienteDos" max="32767" attributes="0"/>
-                  <Component id="txtNombreClienteUno" alignment="1" max="32767" attributes="0"/>
-                  <Component id="txtNombreClienteDos" alignment="1" max="32767" attributes="0"/>
-                  <Component id="txtApellidoClienteUno" alignment="1" pref="60" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtDireccionCliente" pref="60" max="32767" attributes="0"/>
-                      <Component id="txtTelefonoCliente" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtApellidoClienteDos" max="32767" attributes="0"/>
+                          <Component id="txtNombreClienteUno" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtNombreClienteDos" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtApellidoClienteUno" alignment="1" pref="60" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtDireccionCliente" pref="60" max="32767" attributes="0"/>
+                          <Component id="txtTelefonoCliente" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="comboGenero" min="-2" pref="46" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="textidcliente" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="comboGenero" min="-2" pref="46" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -563,10 +571,12 @@
           </Border>
         </Property>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-          <Format format="####-###" subtype="-1" type="5"/>
+          <Format format="####-####" subtype="-1" type="5"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textidcliente">
     </Component>
   </SubComponents>
 </Form>

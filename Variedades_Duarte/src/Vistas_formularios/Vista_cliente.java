@@ -30,10 +30,10 @@ public class Vista_cliente extends javax.swing.JPanel {
         if (generoSeleccionado != null && generoSeleccionado.toString().length() == 1) {
             generoChar = generoSeleccionado.toString().charAt(0);
         } else {
-            // Manejo de caso cuando el valor seleccionado no es válido
-            // por ejemplo, si está vacío o tiene más de un carácter
+//             Manejo de caso cuando el valor seleccionado no es válido
+//             por ejemplo, si está vacío o tiene más de un carácter
             generoChar = ' '; // Asignar un espacio en blanco como valor predeterminado
-            // O mostrar un mensaje de error
+//             O mostrar un mensaje de error
             System.out.println("Error: el género seleccionado no es válido.");
         }
 
@@ -49,6 +49,7 @@ public class Vista_cliente extends javax.swing.JPanel {
     }
 
     public void limpiar() {
+        textidcliente.setText("");
         txtNombreClienteUno.setText("");
         txtNombreClienteDos.setText("");
         txtApellidoClienteUno.setText("");
@@ -56,6 +57,40 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtTelefonoCliente.setText("");
         txtDireccionCliente.setText("");
     }
+    
+       public void editarCliente() {
+
+        CRUD_Cliente cc = new CRUD_Cliente();
+         Object generoSeleccionado = comboGenero.getSelectedItem();
+        char generoChar;
+
+       
+
+        if (generoSeleccionado != null && generoSeleccionado.toString().length() == 1) {
+            generoChar = generoSeleccionado.toString().charAt(0);
+        } else {
+            // Manejo de caso cuando el valor seleccionado no es válido
+            // por ejemplo, si está vacío o tiene más de un carácter
+            generoChar = ' '; // Asignar un espacio en blanco como valor predeterminado
+        // O mostrar un mensaje de error
+            System.out.println("Error: el género seleccionado no es válido.");
+        }
+      
+
+        Cliente cl = new Cliente(Integer.parseInt(textidcliente.getText()),
+                txtNombreClienteUno.getText(),
+                txtNombreClienteDos.getText(),
+                txtApellidoClienteUno.getText(),
+                txtApellidoClienteDos.getText(),
+                txtTelefonoCliente.getText(),
+               generoChar,
+                txtDireccionCliente.getText());
+                
+        cc.ActualizarCliente(cl);
+
+    }
+       
+       
 
     public void mostrar() { //Método mostrar
         try {
@@ -121,6 +156,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         tablaCliente = new javax.swing.JTable();
         txtBuscarCliente = new javax.swing.JTextField();
         txtTelefonoCliente = new javax.swing.JFormattedTextField();
+        textidcliente = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -286,7 +322,7 @@ public class Vista_cliente extends javax.swing.JPanel {
 
         txtTelefonoCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Telefono", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         try {
-            txtTelefonoCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-###")));
+            txtTelefonoCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -304,7 +340,9 @@ public class Vista_cliente extends javax.swing.JPanel {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1231, Short.MAX_VALUE)
                             .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
+                        .addGap(17, 17, 17)
+                        .addComponent(textidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,17 +372,21 @@ public class Vista_cliente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtApellidoClienteDos)
-                    .addComponent(txtNombreClienteUno)
-                    .addComponent(txtNombreClienteDos)
-                    .addComponent(txtApellidoClienteUno, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                        .addComponent(txtTelefonoCliente))
-                    .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtApellidoClienteDos)
+                            .addComponent(txtNombreClienteUno)
+                            .addComponent(txtNombreClienteDos)
+                            .addComponent(txtApellidoClienteUno, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(txtTelefonoCliente)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBuscarCliente)
@@ -518,7 +560,8 @@ public class Vista_cliente extends javax.swing.JPanel {
 
         try {
 
-            if (txtNombreClienteUno.getText().equals("")
+            if (   
+                     txtNombreClienteUno.getText().equals("")
                     || txtNombreClienteDos.getText().equals("")
                     || txtApellidoClienteUno.getText().equals("")
                     || txtApellidoClienteDos.getText().equals("")
@@ -527,6 +570,10 @@ public class Vista_cliente extends javax.swing.JPanel {
                     || txtDireccionCliente.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
+                editarCliente();
+                limpiar();
+                mostrar();
+                
 
                 JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
 
@@ -534,32 +581,33 @@ public class Vista_cliente extends javax.swing.JPanel {
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
-
+        
+// textidcliente.getText().equals("")
 
     }//GEN-LAST:event_btnActualizarClienteActionPerformed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
-//        
-//  if (datoSeleccionado >= 0) {
-//          
-//                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
-//            CRUD_Cliente cli = new CRUD_Cliente();
-//            if (JOptionPane.showConfirmDialog(this.getRootPane(),
-//                    "Se eliminará el registro, ¿desea continuar?",
-//                    "Eliminar Registro",
-//                    JOptionPane.WARNING_MESSAGE,
-//                    JOptionPane.YES_NO_OPTION)
-//                    == JOptionPane.YES_OPTION) {
-//
-//                cli.eliminar(dato);
-//                mostrar();
-//                JOptionPane.showMessageDialog(null,
-//                        "Dato eliminado correctamente");
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null,
-//                    "Debe seleccionar un registro de la tabla");
-//        }
+        
+  if (datoSeleccionado >= 0) {
+          
+                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
+            CRUD_Cliente cli = new CRUD_Cliente();
+            if (JOptionPane.showConfirmDialog(this.getRootPane(),
+                    "Se eliminará el registro, ¿desea continuar?",
+                    "Eliminar Registro",
+                    JOptionPane.WARNING_MESSAGE,
+                    JOptionPane.YES_NO_OPTION)
+                    == JOptionPane.YES_OPTION) {
+
+                cli.eliminar(dato);
+                mostrar();
+                JOptionPane.showMessageDialog(null,
+                        "Dato eliminado correctamente");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Debe seleccionar un registro de la tabla");
+        }
 
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
 
@@ -570,7 +618,7 @@ public class Vista_cliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Seleccione un participante de la tabla.");
         } else {
             try {
-//                int numList = Integer.parseInt((String) this.tablaCliente.getValueAt(fila, 0));
+                int numList = Integer.parseInt((String) this.tablaCliente.getValueAt(fila, 0));
                 String nomP1 = (String) this.tablaCliente.getValueAt(fila, 1);
                 String nomP2 = (String) this.tablaCliente.getValueAt(fila, 2);
                 String apell1 = (String) this.tablaCliente.getValueAt(fila, 3).toString();
@@ -579,7 +627,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                 String telefono = (String) this.tablaCliente.getValueAt(fila, 5).toString();
                 String direccion = (String) this.tablaCliente.getValueAt(fila, 7).toString();
 //                System.out.println(telefono);
-//                jtxtNumeroLista.setText("" + numList);
+               textidcliente.setText("" + numList);
                 txtNombreClienteUno.setText(nomP1);
                 txtNombreClienteDos.setText(nomP2);
                 txtApellidoClienteUno.setText(apell1);
@@ -656,11 +704,15 @@ public class Vista_cliente extends javax.swing.JPanel {
 
             modelo = cli.buscarDatos(txtBuscarCliente.getText());
             mostrar();
+             
             tablaCliente.setModel(modelo);
-
+           
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
+       
+        
         }
+       
 
         KeyTipedTXT(evt);
     }//GEN-LAST:event_txtBuscarClienteKeyReleased
@@ -685,6 +737,7 @@ public class Vista_cliente extends javax.swing.JPanel {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JTable tablaCliente;
+    private javax.swing.JTextField textidcliente;
     private javax.swing.JTextField txtApellidoClienteDos;
     private javax.swing.JTextField txtApellidoClienteUno;
     private javax.swing.JTextField txtBuscarCliente;

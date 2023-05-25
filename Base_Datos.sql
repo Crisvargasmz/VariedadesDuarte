@@ -381,8 +381,10 @@ END;
 
    GO
 
+   
    --------------------------------------------------------------------------------------------------
 
+   
  --Procedimiento almacenado para actualizar cliente
 
  CREATE PROCEDURE ActualizarCliente
@@ -391,7 +393,7 @@ END;
     @nombre_cliente2 NVARCHAR(15),
     @apellido_cliente1 NVARCHAR(15),
     @apellido_cliente2 NVARCHAR(15),
-    @telefono_cliente NVARCHAR(8),
+    @telefono_cliente NVARCHAR(9),
     @genero_cliente CHAR(1),
     @direccion_cliente NVARCHAR(150)
 AS
@@ -418,7 +420,7 @@ GO
     @apellido_proveedor1 NVARCHAR(15),
     @apellido_proveedor2 NVARCHAR(15),
     @empresa_proveedor NVARCHAR(30),
-    @telefono_proveedor NVARCHAR(8),
+    @telefono_proveedor NVARCHAR(9),
     @direccion_proveedor NVARCHAR(150)
 
 AS

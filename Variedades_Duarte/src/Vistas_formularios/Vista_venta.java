@@ -10,17 +10,17 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 
 //Importando las librerias de itext.
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Font;
-
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+//import com.itextpdf.text.Chunk;
+//import com.itextpdf.text.Image;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.FontFactory;
+//import com.itextpdf.text.BaseColor;
+//import com.itextpdf.text.Font;
+//
+//import com.itextpdf.text.Document;
+//import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.pdf.PdfPTable;
+//import com.itextpdf.text.pdf.PdfWriter;
 import javax.swing.table.DefaultTableModel;
 
 /**
