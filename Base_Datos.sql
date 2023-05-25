@@ -188,6 +188,20 @@ CREATE PROCEDURE InsertarCliente
   AS
   INSERT INTO [Cliente] ([nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente],[direccion_cliente])
   VALUES (@nombre_cliente1, @nombre_cliente2,@apellido_cliente1,@apellido_cliente2,@telefono_cliente,@genero_cliente,@direccion_cliente)
+
+
+  EXECUTE InsertarCliente 
+    @nombre_cliente1 = 'John1',
+    @nombre_cliente2 = 'Doe1',
+    @apellido_cliente1 = 'Smith1',
+    @apellido_cliente2 = 'Johnson1',
+    @telefono_cliente = '12345678',
+    @genero_cliente= 'M',
+    @direccion_cliente = '123 Main St, City1';
+
+
+
+
   GO
 
   --procedimiento almacenado para ingresar un proveedor
