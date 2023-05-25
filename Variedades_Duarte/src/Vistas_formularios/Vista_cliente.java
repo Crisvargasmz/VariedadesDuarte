@@ -224,6 +224,11 @@ public class Vista_cliente extends javax.swing.JPanel {
         btnLimpiarCamposCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnLimpiarCamposCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiarCamposCliente.setText("Limpiar");
+        btnLimpiarCamposCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarCamposClienteActionPerformed(evt);
+            }
+        });
         jSplitPane3.setRightComponent(btnLimpiarCamposCliente);
 
         btnEliminarCliente.setBackground(new java.awt.Color(4, 64, 98));
@@ -274,8 +279,8 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtBuscarCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBuscarClienteKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarClienteKeyReleased(evt);
             }
         });
 
@@ -366,26 +371,6 @@ public class Vista_cliente extends javax.swing.JPanel {
         // Llamando metodo KeyTipedTXT
         KeyTipedTXT(evt);
     }//GEN-LAST:event_txtApellidoClienteUnoKeyTyped
-
-    private void txtBuscarClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyTyped
-        try {
-            DefaultTableModel modelo;
-            CRUD_Cliente cli = new CRUD_Cliente();
-
-            modelo = cli.buscarDatos(txtBuscarCliente.getText());
-
-            if (txtBuscarCliente.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Escriba el dato a buscar");
-                mostrar();
-            } else {
-                tablaCliente.setModel(modelo);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-        KeyTipedTXT(evt);
-    }//GEN-LAST:event_txtBuscarClienteKeyTyped
 
     private void txtApellidoClienteDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteDosKeyTyped
         // Llamando metodo KeyTipedTXT
@@ -591,7 +576,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                 String apell1 = (String) this.tablaCliente.getValueAt(fila, 3).toString();
                 String apell2 = (String) this.tablaCliente.getValueAt(fila, 4).toString();
                 String genero = (String) this.tablaCliente.getValueAt(fila, 6).toString();
-                String telefono =(String) this.tablaCliente.getValueAt(fila, 5).toString();
+                String telefono = (String) this.tablaCliente.getValueAt(fila, 5).toString();
                 String direccion = (String) this.tablaCliente.getValueAt(fila, 7).toString();
 //                System.out.println(telefono);
 //                jtxtNumeroLista.setText("" + numList);
@@ -602,7 +587,6 @@ public class Vista_cliente extends javax.swing.JPanel {
                 comboGenero.setSelectedItem(genero);
                 txtTelefonoCliente.setText(telefono);
                 txtDireccionCliente.setText(String.valueOf(direccion));
-                
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -663,6 +647,28 @@ public class Vista_cliente extends javax.swing.JPanel {
 //        }
 
     }//GEN-LAST:event_btnEditarClienteActionPerformed
+
+    private void txtBuscarClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarClienteKeyReleased
+        // TODO add your handling code here:
+        try {
+            DefaultTableModel modelo;
+            CRUD_Cliente cli = new CRUD_Cliente();
+
+            modelo = cli.buscarDatos(txtBuscarCliente.getText());
+            mostrar();
+            tablaCliente.setModel(modelo);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtBuscarClienteKeyReleased
+
+    private void btnLimpiarCamposClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposClienteActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarCamposClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

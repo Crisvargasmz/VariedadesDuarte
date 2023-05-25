@@ -74,14 +74,6 @@ private final Connection cn = (Connection) con.conectar();
         return null;
     }
 }
-
-  
-    
-    
-    
-    
-    
-    
     
     public void insertarCliente(Cliente cliente) {
         try {
@@ -124,7 +116,7 @@ private final Connection cn = (Connection) con.conectar();
         }
     }
     
-        public void ActualizarCliente(Cliente cliente) {
+    public void ActualizarCliente(Cliente cliente) {
         try {
            CallableStatement callableStatement = cn.prepareCall("{call ActualizarCliente(?,?,?,?,?,?,?,?)}");
             callableStatement.setInt(1, cliente.getIDCliente());

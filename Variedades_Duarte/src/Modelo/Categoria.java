@@ -4,14 +4,14 @@ package Modelo;
 public class Categoria {
     
     int ID_categoria;
-    String nombre;
+    String nombre_categoria;
 
     public Categoria() {
     }
 
-    public Categoria(int ID_categoria, String nombre) {
+    public Categoria(int ID_categoria, String nombre_categoria) {
         this.ID_categoria = ID_categoria;
-        this.nombre = nombre;
+        this.nombre_categoria = nombre_categoria;
     }
 
     public int getID_categoria() {
@@ -22,12 +22,12 @@ public class Categoria {
         this.ID_categoria = ID_categoria;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombre_Categoria() {
+        return nombre_categoria;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String nombre_categoria) {
+        this.nombre_categoria = nombre_categoria;
     }
     
     

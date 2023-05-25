@@ -44,7 +44,7 @@ public class CRUD_Proveedor {
      public DefaultTableModel buscarDatos(String Dato) {
         ResultSet rs;
         DefaultTableModel modelo;
-        String[] titulos = {"ID Proveedor", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
+        String[] titulos = {"Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
             "Empresa", "Telefono", "Dirección"};
         String[] registro = new String[8];
         modelo = new DefaultTableModel(null, titulos);
