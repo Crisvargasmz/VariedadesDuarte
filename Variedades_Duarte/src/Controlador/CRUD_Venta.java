@@ -1,3 +1,4 @@
+//Crud venta
 package Controlador;
 import Modelo.Venta;
 import java.sql.*;

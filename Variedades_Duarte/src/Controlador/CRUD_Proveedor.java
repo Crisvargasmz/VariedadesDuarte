@@ -1,4 +1,4 @@
-
+//Crud proveedor
 package Controlador;
 import Modelo.Proveedor;
 import java.sql.*;

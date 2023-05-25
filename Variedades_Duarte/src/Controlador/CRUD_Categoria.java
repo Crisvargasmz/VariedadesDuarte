@@ -1,4 +1,4 @@
-
+//Crud categoria
 package Controlador;
 import Modelo.Categoria;
 import java.sql.*;
