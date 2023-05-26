@@ -78,13 +78,13 @@ private final Connection cn = (Connection) con.conectar();
     public void insertarCliente(Cliente cliente) {
         try {
            CallableStatement callableStatement = cn.prepareCall("{call InsertarCliente(?,?,?,?,?,?,?)}");
-            callableStatement.setString(1, cliente.getNombre_cliente1());
-            callableStatement.setString(2, cliente.getNombre_cliente2());
-            callableStatement.setString(3, cliente.getApellido_cliente1());
-            callableStatement.setString(4, cliente.getApellido_cliente2());
-            callableStatement.setString(5, cliente.getTelefono_cliente());
+            callableStatement.setString(1, cliente.getNombre1());
+            callableStatement.setString(2, cliente.getNombre2());
+            callableStatement.setString(3, cliente.getApellido1());
+            callableStatement.setString(4, cliente.getApellido2());
+            callableStatement.setString(5, cliente.getTelefono());
             callableStatement.setString(6, String.valueOf(cliente.getGenero_cliente()));
-            callableStatement.setString(7, cliente.getDireccion_cliente());
+            callableStatement.setString(7, cliente.getDireccion());
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -120,13 +120,13 @@ private final Connection cn = (Connection) con.conectar();
         try {
            CallableStatement callableStatement = cn.prepareCall("{call ActualizarCliente(?,?,?,?,?,?,?,?)}");
             callableStatement.setInt(1, cliente.getIDCliente());
-            callableStatement.setString(2, cliente.getNombre_cliente1());
-            callableStatement.setString(3, cliente.getNombre_cliente2());
-            callableStatement.setString(4, cliente.getApellido_cliente1());
-            callableStatement.setString(5, cliente.getApellido_cliente2());
-            callableStatement.setString(6, cliente.getTelefono_cliente());
+       callableStatement.setString(2, cliente.getNombre1());
+            callableStatement.setString(3, cliente.getNombre2());
+            callableStatement.setString(4, cliente.getApellido1());
+            callableStatement.setString(5, cliente.getApellido2());
+            callableStatement.setString(6, cliente.getTelefono());
             callableStatement.setString(7, String.valueOf(cliente.getGenero_cliente()));
-            callableStatement.setString(8, cliente.getDireccion_cliente());
+            callableStatement.setString(8, cliente.getDireccion());
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);

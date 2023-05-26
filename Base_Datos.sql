@@ -4,25 +4,17 @@ GO
 USE VariedadesDuarte
 CREATE TABLE [Proveedor] (
   [IDProveedor] INTEGER IDENTITY (1,1)PRIMARY KEY,
-  [nombre_proveedor1] NVARCHAR(15) NOT NULL,
-  [nombre_proveedor2] NVARCHAR(15)NULL,
-  [apellido_proveedor1] NVARCHAR(15)NOT NULL,
-  [apellido_proveedor2] NVARCHAR(15)NULL,
   [empresa_proveedor] NVARCHAR(30)NOT NULL,
-  [telefono_proveedor]NVARCHAR(9)NOT NULL,
-  [direccion_proveedor] NVARCHAR (150) NOT NULL
+  IDPersona INTEGER UNIQUE
+
 )
 GO
 
 CREATE TABLE [Cliente] (
   [IDCliente] INTEGER IDENTITY(1,1) PRIMARY KEY,
-  [nombre_cliente1] NVARCHAR(15)NOT NULL,
-  [nombre_cliente2] NVARCHAR(15)NULL,
-  [apellido_cliente1] NVARCHAR(15)NOT NULL,
-  [apellido_cliente2] NVARCHAR(15)NULL,
-  [telefono_cliente] NVARCHAR(9)NOT NULL,
   [genero_cliente] CHAR (1) NOT NULL,
-  [direccion_cliente] NVARCHAR(150) NOT NULL
+  IDPersona INTEGER UNIQUE
+ 
 )
 GO
 
@@ -74,13 +66,18 @@ nombre_presentacion NVARCHAR (8)
 )
 GO
 
---ALTER TABLE dbo.Producto
---ADD IDPresentacion INT NOT NULL
---ALTER TABLE dbo.Producto
---ADD CONSTRAINT FK_UnidadMedida_Producto
---FOREIGN KEY (IDPresentacion)
---REFERENCES dbo.Presentacion(IDPresentacion)
+CREATE TABLE [Persona](
+IDPersona INTEGER IDENTITY (1,1) PRIMARY KEY,
+nombre1 NVARCHAR (15),
+nombre2 NVARCHAR (15),
+apellido1 NVARCHAR (15),
+apellido2 NVARCHAR (15),
+telefono NVARCHAR (9),
+direccion NVARCHAR (150)
 
+
+)
+GO
 
 ALTER TABLE dbo.Venta
 ADD IDCliente INT NOT NULL
@@ -175,52 +172,87 @@ FOREIGN KEY ( IDCompra)
 REFERENCES dbo.Compra( IDCompra)
 GO
 
---procedimiento almacenado para ingresar un cliente
-CREATE PROCEDURE InsertarCliente
-  @nombre_cliente1 nvarchar(15),
-  @nombre_cliente2 nvarchar(15),
-  @apellido_cliente1 nvarchar(15),
-  @apellido_cliente2 nvarchar(15),
-  @telefono_cliente nvarchar(8),
-  @genero_cliente char (1) ,
-  @direccion_cliente nvarchar(150) 
 
-  AS
-  INSERT INTO [Cliente] ([nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente],[direccion_cliente])
-  VALUES (@nombre_cliente1, @nombre_cliente2,@apellido_cliente1,@apellido_cliente2,@telefono_cliente,@genero_cliente,@direccion_cliente)
+-----------------------------------------------------------------------------------------------------------
 
-
-  EXECUTE InsertarCliente 
-    @nombre_cliente1 = 'John1',
-    @nombre_cliente2 = 'Doe1',
-    @apellido_cliente1 = 'Smith1',
-    @apellido_cliente2 = 'Johnson1',
-    @telefono_cliente = '12345678',
-    @genero_cliente= 'M',
-    @direccion_cliente = '123 Main St, City1';
+--PROCEDIMIENTO ALMACENADO INSETAR CLIENTE
+CREATE PROCEDURE InsertarPersonaCliente
+@nombre1 NVARCHAR (15),
+@nombre2 NVARCHAR (15),
+@apellido1 NVARCHAR (15),
+@apellido2 NVARCHAR (15),
+@direccion NVARCHAR (150),
+@telefono NVARCHAR (9),
+@genero_cliente CHAR (1)
 
 
+AS
+BEGIN
+SET NOCOUNT ON;
+
+DECLARE @IDPersona INTEGER
+
+--INSERTAR LA TABLA PERSONA 
+INSERT INTO Persona (nombre1,nombre2,apellido1,apellido2,telefono,direccion)
+VALUES (@nombre1,@nombre2,@apellido1,@apellido2,@telefono,@direccion);
+
+--OBTENER EL ULTIMO ID INSERTADO EN LA TABLA PERSONA
+
+SET @IDPersona = SCOPE_IDENTITY();
+
+INSERT INTO Cliente (IDPersona, genero_cliente)
+VALUES (@IDPersona,@genero_cliente);
 
 
-  GO
+SELECT * FROM Persona
+SELECT * FROM Cliente
+END 
 
-  --procedimiento almacenado para ingresar un proveedor
-CREATE PROCEDURE InsertarProveedor
-  @nombre_proveedor1 NVARCHAR(15),
-  @nombre_proveedor2 NVARCHAR(15),
-  @apellido_proveedor1 NVARCHAR(15),
-  @apellido_proveedor2 NVARCHAR(15),
-  @empresa_proveedor NVARCHAR(30),
-  @telefono_proveedor NVARCHAR(8),
-  @direccion_proveedor NVARCHAR (150)
+GO
 
-  AS
+EXEC InsertarPersonaCliente 'ADF','FD','DFD','DFFD','DFDF','65676787','G'
+GO
 
-  INSERT INTO [Proveedor] ([nombre_proveedor1],[nombre_proveedor2],[apellido_proveedor1],[apellido_proveedor2],[empresa_proveedor],[telefono_proveedor],[direccion_proveedor])
-  VALUES (@nombre_proveedor1, @nombre_proveedor2,@apellido_proveedor1,@apellido_proveedor2,@empresa_proveedor,@telefono_proveedor,@direccion_proveedor)
-  GO
 
-   --procedimiento almacenado para ingresar un producto
+--PROCEDIMIENTO ALMECENADO INSERTAR PROVEEDOR
+CREATE PROCEDURE InsertarPersonaProveedor
+@nombre1 NVARCHAR (15),
+@nombre2 NVARCHAR (15),
+@apellido1 NVARCHAR (15),
+@apellido2 NVARCHAR (15),
+@direccion NVARCHAR (150),
+@telefono NVARCHAR (9),
+@empresa_proveedor NVARCHAR (15)
+
+
+AS
+BEGIN
+SET NOCOUNT ON;
+
+DECLARE @IDPersona INTEGER
+
+--INSERTAR LA TABLA PERSONA 
+INSERT INTO Persona (nombre1,nombre2,apellido1,apellido2,telefono,direccion)
+VALUES (@nombre1,@nombre2,@apellido1,@apellido2,@telefono,@direccion);
+
+--OBTENER EL ULTIMO ID INSERTADO EN LA TABLA PERSONA
+
+SET @IDPersona = SCOPE_IDENTITY();
+
+INSERT INTO Proveedor(IDPersona, empresa_proveedor)
+VALUES (@IDPersona,@empresa_proveedor);
+
+
+SELECT * FROM Persona
+SELECT * FROM Proveedor
+END 
+
+GO
+
+EXEC InsertarPersonaProveedor'ADF','FD','DFD','DFFD','DFDF','65676787','G'
+GO
+
+   --PROCEDIMIENTO ALMACENADO INSERTAR PRODUCTO
 CREATE PROCEDURE InsertarProducto
   @nombre_producto NVARCHAR(40),
   @cantidad_producto INTEGER ,
@@ -235,7 +267,7 @@ CREATE PROCEDURE InsertarProducto
   VALUES (@nombre_producto,@cantidad_producto,@precio_compra,@precio_venta,@descripcion,@fecha_vencimiento)
   GO
 
- --procedimiento almacenado para ingresar una categoria
+ --PROCEDIMIENTO ALMACENADO INSERTAR CATEGORIA
   CREATE PROCEDURE InsertarCategoria
   @nombre_categoria NVARCHAR (15)
 
@@ -246,7 +278,7 @@ CREATE PROCEDURE InsertarProducto
   
   GO
 
-   --procedimiento almacenado para ingresar una presentacion
+--PROCEDIMIENTO ALMACENADO INSERTAR PRESENTACION 
 
    CREATE PROCEDURE InsertarPresentacion
    @nombre_presentacion NVARCHAR (8)
@@ -401,29 +433,37 @@ END;
    
  --Procedimiento almacenado para actualizar cliente
 
- CREATE PROCEDURE ActualizarCliente
-    @IDCliente INTEGER,
-    @nombre_cliente1 NVARCHAR(15),
-    @nombre_cliente2 NVARCHAR(15),
-    @apellido_cliente1 NVARCHAR(15),
-    @apellido_cliente2 NVARCHAR(15),
-    @telefono_cliente NVARCHAR(9),
+ CREATE PROCEDURE ActualizarPersonaCliente
+    @IDPersona INTEGER,
+    @nombre1 NVARCHAR(15),
+    @nombre2 NVARCHAR(15),
+    @apellido1 NVARCHAR(15),
+    @apellido2 NVARCHAR(15),
+    @telefono NVARCHAR(9),
     @genero_cliente CHAR(1),
-    @direccion_cliente NVARCHAR(150)
+    @direccion NVARCHAR(150)
 AS
 BEGIN
     UPDATE Cliente
-    SET nombre_cliente1 = @nombre_cliente1,
-        nombre_cliente2 = @nombre_cliente2,
-        apellido_cliente1 = @apellido_cliente1,
-        apellido_cliente2 = @apellido_cliente2,
-        telefono_cliente = @telefono_cliente,
-        genero_cliente = @genero_cliente,
-        direccion_cliente = @direccion_cliente
-    WHERE IDCliente = @IDCliente;
-END;
+    SET genero_cliente= @genero_cliente
+    WHERE IDPersona = @IDPersona;
+
+	UPDATE Persona
+	SET nombre1=@nombre1,nombre2=@nombre2,apellido1=@apellido1,apellido2=@apellido2,telefono=@telefono,direccion=@direccion
+	WHERE IDPersona = @IDPersona
+END
+
+
 
 GO
+
+EXEC ActualizarPersonaCliente 1,'Cristhian','Cesar','Vargas','Martinez','57867406','M','juigalpa';
+GO
+SELECT * FROM Cliente
+SELECT * FROM Persona
+GO
+
+
 
  --Procedimiento almacenado para actualizar proveedor
 
@@ -531,7 +571,7 @@ CREATE PROCEDURE EliminarProveedor
   DELETE Proveedor
   WHERE IDProveedor = @IDProveedor
 
-  Go
+  GO
 
   --procedimiento almacenado para eliminar un producto
 CREATE PROCEDURE EliminarProducto
@@ -543,8 +583,7 @@ CREATE PROCEDURE EliminarProducto
   WHERE IDProducto = @IDProducto
 
   GO
-
-    --procedimiento almacenado para eliminar una categoria
+--procedimiento almacenado para eliminar una categoria
   CREATE PROCEDURE EliminarCategoria
   @IDCategoria INTEGER
 
@@ -554,8 +593,7 @@ CREATE PROCEDURE EliminarProducto
   WHERE IDCategoria = @IDCategoria
 
   GO
-
-    --procedimiento almacenado para eliminar una presentacion
+--procedimiento almacenado para eliminar una presentacion
 
 CREATE PROCEDURE EliminarPresentacion
 @IDPresentacion INTEGER
@@ -566,6 +604,6 @@ DELETE Presentacion
 WHERE IDPresentacion = @IDPresentacion
 
 GO
-
+--------------------------------------------------------------------------------------------------------------------------------------
 
 
