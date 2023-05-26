@@ -59,7 +59,7 @@ public class CRUD_Venta {
         }
     }
     
-    public void insertarCliente(Venta venta) {
+    public void insertarVenta(Venta venta) {
         try {
             CallableStatement callableStatement = cn.prepareCall("{call InsertarVenta(?)}");
             callableStatement.setString(1, venta.getFecha_venta());
@@ -69,4 +69,42 @@ public class CRUD_Venta {
             e.printStackTrace();
         }
     }
+    
+     public boolean verificarDatos(String dato) {
+        ResultSet rs;
+
+        try {
+            CallableStatement call = cn.prepareCall("{call ConsultarVenta(?)}");
+            call.setString(1, dato);
+            rs = call.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+     
+     public void eliminar(String IDVenta) {
+        try {
+            CallableStatement cbst = cn.prepareCall("{call EliminarVenta(?)}");
+            cbst.setString(1, IDVenta);
+            cbst.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+     
+      public void ActualizarCliente(Venta venta) {
+        try {
+           CallableStatement callableStatement = cn.prepareCall("{call ActualizarVenta(?,?,?,?,?,?,?,?)}");
+            callableStatement.setInt(1, venta.getID_venta());
+           callableStatement.setString(2, venta.getFecha_venta());
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            e.printStackTrace();
+        }
+    }
+ 
+    
 }
