@@ -38,13 +38,14 @@ public class Vista_cliente extends javax.swing.JPanel {
             System.out.println("Error: el género seleccionado no es válido.");
         }
 
-        Cliente cl = new Cliente(txtNombreClienteUno.getText(),
-                txtNombreClienteDos.getText(),
+        Cliente cl = new Cliente(
+                 generoChar,
+                txtNombreClienteUno.getText(),
+              txtNombreClienteDos.getText(),
                 txtApellidoClienteUno.getText(),
                 txtApellidoClienteDos.getText(),
                 txtTelefonoCliente.getText(),
-                generoChar,
-                txtDireccionCliente.getText());
+               txtDireccionCliente.getText());
 
         cc.insertarCliente(cl);
     }
@@ -80,13 +81,13 @@ public class Vista_cliente extends javax.swing.JPanel {
       
 
         Cliente cl = new Cliente(Integer.parseInt(textidcliente.getText()),
+                generoChar,
                 txtNombreClienteUno.getText(),
                 txtNombreClienteDos.getText(),
                 txtApellidoClienteUno.getText(),
                 txtApellidoClienteDos.getText(),
                 txtTelefonoCliente.getText(),
-               generoChar,
-                txtDireccionCliente.getText());
+               txtDireccionCliente.getText());
                 
         cc.ActualizarCliente(cl);
 
@@ -621,19 +622,19 @@ public class Vista_cliente extends javax.swing.JPanel {
         } else {
             try {
                 int numList = Integer.parseInt((String) this.tablaCliente.getValueAt(fila, 0));
-                String nomP1 = (String) this.tablaCliente.getValueAt(fila, 1);
-                String nomP2 = (String) this.tablaCliente.getValueAt(fila, 2);
-                String apell1 = (String) this.tablaCliente.getValueAt(fila, 3).toString();
-                String apell2 = (String) this.tablaCliente.getValueAt(fila, 4).toString();
+                String nombre1 = (String) this.tablaCliente.getValueAt(fila, 1);
+                String nombre2 = (String) this.tablaCliente.getValueAt(fila, 2);
+                String apell1ido1 = (String) this.tablaCliente.getValueAt(fila, 3).toString();
+                String apellido2 = (String) this.tablaCliente.getValueAt(fila, 4).toString();
                 String genero = (String) this.tablaCliente.getValueAt(fila, 6).toString();
                 String telefono = (String) this.tablaCliente.getValueAt(fila, 5).toString();
                 String direccion = (String) this.tablaCliente.getValueAt(fila, 7).toString();
 //                System.out.println(telefono);
                textidcliente.setText("" + numList);
-                txtNombreClienteUno.setText(nomP1);
-                txtNombreClienteDos.setText(nomP2);
-                txtApellidoClienteUno.setText(apell1);
-                txtApellidoClienteDos.setText(apell2);
+                txtNombreClienteUno.setText(nombre1);
+                txtNombreClienteDos.setText(nombre2);
+                txtApellidoClienteUno.setText(apell1ido1);
+                txtApellidoClienteDos.setText(apellido2);
                 comboGenero.setSelectedItem(genero);
                 txtTelefonoCliente.setText(telefono);
                 txtDireccionCliente.setText(String.valueOf(direccion));

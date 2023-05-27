@@ -175,7 +175,7 @@ GO
 
 -----------------------------------------------------------------------------------------------------------
 
---PROCEDIMIENTO ALMACENADO INSETAR CLIENTE
+--PROCEDIMIENTO ALMACENADO INSERTAR CLIENTE
 CREATE PROCEDURE InsertarPersonaCliente
 @nombre1 NVARCHAR (15),
 @nombre2 NVARCHAR (15),
@@ -204,11 +204,12 @@ INSERT INTO Cliente (IDPersona, genero_cliente)
 VALUES (@IDPersona,@genero_cliente);
 
 
-SELECT * FROM Persona
-SELECT * FROM Cliente
 END 
 
 GO
+
+SELECT * FROM Cliente
+SELECT * FROM Persona
 
 EXEC InsertarPersonaCliente 'ADF','FD','DFD','DFFD','DFDF','65676787','G'
 GO
@@ -295,30 +296,24 @@ CREATE PROCEDURE BuscarCliente
  @Dato NVARCHAR (50)
 AS
 BEGIN
-    SELECT[nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente]
-	,[direccion_cliente]
-    FROM Cliente
-  WHERE nombre_cliente1 LIKE '%' + RTRIM(@Dato) + '%' OR nombre_cliente2 LIKE '%' + RTRIM(@Dato) + '%'
-    OR apellido_cliente1 LIKE '%' + RTRIM(@Dato) + '%' OR apellido_cliente2 LIKE '%' + RTRIM(@Dato) + '%'
-    OR telefono_cliente LIKE '%' + RTRIM(@Dato) + '%'
+    SELECT  Cliente.IDCliente,nombre1,nombre2,apellido1,apellido2,telefono,Cliente.genero_cliente,
+	direccion
+    FROM Cliente inner join Persona
+	ON Cliente.IDCliente = Persona.IDPersona
+  WHERE nombre1 LIKE '%' + RTRIM(@Dato) + '%' OR nombre2 LIKE '%' + RTRIM(@Dato) + '%'
+    OR apellido1 LIKE '%' + RTRIM(@Dato) + '%' OR apellido2 LIKE '%' + RTRIM(@Dato) + '%'
+    OR telefono LIKE '%' + RTRIM(@Dato) + '%'
+
+
+	
 
 END
 GO
+
+
 
 --procedimiento almacenado para buscar proveedores
-CREATE PROCEDURE BuscarProveedores
- @Dato NVARCHAR (50)
-AS
-BEGIN
-    SELECT[nombre_proveedor1],[nombre_proveedor2],[apellido_proveedor1],[apellido_proveedor2],[empresa_proveedor],[telefono_proveedor]
-	,[direccion_proveedor]
-    FROM Proveedor
-  WHERE nombre_proveedor1 LIKE '%' + RTRIM(@Dato) + '%' OR nombre_proveedor2 LIKE '%' + RTRIM(@Dato) + '%'
-    OR apellido_proveedor1 LIKE '%' + RTRIM(@Dato) + '%' OR apellido_proveedor2 LIKE '%' + RTRIM(@Dato) + '%'
-    OR empresa_proveedor LIKE '%' + RTRIM(@Dato) + '%' OR telefono_proveedor LIKE '%' + RTRIM(@Dato) + '%'
 
-END
-GO
 
 -----------------------------------------------------------------------------------------------------
 
@@ -326,31 +321,19 @@ GO
    --procedimiento almacenado para consultar cliente
 
 CREATE PROCEDURE ConsultarCliente
-    @IDCliente INTEGER =NULL,
-    @nombre_cliente1 NVARCHAR(15) = NULL,
-    @nombre_cliente2 NVARCHAR(15) = NULL,
-    @apellido_cliente1 NVARCHAR(15) = NULL,
-    @apellido_cliente2 NVARCHAR(15) = NULL,
-    @telefono_cliente NVARCHAR(8) = NULL,
-    @genero_cliente CHAR(1) = NULL,
-    @direccion_cliente NVARCHAR(150) = NULL
 AS
 BEGIN
-    SELECT [IDCliente],[nombre_cliente1],[nombre_cliente2],[apellido_cliente1],[apellido_cliente2],[telefono_cliente],[genero_cliente]
-	,[direccion_cliente]
-    FROM Cliente
-WHERE (IDCliente = @IDCliente OR @IDCliente IS NULL)
-    AND (nombre_cliente1 = @nombre_cliente1 OR @nombre_cliente1 IS NULL)
-    AND (nombre_cliente2 = @nombre_cliente2 OR @nombre_cliente2 IS NULL)
-    AND (apellido_cliente1 = @apellido_cliente1 OR @apellido_cliente1 IS NULL)
-    AND (apellido_cliente2 = @apellido_cliente2 OR @apellido_cliente2 IS NULL)
-    AND (telefono_cliente = @telefono_cliente OR @telefono_cliente IS NULL)
-    AND (genero_cliente = @genero_cliente OR @genero_cliente IS NULL)
-    AND (direccion_cliente = @direccion_cliente OR @direccion_cliente IS NULL);
-END;
-SELECT * FROM Cliente
+  SELECT Cliente.IDCliente,nombre1,nombre2,apellido1,
+  apellido2,telefono,Cliente.genero_cliente,direccion
 
+  FROM Cliente inner join Persona on Cliente.IDCliente=Persona.IDPersona
+
+END
 GO
+
+EXEC ConsultarCliente
+
+--------------------------------------------------------------------------------------------------------
 
 --procedimiento almacenado para Consultar un proveedor
 CREATE PROCEDURE ConsultarProveedor
@@ -552,15 +535,18 @@ GO
    --------------------------------------------------------------------------------------------------
    ---Procedimiento almacenado para eliminar cliente
 
-   CREATE PROCEDURE EliminarCliente
-  @IDCliente INTEGER
+   CREATE PROCEDURE EliminarClientePersona
+  @Dato NVARCHAR (150)
 
   AS
 
-  DELETE Cliente
-  WHERE IDCliente = @IDCliente
+  DELETE FROM Cliente WHERE IDCliente=@Dato
+  DELETE FROM Persona WHERE IDPersona=@Dato
+
 
   GO
+
+
 
   --procedimiento almacenado para eliminar un proveedor
 CREATE PROCEDURE EliminarProveedor
