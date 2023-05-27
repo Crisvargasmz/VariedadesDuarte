@@ -279,6 +279,8 @@ CREATE PROCEDURE InsertarProducto
   
   GO
 
+  SELECT * FROM Categoria
+
 --PROCEDIMIENTO ALMACENADO INSERTAR PRESENTACION 
 
    CREATE PROCEDURE InsertarPresentacion
@@ -290,6 +292,8 @@ CREATE PROCEDURE InsertarProducto
    VALUES (@nombre_presentacion)
  
    GO
+
+   EXEC InsertarPresentacion 'kg'
 -----------------------------------------------------------------------------------------------------
 --Procedimiento almacenado para buscar clientes
 CREATE PROCEDURE BuscarCliente
@@ -388,11 +392,24 @@ CREATE PROCEDURE ConsultarCategoria
     @nombre_categoria NVARCHAR(15)
 AS
 BEGIN
-    SELECT *
+    SELECT nombre_categoria
     FROM Categoria
     WHERE nombre_categoria = @nombre_categoria;
 END;
 
+
+  GO
+
+  SELECT * FROM Categoria
+
+  GO
+
+  --procedimiento para llenar categorias
+
+  CREATE PROCEDURE LlenarCombo
+
+  AS
+  SELECT nombre_categoria FROM Categoria
 
   GO
 

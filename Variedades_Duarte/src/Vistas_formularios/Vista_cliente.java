@@ -3,11 +3,6 @@ package Vistas_formularios;
 import Controlador.CRUD_Cliente;
 import Modelo.Cliente;
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.CallableStatement;
-import java.sql.SQLException;
-
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

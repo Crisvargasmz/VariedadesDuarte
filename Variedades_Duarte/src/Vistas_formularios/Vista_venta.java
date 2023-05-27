@@ -405,12 +405,12 @@ public class Vista_venta extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-//        DialogVentaProducto dialog = new DialogVentaProducto(null,true);
-//        Vista_venta vv = new Vista_venta();
-//        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//        dialog.setResizable(false);
-//        dialog.setLocationRelativeTo(vv);
-//        dialog.setVisible(true);
+        DialogVentaProducto dialog = new DialogVentaProducto(null,true);
+        Vista_venta vv = new Vista_venta();
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setResizable(false);
+        dialog.setLocationRelativeTo(vv);
+        dialog.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txtCantidadVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadVentaKeyTyped

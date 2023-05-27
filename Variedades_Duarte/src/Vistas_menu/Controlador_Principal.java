@@ -5,13 +5,12 @@
 package Vistas_menu;
 
 import Modelo.MenuBotones_color;
-import Vistas_formularios.Vista_categoria;
+import Vistas_formularios.Vista_producto;
 import Vistas_formularios.Vista_cliente;
 import Vistas_formularios.Vista_compra;
 import Vistas_formularios.Vista_estadisticas;
 import Vistas_formularios.Vista_proveedor;
 import Vistas_formularios.Vista_venta;
-import Vistas_formularios.Vista_nueva_categoria;
 import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -421,11 +420,11 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
         // TODO add your handling code here:
-        Vista_categoria vistaCategoria = new Vista_categoria();
-        vistaCategoria.setSize(1290, 660);
-        vistaCategoria.setLocation(0, 0);
+        Vista_producto vista = new Vista_producto();
+        vista.setSize(1290, 660);
+        vista.setLocation(0, 0);
         pnlMostrarVentanas.removeAll();
-        pnlMostrarVentanas.add(vistaCategoria, BorderLayout.CENTER);
+        pnlMostrarVentanas.add(vista, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
         pnlMostrarVentanas.repaint();
     }//GEN-LAST:event_btnCategoriaActionPerformed
