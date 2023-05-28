@@ -1,8 +1,7 @@
-
 package Modelo;
 
 public class Producto {
-    
+
     int ID_producto;
     String nombre_producto;
     String cantidad_producto;
@@ -10,11 +9,12 @@ public class Producto {
     String precio_venta;
     String descripcion;
     String fecha_vencimiento;
+    int ID_Categoria;
 
     public Producto() {
     }
 
-    public Producto(int ID_producto, String nombre_producto, String cantidad_producto, String precio_compra, String precio_venta, String descripcion, String fecha_vencimiento) {
+    public Producto(int ID_producto, String nombre_producto, String cantidad_producto, String precio_compra, String precio_venta, String descripcion, String fecha_vencimiento, int ID_Categoria) {
         this.ID_producto = ID_producto;
         this.nombre_producto = nombre_producto;
         this.cantidad_producto = cantidad_producto;
@@ -22,6 +22,7 @@ public class Producto {
         this.precio_venta = precio_venta;
         this.descripcion = descripcion;
         this.fecha_vencimiento = fecha_vencimiento;
+        this.ID_Categoria = ID_Categoria;
     }
 
     public int getID_producto() {
@@ -79,6 +80,13 @@ public class Producto {
     public void setFecha_vencimiento(String fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
     }
-    
-    
+
+    public int getID_Categoria() {
+        return ID_Categoria;
+    }
+
+    public void setID_Categoria(int ID_Categoria) {
+        this.ID_Categoria = ID_Categoria;
+    }
+
 }

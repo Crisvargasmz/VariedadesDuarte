@@ -9,29 +9,29 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class CRUD_Producto {
-    
+
     private final Conexion con = new Conexion();
     private final Connection cn = (Connection) con.conectar();
-    
-    public DefaultTableModel mostrarDatos(){
-        
-       ResultSet rs;
-       
-       DefaultTableModel modelo;
-       
-       String[] titulos = {"ID Producto", "Nombre Producto", "Cantidad",
-                           "Precio Compra", "Precio Venta", "Descripcion",
-                           "Fecha vencimiento", "ID Categoria"};
-       
-       String[] registro = new String[8];
-       
-       modelo =  new DefaultTableModel(null, titulos);
+
+    public DefaultTableModel mostrarDatos() {
+
+        ResultSet rs;
+
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID Producto", "Nombre Producto", "Cantidad",
+            "Precio Compra", "Precio Venta", "Descripcion",
+            "Fecha vencimiento", "ID Categoria"};
+
+        String[] registro = new String[8];
+
+        modelo = new DefaultTableModel(null, titulos);
         try {
-            
+
             CallableStatement cbstc = cn.prepareCall("{call ConsultarProducto}");
             rs = cbstc.executeQuery();
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 registro[0] = rs.getString("IDProducto");
                 registro[1] = rs.getString("nombre_producto");
                 registro[2] = rs.getString("cantidad_producto");
@@ -40,24 +40,23 @@ public class CRUD_Producto {
                 registro[5] = rs.getString("descripcion");
                 registro[6] = rs.getString("fecha_vencimiento");
                 registro[7] = rs.getString("IDCategoria");
-                registro[8] = rs.getString("IDPresentacion");
-                
+
                 modelo.addRow(registro);
             }
             return modelo;
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
             return null;
         }
     }
-    
+
     public DefaultTableModel buscarDatos(String Dato) {
         ResultSet rs;
         DefaultTableModel modelo;
         String[] titulos = {"Nombre Producto", "Cantidad",
-                           "Precio Compra", "Precio Venta", "Descripcion",
-                           "Fecha vencimiento", "ID Categoria"};
+            "Precio Compra", "Precio Venta", "Descripcion",
+            "Fecha vencimiento", "ID Categoria"};
         String[] registro = new String[8];
         modelo = new DefaultTableModel(null, titulos);
 
@@ -74,7 +73,6 @@ public class CRUD_Producto {
                 registro[4] = rs.getString("descripcion");
                 registro[5] = rs.getString("fecha_vencimiento");
                 registro[6] = rs.getString("IDCategoria");
-                registro[7] = rs.getString("IDPresentacion");
                 modelo.addRow(registro);
             }
             return modelo;
@@ -83,7 +81,7 @@ public class CRUD_Producto {
             return null;
         }
     }
-    
+
     public void insertarProducto(Producto producto) {
         try {
             CallableStatement callableStatement = cn.prepareCall("{call InsertarProducto(?,?,?,?,?,?,?)}");
@@ -93,13 +91,14 @@ public class CRUD_Producto {
             callableStatement.setString(4, producto.getPrecio_venta());
             callableStatement.setString(5, producto.getDescripcion());
             callableStatement.setString(6, producto.getFecha_vencimiento());
+            callableStatement.setInt(7, producto.getID_Categoria());
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
             e.printStackTrace();
         }
     }
-    
+
     public boolean verificarDatos(String dato) {
         ResultSet rs;
 
@@ -113,7 +112,7 @@ public class CRUD_Producto {
             return false;
         }
     }
-    
+
     public void eliminar(String IDProducto) {
         try {
             CallableStatement cbst = cn.prepareCall("{call EliminarProducto(?)}");
@@ -123,10 +122,10 @@ public class CRUD_Producto {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-     
-    public void ActualizarCliente(Producto producto) {
+
+    public void ActualizarProducto(Producto producto) {
         try {
-           CallableStatement callableStatement = cn.prepareCall("{call ActualizarProducto(?,?,?,?,?,?,?)}");
+            CallableStatement callableStatement = cn.prepareCall("{call ActualizarProducto(?,?,?,?,?,?,?)}");
             callableStatement.setString(1, producto.getNombre_producto());
             callableStatement.setString(2, producto.getCantidad_producto());
             callableStatement.setString(3, producto.getPrecio_compra());
@@ -139,6 +138,5 @@ public class CRUD_Producto {
             e.printStackTrace();
         }
     }
-    
 
 }

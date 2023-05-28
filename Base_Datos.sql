@@ -1,7 +1,12 @@
 USE master
 CREATE DATABASE VariedadesDuarte
 GO
+
+-- Base de datos.
 USE VariedadesDuarte
+GO
+
+-- Creación de la tabla "Proveedor".
 CREATE TABLE [Proveedor] (
   [IDProveedor] INTEGER IDENTITY (1,1)PRIMARY KEY,
   [empresa_proveedor] NVARCHAR(30)NOT NULL,
@@ -10,6 +15,7 @@ CREATE TABLE [Proveedor] (
 )
 GO
 
+-- Creación de la tabla "Cliente".
 CREATE TABLE [Cliente] (
   [IDCliente] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [genero_cliente] CHAR (1) NOT NULL,
@@ -18,6 +24,7 @@ CREATE TABLE [Cliente] (
 )
 GO
 
+-- Creación de la tabla "Venta".
 CREATE TABLE [Venta] (
   [IDVenta] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [fecha_venta] DATE,
@@ -26,6 +33,7 @@ CREATE TABLE [Venta] (
 )
 GO
 
+-- Creación de la tabla "Producto".
 CREATE TABLE [Producto] (
   [IDProducto] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [nombre_producto] NVARCHAR(40)NOT NULL,
@@ -38,12 +46,15 @@ CREATE TABLE [Producto] (
 )
 GO
 
+-- Creación de la tabla "Categoria".
 CREATE TABLE [Categoria] (
   [IDCategoria] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [nombre_categoria] NVARCHAR(15) NOT NULL,
+
 )
 GO
 
+-- Creación de la tabla "Compra".
 CREATE TABLE [Compra] (
   [IDCompra] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [fecha_compra] DATE,
@@ -52,6 +63,7 @@ CREATE TABLE [Compra] (
 )
 GO
 
+-- Creación de la tabla "Inicio Sesion".
 CREATE TABLE [IniciodeSesion](
 [ID_InicioSesion] INTEGER IDENTITY (1,1) PRIMARY KEY,
 usuario_sesion NVARCHAR (20) NOT NULL,
@@ -59,6 +71,7 @@ contrasena_sesion NVARCHAR (8) NOT NULL
 )
 GO
 
+-- Creación de la tabla "Presentacion".
 CREATE TABLE [Presentacion](
 IDPresentacion INTEGER IDENTITY (1,1) PRIMARY KEY,
 nombre_presentacion NVARCHAR (8)
@@ -66,6 +79,7 @@ nombre_presentacion NVARCHAR (8)
 )
 GO
 
+-- Creación de la tabla "Persona".
 CREATE TABLE [Persona](
 IDPersona INTEGER IDENTITY (1,1) PRIMARY KEY,
 nombre1 NVARCHAR (15),
@@ -75,10 +89,10 @@ apellido2 NVARCHAR (15),
 telefono NVARCHAR (9),
 direccion NVARCHAR (150)
 
-
 )
 GO
 
+-- Agregar clave foránea IDCliente en la tabla "Venta".
 ALTER TABLE dbo.Venta
 ADD IDCliente INT NOT NULL
 ALTER TABLE dbo.Venta
@@ -86,7 +100,7 @@ ADD CONSTRAINT FK_Clientes_Ventas
 FOREIGN KEY (IDCliente)
 REFERENCES dbo.Cliente(IDCliente)
 
-
+-- Agregar clave foránea IDCategoria en la tabla "Producto".
 ALTER TABLE dbo.Producto
 ADD IDCategoria  INT NOT NULL
 ALTER TABLE dbo.Producto
@@ -94,6 +108,7 @@ ADD CONSTRAINT FK_Categoria_Producto
 FOREIGN KEY (IDCategoria)
 REFERENCES dbo.Categoria(IDCategoria)
 
+-- Agregar clave foránea IDProveedor en la tabla "Compra".
 ALTER TABLE dbo.Compra
 ADD IDProveedor  INT NOT NULL
 ALTER TABLE dbo.Compra
@@ -101,7 +116,7 @@ ADD CONSTRAINT FK_Proveedor_Compra
 FOREIGN KEY (IDProveedor)
 REFERENCES dbo.Proveedor(IDProveedor)
 
-
+-- Creación de la tabla Intermedia "Detalle_Venta".
 CREATE TABLE [Detalle_Venta] (
   [ID_DVenta] INTEGER IDENTITY(1,1) PRIMARY KEY,
   cantidad_venta INTEGER NOT NULL,
@@ -109,8 +124,7 @@ CREATE TABLE [Detalle_Venta] (
 )
 GO
 
-
-
+-- Creación de la tabla Intermedia "Detalle_Compra".
 CREATE TABLE [Detalle_Compra] (
   [ID_DCompra] INTEGER IDENTITY(1,1) PRIMARY KEY,
   cantidad_compra INTEGER NOT NULL,
@@ -118,6 +132,7 @@ CREATE TABLE [Detalle_Compra] (
 )
 GO
 
+-- Creación de la tabla Intermedia "ProductoPresentacion".
 CREATE TABLE [ProductoPresentacion](
  ID_PPresentacion INTEGER IDENTITY (1,1) PRIMARY KEY,
 precio_pproducto DECIMAL (12,2)
@@ -125,7 +140,7 @@ precio_pproducto DECIMAL (12,2)
 )
 GO
 
-
+-- Agregar clave foránea IDProducto en la tabla "ProductoPresentacion".
 ALTER TABLE dbo.ProductoPresentacion
 ADD IDProducto INT  NOT NULL
 ALTER TABLE dbo.ProductoPresentacion
@@ -133,6 +148,7 @@ ADD CONSTRAINT FK_ProductoPresentacion_Producto
 FOREIGN KEY (IDProducto)
 REFERENCES dbo.Producto(IDProducto)
 
+-- Agregar clave foránea IDPresentacion en la tabla "ProductoPresentacion".
 ALTER TABLE dbo.ProductoPresentacion
 ADD IDPresentacion INT  NOT NULL
 ALTER TABLE dbo.ProductoPresentacion
@@ -140,6 +156,7 @@ ADD CONSTRAINT FK_Presentacion_Producto
 FOREIGN KEY (IDPresentacion)
 REFERENCES dbo.Presentacion(IDPresentacion)
 
+-- Agregar clave foránea IDProducto en la tabla "Detalle_Venta".
 ALTER TABLE dbo.Detalle_Venta
 ADD IDProducto INT  NOT NULL
 ALTER TABLE dbo.Detalle_Venta
@@ -147,15 +164,15 @@ ADD CONSTRAINT FK_Detalle_Venta_P
 FOREIGN KEY (IDProducto)
 REFERENCES dbo.Producto(IDProducto)
 
-  ALTER TABLE dbo.Detalle_Venta
+-- Agregar clave foránea IDVenta en la tabla "Detalle_Venta".
+ALTER TABLE dbo.Detalle_Venta
 ADD IDVenta INT  NOT NULL
 ALTER TABLE dbo.Detalle_Venta
 ADD CONSTRAINT FK_Detalle_Venta_V
 FOREIGN KEY (IDVenta)
-REFERENCES dbo.Venta( IDVenta)
+REFERENCES dbo.Venta(IDVenta)
 
-
-
+-- Agregar clave foránea IDProducto en la tabla "Detalle_Compra".
 ALTER TABLE dbo.Detalle_Compra
 ADD IDProducto INT  NOT NULL
 ALTER TABLE dbo.Detalle_Compra
@@ -163,7 +180,7 @@ ADD CONSTRAINT FK_Detalle_Compra_Pto
 FOREIGN KEY (IDProducto)
 REFERENCES dbo.Producto( IDProducto)
 
-
+-- Agregar clave foránea IDCompra en la tabla "Detalle_Compra".
 ALTER TABLE dbo.Detalle_Compra
 ADD IDCompra INT  NOT NULL
 ALTER TABLE dbo.Detalle_Compra
@@ -173,9 +190,12 @@ REFERENCES dbo.Compra( IDCompra)
 GO
 
 
------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+-----PROCEDIMIENTOS ALMACENADOS PARA INSERTAR
+-------------------------------------------------------------------------------------------------
 
 --PROCEDIMIENTO ALMACENADO INSERTAR CLIENTE
+
 CREATE PROCEDURE InsertarPersonaCliente
 @nombre1 NVARCHAR (15),
 @nombre2 NVARCHAR (15),
@@ -185,24 +205,23 @@ CREATE PROCEDURE InsertarPersonaCliente
 @telefono NVARCHAR (9),
 @genero_cliente CHAR (1)
 
-
 AS
 BEGIN
 SET NOCOUNT ON;
 
 DECLARE @IDPersona INTEGER
 
---INSERTAR LA TABLA PERSONA 
+--INSERTAR LA TABLA PERSONA--
+
 INSERT INTO Persona (nombre1,nombre2,apellido1,apellido2,telefono,direccion)
 VALUES (@nombre1,@nombre2,@apellido1,@apellido2,@telefono,@direccion);
 
---OBTENER EL ULTIMO ID INSERTADO EN LA TABLA PERSONA
+--OBTENER EL ULTIMO ID INSERTADO EN LA TABLA PERSONA--
 
 SET @IDPersona = SCOPE_IDENTITY();
 
 INSERT INTO Cliente (IDPersona, genero_cliente)
 VALUES (@IDPersona,@genero_cliente);
-
 
 END 
 
@@ -216,6 +235,7 @@ GO
 
 
 --PROCEDIMIENTO ALMECENADO INSERTAR PROVEEDOR
+
 CREATE PROCEDURE InsertarPersonaProveedor
 @nombre1 NVARCHAR (15),
 @nombre2 NVARCHAR (15),
@@ -225,50 +245,36 @@ CREATE PROCEDURE InsertarPersonaProveedor
 @telefono NVARCHAR (9),
 @empresa_proveedor NVARCHAR (15)
 
-
 AS
 BEGIN
 SET NOCOUNT ON;
 
 DECLARE @IDPersona INTEGER
 
---INSERTAR LA TABLA PERSONA 
+--INSERTAR LA TABLA PERSONA--
+
 INSERT INTO Persona (nombre1,nombre2,apellido1,apellido2,telefono,direccion)
 VALUES (@nombre1,@nombre2,@apellido1,@apellido2,@telefono,@direccion);
 
---OBTENER EL ULTIMO ID INSERTADO EN LA TABLA PERSONA
+--OBTENER EL ULTIMO ID INSERTADO EN LA TABLA PERSONA--
 
 SET @IDPersona = SCOPE_IDENTITY();
 
 INSERT INTO Proveedor(IDPersona, empresa_proveedor)
 VALUES (@IDPersona,@empresa_proveedor);
 
-
-SELECT * FROM Persona
-SELECT * FROM Proveedor
 END 
 
 GO
 
+SELECT * FROM Persona
+SELECT * FROM Proveedor
+
 EXEC InsertarPersonaProveedor'ADF','FD','DFD','DFFD','DFDF','65676787','G'
 GO
 
-   --PROCEDIMIENTO ALMACENADO INSERTAR PRODUCTO
-CREATE PROCEDURE InsertarProducto
-  @nombre_producto NVARCHAR(40),
-  @cantidad_producto INTEGER ,
-  @precio_compra DECIMAL(12,2),
-  @precio_venta DECIMAL(12,2) ,
-  @descripcion NVARCHAR(200) ,
-  @fecha_vencimiento DATETIME
-
-  AS
-
-  INSERT INTO [Producto] ([nombre_producto],[cantidad_producto],[precio_compra],[precio_venta],[descripcion],[fecha_vencimiento])
-  VALUES (@nombre_producto,@cantidad_producto,@precio_compra,@precio_venta,@descripcion,@fecha_vencimiento)
-  GO
-
  --PROCEDIMIENTO ALMACENADO INSERTAR CATEGORIA
+
   CREATE PROCEDURE InsertarCategoria
   @nombre_categoria NVARCHAR (15)
 
@@ -276,10 +282,10 @@ CREATE PROCEDURE InsertarProducto
 
   INSERT INTO [Categoria] ([nombre_categoria])
   VALUES (@nombre_categoria)
-  
   GO
 
-  SELECT * FROM Categoria
+  EXEC InsertarCategoria @nombre_categoria = 'Gaseosas';
+  GO
 
 --PROCEDIMIENTO ALMACENADO INSERTAR PRESENTACION 
 
@@ -290,12 +296,50 @@ CREATE PROCEDURE InsertarProducto
 
    INSERT INTO [Presentacion] ([nombre_presentacion])
    VALUES (@nombre_presentacion)
- 
    GO
 
-   EXEC InsertarPresentacion 'kg'
------------------------------------------------------------------------------------------------------
---Procedimiento almacenado para buscar clientes
+   EXEC InsertarPresentacion 'Lt';
+   GO
+
+--PROCEDIMIENTO ALMACENADO INSERTAR PRODUCTO
+
+CREATE PROCEDURE InsertarProducto
+  @nombre_producto NVARCHAR(40),
+  @cantidad_producto INTEGER ,
+  @precio_compra DECIMAL(12,2),
+  @precio_venta DECIMAL(12,2) ,
+  @descripcion NVARCHAR(200) ,
+  @fecha_vencimiento DATETIME,
+  @IDCategoria INTEGER
+
+  AS
+
+  INSERT INTO [Producto] ([nombre_producto],[cantidad_producto],[precio_compra],[precio_venta],[descripcion],[fecha_vencimiento],[IDCategoria])
+  VALUES (@nombre_producto,@cantidad_producto,@precio_compra,@precio_venta,@descripcion,@fecha_vencimiento,@IDCategoria)
+  GO
+
+   --INSERTAR PRODUCTO PRESENTACION
+
+   CREATE PROCEDURE InsertarProductoPresentacion
+   @precio_pproducto DECIMAL (12,2),
+   @IDProducto INTEGER,
+   @IDPresentacion INTEGER
+
+   AS
+
+   INSERT INTO [ProductoPresentacion] ([precio_pproducto],[IDProducto],[IDPresentacion])
+   VALUES (@precio_pproducto, @IDProducto, @IDPresentacion)
+   GO
+
+   EXEC InsertarProductoPresentacion @precio_pproducto = 12.00, @IDProducto = 1, @IDPresentacion = 1;
+   GO
+
+-------------------------------------------------------------------------------------------------
+-----PROCEDIMIENTOS ALMACENADOS PARA BUSCAR
+-------------------------------------------------------------------------------------------------
+
+--PROCEDIMIENTO ALMACENADO PARA BUCAR CLIENTE
+
 CREATE PROCEDURE BuscarCliente
  @Dato NVARCHAR (50)
 AS
@@ -308,10 +352,8 @@ BEGIN
     OR apellido1 LIKE '%' + RTRIM(@Dato) + '%' OR apellido2 LIKE '%' + RTRIM(@Dato) + '%'
     OR telefono LIKE '%' + RTRIM(@Dato) + '%'
 
-
-	
-
 END
+
 GO
 
 
@@ -321,8 +363,7 @@ GO
 
 -----------------------------------------------------------------------------------------------------
 
-
-   --procedimiento almacenado para consultar cliente
+--procedimiento almacenado para consultar cliente
 
 CREATE PROCEDURE ConsultarCliente
 AS
@@ -336,6 +377,8 @@ END
 GO
 
 EXEC ConsultarCliente
+
+GO
 
 --------------------------------------------------------------------------------------------------------
 
@@ -371,7 +414,8 @@ CREATE PROCEDURE ConsultarProducto
     @precio_compra DECIMAL(12,2) = NULL,
     @precio_venta DECIMAL(12,2) = NULL,
     @descripcion NVARCHAR(200) = NULL,
-    @fecha_vencimiento DATETIME = NULL
+    @fecha_vencimiento DATETIME = NULL,
+	@IDCategoria INTEGER = NULL
 AS
 BEGIN
     SELECT *
@@ -381,7 +425,8 @@ BEGIN
         AND (precio_compra = @precio_compra OR @precio_compra IS NULL)
         AND (precio_venta = @precio_venta OR @precio_venta IS NULL)
         AND (descripcion = @descripcion OR @descripcion IS NULL)
-        AND (fecha_vencimiento = @fecha_vencimiento OR @fecha_vencimiento IS NULL);
+        AND (fecha_vencimiento = @fecha_vencimiento OR @fecha_vencimiento IS NULL)
+		AND (IDCategoria = @IDCategoria OR @IDCategoria IS NULL);
 END;
 
 
@@ -608,5 +653,4 @@ WHERE IDPresentacion = @IDPresentacion
 
 GO
 --------------------------------------------------------------------------------------------------------------------------------------
-
 
