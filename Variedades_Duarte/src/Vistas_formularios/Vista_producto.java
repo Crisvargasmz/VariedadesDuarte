@@ -6,6 +6,7 @@ package Vistas_formularios;
 
 import Controlador.CRUD_Categoria;
 import Controlador.CRUD_Cliente;
+import Controlador.CRUD_Presentacion;
 import Controlador.CRUD_Producto;
 import Vistas_menu.Controlador_Principal;
 import Modelo.Categoria;
@@ -36,6 +37,7 @@ public class Vista_producto extends javax.swing.JPanel {
         Mostrar();
         llenarcombobox();//se va rellenar con combobox
         //en el formulario cuando inicie este
+        llenarcombobox2();
 
         txtIDProducto.setVisible(false);
 
@@ -46,7 +48,14 @@ public class Vista_producto extends javax.swing.JPanel {
         comboCategoria.setModel(cate.Llenar());//Llenamos el combobox
 
     }
+    
+       public void llenarcombobox2() {
+        CRUD_Presentacion cate = new CRUD_Presentacion();
+        comboPresentacion.setModel(cate.Llenar());//Llenamos el combobox
 
+    }
+       
+      
 //         public void mostrar() { //Método mostrar
 //        try {
 //           DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -96,8 +105,8 @@ public class Vista_producto extends javax.swing.JPanel {
         txtCantidad.setText("");
         txtPrecioCompra.setText("");
         txtPrecioVenta.setText("");
-        comboCategoria.setSelectedItem("Genero");
-        comboPresentacion.setSelectedItem("Unidad de Medida");
+        comboCategoria.setSelectedItem("Categoria");
+        comboPresentacion.setSelectedItem("Unidad de medida");
         txtDescripcion.setText("");
         txtFechaVencimiento.setText("");
     }
@@ -201,6 +210,7 @@ public class Vista_producto extends javax.swing.JPanel {
         comboPresentacion = new javax.swing.JComboBox<>();
         txtxBuscarProducto = new javax.swing.JTextField();
         txtIDProducto = new javax.swing.JTextField();
+        jtxtpresentacion = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -296,6 +306,11 @@ public class Vista_producto extends javax.swing.JPanel {
         btnActualizarProducto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnActualizarProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarProducto.setText("Actualizar");
+        btnActualizarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarProductoActionPerformed(evt);
+            }
+        });
         jSplitPane1.setLeftComponent(btnActualizarProducto);
 
         jSplitPane3.setBackground(new java.awt.Color(4, 64, 98));
@@ -344,6 +359,7 @@ public class Vista_producto extends javax.swing.JPanel {
         });
         jPanel2.add(btnRefrescar);
 
+        comboCategoria.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboCategoria.setPreferredSize(new java.awt.Dimension(250, 40));
         comboCategoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -365,8 +381,7 @@ public class Vista_producto extends javax.swing.JPanel {
         });
         jPanel2.add(comboCategoria);
 
-        comboPresentacion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        comboPresentacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Unidad de Medida" }));
+        comboPresentacion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboPresentacion.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(4, 64, 98))));
         comboPresentacion.setMinimumSize(new java.awt.Dimension(250, 40));
         comboPresentacion.setPreferredSize(new java.awt.Dimension(250, 40));
@@ -412,6 +427,8 @@ public class Vista_producto extends javax.swing.JPanel {
                                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(200, 200, 200)
+                                .addComponent(jtxtpresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(0, 19, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
@@ -421,7 +438,9 @@ public class Vista_producto extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
-                .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtpresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -472,23 +491,23 @@ public class Vista_producto extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAgregarCateMouseClicked
 
     private void comboCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriaKeyReleased
-        llenarcombobox();
+       
     }//GEN-LAST:event_comboCategoriaKeyReleased
 
     private void comboCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCategoriaItemStateChanged
-        llenarcombobox();
+   
     }//GEN-LAST:event_comboCategoriaItemStateChanged
 
     private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
-        llenarcombobox();
+       
     }//GEN-LAST:event_comboCategoriaActionPerformed
 
     private void comboCategoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriaKeyPressed
-        llenarcombobox();
+
     }//GEN-LAST:event_comboCategoriaKeyPressed
 
     private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
-        llenarcombobox();
+           llenarcombobox();    
     }//GEN-LAST:event_btnRefrescarActionPerformed
 
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
@@ -521,6 +540,10 @@ public class Vista_producto extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
+    private void btnActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProductoActionPerformed
+   LimpiarCampos();
+    }//GEN-LAST:event_btnActualizarProductoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarProducto;
@@ -539,6 +562,7 @@ public class Vista_producto extends javax.swing.JPanel {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
+    private javax.swing.JTextField jtxtpresentacion;
     private javax.swing.JTable tablaProducto;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;

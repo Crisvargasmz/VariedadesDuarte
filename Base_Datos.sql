@@ -309,14 +309,79 @@ CREATE PROCEDURE InsertarProducto
   @precio_compra DECIMAL(12,2),
   @precio_venta DECIMAL(12,2) ,
   @descripcion NVARCHAR(200) ,
-  @fecha_vencimiento DATETIME,
-  @IDCategoria INTEGER
+  @fecha_vencimiento DATE,
+  @IDCategoria INT,
+  @IDPresentacion INT
+ 
 
   AS
 
-  INSERT INTO [Producto] ([nombre_producto],[cantidad_producto],[precio_compra],[precio_venta],[descripcion],[fecha_vencimiento],[IDCategoria])
-  VALUES (@nombre_producto,@cantidad_producto,@precio_compra,@precio_venta,@descripcion,@fecha_vencimiento,@IDCategoria)
+  INSERT INTO [Producto] ([nombre_producto],[cantidad_producto],[precio_compra],[precio_venta],[descripcion],[fecha_vencimiento],IDCategoria,IDPresentacion)
+  VALUES (@nombre_producto,@cantidad_producto,@precio_compra,@precio_venta,@descripcion,@fecha_vencimiento,@IDCategoria,@IDPresentacion)
   GO
+CREATE PROCEDURE InsertarProducto2
+  @nombre_producto NVARCHAR(40),
+  @cantidad_producto INTEGER,
+  @precio_compra DECIMAL(12,2),
+  @precio_venta DECIMAL(12,2),
+  @descripcion NVARCHAR(200),
+  @fecha_vencimiento DATE,
+  @IDCategoria INT,
+  @IDPresentacion INT,
+  @ID_PPresentacion INT,
+  @precio_pproducto INT
+AS
+BEGIN
+  DECLARE @nombre_presentacion NVARCHAR(8)
+
+  -- Obtener el nombre de la presentación asociada al IDPresentacion
+  SELECT @nombre_presentacion = [nombre_presentacion]
+  FROM [Presentacion]
+  WHERE [IDPresentacion] = @IDPresentacion
+
+  -- Insertar el producto en la tabla "Producto"
+  INSERT INTO [Producto] ([nombre_producto], [cantidad_producto], [precio_compra], [precio_venta], [descripcion], [fecha_vencimiento], [IDCategoria])
+  VALUES (@nombre_producto, @cantidad_producto, @precio_compra, @precio_venta, @descripcion, @fecha_vencimiento, @IDCategoria)
+
+  -- Obtener el ID del producto recién insertado
+  DECLARE @IDProducto INT
+  SET @IDProducto = SCOPE_IDENTITY()
+
+  -- Insertar el registro en la tabla "ProductoPresentacion" para establecer la relación
+  INSERT INTO ProductoPresentacion ([ID_PPresentacion], [IDProducto], [IDPresentacion], [precio_pproducto])
+  VALUES (@ID_PPresentacion, @IDProducto, @IDPresentacion,@precio_pproducto)
+END
+
+
+
+
+	--CREATE PROCEDURE InsertarProducto2
+	--@nombre_producto NVARCHAR(40),
+	--@cantidad_producto INTEGER,
+	--@precio_compra DECIMAL(12,2),
+	--@precio_venta DECIMAL(12,2),
+	--@descripcion NVARCHAR(200),
+	--@fecha_vencimiento DATE,
+	--@IDCategoria INT,
+	--@IDPresentacion INT
+	--AS
+	--BEGIN
+	--DECLARE @nombre_categoria NVARCHAR(40)
+	--DECLARE @nombre_presentacion NVARCHAR(40)
+
+	---- Obtener el nombre de la categoría asociada al IDCategoria
+	--SELECT @nombre_categoria = [nombre_categoria]
+	--FROM [Categoria]
+	--WHERE [IDCategoria] = @IDCategoria
+
+	---- Obtener el nombre de la presentación asociada al IDPresentacion
+	--SELECT @nombre_presentacion = [nombre_presentacion]
+	--FROM [Presentacion]
+	--WHERE [IDPresentacion] = @IDPresentacion
+
+	--INSERT INTO [Producto] ([nombre_producto], [cantidad_producto], [precio_compra], [precio_venta], [descripcion], [fecha_vencimiento], [IDCategoria], [IDPresentacion])
+	--VALUES (@nombre_producto, @cantidad_producto, @precio_compra, @precio_venta, @descripcion, @fecha_vencimiento, @IDCategoria, @IDPresentacion)
+	--END
 
    --INSERTAR PRODUCTO PRESENTACION
 
@@ -471,6 +536,15 @@ END;
 
 
    GO
+
+     --procedimiento para llenar categorias
+
+  CREATE PROCEDURE LlenarCombo2
+
+  AS
+  SELECT nombre_presentacion FROM Presentacion
+
+  GO
 
    
    --------------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@ public class CRUD_Categoria {
    public DefaultComboBoxModel Llenar ()
    {
     DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-    modelo.addElement("Seleccione");
+    modelo.addElement("Categoria");
     try {
    CallableStatement cbstc = cn.prepareCall("{call LlenarCombo}");
    ResultSet rs = cbstc.executeQuery();

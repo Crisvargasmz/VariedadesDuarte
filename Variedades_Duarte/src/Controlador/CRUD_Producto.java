@@ -84,7 +84,7 @@ public class CRUD_Producto {
 
     public void insertarProducto(Producto producto) {
         try {
-            CallableStatement callableStatement = cn.prepareCall("{call InsertarProducto(?,?,?,?,?,?,?)}");
+            CallableStatement callableStatement = cn.prepareCall("{call InsertarProducto2(?,?,?,?,?,?,?,?,?,?)}");
             callableStatement.setString(1, producto.getNombre_producto());
             callableStatement.setString(2, producto.getCantidad_producto());
             callableStatement.setString(3, producto.getPrecio_compra());
