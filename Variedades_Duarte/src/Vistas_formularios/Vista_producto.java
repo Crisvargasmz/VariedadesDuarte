@@ -186,7 +186,6 @@ public class Vista_producto extends javax.swing.JPanel {
     private void initComponents() {
 
         jSeparator2 = new javax.swing.JSeparator();
-        txtFechaVencimiento = new javax.swing.JTextField();
         txtNombreProducto = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         txtPrecioCompra = new javax.swing.JTextField();
@@ -211,6 +210,7 @@ public class Vista_producto extends javax.swing.JPanel {
         txtxBuscarProducto = new javax.swing.JTextField();
         txtIDProducto = new javax.swing.JTextField();
         jtxtpresentacion = new javax.swing.JTextField();
+        txtFechaVencimiento = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -220,14 +220,6 @@ public class Vista_producto extends javax.swing.JPanel {
         jSeparator2.setBackground(new java.awt.Color(0, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(0, 204, 204));
         jSeparator2.setOpaque(true);
-
-        txtFechaVencimiento.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtFechaVencimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Fecha vencimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        txtFechaVencimiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaVencimientoActionPerformed(evt);
-            }
-        });
 
         txtNombreProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtNombreProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
@@ -390,6 +382,14 @@ public class Vista_producto extends javax.swing.JPanel {
         txtxBuscarProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtxBuscarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
+        txtFechaVencimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Fecha vencimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        try {
+            txtFechaVencimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtFechaVencimiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -445,15 +445,15 @@ public class Vista_producto extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtDescripcion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jSplitPane3)
@@ -463,13 +463,7 @@ public class Vista_producto extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
-
-        txtFechaVencimiento.getAccessibleContext().setAccessibleName("Vencimiento");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtFechaVencimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaVencimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaVencimientoActionPerformed
 
     private void txtPrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioCompraActionPerformed
         // TODO add your handling code here:
@@ -566,7 +560,7 @@ public class Vista_producto extends javax.swing.JPanel {
     private javax.swing.JTable tablaProducto;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtFechaVencimiento;
+    private javax.swing.JFormattedTextField txtFechaVencimiento;
     private javax.swing.JTextField txtIDProducto;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecioCompra;
