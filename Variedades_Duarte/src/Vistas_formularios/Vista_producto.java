@@ -203,13 +203,13 @@ public class Vista_producto extends javax.swing.JPanel {
         btnEliminarProducto = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnAgregarCate = new javax.swing.JButton();
-        btnRefrescar = new javax.swing.JButton();
         comboCategoria = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
+        txtMedidaNumerica = new javax.swing.JTextField();
         comboPresentacion = new javax.swing.JComboBox<>();
         txtxBuscarProducto = new javax.swing.JTextField();
         txtIDProducto = new javax.swing.JTextField();
-        jtxtpresentacion = new javax.swing.JTextField();
+        txtPresentacion = new javax.swing.JTextField();
         txtFechaVencimiento = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -339,23 +339,19 @@ public class Vista_producto extends javax.swing.JPanel {
         });
         jPanel2.add(btnAgregarCate);
 
-        btnRefrescar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/girar.png"))); // NOI18N
-        btnRefrescar.setMaximumSize(new java.awt.Dimension(40, 40));
-        btnRefrescar.setMinimumSize(new java.awt.Dimension(40, 40));
-        btnRefrescar.setOpaque(true);
-        btnRefrescar.setPreferredSize(new java.awt.Dimension(45, 40));
-        btnRefrescar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefrescarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnRefrescar);
-
         comboCategoria.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboCategoria.setPreferredSize(new java.awt.Dimension(250, 40));
         comboCategoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboCategoriaItemStateChanged(evt);
+            }
+        });
+        comboCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboCategoriaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                comboCategoriaMouseEntered(evt);
             }
         });
         comboCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -373,10 +369,17 @@ public class Vista_producto extends javax.swing.JPanel {
         });
         jPanel2.add(comboCategoria);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtMedidaNumerica.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtMedidaNumerica.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtMedidaNumerica.setPreferredSize(new java.awt.Dimension(80, 40));
+        jPanel1.add(txtMedidaNumerica);
+
         comboPresentacion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboPresentacion.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(4, 64, 98))));
-        comboPresentacion.setMinimumSize(new java.awt.Dimension(250, 40));
-        comboPresentacion.setPreferredSize(new java.awt.Dimension(250, 40));
+        comboPresentacion.setMinimumSize(new java.awt.Dimension(200, 40));
+        comboPresentacion.setPreferredSize(new java.awt.Dimension(190, 40));
         jPanel1.add(comboPresentacion);
 
         txtxBuscarProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -406,31 +409,31 @@ public class Vista_producto extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtNombreProducto))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(36, 36, 36)
                                         .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(35, 35, 35)
                                         .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtDescripcion)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtxBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtxBuscarProducto)
+                                .addGap(18, 18, 18)
                                 .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
                                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(200, 200, 200)
-                                .addComponent(jtxtpresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(0, 19, Short.MAX_VALUE)))
+                        .addGap(19, 19, 19)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -440,7 +443,7 @@ public class Vista_producto extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxtpresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -493,16 +496,12 @@ public class Vista_producto extends javax.swing.JPanel {
     }//GEN-LAST:event_comboCategoriaItemStateChanged
 
     private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
-       
+       llenarcombobox();
     }//GEN-LAST:event_comboCategoriaActionPerformed
 
     private void comboCategoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriaKeyPressed
 
     }//GEN-LAST:event_comboCategoriaKeyPressed
-
-    private void btnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefrescarActionPerformed
-           llenarcombobox();    
-    }//GEN-LAST:event_btnRefrescarActionPerformed
 
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
@@ -538,6 +537,16 @@ public class Vista_producto extends javax.swing.JPanel {
    LimpiarCampos();
     }//GEN-LAST:event_btnActualizarProductoActionPerformed
 
+    private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboCategoriaMouseClicked
+
+    private void comboCategoriaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseEntered
+        // TODO add your handling code here:
+        llenarcombobox();
+    }//GEN-LAST:event_comboCategoriaMouseEntered
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarProducto;
@@ -546,7 +555,6 @@ public class Vista_producto extends javax.swing.JPanel {
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnLimpiarCamposProducto;
-    private javax.swing.JButton btnRefrescar;
     private javax.swing.JComboBox<String> comboCategoria;
     private javax.swing.JComboBox<String> comboPresentacion;
     private javax.swing.JPanel jPanel1;
@@ -556,15 +564,16 @@ public class Vista_producto extends javax.swing.JPanel {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
-    private javax.swing.JTextField jtxtpresentacion;
     private javax.swing.JTable tablaProducto;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JFormattedTextField txtFechaVencimiento;
     private javax.swing.JTextField txtIDProducto;
+    private javax.swing.JTextField txtMedidaNumerica;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecioCompra;
     private javax.swing.JTextField txtPrecioVenta;
+    private javax.swing.JTextField txtPresentacion;
     private javax.swing.JTextField txtxBuscarProducto;
     // End of variables declaration//GEN-END:variables
 }

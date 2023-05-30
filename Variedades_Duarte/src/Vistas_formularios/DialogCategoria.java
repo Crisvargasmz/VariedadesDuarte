@@ -5,13 +5,15 @@
 package Vistas_formularios;
 
 import Controlador.CRUD_Categoria;
+import Controlador.Conexion;
 import Modelo.Categoria;
 import java.awt.HeadlessException;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-
-
-
 
 /**
  *
@@ -19,6 +21,8 @@ import javax.swing.JOptionPane;
  */
 public class DialogCategoria extends javax.swing.JDialog {
 
+    private final Conexion con = new Conexion();
+    private final Connection cn = (Connection) con.conectar();
     /**
      * Creates new form DialogCategoria
      */
@@ -26,24 +30,24 @@ public class DialogCategoria extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-      
-    }
-    
-    
-    public void guardar(){
-    CRUD_Categoria cc = new CRUD_Categoria();
-    
-   Categoria  cat = new Categoria(
-   txtcategoria.getText());
-    
-    cc.insertarCategoria(cat);
-    
-    
-    
-    }
-   
-    
 
+    }
+
+    public DefaultComboBoxModel LlenarAlSalir ()
+   {
+    DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+    modelo.addElement("Categoria");
+    try {
+   CallableStatement cbstc = cn.prepareCall("{call LlenarCombo}");
+   ResultSet rs = cbstc.executeQuery();
+   while(rs.next())//realizamos un recorrido para buscar los datos existentes
+   {
+       modelo.addElement(rs.getString(1));
+     }  
+  } catch (Exception e) {
+  }
+    return modelo;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,8 +63,8 @@ public class DialogCategoria extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         txtcategoria = new javax.swing.JTextField();
 
         txtNombreCliente4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -85,19 +89,19 @@ public class DialogCategoria extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton5.setText("Agregar");
-        jButton5.setPreferredSize(new java.awt.Dimension(90, 30));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Agregar");
+        btnAgregar.setPreferredSize(new java.awt.Dimension(90, 30));
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Cerrar");
-        jButton4.setPreferredSize(new java.awt.Dimension(90, 30));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setText("Cerrar");
+        btnCerrar.setPreferredSize(new java.awt.Dimension(90, 30));
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
 
@@ -115,9 +119,9 @@ public class DialogCategoria extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -127,8 +131,8 @@ public class DialogCategoria extends javax.swing.JDialog {
                 .addComponent(txtcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -146,40 +150,23 @@ public class DialogCategoria extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-     this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-     CRUD_Categoria cc = new CRUD_Categoria();
-     
-     try{
-     
-     if( txtcategoria.getText().equals(""))
-     
-     {
-     
-    
-     
-  } else {
-          guardar();
-           
-             this.dispose();
-  }
-     
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        CRUD_Categoria cc = new CRUD_Categoria();
+            if (txtcategoria.getText().equals("")) {
 
-    
-} catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e);
-          
-        }
-
-     
-     
-     
-     
-     
-    }//GEN-LAST:event_jButton5ActionPerformed
+            } else {
+                 
+                String catego = txtcategoria.getText();
+                Categoria cat = new Categoria(catego);
+                cc.insertarCategoria(cat);
+                LlenarAlSalir();
+                this.dispose();
+            }
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,10 +211,10 @@ public class DialogCategoria extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtNombreCliente4;
