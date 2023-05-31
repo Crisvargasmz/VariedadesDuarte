@@ -2,23 +2,25 @@
 package Modelo;
 
 public class Cliente extends Persona {
-    
+
     int IDCliente;
     char genero_cliente;
 
-    public Cliente(char genero_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String telefono, String direccion) {
+    public Cliente() {
+    }
+
+    public Cliente(String nombre1, String nombre2, String apellido1, String apellido2, String telefono,char genero_cliente, String direccion) {
         super(nombre1, nombre2, apellido1, apellido2, telefono, direccion);
         this.genero_cliente = genero_cliente;
     }
-    
-    
- 
 
-public Cliente(int IDCliente, char genero_cliente, String nombre1, String nombre2, String apellido1, String apellido2, String telefono, String direccion) {
+    public Cliente(int IDCliente, String nombre1, String nombre2, String apellido1, String apellido2,String direccion, String telefono, char genero_cliente) {
         super(nombre1, nombre2, apellido1, apellido2, telefono, direccion);
         this.IDCliente = IDCliente;
         this.genero_cliente = genero_cliente;
     }
+
+   
 
     public int getIDCliente() {
         return IDCliente;
@@ -83,10 +85,5 @@ public Cliente(int IDCliente, char genero_cliente, String nombre1, String nombre
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-   
 
-   
-    
 }
-
-   

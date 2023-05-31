@@ -240,11 +240,6 @@ public class Vista_producto extends javax.swing.JPanel {
 
         txtDescripcion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtDescripcion.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcionActionPerformed(evt);
-            }
-        });
 
         tablaProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tablaProducto.setModel(new javax.swing.table.DefaultTableModel(
@@ -341,30 +336,9 @@ public class Vista_producto extends javax.swing.JPanel {
 
         comboCategoria.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboCategoria.setPreferredSize(new java.awt.Dimension(250, 40));
-        comboCategoria.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboCategoriaItemStateChanged(evt);
-            }
-        });
         comboCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comboCategoriaMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 comboCategoriaMouseEntered(evt);
-            }
-        });
-        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCategoriaActionPerformed(evt);
-            }
-        });
-        comboCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                comboCategoriaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                comboCategoriaKeyReleased(evt);
             }
         });
         jPanel2.add(comboCategoria);
@@ -487,26 +461,6 @@ public class Vista_producto extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnAgregarCateMouseClicked
 
-    private void comboCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriaKeyReleased
-       
-    }//GEN-LAST:event_comboCategoriaKeyReleased
-
-    private void comboCategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCategoriaItemStateChanged
-   
-    }//GEN-LAST:event_comboCategoriaItemStateChanged
-
-    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
-       llenarcombobox();
-    }//GEN-LAST:event_comboCategoriaActionPerformed
-
-    private void comboCategoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboCategoriaKeyPressed
-
-    }//GEN-LAST:event_comboCategoriaKeyPressed
-
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescripcionActionPerformed
-
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         // TODO add your handling code here:
         CRUD_Producto cp = new CRUD_Producto();
@@ -536,11 +490,6 @@ public class Vista_producto extends javax.swing.JPanel {
     private void btnActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProductoActionPerformed
    LimpiarCampos();
     }//GEN-LAST:event_btnActualizarProductoActionPerformed
-
-    private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_comboCategoriaMouseClicked
 
     private void comboCategoriaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseEntered
         // TODO add your handling code here:

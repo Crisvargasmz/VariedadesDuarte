@@ -16,22 +16,23 @@ public class CRUD_Proveedor {
         ResultSet rs;
         DefaultTableModel modelo;
         String[] titulos = {"ID Proveedor", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
-            "Empresa", "Telefono", "Dirección"};
+            "Telefono", "Empresa", "Dirección"};
         String[] registro = new String[8]; //se especifica cuantas columnas va a tener de acuerdo a nuestra base de datos
 
-        modelo = new DefaultTableModel(null, titulos);
+        modelo = new DefaultTableModel( null, titulos);
         try {
             CallableStatement cbstc = cn.prepareCall("{call ConsultarProveedor}");// 
             rs = cbstc.executeQuery();
             while (rs.next()) {
-                registro[0] = rs.getString("IDCliente");
-                registro[1] = rs.getString("nombre_proveedor1");
-                registro[2] = rs.getString("nombre_proveedor2");
-                registro[3] = rs.getString("apellido_proveedor1");
-                registro[4] = rs.getString("apellido_proveedor2");
+                registro[0] = rs.getString("IDProveedor");
+                registro[1] = rs.getString("nombre1");
+                registro[2] = rs.getString("nombre2");
+                registro[3] = rs.getString("apellido1");
+                registro[4] = rs.getString("apellido2");
+                registro[6] = rs.getString("telefono");
                 registro[5] = rs.getString("empresa_proveedor");
-                registro[6] = rs.getString("telefono_proveedor");
-                registro[7] = rs.getString("direccion_proveedor");
+                registro[7] = rs.getString("direccion");
+                
                 modelo.addRow(registro);
             }
             return modelo;
@@ -55,13 +56,14 @@ public class CRUD_Proveedor {
             rs = call.executeQuery();
 
             while (rs.next()) {
-                registro[0] = rs.getString("nombre_proveedor1");
-                registro[1] = rs.getString("nombre_proveedor2");
-                registro[2] = rs.getString("apellido_proveedor1");
-                registro[3] = rs.getString("apellido_proveedor2");
-                registro[4] = rs.getString("empresa_proveedor");
-                registro[5] = rs.getString("telefono_proveedor");
-                registro[6] = rs.getString("direccion_proveedor");
+                registro [0] = rs.getString("IDProveedor");
+                registro[1] = rs.getString("nombre1");
+                registro[2] = rs.getString("nombre2");
+                registro[3] = rs.getString("apellido1");
+                registro[4] = rs.getString("apellido2");
+                registro[5] = rs.getString("empresa_proveedor");
+                registro[6] = rs.getString("telefono");
+                registro[7] = rs.getString("direccion");
                 modelo.addRow(registro);
             }
             return modelo;
@@ -73,14 +75,16 @@ public class CRUD_Proveedor {
  
       public void insertarProveedor(Proveedor proveedor) {
         try {
-           CallableStatement callableStatement = cn.prepareCall("{call InsertarProveedor(?,?,?,?,?,?,?)}");
-            callableStatement.setString(1, proveedor.getNombre_proveedor1());
-            callableStatement.setString(2, proveedor.getNombre_proveedor2());
-            callableStatement.setString(3, proveedor.getApellido_proveedor1());
-            callableStatement.setString(4, proveedor.getApellido_proveedor2());
-            callableStatement.setString(5, proveedor.getEmpresa_proveedor());
-            callableStatement.setString(6, proveedor.getTelefono_proveedor());
-            callableStatement.setString(7, proveedor.getDireccion_proveedor());
+           CallableStatement callableStatement = cn.prepareCall("{call InsertarPersonaProveedor(?,?,?,?,?,?,?)}");
+            callableStatement.setString(1, proveedor.getNombre1());
+            callableStatement.setString(2, proveedor.getNombre2());
+            callableStatement.setString(3, proveedor.getApellido1());
+            callableStatement.setString(4, proveedor.getApellido2());
+            callableStatement.setString(5, proveedor.getDireccion());
+            callableStatement.setString(6, proveedor.getTelefono());
+            callableStatement.setString(7, proveedor.getEmpresa_proveedor());
+       
+            
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -102,10 +106,10 @@ public class CRUD_Proveedor {
         }
     }
       
-       public void eliminar(String IDProveedor) {
+       public void eliminar(String Dato) {
         try {
-            CallableStatement cbst = cn.prepareCall("{call EliminarProveedor(?)}");
-            cbst.setString(1, IDProveedor);
+            CallableStatement cbst = cn.prepareCall("{call EliminarProveedorPersona(?)}");
+            cbst.setString(1, Dato);
             cbst.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -113,17 +117,17 @@ public class CRUD_Proveedor {
     }
        
        
-       public void ActualizarCliente(Proveedor proveedor) {
+       public void ActualizarProveedor(Proveedor proveedor) {
         try {
-           CallableStatement callableStatement = cn.prepareCall("{call ActualizarCliente(?,?,?,?,?,?,?,?)}");
+           CallableStatement callableStatement = cn.prepareCall("{call ActualizarPersonaProveedor(?,?,?,?,?,?,?,?)}");
             callableStatement.setInt(1, proveedor.getID_proveedor());
-           callableStatement.setString(2, proveedor.getNombre_proveedor1());
-            callableStatement.setString(3, proveedor.getNombre_proveedor2());
-            callableStatement.setString(4, proveedor.getApellido_proveedor1());
-            callableStatement.setString(5, proveedor.getApellido_proveedor2());
+           callableStatement.setString(2, proveedor.getNombre1());
+            callableStatement.setString(3, proveedor.getNombre2());
+            callableStatement.setString(4, proveedor.getApellido1());
+            callableStatement.setString(5, proveedor.getApellido2());
             callableStatement.setString(6, proveedor.getEmpresa_proveedor());
-            callableStatement.setString(7, proveedor.getTelefono_proveedor());
-            callableStatement.setString(8, proveedor.getDireccion_proveedor());
+            callableStatement.setString(7, proveedor.getTelefono());
+            callableStatement.setString(8, proveedor.getDireccion());
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
