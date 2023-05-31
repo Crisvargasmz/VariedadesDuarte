@@ -10,7 +10,7 @@ GO
 CREATE TABLE [Proveedor] (
   [IDProveedor] INTEGER IDENTITY (1,1)PRIMARY KEY,
   [empresa_proveedor] NVARCHAR(30)NOT NULL,
-  IDPersona INTEGER UNIQUE
+  IDPersona INTEGER UNIQUE 
 
 )
 GO
@@ -19,7 +19,8 @@ GO
 CREATE TABLE [Cliente] (
   [IDCliente] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [genero_cliente] CHAR (1) NOT NULL,
-  IDPersona INTEGER UNIQUE
+  IDPersona INTEGER UNIQUE 
+
  
 )
 GO
@@ -91,6 +92,21 @@ direccion NVARCHAR (150)
 
 )
 GO
+
+--Agregar clave foránea IDPersona en la tabla "Proveedores"
+
+ALTER TABLE dbo.Proveedor
+ADD CONSTRAINT FK_Persona_Proveedor
+FOREIGN KEY (IDPersona)
+REFERENCES dbo.Persona(IDPersona)
+
+--Agregar Clave foránea IDPersona en la tabla "Clientes"
+
+
+ALTER TABLE dbo.Cliente
+ADD CONSTRAINT FK_Persona_Cliente
+FOREIGN KEY (IDPersona)
+REFERENCES dbo.Persona(IDPersona)
 
 -- Agregar clave foránea IDCliente en la tabla "Venta".
 ALTER TABLE dbo.Venta
@@ -232,7 +248,7 @@ GO
 --SELECT * FROM Cliente
 --SELECT * FROM Persona
 
---EXEC InsertarPersonaCliente 'ADF','FD','DFD','DFFD','DFDF','65676787','G'
+EXEC InsertarPersonaCliente 'Montiel','Marenco','Vargas','Torrez','Juigalpa','57867406','M'
 GO
 
 
@@ -269,10 +285,10 @@ END
 
 GO
 
---SELECT * FROM Persona
---SELECT * FROM Proveedor
+SELECT * FROM Persona
+SELECT * FROM Proveedor
 
---EXEC InsertarPersonaProveedor'ADF','FD','DFD','DFFD','DFDF','65676787','G'
+EXEC InsertarPersonaProveedor'Cristhian','Cesar','Vargas','Martinez','Juigalpa','57867406','Casa Pellas'
 GO
 
  --PROCEDIMIENTO ALMACENADO INSERTAR CATEGORIA
@@ -356,36 +372,7 @@ END
 
 GO
 
-
-	--CREATE PROCEDURE InsertarProducto2
-	--@nombre_producto NVARCHAR(40),
-	--@cantidad_producto INTEGER,
-	--@precio_compra DECIMAL(12,2),
-	--@precio_venta DECIMAL(12,2),
-	--@descripcion NVARCHAR(200),
-	--@fecha_vencimiento DATE,
-	--@IDCategoria INT,
-	--@IDPresentacion INT
-	--AS
-	--BEGIN
-	--DECLARE @nombre_categoria NVARCHAR(40)
-	--DECLARE @nombre_presentacion NVARCHAR(40)
-
-	---- Obtener el nombre de la categoría asociada al IDCategoria
-	--SELECT @nombre_categoria = [nombre_categoria]
-	--FROM [Categoria]
-	--WHERE [IDCategoria] = @IDCategoria
-
-	---- Obtener el nombre de la presentación asociada al IDPresentacion
-	--SELECT @nombre_presentacion = [nombre_presentacion]
-	--FROM [Presentacion]
-	--WHERE [IDPresentacion] = @IDPresentacion
-
-	--INSERT INTO [Producto] ([nombre_producto], [cantidad_producto], [precio_compra], [precio_venta], [descripcion], [fecha_vencimiento], [IDCategoria], [IDPresentacion])
-	--VALUES (@nombre_producto, @cantidad_producto, @precio_compra, @precio_venta, @descripcion, @fecha_vencimiento, @IDCategoria, @IDPresentacion)
-	--END
-
-   --INSERTAR PRODUCTO PRESENTACION
+--INSERTAR PRODUCTO PRESENTACION
 
    CREATE PROCEDURE InsertarProductoPresentacion
    @medida_numerica DECIMAL (12,2),
@@ -447,8 +434,8 @@ GO
 CREATE PROCEDURE ConsultarCliente
 AS
 BEGIN
-  SELECT Cliente.IDCliente,nombre1,nombre2,apellido1,
-  apellido2,telefono,Cliente.genero_cliente,direccion
+  SELECT Cliente.IDCliente,Persona.nombre1,Persona.nombre2,Persona.apellido1,
+  Persona.apellido2,Persona.telefono,Cliente.genero_cliente,Persona.direccion
 
   FROM Cliente inner join Persona on Cliente.IDCliente=Persona.IDPersona
 
@@ -466,19 +453,22 @@ GO
 CREATE PROCEDURE ConsultarProveedor
 AS
 BEGIN
-  SELECT Proveedor.IDProveedor,nombre1,nombre2,apellido1,
-  apellido2,telefono,Proveedor.empresa_proveedor,direccion
+  SELECT Proveedor.IDProveedor,Persona.nombre1,Persona.nombre2,Persona.apellido1,
+  Persona.apellido2,Persona.telefono,Proveedor.empresa_proveedor,Persona.direccion
 
   FROM Proveedor inner join Persona on Proveedor.IDProveedor=Persona.IDPersona
 
 END
 GO
-EXEC ConsultarProveedor
-exec ConsultarCliente
+--EXEC ConsultarProveedor
+--exec ConsultarCliente
+--EXEC EliminarClientePersona 4
 GO
 
 Select * from Proveedor
 select * from Persona
+
+
 
 
 
@@ -706,6 +696,8 @@ GO
 
 
   GO
+
+  
 
   --procedimiento almacenado para eliminar un producto
 CREATE PROCEDURE EliminarProducto
