@@ -437,7 +437,7 @@ BEGIN
   SELECT Cliente.IDCliente,Persona.nombre1,Persona.nombre2,Persona.apellido1,
   Persona.apellido2,Persona.telefono,Cliente.genero_cliente,Persona.direccion
 
-  FROM Cliente inner join Persona on Cliente.IDCliente=Persona.IDPersona
+  FROM Cliente inner join Persona on Cliente.IDPersona=Persona.IDPersona
 
 END
 GO
