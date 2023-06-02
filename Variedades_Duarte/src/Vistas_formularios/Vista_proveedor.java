@@ -15,6 +15,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
         initComponents();
         mostrar();
         txtidproveedor.setVisible(false);
+        txtidpersona.setVisible(false);
     }
 
     public void guardarProveedor() {
@@ -47,6 +48,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
         CRUD_Proveedor cp = new CRUD_Proveedor();
 
         Proveedor p1 = new Proveedor(Integer.parseInt(txtidproveedor.getText()),
+                Integer.parseInt( txtidpersona.getText()),
                 txtNombreProveedorUno.getText(),
                 txtNombreProveedorDos.getText(),
                 txtApellidoProveedorUno.getText(),
@@ -123,6 +125,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
         txtBuscarProveedor = new javax.swing.JTextField();
         txtTelefonoProveedor = new javax.swing.JFormattedTextField();
         txtidproveedor = new javax.swing.JTextField();
+        txtidpersona = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -296,7 +299,9 @@ public class Vista_proveedor extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtidproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtidproveedor)
+                            .addComponent(txtidpersona))
                         .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -339,22 +344,24 @@ public class Vista_proveedor extends javax.swing.JPanel {
                                 .addComponent(txtNombreProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtNombreProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtTelefonoProveedor, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(34, 34, 34))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellidoProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jSplitPane3)
+                                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                            .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(txtidproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtidpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellidoProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSplitPane3)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                    .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -448,23 +455,25 @@ public class Vista_proveedor extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Seleccione un participante de la tabla.");
         } else {
             try {
-                int numList = Integer.parseInt((String) this.tablaProveedor.getValueAt(fila, 0));
-                String nombre1 = (String) this.tablaProveedor.getValueAt(fila, 1);
-                String nombre2 = (String) this.tablaProveedor.getValueAt(fila, 2);
-                String apell1ido1 = (String) this.tablaProveedor.getValueAt(fila, 3).toString();
-                String apellido2 = (String) this.tablaProveedor.getValueAt(fila, 4).toString();
-                String empresa = (String) this.tablaProveedor.getValueAt(fila, 5).toString();
+                int IDPersona = Integer.parseInt((String) this.tablaProveedor.getValueAt(fila, 0));
+                int IDProveedor = Integer.parseInt((String) this.tablaProveedor.getValueAt(fila, 1));
+                String nombre1 = (String) this.tablaProveedor.getValueAt(fila, 2);
+                String nombre2 = (String) this.tablaProveedor.getValueAt(fila, 3);
+                String apell1ido1 = (String) this.tablaProveedor.getValueAt(fila, 4).toString();
+                String apellido2 = (String) this.tablaProveedor.getValueAt(fila, 5).toString();
                 String telefono = (String) this.tablaProveedor.getValueAt(fila, 6).toString();
-                String direccion = (String) this.tablaProveedor.getValueAt(fila, 7).toString();
+                String empresa = (String) this.tablaProveedor.getValueAt(fila, 7).toString();
+                String direccion = (String) this.tablaProveedor.getValueAt(fila, 8).toString();
 //                System.out.println(telefono);
-                txtidproveedor.setText("" + numList);
+                txtidpersona.setText("" + IDPersona);
+                txtidproveedor.setText("" + IDProveedor);
                 txtNombreProveedorUno.setText(nombre1);
                 txtNombreProveedorDos.setText(nombre2);
                 txtApellidoProveedorUno.setText(apell1ido1);
                 txtApellidoProveedorDos.setText(apellido2);
-                txtEmpresaProveedor.setText(empresa);
                 txtTelefonoProveedor.setText(telefono);
-                txtDireccionProveedor.setText(String.valueOf(direccion));
+                txtEmpresaProveedor.setText(empresa);
+                txtDireccionProveedor.setText(direccion);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -521,6 +530,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
     private javax.swing.JTextField txtNombreProveedorDos;
     private javax.swing.JTextField txtNombreProveedorUno;
     private javax.swing.JFormattedTextField txtTelefonoProveedor;
+    private javax.swing.JTextField txtidpersona;
     private javax.swing.JTextField txtidproveedor;
     // End of variables declaration//GEN-END:variables
 }

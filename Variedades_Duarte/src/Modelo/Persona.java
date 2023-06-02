@@ -2,7 +2,7 @@
 package Modelo;
 
 public class Persona {
-    
+    int IDPersona;
     String nombre1;
     String nombre2;
     String apellido1;
@@ -12,6 +12,17 @@ public class Persona {
 
     public Persona() {
     }
+  
+
+    public Persona(int IDPersona, String nombre1, String nombre2, String apellido1, String apellido2, String telefono, String direccion) {
+        this.IDPersona = IDPersona;
+        this.nombre1 = nombre1;
+        this.nombre2 = nombre2;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.telefono = telefono;
+        this.direccion = direccion;
+    }
 
     public Persona(String nombre1, String nombre2, String apellido1, String apellido2, String telefono, String direccion) {
         this.nombre1 = nombre1;
@@ -20,6 +31,16 @@ public class Persona {
         this.apellido2 = apellido2;
         this.telefono = telefono;
         this.direccion = direccion;
+    }
+    
+    
+
+    public int getIDPersona() {
+        return IDPersona;
+    }
+
+    public void setIDPersona(int IDPersona) {
+        this.IDPersona = IDPersona;
     }
 
     public String getNombre1() {
@@ -69,7 +90,10 @@ public class Persona {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+    
 
+ 
     
     
     

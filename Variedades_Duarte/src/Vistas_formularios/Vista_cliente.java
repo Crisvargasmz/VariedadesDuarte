@@ -15,6 +15,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         initComponents();
         mostrar();
         txtIDcliente.setVisible(false);
+        txtidpersona.setVisible(false);
 
     }
 
@@ -73,12 +74,13 @@ public class Vista_cliente extends javax.swing.JPanel {
         }
 
         Cliente cl = new Cliente(Integer.parseInt(txtIDcliente.getText()),
+                Integer.parseInt(txtidpersona.getText()),
                 txtNombreClienteUno.getText(),
                 txtNombreClienteDos.getText(),
                 txtApellidoClienteUno.getText(),
                 txtApellidoClienteDos.getText(),
-                txtDireccionCliente.getText(),
-                txtTelefonoCliente.getText(), generoChar);
+                txtTelefonoCliente.getText(),
+                txtDireccionCliente.getText(), generoChar);
 
         cc.ActualizarCliente(cl);
 
@@ -149,6 +151,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtBuscarCliente = new javax.swing.JTextField();
         txtTelefonoCliente = new javax.swing.JFormattedTextField();
         txtIDcliente = new javax.swing.JTextField();
+        txtidpersona = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -333,8 +336,10 @@ public class Vista_cliente extends javax.swing.JPanel {
                             .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(txtIDcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIDcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtidpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,7 +383,8 @@ public class Vista_cliente extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtIDcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
-                        .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtidpersona, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBuscarCliente)
@@ -608,22 +614,24 @@ public class Vista_cliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Seleccione un participante de la tabla.");
         } else {
             try {
-                int numList = Integer.parseInt((String) this.tablaCliente.getValueAt(fila, 0));
-                String nombre1 = (String) this.tablaCliente.getValueAt(fila, 1);
-                String nombre2 = (String) this.tablaCliente.getValueAt(fila, 2);
-                String apell1ido1 = (String) this.tablaCliente.getValueAt(fila, 3).toString();
-                String apellido2 = (String) this.tablaCliente.getValueAt(fila, 4).toString();
-                String genero = (String) this.tablaCliente.getValueAt(fila, 6).toString();
-                String telefono = (String) this.tablaCliente.getValueAt(fila, 5).toString();
-                String direccion = (String) this.tablaCliente.getValueAt(fila, 7).toString();
+                int IDPersona = Integer.parseInt((String) this.tablaCliente.getValueAt(fila, 0));
+                int IDCliente = Integer.parseInt((String) this.tablaCliente.getValueAt(fila, 1));
+                String nombre1 = (String) this.tablaCliente.getValueAt(fila, 2);
+                String nombre2 = (String) this.tablaCliente.getValueAt(fila, 3);
+                String apell1ido1 = (String) this.tablaCliente.getValueAt(fila, 4).toString();
+                String apellido2 = (String) this.tablaCliente.getValueAt(fila, 5).toString();
+                String telefono = (String) this.tablaCliente.getValueAt(fila, 6).toString();
+                String genero = (String) this.tablaCliente.getValueAt(fila, 7).toString();
+                String direccion = (String) this.tablaCliente.getValueAt(fila, 8).toString();
 //                System.out.println(telefono);
-                txtIDcliente.setText("" + numList);
+                txtidpersona.setText("" + IDPersona);
+                txtIDcliente.setText("" + IDCliente);
                 txtNombreClienteUno.setText(nombre1);
                 txtNombreClienteDos.setText(nombre2);
                 txtApellidoClienteUno.setText(apell1ido1);
                 txtApellidoClienteDos.setText(apellido2);
-                comboGenero.setSelectedItem(genero);
                 txtTelefonoCliente.setText(telefono);
+                comboGenero.setSelectedItem(genero);
                 txtDireccionCliente.setText(String.valueOf(direccion));
 
             } catch (Exception e) {
@@ -733,5 +741,6 @@ public class Vista_cliente extends javax.swing.JPanel {
     private javax.swing.JTextField txtNombreClienteDos;
     private javax.swing.JTextField txtNombreClienteUno;
     private javax.swing.JFormattedTextField txtTelefonoCliente;
+    private javax.swing.JTextField txtidpersona;
     // End of variables declaration//GEN-END:variables
 }

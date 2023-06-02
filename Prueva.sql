@@ -225,9 +225,9 @@ CREATE PROCEDURE InsertarPersonaCliente
 
 AS
 BEGIN
-SET NOCOUNT ON;
+--SET NOCOUNT ON;
 
-DECLARE @IDPersona INTEGER
+--DECLARE @IDPersona INTEGER
 
 --INSERTAR LA TABLA PERSONA--
 
@@ -236,10 +236,10 @@ VALUES (@nombre1,@nombre2,@apellido1,@apellido2,@telefono,@direccion);
 
 --OBTENER EL ULTIMO ID INSERTADO EN LA TABLA PERSONA--
 
-SET @IDPersona = SCOPE_IDENTITY();
+--SET @IDPersona = SCOPE_IDENTITY();
 
 INSERT INTO Cliente (IDPersona, genero_cliente)
-VALUES (@IDPersona,@genero_cliente);
+VALUES (SCOPE_IDENTITY(),@genero_cliente);
 
 END 
 
@@ -265,9 +265,9 @@ CREATE PROCEDURE InsertarPersonaProveedor
 
 AS
 BEGIN
-SET NOCOUNT ON;
+--SET NOCOUNT ON;
 
-DECLARE @IDPersona INTEGER
+--DECLARE @IDPersona INTEGER
 
 --INSERTAR LA TABLA PERSONA--
 
@@ -276,10 +276,10 @@ VALUES (@nombre1,@nombre2,@apellido1,@apellido2,@telefono,@direccion);
 
 --OBTENER EL ULTIMO ID INSERTADO EN LA TABLA PERSONA--
 
-SET @IDPersona = SCOPE_IDENTITY();
+--SET @IDPersona = SCOPE_IDENTITY();
 
 INSERT INTO Proveedor(IDPersona, empresa_proveedor)
-VALUES (@IDPersona,@empresa_proveedor);
+VALUES (SCOPE_IDENTITY(),@empresa_proveedor);
 
 END 
 
@@ -434,7 +434,7 @@ GO
 CREATE PROCEDURE ConsultarCliente
 AS
 BEGIN
-  SELECT Cliente.IDCliente,Persona.nombre1,Persona.nombre2,Persona.apellido1,
+  SELECT Persona.IDPersona,Cliente.IDCliente,Persona.nombre1,Persona.nombre2,Persona.apellido1,
   Persona.apellido2,Persona.telefono,Cliente.genero_cliente,Persona.direccion
 
   FROM Cliente inner join Persona on Cliente.IDPersona=Persona.IDPersona
@@ -453,10 +453,10 @@ GO
 CREATE PROCEDURE ConsultarProveedor
 AS
 BEGIN
-  SELECT Proveedor.IDProveedor,Persona.nombre1,Persona.nombre2,Persona.apellido1,
+  SELECT Persona.IDPersona,Proveedor.IDProveedor,Persona.nombre1,Persona.nombre2,Persona.apellido1,
   Persona.apellido2,Persona.telefono,Proveedor.empresa_proveedor,Persona.direccion
 
-  FROM Proveedor inner join Persona on Proveedor.IDProveedor=Persona.IDPersona
+  FROM Proveedor inner join Persona on Proveedor.IDPersona=Persona.IDPersona
 
 END
 GO
@@ -594,9 +594,9 @@ GO
     @nombre2 NVARCHAR(15),
     @apellido1 NVARCHAR(15),
     @apellido2 NVARCHAR(15),
-    @empresa_proveedor NVARCHAR (15),
 	@telefono NVARCHAR(9),
-    @direccion NVARCHAR(150)
+    @empresa_proveedor NVARCHAR (15),
+	@direccion NVARCHAR(150)
 AS
 BEGIN
     UPDATE Proveedor
@@ -607,10 +607,10 @@ BEGIN
 	SET nombre1=@nombre1,nombre2=@nombre2,apellido1=@apellido1,apellido2=@apellido2,telefono=@telefono,direccion=@direccion
 	WHERE IDPersona = @IDPersona
 END
-
-
-
 GO
+
+SELECT * FROM Proveedor
+SELECT * FROM Persona
 
  --Procedimiento almacenado para actualizar producto
 

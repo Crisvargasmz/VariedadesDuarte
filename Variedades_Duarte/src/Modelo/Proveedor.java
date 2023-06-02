@@ -13,11 +13,27 @@ public class Proveedor extends Persona {
         this.empresa_proveedor = empresa_proveedor;
     }
 
-    public Proveedor(int ID_proveedor, String nombre1, String nombre2, String apellido1, String apellido2, String empresa_proveedor, String telefono, String direccion ) {
-        super(nombre1, nombre2, apellido1, apellido2, telefono, direccion);
+    public Proveedor(int ID_proveedor, int IDPersona, String nombre1, String nombre2, String apellido1, String apellido2,String empresa_proveedor, String telefono, String direccion) {
+        super(IDPersona, nombre1, nombre2, apellido1, apellido2, telefono, direccion);
         this.ID_proveedor = ID_proveedor;
         this.empresa_proveedor = empresa_proveedor;
     }
+    
+    
+    
+    
+
+//    public Proveedor(String nombre1, String nombre2, String apellido1, String apellido2,String empresa_proveedor, String telefono, String direccion) {
+//        super(IDPersona,nombre1, nombre2, apellido1, apellido2, telefono, direccion);
+//        this.empresa_proveedor = empresa_proveedor;
+//    }
+
+//    public Proveedor(int ID_proveedor, String nombre1, String nombre2, String apellido1, String apellido2, String empresa_proveedor, String telefono, String direccion ) {
+//        super(IDPersona,nombre1, nombre2, apellido1, apellido2, telefono, direccion);
+//        this.ID_proveedor = ID_proveedor;
+//        this.empresa_proveedor = empresa_proveedor;
+//    }
+    
     
 
     public int getID_proveedor() {
