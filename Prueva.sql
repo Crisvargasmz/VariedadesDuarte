@@ -75,8 +75,15 @@ GO
 CREATE TABLE [IniciodeSesion](
 [ID_InicioSesion] INTEGER IDENTITY (1,1) PRIMARY KEY,
 usuario_sesion NVARCHAR (20) NOT NULL,
-contrasena_sesion NVARCHAR (8) NOT NULL
+contrasena_sesion NVARCHAR (10) NOT NULL
 )
+
+Go
+--Insertabndo usuarios.
+Insert Into IniciodeSesion (usuario_sesion, contrasena_sesion)
+Values('Administrador', '@1234567'),
+	  ('UsuarioUno', '@vendedor');
+
 GO
 
 -- Creación de la tabla "Presentacion".
