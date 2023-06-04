@@ -7,6 +7,7 @@ package Vistas_menu;
 import Controlador.Conexion;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -68,18 +70,24 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
     //Metodo para autenticar usuarios en la base de datos.
     //Metodo para autenticar usuarios en la base de datos.
     private boolean Autenticacion(String username, String password) {
-
         try {
             String sql = "SELECT * FROM IniciodeSesion WHERE usuario_sesion = ? AND contrasena_sesion = ?";
             PreparedStatement statement = cn.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             ResultSet result = statement.executeQuery();
-            return result.next();
+            if (result.next()) {
+                String user = result.getString("usuario_sesion");
+                String pass = result.getString("contrasena_sesion");
+                return username.equals(user) && password.equals(pass);
+
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
+        return false;
     }
 
 //Metodo para los botones Mostrar y Ocultar.
@@ -101,6 +109,60 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
 
         }
         return evt;
+    }
+
+    private void LimpiarCampos() {
+        txtUsuario.setText("");
+        txtPassword.setText("");
+    }
+
+    //Metodo para ingresar con la accion de boton.
+    private void AccesoBoton(java.awt.event.ActionEvent evt) {
+        String username = txtUsuario.getText();
+        String password = new String(txtPassword.getPassword());
+        if (Autenticacion(username, password)) {
+            Controlador_Principal principal = new Controlador_Principal();
+            principal.setVisible(true);
+            principal.setLocationRelativeTo(null);
+            principal.setResizable(false);
+            this.dispose();
+            lbAdvertencia.setForeground(new Color(0, 204, 0));
+            lbAdvertencia.setText("Acceso concedido.");
+        } else {
+            lbAdvertencia.setForeground(new Color(255, 0, 0));
+            lbAdvertencia.setText("Acceso denegado.");
+            LimpiarCampos();
+            MostraPassword(evt, btnMostrar, btnOcultar);
+        }
+    }
+
+    //Metodo pata ingresar ccn laccion del ENTER con JTextField
+    private void AccesoENTER(java.awt.event.KeyEvent evt) {
+        String username = txtUsuario.getText();
+        String password = new String(txtPassword.getPassword());
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (Autenticacion(username, password)) {
+                Controlador_Principal principal = new Controlador_Principal();
+                principal.setVisible(true);
+                principal.setLocationRelativeTo(null);
+                principal.setResizable(false);
+                this.dispose();
+                lbAdvertencia.setForeground(new Color(0, 204, 0));
+                lbAdvertencia.setText("Acceso concedido.");
+            } else {
+                lbAdvertencia.setForeground(new Color(255, 0, 0));
+                lbAdvertencia.setText("Acceso denegado.");
+                LimpiarCampos();
+
+            }
+        }
+    }
+
+    //Metodo para cambiar tipeo entre JTextFields.
+    private void CambiarJTextField(JTextField JTexFields, java.awt.event.KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN || evt.getKeyCode() == KeyEvent.VK_UP) {
+            JTexFields.requestFocus();
+        }
     }
 
     /**
@@ -375,25 +437,7 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         // TODO add your handling code here:
-        String username = txtUsuario.getText();
-        String password = new String(txtPassword.getPassword());
-
-        if (Autenticacion(username, password)) {
-            Controlador_Principal principal = new Controlador_Principal();
-            principal.setVisible(true);
-            principal.setLocationRelativeTo(null);
-            principal.setResizable(false);
-            this.setVisible(false);
-            lbAdvertencia.setForeground(new Color(0, 204, 0));
-            lbAdvertencia.setText("Acceso concedido.");
-        } else {
-            lbAdvertencia.setForeground(new Color(255, 0, 0));
-            lbAdvertencia.setText("Acceso denegado.");
-            txtUsuario.setText("");
-            txtPassword.setText("");
-            MostraPassword(evt, btnMostrar, btnOcultar);
-        }
-
+        AccesoBoton(evt);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
@@ -408,10 +452,14 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         lbAdvertencia.setText("");
+        CambiarJTextField(txtPassword, evt);
+        AccesoENTER(evt);
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
         lbAdvertencia.setText("");
+        CambiarJTextField(txtUsuario, evt);
+        AccesoENTER(evt);
     }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
