@@ -433,10 +433,10 @@ END
 
 EXEC InsertarProducto 'Lecha', 10, 100.00, 150.00, 'Leche de vaca', '2023-01-01', 1, 1, 1.5;
 
-	--SELECT * FROM Producto
-	--SELECT * FROM Categoria
-	--SELECT * FROM Presentacion
-	--SELECT * FROM ProductoPresentacion
+	SELECT * FROM Producto
+	SELECT * FROM Categoria
+	SELECT * FROM Presentacion
+	SELECT * FROM ProductoPresentacion
 
 
 GO
@@ -550,11 +550,11 @@ GO
 
 --procedimiento almacenado para consultar un producto
 
-CREATE PROCEDURE ConsularProducto
+CREATE PROCEDURE ConsultarProducto
 AS
 BEGIN 
-    SELECT Producto.IDProducto, Producto.nombre_producto, Producto.precio_compra, Producto.precio_venta, Producto.descripcion,
-    Producto.fecha_vencimiento, Categoria.nombre_categoria,  ProductoPresentacion.medida_numerica ,Presentacion.nombre_presentacion
+    SELECT Producto.IDProducto, Producto.nombre_producto,Producto.cantidad_producto,Producto.precio_compra, Producto.precio_venta, Producto.descripcion,
+    Producto.fecha_vencimiento,Categoria.IDCategoria ,Categoria.nombre_categoria, ProductoPresentacion.ID_PPresentacion ,ProductoPresentacion.medida_numerica ,Presentacion.IDPresentacion,Presentacion.nombre_presentacion
     FROM Producto 
     INNER JOIN ProductoPresentacion ON Producto.IDProducto = ProductoPresentacion.IDProducto
     INNER JOIN Presentacion ON ProductoPresentacion.IDPresentacion = Presentacion.IDPresentacion
@@ -562,9 +562,14 @@ BEGIN
 END
 
 GO
+SELECT * FROM Producto
+SELECT * FROM Presentacion
+SELECT * FROM Categoria
+SELECT * FROM ProductoPresentacion
 
+EXEC ConsultarProducto
 
-EXEC ConsularProducto
+GO
 
 
 
@@ -590,7 +595,7 @@ END;
   CREATE PROCEDURE LlenarCombo
 
   AS
-  SELECT nombre_categoria FROM Categoria
+  SELECT IDCategoria,nombre_categoria FROM Categoria
 
   GO
 
@@ -600,7 +605,7 @@ END;
   CREATE PROCEDURE LlenarCombo2
 
   AS
-  SELECT nombre_presentacion FROM Presentacion
+  SELECT IDPresentacion,nombre_presentacion FROM Presentacion
 
   GO
   -------------------------------------------------------------------------------------------------------
@@ -830,14 +835,16 @@ BEGIN
     -- Eliminar el producto de la tabla principal "Producto"
     DELETE FROM Producto
     WHERE IDProducto = @Dato
+
+	
 END
 
-EXEC EliminarProducto @Dato = 1
+EXEC EliminarProducto @Dato = 2
 
     SELECT * FROM Producto
     SELECT * FROM ProductoPresentacion
 
-
+	SELECT * FROM Categoria
 
 GO
 --procedimiento almacenado para eliminar una categoria

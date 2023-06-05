@@ -3,7 +3,7 @@ package Modelo;
 
 public class Categoria {
     
-    int ID_categoria;
+    int IDCategoria;
     String nombre_categoria;
 
     public Categoria() {
@@ -12,29 +12,34 @@ public class Categoria {
     public Categoria(String nombre_categoria) {
         this.nombre_categoria = nombre_categoria;
     }
-    
 
-    public Categoria(int ID_categoria, String nombre_categoria) {
-        this.ID_categoria = ID_categoria;
+    public Categoria(int IDCategoria, String nombre_categoria) {
+        this.IDCategoria = IDCategoria;
         this.nombre_categoria = nombre_categoria;
     }
 
-    public int getID_categoria() {
-        return ID_categoria;
+    public int getIDCategoria() {
+        return IDCategoria;
     }
 
-    public void setID_categoria(int ID_categoria) {
-        this.ID_categoria = ID_categoria;
+    public void setIDCategoria(int IDCategoria) {
+        this.IDCategoria = IDCategoria;
     }
 
-    public String getNombre_Categoria() {
+    public String getNombre_categoria() {
         return nombre_categoria;
     }
 
-    public void setNombre(String nombre_categoria) {
+    public void setNombre_categoria(String nombre_categoria) {
         this.nombre_categoria = nombre_categoria;
     }
     
     
+       @Override
+    public String toString() {
+        return IDCategoria + " - " + nombre_categoria;
+    }
+
+   
     
 }

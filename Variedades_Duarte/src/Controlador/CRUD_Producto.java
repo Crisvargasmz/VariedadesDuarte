@@ -4,15 +4,18 @@ package Controlador;
 //Importanto las librerias que se necesitan.
 import java.sql.Connection;
 import Modelo.Producto;
+import java.math.BigDecimal;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 public class CRUD_Producto {
 
     private final Conexion con = new Conexion();
     private final Connection cn = (Connection) con.conectar();
 
+       
     public DefaultTableModel mostrarDatos() {
 
         ResultSet rs;
@@ -21,9 +24,9 @@ public class CRUD_Producto {
 
         String[] titulos = {"ID Producto", "Nombre Producto", "Cantidad",
             "Precio Compra", "Precio Venta", "Descripcion",
-            "Fecha vencimiento", "ID Categoria"};
+            "Fecha vencimiento","IDCategoria", "Categoria","ID_PPresentacion","Unidad de medida","IDPresentacion","Presentacion"};
 
-        String[] registro = new String[8];
+        String[] registro = new String[13];
 
         modelo = new DefaultTableModel(null, titulos);
         try {
@@ -39,7 +42,12 @@ public class CRUD_Producto {
                 registro[4] = rs.getString("precio_venta");
                 registro[5] = rs.getString("descripcion");
                 registro[6] = rs.getString("fecha_vencimiento");
-                registro[7] = rs.getString("IDCategoria");
+                registro[7]= rs.getString("IDCategoria");
+                registro[8] = rs.getString("nombre_categoria");
+                registro[9] = rs.getString("ID_PPresentacion");
+                registro[10] = rs.getString("medida_numerica");
+                registro[11] = rs.getString("IDPresentacion");
+                registro[12] = rs.getString("nombre_presentacion");
 
                 modelo.addRow(registro);
             }
@@ -81,23 +89,63 @@ public class CRUD_Producto {
             return null;
         }
     }
-
+    
+    
+    
+    
     public void insertarProducto(Producto producto) {
-        try {
-            CallableStatement callableStatement = cn.prepareCall("{call InsertarProducto2(?,?,?,?,?,?,?,?,?,?)}");
-            callableStatement.setString(1, producto.getNombre_producto());
-            callableStatement.setString(2, producto.getCantidad_producto());
-            callableStatement.setString(3, producto.getPrecio_compra());
-            callableStatement.setString(4, producto.getPrecio_venta());
-            callableStatement.setString(5, producto.getDescripcion());
-            callableStatement.setString(6, producto.getFecha_vencimiento());
-            callableStatement.setInt(7, producto.getID_Categoria());
-            callableStatement.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-        }
+    try {
+        CallableStatement callableStatement = cn.prepareCall("{call InsertarProducto(?,?,?,?,?,?,?,?,?)}");
+        callableStatement.setString(1, producto.getNombre_producto());
+        callableStatement.setInt(2, producto.getCantidad_producto());
+        callableStatement.setBigDecimal(3, producto.getPrecio_compra());
+        callableStatement.setBigDecimal(4, producto.getPrecio_venta());
+        callableStatement.setString(5, producto.getDescripcion());
+        callableStatement.setDate(6, producto.getFecha_vencimiento());
+        callableStatement.setInt(7, producto.getIDCategoria());
+        callableStatement.setInt(8, producto.getIDPresentacion());
+        callableStatement.setBigDecimal(9, producto.getMedida_numerica());
+
+        callableStatement.executeUpdate();
+
+//        insertarProductoPresentacion(producto.getIDCategoria(), producto.getIDPresentacion(), producto.getMedida_numerica());
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e);
+        e.printStackTrace();
     }
+}
+    public void ActualizarProducto(Producto producto){
+    
+   try{
+       CallableStatement callableStatement = cn.prepareCall ("{call ActualizarProducto(?,?,?,?,?,?,?,?,?,?)}");
+       callableStatement.setInt(1, producto.getIDProducto());
+       callableStatement.setString(2, producto.getNombre_producto());
+        callableStatement.setInt(3, producto.getCantidad_producto());
+        callableStatement.setBigDecimal(4, producto.getPrecio_compra());
+        callableStatement.setBigDecimal(5, producto.getPrecio_venta());
+        callableStatement.setString(6, producto.getDescripcion());
+        callableStatement.setDate(7, producto.getFecha_vencimiento());
+        callableStatement.setInt(8, producto.getIDCategoria());
+        callableStatement.setInt(9, producto.getIDPresentacion());
+        callableStatement.setBigDecimal(10, producto.getMedida_numerica());
+        
+        callableStatement.executeUpdate();
+       
+       
+       }catch (SQLException e) {
+           JOptionPane.showMessageDialog(null, e);
+           e.printStackTrace();
+       
+       
+   }   
+        
+        
+        
+    
+    
+    
+}
+
 
     public boolean verificarDatos(String dato) {
         ResultSet rs;
@@ -123,20 +171,6 @@ public class CRUD_Producto {
         }
     }
 
-    public void ActualizarProducto(Producto producto) {
-        try {
-            CallableStatement callableStatement = cn.prepareCall("{call ActualizarProducto(?,?,?,?,?,?,?)}");
-            callableStatement.setString(1, producto.getNombre_producto());
-            callableStatement.setString(2, producto.getCantidad_producto());
-            callableStatement.setString(3, producto.getPrecio_compra());
-            callableStatement.setString(4, producto.getPrecio_venta());
-            callableStatement.setString(5, producto.getDescripcion());
-            callableStatement.setString(6, producto.getFecha_vencimiento());
-            callableStatement.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-        }
-    }
+
 
 }

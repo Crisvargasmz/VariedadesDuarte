@@ -1,36 +1,54 @@
 package Modelo;
+import java.sql.Date;
+import java.math.BigDecimal;
 
 public class Producto {
 
-    int ID_producto;
+    int IDProducto;
     String nombre_producto;
-    String cantidad_producto;
-    String precio_compra;
-    String precio_venta;
+    int cantidad_producto;
+    BigDecimal precio_compra;
+    BigDecimal  precio_venta;
     String descripcion;
-    String fecha_vencimiento;
-    int ID_Categoria;
+    Date fecha_vencimiento;
+    int IDCategoria;
+    int IDPresentacion;
+    BigDecimal medida_numerica;
 
     public Producto() {
     }
 
-    public Producto(int ID_producto, String nombre_producto, String cantidad_producto, String precio_compra, String precio_venta, String descripcion, String fecha_vencimiento, int ID_Categoria) {
-        this.ID_producto = ID_producto;
+    public Producto(String nombre_producto, int cantidad_producto, BigDecimal precio_compra, BigDecimal precio_venta, String descripcion, Date fecha_vencimiento, int IDCategoria, int IDPresentacion, BigDecimal medida_numerica) {
         this.nombre_producto = nombre_producto;
         this.cantidad_producto = cantidad_producto;
         this.precio_compra = precio_compra;
         this.precio_venta = precio_venta;
         this.descripcion = descripcion;
         this.fecha_vencimiento = fecha_vencimiento;
-        this.ID_Categoria = ID_Categoria;
+        this.IDCategoria = IDCategoria;
+        this.IDPresentacion = IDPresentacion;
+        this.medida_numerica = medida_numerica;
     }
 
-    public int getID_producto() {
-        return ID_producto;
+    public Producto(int IDProducto, String nombre_producto, int cantidad_producto, BigDecimal precio_compra, BigDecimal precio_venta, String descripcion, Date fecha_vencimiento, int IDCategoria, int IDPresentacion, BigDecimal medida_numerica) {
+        this.IDProducto = IDProducto;
+        this.nombre_producto = nombre_producto;
+        this.cantidad_producto = cantidad_producto;
+        this.precio_compra = precio_compra;
+        this.precio_venta = precio_venta;
+        this.descripcion = descripcion;
+        this.fecha_vencimiento = fecha_vencimiento;
+        this.IDCategoria = IDCategoria;
+        this.IDPresentacion = IDPresentacion;
+        this.medida_numerica = medida_numerica;
     }
 
-    public void setID_producto(int ID_producto) {
-        this.ID_producto = ID_producto;
+    public int getIDProducto() {
+        return IDProducto;
+    }
+
+    public void setIDProducto(int IDProducto) {
+        this.IDProducto = IDProducto;
     }
 
     public String getNombre_producto() {
@@ -41,27 +59,27 @@ public class Producto {
         this.nombre_producto = nombre_producto;
     }
 
-    public String getCantidad_producto() {
+    public int getCantidad_producto() {
         return cantidad_producto;
     }
 
-    public void setCantidad_producto(String cantidad_producto) {
+    public void setCantidad_producto(int cantidad_producto) {
         this.cantidad_producto = cantidad_producto;
     }
 
-    public String getPrecio_compra() {
+    public BigDecimal getPrecio_compra() {
         return precio_compra;
     }
 
-    public void setPrecio_compra(String precio_compra) {
+    public void setPrecio_compra(BigDecimal precio_compra) {
         this.precio_compra = precio_compra;
     }
 
-    public String getPrecio_venta() {
+    public BigDecimal getPrecio_venta() {
         return precio_venta;
     }
 
-    public void setPrecio_venta(String precio_venta) {
+    public void setPrecio_venta(BigDecimal precio_venta) {
         this.precio_venta = precio_venta;
     }
 
@@ -73,20 +91,41 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getFecha_vencimiento() {
+    public Date getFecha_vencimiento() {
         return fecha_vencimiento;
     }
 
-    public void setFecha_vencimiento(String fecha_vencimiento) {
+    public void setFecha_vencimiento(Date fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
     }
 
-    public int getID_Categoria() {
-        return ID_Categoria;
+    public int getIDCategoria() {
+        return IDCategoria;
     }
 
-    public void setID_Categoria(int ID_Categoria) {
-        this.ID_Categoria = ID_Categoria;
+    public void setIDCategoria(int IDCategoria) {
+        this.IDCategoria = IDCategoria;
     }
+
+    public int getIDPresentacion() {
+        return IDPresentacion;
+    }
+
+    public void setIDPresentacion(int IDPresentacion) {
+        this.IDPresentacion = IDPresentacion;
+    }
+
+    public BigDecimal getMedida_numerica() {
+        return medida_numerica;
+    }
+
+    public void setMedida_numerica(BigDecimal medida_numerica) {
+        this.medida_numerica = medida_numerica;
+    }
+    
+    
+   
+   
+   
 
 }

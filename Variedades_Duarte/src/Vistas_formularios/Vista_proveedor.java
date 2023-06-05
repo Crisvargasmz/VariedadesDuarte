@@ -452,7 +452,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
         int fila = this.tablaProveedor.getSelectedRow();
 
         if (fila == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccione un participante de la tabla.");
+            JOptionPane.showMessageDialog(null, "Seleccione un proveedor de la tabla.");
         } else {
             try {
                 int IDPersona = Integer.parseInt((String) this.tablaProveedor.getValueAt(fila, 0));

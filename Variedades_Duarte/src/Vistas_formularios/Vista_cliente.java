@@ -370,21 +370,21 @@ public class Vista_cliente extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidpersona, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(txtIDcliente))
                             .addComponent(txtApellidoClienteDos)
                             .addComponent(txtNombreClienteUno)
                             .addComponent(txtNombreClienteDos)
-                            .addComponent(txtApellidoClienteUno, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                            .addComponent(txtApellidoClienteUno))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDireccionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(txtTelefonoCliente)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtIDcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtidpersona, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTelefonoCliente))))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBuscarCliente)
@@ -611,7 +611,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         int fila = this.tablaCliente.getSelectedRow();
 
         if (fila == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccione un participante de la tabla.");
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente de la tabla.");
         } else {
             try {
                 int IDPersona = Integer.parseInt((String) this.tablaCliente.getValueAt(fila, 0));
@@ -655,42 +655,6 @@ public class Vista_cliente extends javax.swing.JPanel {
 //            JOptionPane.showMessageDialog(null, "Debe seleccionar un registro a actualizar");
 //        }
 
-//        //         txtIDCliente.getText().isEmpty()
-//        if (
-//            txtNombreClienteUno.getText().isEmpty()
-//            || txtNombreClienteDos.getText().isEmpty()
-//            || txtApellidoClienteUno.getText().isEmpty()
-//            || txtApellidoClienteDos.getText().isEmpty()
-//            || comboGenero.getSelectedItem().toString().isEmpty()
-//            || txtTelefonoCliente.getText().isEmpty()
-//            || txtDireccionCliente.getText().isEmpty()) {
-//            // Algunos o todos los campos están vacíos, mostrar un mensaje de error o realizar alguna acción adecuada.
-//
-//            // Por ejemplo, mostrar un mensaje de error:
-//            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            // Todos los campos están llenos, proceder a realizar la edición.
-//
-//            // Realiza aquí la lógica de edición de los datos en el mismo formulario.
-//            // Por ejemplo, puedes guardar los cambios en una base de datos o realizar las modificaciones necesarias.
-//
-//            // Ejemplo:
-//            //        String IDCliente = txtIDCliente.getText();
-//            String nombreClienteUno = txtNombreClienteUno.getText();
-//            String nombreClienteDos = txtNombreClienteDos.getText();
-//            String apellidoClienteUno = txtApellidoClienteUno.getText();
-//            String apellidoClienteDos = txtApellidoClienteDos.getText();
-//            String telefonoCliente = txtTelefonoCliente.getText();
-//            String genero = comboGenero.getSelectedItem().toString();
-//            String direccionCliente = txtDireccionCliente.getText();
-//
-//            // Realiza las acciones necesarias con los datos editados, por ejemplo, guardarlos en la base de datos.
-//
-//            // Muestra un mensaje de éxito si es necesario.
-//            JOptionPane.showMessageDialog(null, "Los datos se han editado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-//
-//            // Realiza otras acciones necesarias después de la edición.
-//        }
 
     }//GEN-LAST:event_btnEditarClienteActionPerformed
 

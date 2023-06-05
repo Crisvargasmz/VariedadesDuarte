@@ -11,50 +11,33 @@ public class CRUD_Categoria {
     private final Conexion con = new Conexion();
     private final Connection cn = (Connection) con.conectar();
     
-   public DefaultComboBoxModel Llenar ()
-   {
-    DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-    modelo.addElement("Categoria");
+    
+    
+public DefaultComboBoxModel<Categoria> Llenar() {
+    DefaultComboBoxModel<Categoria> modelo = new DefaultComboBoxModel<>();
+    modelo.addElement(new Categoria(-1, "Categoria"));
+
     try {
-   CallableStatement cbstc = cn.prepareCall("{call LlenarCombo}");
-   ResultSet rs = cbstc.executeQuery();
-   while(rs.next())//realizamos un recorrido para buscar los datos existentes
-   {
-       modelo.addElement(rs.getString(1));
-     }  
-  } catch (Exception e) {
-  }
+        CallableStatement cbstc = cn.prepareCall("{call LlenarCombo}");
+        ResultSet rs = cbstc.executeQuery();
+        while (rs.next()) {
+            int IDCategoria = rs.getInt(1);
+            String nombre_categoria = rs.getString(2);
+            Categoria categoria = new Categoria(IDCategoria, nombre_categoria);
+            modelo.addElement(categoria);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+ 
     return modelo;
 }
 
-//    
-//    public DefaultTableModel buscarDatos(String Dato) {
-//        ResultSet rs;
-//        DefaultTableModel modelo;
-//        String[] titulos = {"Nombre Categoria"};
-//        String[] registro = new String[3]; 
-//        modelo = new DefaultTableModel(null, titulos);
-//
-//        try {
-//            CallableStatement call = cn.prepareCall("{call BuscarCategoria(?)}");
-//            call.setString(1, Dato);
-//            rs = call.executeQuery();
-//
-//             while (rs.next()) {
-//                registro[0] = rs.getString("nombre_categoria");
-//                modelo.addRow(registro);
-//            }
-//            return modelo;
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, e);
-//            return null;
-//        }
-//    }
     
     public void insertarCategoria(Categoria categoria) {
         try {
            CallableStatement callableStatement = cn.prepareCall("{call InsertarCategoria(?)}");
-            callableStatement.setString(1, categoria.getNombre_Categoria());
+            callableStatement.setString(1, categoria.getNombre_categoria());
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
