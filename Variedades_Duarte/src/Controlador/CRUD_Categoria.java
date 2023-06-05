@@ -18,7 +18,7 @@ public DefaultComboBoxModel<Categoria> Llenar() {
     modelo.addElement(new Categoria(-1, "Categoria"));
 
     try {
-        CallableStatement cbstc = cn.prepareCall("{call LlenarCombo}");
+        CallableStatement cbstc = cn.prepareCall("{call LlenarCategoria}");
         ResultSet rs = cbstc.executeQuery();
         while (rs.next()) {
             int IDCategoria = rs.getInt(1);

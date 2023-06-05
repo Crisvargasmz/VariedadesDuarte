@@ -25,6 +25,51 @@ CREATE TABLE [Cliente] (
 )
 GO
 
+-- Creación de la tabla "Persona".
+CREATE TABLE [Persona](
+IDPersona INTEGER IDENTITY (1,1) PRIMARY KEY,
+nombre1 NVARCHAR (15)NOT NULL,
+nombre2 NVARCHAR (15)NULL,
+apellido1 NVARCHAR (15)NOT NULL,
+apellido2 NVARCHAR (15)NULL,
+telefono NVARCHAR (9)NOT NULL,
+direccion NVARCHAR (150)NOT NULL
+
+)
+GO
+
+Select * from IniciodeSesion
+--Agregar clave foránea IDPersona en la tabla "Proveedores"
+
+ALTER TABLE dbo.Proveedor
+ADD CONSTRAINT FK_Persona_Proveedor
+FOREIGN KEY (IDPersona)
+REFERENCES dbo.Persona(IDPersona)
+
+--Agregar Clave foránea IDPersona en la tabla "Clientes"
+
+
+ALTER TABLE dbo.Cliente
+ADD CONSTRAINT FK_Persona_Cliente
+FOREIGN KEY (IDPersona)
+REFERENCES dbo.Persona(IDPersona)
+
+-- Creación de la tabla "Categoria".
+CREATE TABLE [Categoria] (
+  [IDCategoria] INTEGER IDENTITY(1,1) PRIMARY KEY,
+  [nombre_categoria] NVARCHAR(30) NOT NULL,
+
+)
+GO
+
+-- Creación de la tabla "Presentacion".
+CREATE TABLE [Presentacion](
+IDPresentacion INTEGER IDENTITY (1,1) PRIMARY KEY,
+nombre_presentacion NVARCHAR (20) NOT NULL
+
+)
+GO
+
 -- Creación de la tabla "Venta".
 CREATE TABLE [Venta] (
   [IDVenta] INTEGER IDENTITY(1,1) PRIMARY KEY,
@@ -48,14 +93,6 @@ CREATE TABLE [Producto] (
   IDCategoria INT,
   CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria)
  
-
-)
-GO
-
--- Creación de la tabla "Categoria".
-CREATE TABLE [Categoria] (
-  [IDCategoria] INTEGER IDENTITY(1,1) PRIMARY KEY,
-  [nombre_categoria] NVARCHAR(30) NOT NULL,
 
 )
 GO
@@ -86,41 +123,6 @@ Values('Administrador', '@1234567'),
 
 GO
 
--- Creación de la tabla "Presentacion".
-CREATE TABLE [Presentacion](
-IDPresentacion INTEGER IDENTITY (1,1) PRIMARY KEY,
-nombre_presentacion NVARCHAR (20) NOT NULL
-
-)
-GO
-
--- Creación de la tabla "Persona".
-CREATE TABLE [Persona](
-IDPersona INTEGER IDENTITY (1,1) PRIMARY KEY,
-nombre1 NVARCHAR (15)NOT NULL,
-nombre2 NVARCHAR (15)NULL,
-apellido1 NVARCHAR (15)NOT NULL,
-apellido2 NVARCHAR (15)NULL,
-telefono NVARCHAR (9)NOT NULL,
-direccion NVARCHAR (150)NOT NULL
-
-)
-GO
-
---Agregar clave foránea IDPersona en la tabla "Proveedores"
-
-ALTER TABLE dbo.Proveedor
-ADD CONSTRAINT FK_Persona_Proveedor
-FOREIGN KEY (IDPersona)
-REFERENCES dbo.Persona(IDPersona)
-
---Agregar Clave foránea IDPersona en la tabla "Clientes"
-
-
-ALTER TABLE dbo.Cliente
-ADD CONSTRAINT FK_Persona_Cliente
-FOREIGN KEY (IDPersona)
-REFERENCES dbo.Persona(IDPersona)
 
 -- Creación de la tabla Intermedia "Detalle_Venta".
 CREATE TABLE [Detalle_Venta] (
@@ -129,7 +131,7 @@ CREATE TABLE [Detalle_Venta] (
   IDVenta INT,
   CONSTRAINT FK_DetalleV_Venta FOREIGN KEY (IDVenta) REFERENCES Venta (IDVenta),
   IDProducto INT,
-  CONSTRAINT FK_DetalleV_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto)
+  CONSTRAINT FK_DetalleVenta_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto)
  
 )
 GO
@@ -139,9 +141,9 @@ CREATE TABLE [Detalle_Compra] (
   [ID_DCompra] INTEGER IDENTITY(1,1) PRIMARY KEY,
   cantidad_compra INTEGER NOT NULL,
     IDCompra INT,
-  CONSTRAINT FK_DetalleV_Compra FOREIGN KEY (IDCompra) REFERENCES Venta (IDCompra),
+  CONSTRAINT FK_DetalleV_Compra FOREIGN KEY (IDCompra) REFERENCES Compra (IDCompra),
   IDProducto INT,
-  CONSTRAINT FK_DetalleV_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto)
+  CONSTRAINT FK_DetalleCompra_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto)
 
 )
 GO
@@ -599,7 +601,7 @@ END;
 
   --procedimiento para llenar categorias
 
-  CREATE PROCEDURE LlenarCombo
+  CREATE PROCEDURE LlenarCategoria
 
   AS
   SELECT IDCategoria,nombre_categoria FROM Categoria
@@ -609,7 +611,7 @@ END;
 
      --procedimiento para llenar presentacion
 
-  CREATE PROCEDURE LlenarCombo2
+  CREATE PROCEDURE LlenarPresentacion
 
   AS
   SELECT IDPresentacion,nombre_presentacion FROM Presentacion
