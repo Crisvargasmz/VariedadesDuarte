@@ -6,6 +6,7 @@ package Vistas_formularios;
 
 import Controlador.CRUD_Categoria;
 import Controlador.CRUD_Presentacion;
+import Controlador.CRUD_Cliente;
 import Controlador.CRUD_Producto;
 import Modelo.Categoria;
 import Modelo.Presentacion;
@@ -39,12 +40,12 @@ public class Vista_producto extends javax.swing.JPanel {
         llenarcomboboxCategoria();//se va rellenar con combobox
         //en el formulario cuando inicie este
         llenarComboBoxPresentacion();
-
         txtIDProducto.setVisible(false);
         txtidppresentacion.setVisible(false);
 
     }
     
+
     
     
 public void llenarcomboboxCategoria() {
@@ -63,6 +64,26 @@ public void llenarcomboboxCategoria() {
 
     
     
+
+//       public void llenarcombobox2() {
+//        CRUD_Presentacion cate = new CRUD_Presentacion();
+//        comboPresentacion.setModel(cate.Llenar());//Llenamos el combobox
+//
+//    }
+       
+      
+//         public void mostrar() { //Método mostrar
+//        try {
+//           DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+//            CRUD_Cliente cli = new CRUD_Cliente(); //objeto de la clase CRUDCliente
+//            modelo = cli.mostrarDatos();
+//            combocategoria.setModel(modelo);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//
+//    }
+
     //Metodo paa guardar un producto.
     public void GuardarProducto() {
     CRUD_Producto cp = new CRUD_Producto();
