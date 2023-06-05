@@ -12,10 +12,14 @@ import Vistas_formularios.Vista_estadisticas;
 import Vistas_formularios.Vista_proveedor;
 import Vistas_formularios.Vista_venta;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.swing.JButton;
 
 /**
  *
@@ -25,6 +29,9 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     String Hora, Minuto, Segundo, am_pm;
     Thread hilo;
+    private Color colorPredeterminado = new Color(29, 163, 83);
+    private Color colorSeleccionado = new Color(0, 151, 167);
+    private JButton botonSeleccionado;
 
     /**
      * Creates new form Controlador_Principal
@@ -80,6 +87,33 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         }
     }
 
+    //Pendiente
+//    ActionListener botonListener = new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            JButton boton = (JButton) e.getSource();
+//
+//            if (botonSeleccionado == boton) {
+//                // Si el botón seleccionado es el mismo que se tocó, restaurar el color predeterminado
+//                botonSeleccionado.setBackground(colorPredeterminado);
+//                botonSeleccionado = null;
+//            } else {
+//                // Restaurar el color del botón seleccionado anteriormente (si hay alguno)
+//                if (botonSeleccionado != null) {
+//                    botonSeleccionado.setContentAreaFilled(false);
+//                    botonSeleccionado.setBackground(colorPredeterminado);
+//                }
+//
+//                // Establecer el nuevo botón seleccionado
+//                botonSeleccionado = boton;
+//
+//                // Cambiar el color del botón seleccionado
+//                botonSeleccionado.setContentAreaFilled(true);
+//                botonSeleccionado.setBackground(colorSeleccionado);
+//            }
+//        }
+//    };
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,6 +144,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         setMinimumSize(new java.awt.Dimension(1280, 720));
 
         pnlMain.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlTitulo.setBackground(new java.awt.Color(4, 64, 98));
 
@@ -190,6 +225,8 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
                 .addComponent(bntCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        pnlMain.add(pnlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         pnlMenu.setBackground(new java.awt.Color(29, 163, 83));
         pnlMenu.setLayout(new javax.swing.BoxLayout(pnlMenu, javax.swing.BoxLayout.LINE_AXIS));
@@ -320,31 +357,11 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         });
         pnlMenu.add(btnCompra);
 
+        pnlMain.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1290, -1));
+
         pnlMostrarVentanas.setBackground(new java.awt.Color(255, 255, 255));
         pnlMostrarVentanas.setLayout(new javax.swing.OverlayLayout(pnlMostrarVentanas));
-
-        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
-        pnlMain.setLayout(pnlMainLayout);
-        pnlMainLayout.setHorizontalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMainLayout.createSequentialGroup()
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(pnlMainLayout.createSequentialGroup()
-                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlMostrarVentanas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlMainLayout.setVerticalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMainLayout.createSequentialGroup()
-                .addComponent(pnlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlMostrarVentanas, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        pnlMain.add(pnlMostrarVentanas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1284, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -364,7 +381,6 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         // TODO add your handling code here:
         MenuBotones_color btn = new MenuBotones_color();
         btn.Activo(btnInicio);
-
     }//GEN-LAST:event_btnInicioMouseEntered
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
