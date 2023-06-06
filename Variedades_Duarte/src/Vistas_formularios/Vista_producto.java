@@ -202,6 +202,7 @@ public class Vista_producto extends javax.swing.JPanel {
         btnEliminarProducto = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnAgregarCate = new javax.swing.JButton();
+        botorefrescar = new javax.swing.JButton();
         comboCategoria = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         txtmedidanumerica = new javax.swing.JTextField();
@@ -352,6 +353,25 @@ public class Vista_producto extends javax.swing.JPanel {
         });
         jPanel2.add(btnAgregarCate);
 
+        botorefrescar.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        botorefrescar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas_iconos/girar.png"))); // NOI18N
+        botorefrescar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botorefrescar.setMaximumSize(new java.awt.Dimension(40, 40));
+        botorefrescar.setMinimumSize(new java.awt.Dimension(40, 40));
+        botorefrescar.setOpaque(true);
+        botorefrescar.setPreferredSize(new java.awt.Dimension(45, 40));
+        botorefrescar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botorefrescarMouseClicked(evt);
+            }
+        });
+        botorefrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botorefrescarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(botorefrescar);
+
         comboCategoria.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboCategoria.setPreferredSize(new java.awt.Dimension(250, 40));
         comboCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -431,7 +451,7 @@ public class Vista_producto extends javax.swing.JPanel {
                                     .addComponent(txtxBuscarProducto))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtFechaVencimiento))
@@ -750,8 +770,17 @@ public class Vista_producto extends javax.swing.JPanel {
 //       
     }//GEN-LAST:event_btnEditarProductoActionPerformed
 
+    private void botorefrescarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botorefrescarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botorefrescarMouseClicked
+
+    private void botorefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botorefrescarActionPerformed
+      llenarcomboboxCategoria();
+    }//GEN-LAST:event_botorefrescarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton botorefrescar;
     private javax.swing.JButton btnActualizarProducto;
     public static javax.swing.JButton btnAgregarCate;
     private javax.swing.JButton btnAgregarProducto;
