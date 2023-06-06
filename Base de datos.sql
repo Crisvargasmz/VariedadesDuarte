@@ -196,8 +196,8 @@ END
 
 GO
 
---SELECT * FROM Cliente
---SELECT * FROM Persona
+SELECT * FROM Cliente
+SELECT * FROM Persona
 
 EXEC InsertarPersonaCliente 'Montiel','Marenco','Vargas','Torrez','Juigalpa','57867406','M'
 EXEC InsertarPersonaCliente 'John', 'Doe', 'Smith', 'Johnson', 'New York', '123456789', 'M'
@@ -252,8 +252,8 @@ END
 
 GO
 
---SELECT * FROM Persona
---SELECT * FROM Proveedor
+SELECT * FROM Persona
+SELECT * FROM Proveedor
 
 EXEC InsertarPersonaProveedor'Cristhian','Cesar','Vargas','Martinez','Juigalpa','57867406','Casa Pellas'
 EXEC InsertarPersonaProveedor 'Gabriel', 'Cordero', 'Ramírez', 'López', 'Managua', '123456789', 'Empresa X'
@@ -299,7 +299,7 @@ EXEC InsertarCategoria 'Artículos deportivos';
 EXEC InsertarCategoria 'Instrumentos musicales';
 EXEC InsertarCategoria 'Comida preparada';
 
---SELECT * FROM Categoria
+SELECT * FROM Categoria
 
   GO
 
@@ -332,7 +332,7 @@ EXEC InsertarCategoria 'Comida preparada';
 
 
 
-   --SELECT * FROM Presentacion
+   SELECT * FROM Presentacion
 
    
 
@@ -438,9 +438,7 @@ END
     @IDPresentacion = 6,
     @medida_numerica = 200.0;
 
-EXEC InsertarProducto 'Lecha', 10, 100.00, 150.00, 'Leche de vaca', '2023-01-01', 1, 1, 1.5;
-
-	SELECT * FROM Producto
+    SELECT * FROM Producto
 	SELECT * FROM Categoria
 	SELECT * FROM Presentacion
 	SELECT * FROM ProductoPresentacion
@@ -513,6 +511,13 @@ GO
 
 
 
+
+
+
+
+
+
+
 -----------------------------------------------------------------------------------------------------
 --PROCEDIMIENTOS ALMACENADOS PARA CONSULTAR 
 -----------------------------------------------------------------------------------------------------
@@ -530,7 +535,7 @@ BEGIN
 END
 GO
 
---EXEC ConsultarCliente
+EXEC ConsultarCliente
 
 GO
 
@@ -547,7 +552,7 @@ BEGIN
 
 END
 GO
---EXEC ConsultarProveedor
+EXEC ConsultarProveedor
 
 GO
 
@@ -579,8 +584,8 @@ EXEC ConsultarProducto
 GO
 
 
+--PROCEDIMIENTO ALMACEADO PARA CONSULTAR CATEGORIA
 
-   --procedimiento almacenado para consultar una categoria
 CREATE PROCEDURE ConsultarCategoria
     @nombre_categoria NVARCHAR(30)
 AS
@@ -593,13 +598,13 @@ END;
 
   GO
 
-  --SELECT * FROM Categoria
+  SELECT * FROM Categoria
 
   GO
 
-  --procedimiento para llenar categorias
+--PROCEDIMINETO PARA LLENAR COMBOBOX
 
-  CREATE PROCEDURE LlenarCombo
+  CREATE PROCEDURE LlenarCategoria
 
   AS
   SELECT IDCategoria,nombre_categoria FROM Categoria
@@ -607,9 +612,9 @@ END;
   GO
 
 
-     --procedimiento para llenar presentacion
+--PROCEDIMINETO PARA LLENAR COMBOBOX
 
-  CREATE PROCEDURE LlenarCombo2
+  CREATE PROCEDURE LlenarPresentacion
 
   AS
   SELECT IDPresentacion,nombre_presentacion FROM Presentacion
@@ -617,7 +622,16 @@ END;
   GO
   -------------------------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
    
+
 
 
 
@@ -631,7 +645,8 @@ END;
 --PROCEDIMIENTO PARA ALMACENADO PARA ACTUALIZAR
 --------------------------------------------------------------------------------------------------
 
---procedimiento para actualizar cliente
+
+--PROCEDIMIENTO PARA ACTUALIZAR CLIENTE
 
  CREATE PROCEDURE ActualizarPersonaCliente
     @IDPersona INTEGER,
@@ -657,15 +672,8 @@ END
 
 GO
 
---EXEC ActualizarPersonaCliente 1,'Cristhian','Cesar','Vargas','Martinez','57867406','M','juigalpa';
---GO
---SELECT * FROM Cliente
---SELECT * FROM Persona
---GO
 
-
-
- --Procedimiento almacenado para actualizar proveedor
+--PROCEDIMIENTO ALMACENADO PARA ACTUALIZAR PROVEEDOR
 
  CREATE PROCEDURE ActualizarPersonaProveedor
     @IDPersona INTEGER,
@@ -687,15 +695,13 @@ BEGIN
 	WHERE IDPersona = @IDPersona
 
 
---SELECT * FROM Proveedor
---SELECT * FROM Persona
 
 END
 GO
 
 
+--PROCEDIMIENTO ALMACENADO PARA ACTUALIZAR PRODUCTO
 
- --Procedimiento almacenado para actualizar producto
  CREATE PROCEDURE ActualizarProducto
     @IDProducto INT,
     @nombre_producto NVARCHAR(40),
@@ -744,16 +750,12 @@ EXEC ActualizarProducto
     SELECT * FROM Producto
     SELECT * FROM ProductoPresentacion
 
-    --SELECT * FROM Categoria
-	--SELECT * FROM Presentacion
-
-
 GO
 
 
 
 
- --Procedimiento almacenado para actualizar categoria
+--PROCEDIMIENTO ALMACENADO PARA ACTUALIZAR CATEGORIA
 
 CREATE PROCEDURE ActualizarCategoria
     @IDCategoria INTEGER,
@@ -768,7 +770,7 @@ END;
 
 GO
 
- --Procedimiento almacenado para actualizar presentacion
+--PROCEDIMIENTO ALMACENADO PARA ACTUALIZAR PRESENTACION
 
 CREATE PROCEDURE ActualizarPresentacion
 
@@ -797,11 +799,21 @@ GO
 
 
 
+
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------------------------
 ---PROCEDIMIENTO ALMACENADO PARA ELIMINAR 
 --------------------------------------------------------------------------------------------------
 
---Procedimiento almacenado para eliminar cliente
+
+--PROCEDIMIENTO ALMACENADO PARA ELIMINAR CLIENTE
 
    CREATE PROCEDURE EliminarClientePersona
   @Dato NVARCHAR (150)
@@ -816,7 +828,8 @@ GO
 
 
 
-  --procedimiento almacenado para eliminar un proveedor
+
+  --PROCEDIMINETO ALMACENADO PARA ELIMINAR PROVEEDOR
  CREATE PROCEDURE EliminarProveedorPersona
   @Dato NVARCHAR (150)
 
@@ -830,7 +843,7 @@ GO
 
   
 
-  --procedimiento almacenado para eliminar un producto
+--PROCEDIMIENTO ALMACENADO PARA ELIMINAR CLIENTE
 CREATE PROCEDURE EliminarProducto
     @Dato NVARCHAR (50)
 AS
@@ -854,7 +867,8 @@ EXEC EliminarProducto @Dato = 2
 	SELECT * FROM Categoria
 
 GO
---procedimiento almacenado para eliminar una categoria
+--PROCEDIMIENTO ALMACENADO PARA ELIMINAR CATEGORIA
+
   CREATE PROCEDURE EliminarCategoria
   @IDCategoria INTEGER
 
@@ -864,7 +878,8 @@ GO
   WHERE IDCategoria = @IDCategoria
 
   GO
---procedimiento almacenado para eliminar una presentacion
+
+--PROCEDIMIENTO ALMACENADO PARA ELIMINAR PRESENTACION
 
 CREATE PROCEDURE EliminarPresentacion
 @IDPresentacion INTEGER
