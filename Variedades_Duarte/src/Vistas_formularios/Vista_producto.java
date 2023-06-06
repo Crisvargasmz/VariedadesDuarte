@@ -44,34 +44,24 @@ public class Vista_producto extends javax.swing.JPanel {
         txtidppresentacion.setVisible(false);
 
     }
-    
 
-    
-    
-public void llenarcomboboxCategoria() {
-    CRUD_Categoria cate = new CRUD_Categoria();
-    DefaultComboBoxModel<Categoria> modelo = cate.Llenar();
-    comboCategoria.setModel(modelo);
-}
+    public void llenarcomboboxCategoria() {
+        CRUD_Categoria cate = new CRUD_Categoria();
+        DefaultComboBoxModel<Categoria> modelo = cate.Llenar();
+        comboCategoria.setModel(modelo);
+    }
 
-    
-    
     public void llenarComboBoxPresentacion() {
-    CRUD_Presentacion Presen = new CRUD_Presentacion();
-    DefaultComboBoxModel<Presentacion> modelo = Presen.Llenar();
-    comboPresentacion.setModel(modelo);
-}
-
-    
-    
+        CRUD_Presentacion Presen = new CRUD_Presentacion();
+        DefaultComboBoxModel<Presentacion> modelo = Presen.Llenar();
+        comboPresentacion.setModel(modelo);
+    }
 
 //       public void llenarcombobox2() {
 //        CRUD_Presentacion cate = new CRUD_Presentacion();
 //        comboPresentacion.setModel(cate.Llenar());//Llenamos el combobox
 //
 //    }
-       
-      
 //         public void mostrar() { //Método mostrar
 //        try {
 //           DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
@@ -83,34 +73,31 @@ public void llenarcomboboxCategoria() {
 //        }
 //
 //    }
-
     //Metodo paa guardar un producto.
     public void GuardarProducto() {
-    CRUD_Producto cp = new CRUD_Producto();
+        CRUD_Producto cp = new CRUD_Producto();
 
-    // Obtener el ID de la categoría seleccionada del JComboBox
-    Categoria categoriaSeleccionada = (Categoria) comboCategoria.getSelectedItem();
-    int ID_Categoria = categoriaSeleccionada.getIDCategoria();
-    
-    Presentacion presenSeleccionada=(Presentacion) comboPresentacion.getSelectedItem();
-    int ID_Presentacion = presenSeleccionada.getIDPresentacion();
-    
+        // Obtener el ID de la categoría seleccionada del JComboBox
+        Categoria categoriaSeleccionada = (Categoria) comboCategoria.getSelectedItem();
+        int ID_Categoria = categoriaSeleccionada.getIDCategoria();
 
-    Producto p1;
-    p1 = new Producto(txtNombreProducto.getText(),
-            Integer.parseInt(txtCantidad.getText()),
-            BigDecimal.valueOf(Double.parseDouble(txtPrecioCompra.getText())),
-            BigDecimal.valueOf(Double.parseDouble(txtPrecioVenta.getText())),
-            txtDescripcion.getText(),
-            java.sql.Date.valueOf(txtFechaVencimiento.getText()),
+        Presentacion presenSeleccionada = (Presentacion) comboPresentacion.getSelectedItem();
+        int ID_Presentacion = presenSeleccionada.getIDPresentacion();
+
+        Producto p1;
+        p1 = new Producto(txtNombreProducto.getText(),
+                Integer.parseInt(txtCantidad.getText()),
+                BigDecimal.valueOf(Double.parseDouble(txtPrecioCompra.getText())),
+                BigDecimal.valueOf(Double.parseDouble(txtPrecioVenta.getText())),
+                txtDescripcion.getText(),
+                java.sql.Date.valueOf(txtFechaVencimiento.getText()),
                 ID_Categoria,
                 ID_Presentacion,
-            BigDecimal.valueOf(Double.parseDouble(txtmedidanumerica.getText())));
+                BigDecimal.valueOf(Double.parseDouble(txtmedidanumerica.getText())));
 
-    cp.insertarProducto(p1);
-}
+        cp.insertarProducto(p1);
+    }
 
-  
     //Metodo para limpiar campos
     public void LimpiarCampos() {
         txtIDProducto.setText("");
@@ -121,36 +108,33 @@ public void llenarcomboboxCategoria() {
         txtDescripcion.setText("");
         txtFechaVencimiento.setText("");
         txtmedidanumerica.setText("");
-          // Establecer selección por defecto en los combo boxes
-    comboCategoria.setSelectedIndex(0);  // Índice de la opción por defecto
-    comboPresentacion.setSelectedIndex(0);  // Índice de la opción por defecto
+        // Establecer selección por defecto en los combo boxes
+        comboCategoria.setSelectedIndex(0);  // Índice de la opción por defecto
+        comboPresentacion.setSelectedIndex(0);  // Índice de la opción por defecto
     }
 
 //    Metodo para editar un producto.
     public void EditarProducto() {
 
         CRUD_Producto cp = new CRUD_Producto();
-        
-            // Obtener el ID de la categoría seleccionada del JComboBox
-    Categoria categoriaSeleccionada = (Categoria) comboCategoria.getSelectedItem();
-    int ID_Categoria = categoriaSeleccionada.getIDCategoria();
-    
-    Presentacion presenSeleccionada=(Presentacion) comboPresentacion.getSelectedItem();
-    int ID_Presentacion = presenSeleccionada.getIDPresentacion();
-        
-        
-        
+
+        // Obtener el ID de la categoría seleccionada del JComboBox
+        Categoria categoriaSeleccionada = (Categoria) comboCategoria.getSelectedItem();
+        int ID_Categoria = categoriaSeleccionada.getIDCategoria();
+
+        Presentacion presenSeleccionada = (Presentacion) comboPresentacion.getSelectedItem();
+        int ID_Presentacion = presenSeleccionada.getIDPresentacion();
+
         Producto p1 = new Producto(Integer.parseInt(txtIDProducto.getText()),
-              txtNombreProducto.getText(),
-            Integer.parseInt(txtCantidad.getText()),
-            BigDecimal.valueOf(Double.parseDouble(txtPrecioCompra.getText())),
-            BigDecimal.valueOf(Double.parseDouble(txtPrecioVenta.getText())),
-            txtDescripcion.getText(),
-            java.sql.Date.valueOf(txtFechaVencimiento.getText()),
+                txtNombreProducto.getText(),
+                Integer.parseInt(txtCantidad.getText()),
+                BigDecimal.valueOf(Double.parseDouble(txtPrecioCompra.getText())),
+                BigDecimal.valueOf(Double.parseDouble(txtPrecioVenta.getText())),
+                txtDescripcion.getText(),
+                java.sql.Date.valueOf(txtFechaVencimiento.getText()),
                 ID_Categoria,
                 ID_Presentacion,
-            BigDecimal.valueOf(Double.parseDouble(txtmedidanumerica.getText())));
-                
+                BigDecimal.valueOf(Double.parseDouble(txtmedidanumerica.getText())));
 
         cp.ActualizarProducto(p1);
 
@@ -201,7 +185,6 @@ public void llenarcomboboxCategoria() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator2 = new javax.swing.JSeparator();
         txtNombreProducto = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         txtPrecioCompra = new javax.swing.JTextField();
@@ -227,15 +210,14 @@ public void llenarcomboboxCategoria() {
         txtIDProducto = new javax.swing.JTextField();
         txtFechaVencimiento = new javax.swing.JFormattedTextField();
         txtidppresentacion = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
         setMinimumSize(new java.awt.Dimension(1280, 580));
         setPreferredSize(new java.awt.Dimension(1280, 580));
-
-        jSeparator2.setBackground(new java.awt.Color(0, 204, 204));
-        jSeparator2.setForeground(new java.awt.Color(0, 204, 204));
-        jSeparator2.setOpaque(true);
 
         txtNombreProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtNombreProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
@@ -413,6 +395,18 @@ public void llenarcomboboxCategoria() {
         }
         txtFechaVencimiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jSeparator2.setBackground(new java.awt.Color(0, 204, 204));
+        jSeparator2.setForeground(new java.awt.Color(0, 204, 204));
+        jSeparator2.setOpaque(true);
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel2.setText("Gestion de Productos");
+
+        jSeparator1.setBackground(new java.awt.Color(0, 204, 204));
+        jSeparator1.setForeground(new java.awt.Color(0, 204, 204));
+        jSeparator1.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -420,38 +414,42 @@ public void llenarcomboboxCategoria() {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2))
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNombreProducto)
+                                    .addComponent(txtxBuscarProducto))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtNombreProducto))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(41, 41, 41)
+                                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtFechaVencimiento))
+                                        .addGap(44, 44, 44)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(36, 36, 36)
+                                                .addGap(26, 26, 26)
                                                 .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(35, 35, 35)
                                                 .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtDescripcion)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtxBuscarProducto)
-                                        .addGap(18, 18, 18)
+                                        .addGap(288, 288, 288)
                                         .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(51, 51, 51)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtidppresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -462,32 +460,36 @@ public void llenarcomboboxCategoria() {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidppresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDescripcion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSplitPane3)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtxBuscarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidppresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtxBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -537,7 +539,7 @@ public void llenarcomboboxCategoria() {
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
 
     private void btnActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProductoActionPerformed
-           CRUD_Producto cp = new CRUD_Producto();
+        CRUD_Producto cp = new CRUD_Producto();
         try {
             if (txtNombreProducto.getText().equals("")
                     || txtCantidad.getText().equals("")
@@ -574,7 +576,7 @@ public void llenarcomboboxCategoria() {
     }//GEN-LAST:event_comboCategoriaActionPerformed
 
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
-      
+
         if (datoSeleccionado >= 0) {
 
             String dato = String.valueOf(tablaProducto.getValueAt(datoSeleccionado, 0));
@@ -602,75 +604,61 @@ public void llenarcomboboxCategoria() {
     }//GEN-LAST:event_tablaProductoMouseClicked
 
     private void btnLimpiarCamposProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposProductoActionPerformed
-      
+        LimpiarCampos();
     }//GEN-LAST:event_btnLimpiarCamposProductoActionPerformed
 
     private void btnEditarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProductoActionPerformed
 
-        
-    int fila = this.tablaProducto.getSelectedRow();
+        int fila = this.tablaProducto.getSelectedRow();
 
-if (fila == -1) {
-    JOptionPane.showMessageDialog(null, "Seleccione un producto de la tabla.");
-} else {
-    try {
-        int IDProducto = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 0));
-        String nombreP = (String) this.tablaProducto.getValueAt(fila, 1).toString();
-        int cantidadP = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 2));
-        BigDecimal Ccompra = BigDecimal.valueOf(Double.parseDouble((String) this.tablaProducto.getValueAt(fila, 3).toString()));
-        BigDecimal Cventa = BigDecimal.valueOf(Double.parseDouble((String) this.tablaProducto.getValueAt(fila, 4).toString()));
-        Date fecha = java.sql.Date.valueOf(this.tablaProducto.getValueAt(fila, 6).toString());
-        String descripcion = (String) this.tablaProducto.getValueAt(fila, 5).toString();
-        int IDCategoria = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 7));
-        BigDecimal Umedida = BigDecimal.valueOf(Double.parseDouble((String) this.tablaProducto.getValueAt(fila, 10).toString()));
-        int ID_PPresentacion = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 9));
-        int IDPresentacion = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 11));
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione un producto de la tabla.");
+        } else {
+            try {
+                int IDProducto = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 0));
+                String nombreP = (String) this.tablaProducto.getValueAt(fila, 1).toString();
+                int cantidadP = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 2));
+                BigDecimal Ccompra = BigDecimal.valueOf(Double.parseDouble((String) this.tablaProducto.getValueAt(fila, 3).toString()));
+                BigDecimal Cventa = BigDecimal.valueOf(Double.parseDouble((String) this.tablaProducto.getValueAt(fila, 4).toString()));
+                Date fecha = java.sql.Date.valueOf(this.tablaProducto.getValueAt(fila, 6).toString());
+                String descripcion = (String) this.tablaProducto.getValueAt(fila, 5).toString();
+                int IDCategoria = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 7));
+                BigDecimal Umedida = BigDecimal.valueOf(Double.parseDouble((String) this.tablaProducto.getValueAt(fila, 10).toString()));
+                int ID_PPresentacion = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 9));
+                int IDPresentacion = Integer.parseInt((String) this.tablaProducto.getValueAt(fila, 11));
 
-        txtIDProducto.setText("" + IDProducto);
-        txtNombreProducto.setText(nombreP);
-        txtCantidad.setText("" + cantidadP);
-        txtPrecioCompra.setText("" + Ccompra);
-        txtPrecioVenta.setText("" + Cventa);
-        txtFechaVencimiento.setText("" + fecha);
-        txtDescripcion.setText(descripcion);
-        txtmedidanumerica.setText("" + Umedida);
-        txtidppresentacion.setText("" + ID_PPresentacion);
-        
-        // Buscar y seleccionar la categoría correspondiente en el comboCategoria
-        for (int i = 0; i < comboCategoria.getItemCount(); i++) {
-            Categoria categoria = (Categoria) comboCategoria.getItemAt(i);
-            if (categoria.getIDCategoria() == IDCategoria) {
-                comboCategoria.setSelectedIndex(i);
-                break;
+                txtIDProducto.setText("" + IDProducto);
+                txtNombreProducto.setText(nombreP);
+                txtCantidad.setText("" + cantidadP);
+                txtPrecioCompra.setText("" + Ccompra);
+                txtPrecioVenta.setText("" + Cventa);
+                txtFechaVencimiento.setText("" + fecha);
+                txtDescripcion.setText(descripcion);
+                txtmedidanumerica.setText("" + Umedida);
+                txtidppresentacion.setText("" + ID_PPresentacion);
+
+                // Buscar y seleccionar la categoría correspondiente en el comboCategoria
+                for (int i = 0; i < comboCategoria.getItemCount(); i++) {
+                    Categoria categoria = (Categoria) comboCategoria.getItemAt(i);
+                    if (categoria.getIDCategoria() == IDCategoria) {
+                        comboCategoria.setSelectedIndex(i);
+                        break;
+                    }
+                }
+
+                // Buscar y seleccionar la presentación correspondiente en el comboPresentacion
+                for (int i = 0; i < comboPresentacion.getItemCount(); i++) {
+                    Presentacion presentacion = (Presentacion) comboPresentacion.getItemAt(i);
+                    if (presentacion.getIDPresentacion() == IDPresentacion) {
+                        comboPresentacion.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        
-        // Buscar y seleccionar la presentación correspondiente en el comboPresentacion
-        for (int i = 0; i < comboPresentacion.getItemCount(); i++) {
-            Presentacion presentacion = (Presentacion) comboPresentacion.getItemAt(i);
-            if (presentacion.getIDPresentacion() == IDPresentacion) {
-                comboPresentacion.setSelectedIndex(i);
-                break;
-            }
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
 //int fila = this.tablaProducto.getSelectedRow();
 //
 //if (fila == -1) {
@@ -718,37 +706,6 @@ if (fila == -1) {
 //        e.printStackTrace();
 //    }
 //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //       int fila = this.tablaProducto.getSelectedRow();
 //       
 //       if (fila == -1) {
@@ -803,9 +760,11 @@ if (fila == -1) {
     private javax.swing.JButton btnLimpiarCamposProducto;
     private javax.swing.JComboBox<Categoria> comboCategoria;
     private javax.swing.JComboBox<Presentacion> comboPresentacion;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;

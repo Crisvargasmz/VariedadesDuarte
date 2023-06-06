@@ -20,7 +20,7 @@ public DefaultComboBoxModel<Presentacion> Llenar() {
     modelo.addElement(new Presentacion(-1, "Unidad de medida"));
 
     try {
-        CallableStatement cbstc = cn.prepareCall("{call LlenarCombo2}");
+        CallableStatement cbstc = cn.prepareCall("{call LlenarPresentacion}");
         ResultSet rs = cbstc.executeQuery();
         while (rs.next()) {
             int IDPresentacion = rs.getInt(1);
