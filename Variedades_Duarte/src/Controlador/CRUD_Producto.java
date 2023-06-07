@@ -99,6 +99,20 @@ public class CRUD_Producto {
     }
     
     
+    public boolean verificarDatos(String Dato) {
+        ResultSet rs;
+
+        try {
+            CallableStatement call = cn.prepareCall("{call VerificarProducto(?)}");
+            call.setString(1, Dato);
+            rs = call.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
     
     
     public void insertarProducto(Producto producto) {
@@ -147,27 +161,8 @@ public class CRUD_Producto {
        
    }   
         
-        
-        
-    
-    
-    
+            
 }
-
-
-    public boolean verificarDatos(String dato) {
-        ResultSet rs;
-
-        try {
-            CallableStatement call = cn.prepareCall("{call ConsultarProducto(?)}");
-            call.setString(1, dato);
-            rs = call.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            return false;
-        }
-    }
 
     public void eliminar(String IDProducto) {
         try {

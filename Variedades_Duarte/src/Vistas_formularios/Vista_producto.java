@@ -152,6 +152,14 @@ public class Vista_producto extends javax.swing.JPanel {
         }
 
     }
+    
+    //Metodo para tipar numero y puntos.
+    private void KeyTipedNUMPUN(java.awt.event.KeyEvent evt){
+        char car = evt.getKeyChar();
+        if((car < '0' || car > '9') && car != '.' && car != ','){
+            evt.consume();
+        }
+    }
 
     //Metodo para tipar solo letras.
     private void KeyTipedTXT(java.awt.event.KeyEvent evt) {
@@ -222,9 +230,19 @@ public class Vista_producto extends javax.swing.JPanel {
 
         txtNombreProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtNombreProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtNombreProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProductoKeyTyped(evt);
+            }
+        });
 
         txtCantidad.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Cantidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
 
         txtPrecioCompra.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtPrecioCompra.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Precio compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
@@ -233,9 +251,19 @@ public class Vista_producto extends javax.swing.JPanel {
                 txtPrecioCompraActionPerformed(evt);
             }
         });
+        txtPrecioCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioCompraKeyTyped(evt);
+            }
+        });
 
         txtPrecioVenta.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtPrecioVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Precio venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtPrecioVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioVentaKeyTyped(evt);
+            }
+        });
 
         txtDescripcion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtDescripcion.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Descripcion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
@@ -397,6 +425,11 @@ public class Vista_producto extends javax.swing.JPanel {
         txtmedidanumerica.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtmedidanumerica.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         txtmedidanumerica.setPreferredSize(new java.awt.Dimension(80, 40));
+        txtmedidanumerica.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmedidanumericaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtmedidanumerica);
 
         comboPresentacion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -552,17 +585,20 @@ public class Vista_producto extends javax.swing.JPanel {
                     || txtPrecioCompra.getText().equals("")
                     || txtPrecioVenta.getText().equals("")
                     || txtDescripcion.getText().equals("")
-                    || txtFechaVencimiento.getText().equals("")) {
-//                    || comboCategoria.getSelectedItem().toString().equals("")
-//                    || comboPresentacion.getSelectedItem().toString().equals("")) {
-
-                JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
-            } else {
+                    || comboCategoria.getSelectedItem().toString().equals("")
+                    || comboPresentacion.getSelectedItem().toString().equals("")) {
+              JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+               } else {
+                if (cp.verificarDatos(txtNombreProducto.getText())) {
+                    JOptionPane.showMessageDialog(null, "Ya existe un producto con ese nombre");
+           } else {
                 GuardarProducto();
                 LimpiarCampos();
                 Mostrar();
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
             }
+                
+            }       
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
@@ -813,6 +849,26 @@ public class Vista_producto extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_txtBuscarProductoKeyReleased
+
+    private void txtNombreProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProductoKeyTyped
+        KeyTipedTXT(evt);
+    }//GEN-LAST:event_txtNombreProductoKeyTyped
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        KeyTipedNUMPUN(evt);
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtPrecioCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioCompraKeyTyped
+        KeyTipedNUMPUN(evt);
+    }//GEN-LAST:event_txtPrecioCompraKeyTyped
+
+    private void txtPrecioVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioVentaKeyTyped
+        KeyTipedNUMPUN(evt);
+    }//GEN-LAST:event_txtPrecioVentaKeyTyped
+
+    private void txtmedidanumericaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmedidanumericaKeyTyped
+        KeyTipedNUMPUN(evt);
+    }//GEN-LAST:event_txtmedidanumericaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

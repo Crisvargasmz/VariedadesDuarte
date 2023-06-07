@@ -511,7 +511,7 @@ BEGIN
     INNER JOIN Presentacion ON ProductoPresentacion.IDPresentacion = Presentacion.IDPresentacion
     INNER JOIN Categoria ON Producto.IDCategoria = Categoria.IDCategoria
 
-	WHERE nombre_producto LIKE '%' + RTRIM (@Dato)
+	WHERE nombre_producto LIKE '%' + RTRIM (@Dato)+'%'
 	END
 	GO
 
@@ -601,6 +601,25 @@ SELECT * FROM ProductoPresentacion
 EXEC ConsultarProducto
 
 GO
+
+CREATE PROCEDURE VerificarProducto
+@Dato NVARCHAR (50)
+AS
+BEGIN
+SELECT Producto.nombre_producto
+
+FROM Producto
+    --INNER JOIN ProductoPresentacion ON Producto.IDProducto = ProductoPresentacion.IDProducto
+    --INNER JOIN Presentacion ON ProductoPresentacion.IDPresentacion = Presentacion.IDPresentacion
+    --INNER JOIN Categoria ON Producto.IDCategoria = Categoria.IDCategoria
+
+	WHERE nombre_producto LIKE '%' + RTRIM (@Dato)+'%'
+	
+END
+
+GO
+
+
 
 
 --PROCEDIMIENTO ALMACEADO PARA CONSULTAR CATEGORIA
