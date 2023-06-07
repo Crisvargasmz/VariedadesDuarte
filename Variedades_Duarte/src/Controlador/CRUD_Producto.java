@@ -62,10 +62,11 @@ public class CRUD_Producto {
     public DefaultTableModel buscarDatos(String Dato) {
         ResultSet rs;
         DefaultTableModel modelo;
-        String[] titulos = {"Nombre Producto", "Cantidad",
+        String[] titulos = {"IDProducto","Nombre Producto", "Cantidad",
             "Precio Compra", "Precio Venta", "Descripcion",
-            "Fecha vencimiento", "ID Categoria"};
-        String[] registro = new String[8];
+            "Fecha vencimiento","IDCategoria","Categoria","ID_PPresentacion","Medida numerica",
+        "IDPresentacion","Presentacion"};
+        String[] registro = new String[13];
         modelo = new DefaultTableModel(null, titulos);
 
         try {
@@ -74,13 +75,20 @@ public class CRUD_Producto {
             rs = call.executeQuery();
 
             while (rs.next()) {
-                registro[0] = rs.getString("nombre_producto");
-                registro[1] = rs.getString("cantidad_producto");
-                registro[2] = rs.getString("precio_compra");
-                registro[3] = rs.getString("precio_venta");
-                registro[4] = rs.getString("descripcion");
-                registro[5] = rs.getString("fecha_vencimiento");
-                registro[6] = rs.getString("IDCategoria");
+                registro[0] = rs.getString("IDProducto");
+                registro[1] = rs.getString("nombre_producto");
+                registro[2] = rs.getString("cantidad_producto");
+                registro[3] = rs.getString("precio_compra");
+                registro[4] = rs.getString("precio_venta");
+                registro[5] = rs.getString("descripcion");
+                registro[6] = rs.getString("fecha_vencimiento");
+                registro[7]= rs.getString("IDCategoria");
+                registro[8] = rs.getString("nombre_categoria");
+                registro[9] = rs.getString("ID_PPresentacion");
+                registro[10] = rs.getString("medida_numerica");
+                registro[11] = rs.getString("IDPresentacion");
+                registro[12] = rs.getString("nombre_presentacion");
+           
                 modelo.addRow(registro);
             }
             return modelo;

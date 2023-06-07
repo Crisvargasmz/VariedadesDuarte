@@ -61,11 +61,11 @@ private final Connection cn = (Connection) con.conectar();
 
         while (rs.next()) {
                 registro [0] = rs.getString("IDCliente");
-                registro[1] = rs.getString("nombre1");//estas variables tienen que ser las misma como se declararon en la base de datos
-                registro[2] = rs.getString("nombre2");
-                registro[3] = rs.getString("apellido1");
-                registro[4] = rs.getString("apellido2");
-                registro[5] = rs.getString("telefono");
+                registro [1] = rs.getString("nombre1");//estas variables tienen que ser las misma como se declararon en la base de datos
+                registro [2] = rs.getString("nombre2");
+                registro [3] = rs.getString("apellido1");
+                registro [4] = rs.getString("apellido2");
+                registro [5] = rs.getString("telefono");
                 registro [6] = rs.getString("genero_cliente");
                 registro [7] = rs.getString("direccion");
                 

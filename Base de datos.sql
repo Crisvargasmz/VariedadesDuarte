@@ -20,8 +20,7 @@ CREATE TABLE [Cliente] (
   [IDCliente] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [genero_cliente] CHAR (1) NOT NULL,
   IDPersona INTEGER UNIQUE 
-
- 
+  
 )
 GO
 
@@ -38,21 +37,22 @@ direccion NVARCHAR (150)NOT NULL
 )
 GO
 
-Select * from IniciodeSesion
+--Select * from IniciodeSesion
 --Agregar clave foránea IDPersona en la tabla "Proveedores"
-
 ALTER TABLE dbo.Proveedor
 ADD CONSTRAINT FK_Persona_Proveedor
 FOREIGN KEY (IDPersona)
 REFERENCES dbo.Persona(IDPersona)
 
+GO
+
 --Agregar Clave foránea IDPersona en la tabla "Clientes"
-
-
 ALTER TABLE dbo.Cliente
 ADD CONSTRAINT FK_Persona_Cliente
 FOREIGN KEY (IDPersona)
 REFERENCES dbo.Persona(IDPersona)
+
+GO
 
 -- Creación de la tabla "Categoria".
 CREATE TABLE [Categoria] (
@@ -93,7 +93,6 @@ CREATE TABLE [Producto] (
   IDCategoria INT,
   CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria)
  
-
 )
 GO
 
@@ -113,16 +112,10 @@ CREATE TABLE [IniciodeSesion](
 [ID_InicioSesion] INTEGER IDENTITY (1,1) PRIMARY KEY,
 usuario_sesion NVARCHAR (20) NOT NULL,
 contrasena_sesion NVARCHAR (10) NOT NULL
+
 )
 
 GO
---Insertabndo usuarios.
-Insert Into IniciodeSesion (usuario_sesion, contrasena_sesion)
-Values('Administrador', '@1234567'),
-	  ('UsuarioUno', '@vendedor');
-
-GO
-
 
 -- Creación de la tabla Intermedia "Detalle_Venta".
 CREATE TABLE [Detalle_Venta] (
@@ -160,13 +153,17 @@ medida_numerica DECIMAL (12,2) NOT NULL,
 )
 GO
 
-
 -------------------------------------------------------------------------------------------------
 -----PROCEDIMIENTOS ALMACENADOS PARA INSERTAR
 -------------------------------------------------------------------------------------------------
+--Insertando usuarios.
+Insert Into IniciodeSesion (usuario_sesion, contrasena_sesion)
+Values('Administrador', '@1234567'),
+	  ('UsuarioUno', '@vendedor');
+
+GO
 
 --PROCEDIMIENTO ALMACENADO INSERTAR CLIENTE
-
 CREATE PROCEDURE InsertarPersonaCliente
 @nombre1 NVARCHAR (15),
 @nombre2 NVARCHAR (15),
@@ -370,11 +367,12 @@ BEGIN
     INSERT INTO ProductoPresentacion (IDProducto, IDPresentacion, medida_numerica)
     VALUES (@IDProducto, @IDPresentacion, @medida_numerica)
 END
+GO
 
 
 
     EXEC InsertarProducto
-    @nombre_producto = 'Lecha',
+    @nombre_producto = 'Leche',
     @cantidad_producto = 10,
     @precio_compra = 100.00,
     @precio_venta = 150.00,
@@ -499,6 +497,27 @@ BEGIN
 END
 
 GO
+
+
+--Procedimiento almacenado para buscar productos
+CREATE PROCEDURE BuscarProducto
+@Dato NVARCHAR(50)
+AS
+BEGIN
+	SELECT Producto.IDProducto,nombre_producto, cantidad_producto, precio_compra, precio_venta, descripcion,fecha_vencimiento,Categoria.IDCategoria,
+	Categoria.nombre_categoria, ProductoPresentacion.ID_PPresentacion, ProductoPresentacion.medida_numerica, Presentacion.IDPresentacion, Presentacion.nombre_presentacion
+	FROM   Producto 
+	INNER JOIN ProductoPresentacion ON Producto.IDProducto = ProductoPresentacion.IDProducto
+    INNER JOIN Presentacion ON ProductoPresentacion.IDPresentacion = Presentacion.IDPresentacion
+    INNER JOIN Categoria ON Producto.IDCategoria = Categoria.IDCategoria
+
+	WHERE nombre_producto LIKE '%' + RTRIM (@Dato)
+	END
+	GO
+
+	EXEC BuscarProducto @Dato= 'Cafe'
+
+	GO
 -----------------------------------------------------------------------------------------------------------------------------
 
 
@@ -524,7 +543,7 @@ GO
 --PROCEDIMIENTOS ALMACENADOS PARA CONSULTAR 
 -----------------------------------------------------------------------------------------------------
 
---procedimiento para consultar clientes
+--PROCEDIMIENTO ALMACENADO PARA CONSULTAR CLIENTE
 
 CREATE PROCEDURE ConsultarCliente
 AS
@@ -541,9 +560,7 @@ EXEC ConsultarCliente
 
 GO
 
-
-
---procedimiento almacenado para Consultar un proveedor
+--PROCEDIMIENTO ALMACENADO PARA CONSULTAR PROVEEDOR
 CREATE PROCEDURE ConsultarProveedor
 AS
 BEGIN
@@ -562,7 +579,7 @@ Select * from Proveedor
 select * from Persona
 GO
 
---procedimiento almacenado para consultar un producto
+--PROCEDIMIENTO ALMACENADO PARA CONSULTAR PRODUCTO
 
 CREATE PROCEDURE ConsultarProducto
 AS
@@ -737,17 +754,17 @@ BEGIN
     WHERE IDProducto = @IDProducto
 END
 
-EXEC ActualizarProducto
-    @IDProducto = 1,
-    @nombre_producto = 'MAterno',
-    @cantidad_producto = 1,
-    @precio_compra = 20.50,
-    @precio_venta = 30.00,
-    @descripcion = 'BEBE',
-    @fecha_vencimiento = '2023-12-31',
-    @IDCategoria = 4,
-    @IDPresentacion = 4,
-    @medida_numerica = 5.25
+--EXEC ActualizarProducto
+--    @IDProducto = 1,
+--    @nombre_producto = 'MAterno',
+--    @cantidad_producto = 1,
+--    @precio_compra = 20.50,
+--    @precio_venta = 30.00,
+--    @descripcion = 'BEBE',
+--    @fecha_vencimiento = '2023-12-31',
+--    @IDCategoria = 4,
+--    @IDPresentacion = 4,
+--    @medida_numerica = 5.25
 
     SELECT * FROM Producto
     SELECT * FROM ProductoPresentacion
@@ -861,12 +878,12 @@ BEGIN
 	
 END
 
-EXEC EliminarProducto @Dato = 2
+--EXEC EliminarProducto @Dato = 2
 
-    SELECT * FROM Producto
-    SELECT * FROM ProductoPresentacion
+--    SELECT * FROM Producto
+--    SELECT * FROM ProductoPresentacion
 
-	SELECT * FROM Categoria
+--	SELECT * FROM Categoria
 
 GO
 --PROCEDIMIENTO ALMACENADO PARA ELIMINAR CATEGORIA

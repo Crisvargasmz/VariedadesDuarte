@@ -207,7 +207,7 @@ public class Vista_producto extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         txtmedidanumerica = new javax.swing.JTextField();
         comboPresentacion = new javax.swing.JComboBox<>();
-        txtxBuscarProducto = new javax.swing.JTextField();
+        txtBuscarProducto = new javax.swing.JTextField();
         txtIDProducto = new javax.swing.JTextField();
         txtFechaVencimiento = new javax.swing.JFormattedTextField();
         txtidppresentacion = new javax.swing.JTextField();
@@ -375,8 +375,14 @@ public class Vista_producto extends javax.swing.JPanel {
         comboCategoria.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboCategoria.setPreferredSize(new java.awt.Dimension(250, 40));
         comboCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboCategoriaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 comboCategoriaMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                comboCategoriaMousePressed(evt);
             }
         });
         comboCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -404,8 +410,13 @@ public class Vista_producto extends javax.swing.JPanel {
         });
         jPanel1.add(comboPresentacion);
 
-        txtxBuscarProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtxBuscarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtBuscarProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtBuscarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtBuscarProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarProductoKeyReleased(evt);
+            }
+        });
 
         txtFechaVencimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Fecha vencimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         try {
@@ -448,7 +459,7 @@ public class Vista_producto extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtNombreProducto)
-                                    .addComponent(txtxBuscarProducto))
+                                    .addComponent(txtBuscarProducto))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -504,7 +515,7 @@ public class Vista_producto extends javax.swing.JPanel {
                             .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtxBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -778,6 +789,31 @@ public class Vista_producto extends javax.swing.JPanel {
       llenarcomboboxCategoria();
     }//GEN-LAST:event_botorefrescarActionPerformed
 
+    private void comboCategoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriaMousePressed
+
+    private void comboCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCategoriaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriaMouseClicked
+
+    private void txtBuscarProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProductoKeyReleased
+        // TODO add your handling code here:
+        try {
+            DefaultTableModel modelo;
+            CRUD_Producto cli = new CRUD_Producto();
+
+            modelo = cli.buscarDatos(txtBuscarProducto.getText());
+            Mostrar();
+
+            tablaProducto.setModel(modelo);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }//GEN-LAST:event_txtBuscarProductoKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton botorefrescar;
@@ -799,6 +835,7 @@ public class Vista_producto extends javax.swing.JPanel {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JTable tablaProducto;
+    private javax.swing.JTextField txtBuscarProducto;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JFormattedTextField txtFechaVencimiento;
@@ -808,6 +845,5 @@ public class Vista_producto extends javax.swing.JPanel {
     private javax.swing.JTextField txtPrecioVenta;
     private javax.swing.JTextField txtidppresentacion;
     private javax.swing.JTextField txtmedidanumerica;
-    private javax.swing.JTextField txtxBuscarProducto;
     // End of variables declaration//GEN-END:variables
 }
