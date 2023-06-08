@@ -2,13 +2,23 @@ package Vistas_formularios;
 
 import Controlador.CRUD_Cliente;
 import Modelo.Cliente;
+import Modelo.Desplazar_txtFields;
+import Modelo.ValidarCampos;
+import java.awt.AWTKeyStroke;
 import java.awt.HeadlessException;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import static java.awt.event.KeyEvent.VK_RIGHT;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class Vista_cliente extends javax.swing.JPanel {
 
+    private ValidarCampos validar = new ValidarCampos();
+    private Desplazar_txtFields des = new Desplazar_txtFields();
     int datoSeleccionado = -1;
 
     public Vista_cliente() {
@@ -98,29 +108,6 @@ public class Vista_cliente extends javax.swing.JPanel {
 
     }
 
-    //Metodo para tipar solo letras.
-    private void KeyTipedTXT(java.awt.event.KeyEvent evt) {
-        char car = evt.getKeyChar();
-        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && car != 'á'
-                && car != 'é'
-                && car != 'í'
-                && car != 'ó'
-                && car != 'ú'
-                && car != 'Á'
-                && car != 'É'
-                && car != 'Í'
-                && car != 'Ó'
-                && car != 'Ú'
-                && car != 'Ü'
-                && car != 'ü'
-                && car != 'Ñ'
-                && car != 'ñ'
-                && (car != (char) KeyEvent.VK_SPACE)) {
-            evt.consume();
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,6 +151,9 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtNombreClienteUno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombreClienteUno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Primer Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtNombreClienteUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreClienteUnoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreClienteUnoKeyTyped(evt);
             }
@@ -173,6 +163,9 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtApellidoClienteDos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidoClienteDos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Segundo Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtApellidoClienteDos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoClienteDosKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoClienteDosKeyTyped(evt);
             }
@@ -182,6 +175,9 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtNombreClienteDos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombreClienteDos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Segundo Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtNombreClienteDos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreClienteDosKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreClienteDosKeyTyped(evt);
             }
@@ -190,11 +186,19 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtDireccionCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtDireccionCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDireccionCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Dirección", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtDireccionCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDireccionClienteKeyPressed(evt);
+            }
+        });
 
         txtApellidoClienteUno.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtApellidoClienteUno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidoClienteUno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Primer Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtApellidoClienteUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoClienteUnoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoClienteUnoKeyTyped(evt);
             }
@@ -319,6 +323,11 @@ public class Vista_cliente extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         txtTelefonoCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTelefonoCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTelefonoClienteKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
@@ -330,6 +339,11 @@ public class Vista_cliente extends javax.swing.JPanel {
 
         comboGenero.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Genero", "M", "F" }));
+        comboGenero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboGeneroKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -344,28 +358,28 @@ public class Vista_cliente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(51, 51, 51)
-                                            .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(txtNombreClienteUno, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                                .addComponent(comboGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtNombreClienteDos, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(txtApellidoClienteUno, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(txtApellidoClienteDos, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtNombreClienteUno, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                            .addComponent(comboGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtNombreClienteDos, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtApellidoClienteUno, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtApellidoClienteDos, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                                        .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtidpersona, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -415,22 +429,22 @@ public class Vista_cliente extends javax.swing.JPanel {
 
     private void txtNombreClienteUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteUnoKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtNombreClienteUnoKeyTyped
 
     private void txtNombreClienteDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteDosKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtNombreClienteDosKeyTyped
 
     private void txtApellidoClienteUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteUnoKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtApellidoClienteUnoKeyTyped
 
     private void txtApellidoClienteDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteDosKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtApellidoClienteDosKeyTyped
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
@@ -579,7 +593,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                     || txtApellidoClienteUno.getText().equals("")
                     || txtApellidoClienteDos.getText().equals("")
                     || comboGenero.getSelectedItem().toString().equals("Genero")
-                    || txtTelefonoCliente.getText().equals("")
+                    || txtTelefonoCliente.getText().equals("    -    ")
                     || txtDireccionCliente.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
@@ -690,13 +704,44 @@ public class Vista_cliente extends javax.swing.JPanel {
 
         }
 
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtBuscarClienteKeyReleased
 
     private void btnLimpiarCamposClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposClienteActionPerformed
         // TODO add your handling code here:
         limpiar();
     }//GEN-LAST:event_btnLimpiarCamposClienteActionPerformed
+
+    private void txtNombreClienteUnoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteUnoKeyPressed
+
+        des.Desplazar(evt, txtNombreClienteDos, txtNombreClienteUno);
+
+    }//GEN-LAST:event_txtNombreClienteUnoKeyPressed
+
+    private void txtNombreClienteDosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteDosKeyPressed
+        des.Desplazar(evt, txtApellidoClienteUno, txtNombreClienteUno);
+
+    }//GEN-LAST:event_txtNombreClienteDosKeyPressed
+
+    private void txtApellidoClienteUnoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteUnoKeyPressed
+        des.Desplazar(evt, txtApellidoClienteDos, txtNombreClienteDos);
+    }//GEN-LAST:event_txtApellidoClienteUnoKeyPressed
+
+    private void txtApellidoClienteDosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteDosKeyPressed
+        des.Desplazar(evt, txtTelefonoCliente, txtApellidoClienteUno);
+    }//GEN-LAST:event_txtApellidoClienteDosKeyPressed
+
+    private void comboGeneroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboGeneroKeyPressed
+
+    }//GEN-LAST:event_comboGeneroKeyPressed
+
+    private void txtTelefonoClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoClienteKeyPressed
+        des.Desplazar(evt, txtDireccionCliente, txtApellidoClienteDos);
+    }//GEN-LAST:event_txtTelefonoClienteKeyPressed
+
+    private void txtDireccionClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionClienteKeyPressed
+        des.Desplazar(evt, txtNombreClienteUno, txtTelefonoCliente);
+    }//GEN-LAST:event_txtDireccionClienteKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

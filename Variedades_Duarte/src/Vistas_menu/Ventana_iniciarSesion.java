@@ -68,7 +68,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
     }
 
     //Metodo para autenticar usuarios en la base de datos.
-    //Metodo para autenticar usuarios en la base de datos.
     private boolean Autenticacion(String username, String password) {
         try {
             String sql = "SELECT * FROM IniciodeSesion WHERE usuario_sesion = ? AND contrasena_sesion = ?";

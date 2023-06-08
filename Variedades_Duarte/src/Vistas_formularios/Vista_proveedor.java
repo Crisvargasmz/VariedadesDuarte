@@ -1,7 +1,9 @@
 package Vistas_formularios;
 
 import Controlador.CRUD_Proveedor;
+import Modelo.Desplazar_txtFields;
 import Modelo.Proveedor;
+import Modelo.ValidarCampos;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -9,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class Vista_proveedor extends javax.swing.JPanel {
 
+    private ValidarCampos validar = new ValidarCampos();
+    private Desplazar_txtFields des = new Desplazar_txtFields();
     int datoSeleccionado = -1;
 
     public Vista_proveedor() {
@@ -48,7 +52,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
         CRUD_Proveedor cp = new CRUD_Proveedor();
 
         Proveedor p1 = new Proveedor(Integer.parseInt(txtidproveedor.getText()),
-                Integer.parseInt( txtidpersona.getText()),
+                Integer.parseInt(txtidpersona.getText()),
                 txtNombreProveedorUno.getText(),
                 txtNombreProveedorDos.getText(),
                 txtApellidoProveedorUno.getText(),
@@ -71,29 +75,6 @@ public class Vista_proveedor extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, e);
         }
 
-    }
-
-    //Metodo para tipar solo letras.
-    private void KeyTipedTXT(java.awt.event.KeyEvent evt) {
-        char car = evt.getKeyChar();
-        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && car != 'á'
-                && car != 'é'
-                && car != 'í'
-                && car != 'ó'
-                && car != 'ú'
-                && car != 'Á'
-                && car != 'É'
-                && car != 'Í'
-                && car != 'Ó'
-                && car != 'Ú'
-                && car != 'Ü'
-                && car != 'ü'
-                && car != 'Ñ'
-                && car != 'ñ'
-                && (car != (char) KeyEvent.VK_SPACE)) {
-            evt.consume();
-        }
     }
 
     /**
@@ -166,6 +147,9 @@ public class Vista_proveedor extends javax.swing.JPanel {
         txtNombreProveedorUno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombreProveedorUno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Primer Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtNombreProveedorUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreProveedorUnoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreProveedorUnoKeyTyped(evt);
             }
@@ -175,6 +159,9 @@ public class Vista_proveedor extends javax.swing.JPanel {
         txtNombreProveedorDos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNombreProveedorDos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Segundo Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtNombreProveedorDos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreProveedorDosKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreProveedorDosKeyTyped(evt);
             }
@@ -184,6 +171,9 @@ public class Vista_proveedor extends javax.swing.JPanel {
         txtEmpresaProveedor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtEmpresaProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Empresa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtEmpresaProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmpresaProveedorKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEmpresaProveedorKeyTyped(evt);
             }
@@ -193,6 +183,9 @@ public class Vista_proveedor extends javax.swing.JPanel {
         txtApellidoProveedorDos.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidoProveedorDos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Segundo Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtApellidoProveedorDos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoProveedorDosKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoProveedorDosKeyTyped(evt);
             }
@@ -202,6 +195,9 @@ public class Vista_proveedor extends javax.swing.JPanel {
         txtApellidoProveedorUno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtApellidoProveedorUno.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Primer Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtApellidoProveedorUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoProveedorUnoKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoProveedorUnoKeyTyped(evt);
             }
@@ -276,6 +272,11 @@ public class Vista_proveedor extends javax.swing.JPanel {
         txtDireccionProveedor.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtDireccionProveedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDireccionProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Dirección", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtDireccionProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDireccionProveedorKeyPressed(evt);
+            }
+        });
 
         txtBuscarProveedor.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtBuscarProveedor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -293,6 +294,11 @@ public class Vista_proveedor extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         txtTelefonoProveedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTelefonoProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTelefonoProveedorKeyPressed(evt);
+            }
+        });
 
         jSeparator2.setBackground(new java.awt.Color(0, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(0, 204, 204));
@@ -318,28 +324,30 @@ public class Vista_proveedor extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(txtidpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtTelefonoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtNombreProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtNombreProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTelefonoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(txtApellidoProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(226, 226, 226))
+                                .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(223, 223, 223))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -362,27 +370,32 @@ public class Vista_proveedor extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtNombreProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtNombreProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTelefonoProveedor, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtApellidoProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApellidoProveedorUno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtidpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtidproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTelefonoProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtidpersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtidproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSplitPane3)
-                            .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -391,32 +404,32 @@ public class Vista_proveedor extends javax.swing.JPanel {
 
     private void txtNombreProveedorUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorUnoKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtNombreProveedorUnoKeyTyped
 
     private void txtNombreProveedorDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorDosKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtNombreProveedorDosKeyTyped
 
     private void txtEmpresaProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpresaProveedorKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtEmpresaProveedorKeyTyped
 
     private void txtApellidoProveedorUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoProveedorUnoKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtApellidoProveedorUnoKeyTyped
 
     private void txtApellidoProveedorDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoProveedorDosKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtApellidoProveedorDosKeyTyped
 
     private void txtBuscarProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProveedorKeyTyped
         // Llamando metodo KeyTipedTXT
-        KeyTipedTXT(evt);
+        validar.KeyTipedTXT(evt);
     }//GEN-LAST:event_txtBuscarProveedorKeyTyped
 
     private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed
@@ -535,6 +548,34 @@ public class Vista_proveedor extends javax.swing.JPanel {
         // TODO add your handling code here:
         limpiar();
     }//GEN-LAST:event_btnLimpiarCamposProveedorActionPerformed
+
+    private void txtNombreProveedorUnoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorUnoKeyPressed
+        des.Desplazar(evt, txtNombreProveedorDos, txtNombreProveedorUno);
+    }//GEN-LAST:event_txtNombreProveedorUnoKeyPressed
+
+    private void txtNombreProveedorDosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorDosKeyPressed
+        des.Desplazar(evt, txtApellidoProveedorUno, txtNombreProveedorUno);
+    }//GEN-LAST:event_txtNombreProveedorDosKeyPressed
+
+    private void txtApellidoProveedorUnoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoProveedorUnoKeyPressed
+        des.Desplazar(evt, txtApellidoProveedorDos, txtNombreProveedorDos);
+    }//GEN-LAST:event_txtApellidoProveedorUnoKeyPressed
+
+    private void txtApellidoProveedorDosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoProveedorDosKeyPressed
+        des.Desplazar(evt, txtEmpresaProveedor, txtApellidoProveedorUno);
+    }//GEN-LAST:event_txtApellidoProveedorDosKeyPressed
+
+    private void txtEmpresaProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpresaProveedorKeyPressed
+        des.Desplazar(evt, txtTelefonoProveedor, txtApellidoProveedorDos);
+    }//GEN-LAST:event_txtEmpresaProveedorKeyPressed
+
+    private void txtTelefonoProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProveedorKeyPressed
+        des.Desplazar(evt, txtDireccionProveedor, txtEmpresaProveedor);
+    }//GEN-LAST:event_txtTelefonoProveedorKeyPressed
+
+    private void txtDireccionProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionProveedorKeyPressed
+        des.Desplazar(evt, txtNombreProveedorUno, txtTelefonoProveedor);
+    }//GEN-LAST:event_txtDireccionProveedorKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
