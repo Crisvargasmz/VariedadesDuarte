@@ -7,10 +7,13 @@ package Modelo;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -21,19 +24,23 @@ public class MenuBotones_color {
     //Metodo para jugar con los colores de los botones que muestran Positivo.
     public void Activo(JButton btnActivo) {
 
-        btnActivo.setBackground(new Color(0, 151, 167));
+        btnActivo.setBackground(new Color(4, 64, 98));
         btnActivo.setForeground(new Color(255, 255, 255));
         btnActivo.setFont(new Font("Tahoma", 1, 18));
-        btnActivo.setContentAreaFilled(true);
+        btnActivo.setOpaque(true);
         btnActivo.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(MouseEvent arg) {
 
-                btnActivo.setBackground(new Color(0, 151, 167));
+                btnActivo.setBackground(new Color(4, 64, 98));
                 btnActivo.setForeground(new Color(255, 255, 255));
                 btnActivo.setFont(new Font("Tahoma", 1, 18));
-                btnActivo.setContentAreaFilled(true);
+                btnActivo.setOpaque(true);
+                if (arg.getSource() == btnActivo) {
+                    btnActivo.setOpaque(true);
+                    btnActivo.setBackground(new Color(4, 64, 98));
+                }
             }
 
             @Override
@@ -41,15 +48,16 @@ public class MenuBotones_color {
                 btnActivo.setBackground(new Color(29, 163, 83));
                 btnActivo.setForeground(new Color(255, 255, 255));
                 btnActivo.setFont(new Font("Tahoma", 1, 18));
-                btnActivo.setContentAreaFilled(false);
+                btnActivo.setOpaque(true);
             }
 
         });
     }
+    
 
     public void SubMenu(JButton btnMenu, JPanel subMenu) {
 
-        btnMenu.setBackground(new Color(0, 151, 167));
+        btnMenu.setBackground(new Color(4, 64, 98));
         btnMenu.setForeground(new Color(255, 255, 255));
         btnMenu.setFont(new Font("Tahoma", 1, 18));
         btnMenu.setContentAreaFilled(true);
@@ -59,7 +67,7 @@ public class MenuBotones_color {
             @Override
             public void mouseEntered(MouseEvent arg) {
 
-                btnMenu.setBackground(new Color(0, 151, 167));
+                btnMenu.setBackground(new Color(4, 64, 98));
                 btnMenu.setForeground(new Color(255, 255, 255));
                 btnMenu.setFont(new Font("Tahoma", 1, 18));
                 btnMenu.setContentAreaFilled(true);

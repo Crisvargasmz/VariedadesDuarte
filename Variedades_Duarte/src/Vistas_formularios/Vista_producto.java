@@ -296,6 +296,7 @@ public class Vista_producto extends javax.swing.JPanel {
         btnAgregarProducto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnAgregarProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarProducto.setText("Agregar");
+        btnAgregarProducto.setPreferredSize(new java.awt.Dimension(93, 25));
         btnAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProductoActionPerformed(evt);
@@ -307,6 +308,7 @@ public class Vista_producto extends javax.swing.JPanel {
         btnEditarProducto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEditarProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarProducto.setText("  Editar  ");
+        btnEditarProducto.setPreferredSize(new java.awt.Dimension(96, 25));
         btnEditarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarProductoActionPerformed(evt);
@@ -320,6 +322,7 @@ public class Vista_producto extends javax.swing.JPanel {
         btnActualizarProducto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnActualizarProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarProducto.setText("Actualizar");
+        btnActualizarProducto.setPreferredSize(new java.awt.Dimension(106, 25));
         btnActualizarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarProductoActionPerformed(evt);
@@ -334,6 +337,7 @@ public class Vista_producto extends javax.swing.JPanel {
         btnLimpiarCamposProducto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnLimpiarCamposProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiarCamposProducto.setText("Limpiar");
+        btnLimpiarCamposProducto.setPreferredSize(new java.awt.Dimension(87, 25));
         btnLimpiarCamposProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarCamposProductoActionPerformed(evt);
@@ -345,12 +349,15 @@ public class Vista_producto extends javax.swing.JPanel {
         btnEliminarProducto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEliminarProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarProducto.setText("Elimnar");
+        btnEliminarProducto.setPreferredSize(new java.awt.Dimension(88, 25));
         btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProductoActionPerformed(evt);
             }
         });
         jSplitPane3.setLeftComponent(btnEliminarProducto);
+
+        jPanel2.setBackground(new java.awt.Color(4, 64, 98));
 
         btnAgregarCate.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         btnAgregarCate.setText("+");
@@ -457,16 +464,16 @@ public class Vista_producto extends javax.swing.JPanel {
             }
         });
 
-        jSeparator2.setBackground(new java.awt.Color(0, 204, 204));
-        jSeparator2.setForeground(new java.awt.Color(0, 204, 204));
+        jSeparator2.setBackground(new java.awt.Color(4, 64, 98));
+        jSeparator2.setForeground(new java.awt.Color(4, 64, 98));
         jSeparator2.setOpaque(true);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(4, 64, 98));
         jLabel2.setText("Gestion de Productos");
 
-        jSeparator1.setBackground(new java.awt.Color(0, 204, 204));
-        jSeparator1.setForeground(new java.awt.Color(0, 204, 204));
+        jSeparator1.setBackground(new java.awt.Color(4, 64, 98));
+        jSeparator1.setForeground(new java.awt.Color(4, 64, 98));
         jSeparator1.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -524,9 +531,9 @@ public class Vista_producto extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
