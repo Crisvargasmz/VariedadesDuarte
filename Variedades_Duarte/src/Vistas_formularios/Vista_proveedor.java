@@ -456,10 +456,14 @@ public class Vista_proveedor extends javax.swing.JPanel {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                guardarProveedor();
-                limpiar();
-                mostrar();
-                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                if (cc.verificarTelefonoProveedor(txtTelefonoProveedor.getText())) {
+                    JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
+                } else {
+                    guardarProveedor();
+                    limpiar();
+                    mostrar();
+                    JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -528,7 +532,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
 
     private void btnActualizarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProveedorActionPerformed
         try {
-
+            CRUD_Proveedor cp = new CRUD_Proveedor();
             if (txtNombreProveedorUno.getText().equals("")
                     || txtNombreProveedorDos.getText().equals("")
                     || txtApellidoProveedorUno.getText().equals("")
@@ -538,12 +542,16 @@ public class Vista_proveedor extends javax.swing.JPanel {
                     || txtDireccionProveedor.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                editarProveedor();
-                limpiar();
-                mostrar();
+                if (cp.verificarTelefonoProveedor(txtTelefonoProveedor.getText())) {
+                    JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
+                } else {
+                    editarProveedor();
+                    limpiar();
+                    mostrar();
 
-                JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+                    JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
 
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);

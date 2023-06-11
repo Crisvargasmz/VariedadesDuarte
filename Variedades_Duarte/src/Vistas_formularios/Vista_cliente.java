@@ -466,10 +466,14 @@ public class Vista_cliente extends javax.swing.JPanel {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                guardarCliente();
-                limpiar();
-                mostrar();
-                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                if (cc.verificarTelefonoCliente(txtTelefonoCliente.getText())) {
+                    JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
+                } else {
+                    guardarCliente();
+                    limpiar();
+                    mostrar();
+                    JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -592,7 +596,7 @@ public class Vista_cliente extends javax.swing.JPanel {
     private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
 
         try {
-
+            CRUD_Cliente cc = new CRUD_Cliente();
             if (txtNombreClienteUno.getText().equals("")
                     || txtNombreClienteDos.getText().equals("")
                     || txtApellidoClienteUno.getText().equals("")
@@ -602,12 +606,16 @@ public class Vista_cliente extends javax.swing.JPanel {
                     || txtDireccionCliente.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                editarCliente();
-                limpiar();
-                mostrar();
+                if (cc.verificarTelefonoCliente(txtTelefonoCliente.getText())) {
+                    JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
+                } else {
+                    editarCliente();
+                    limpiar();
+                    mostrar();
 
-                JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+                    JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
 
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -621,7 +629,7 @@ public class Vista_cliente extends javax.swing.JPanel {
 
         if (datoSeleccionado >= 0) {
 
-            String dato = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
+            String IDCliente = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
             CRUD_Cliente cli = new CRUD_Cliente();
             if (JOptionPane.showConfirmDialog(this.getRootPane(),
                     "Se eliminará el registro, ¿desea continuar?",
@@ -630,7 +638,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                     JOptionPane.YES_NO_OPTION)
                     == JOptionPane.YES_OPTION) {
 
-                cli.eliminar(dato);
+                cli.eliminar(IDCliente);
                 mostrar();
                 JOptionPane.showMessageDialog(null,
                         "Dato eliminado correctamente");

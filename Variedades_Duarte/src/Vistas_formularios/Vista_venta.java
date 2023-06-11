@@ -4,11 +4,8 @@
  */
 package Vistas_formularios;
 
-import Modelo.MenuBotones_color;
-import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 
 //Importando las librerias de itext.
 //import com.itextpdf.text.Chunk;
@@ -22,22 +19,23 @@ import javax.swing.JFrame;
 //import com.itextpdf.text.DocumentException;
 //import com.itextpdf.text.pdf.PdfPTable;
 //import com.itextpdf.text.pdf.PdfWriter;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Windows 10
  */
 public class Vista_venta extends javax.swing.JPanel {
 
+    
     /**
      * Creates new form Vista_venta
      */
     public Vista_venta() {
         initComponents();
+        txtResibeCliente.setEnabled(true);
     }
 
-      //Metodo para tipar solo letras.
+    
+    //Metodo para tipar solo letras.
     private void KeyTipedTXT(java.awt.event.KeyEvent evt) {
         char car = evt.getKeyChar();
         if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
@@ -59,14 +57,16 @@ public class Vista_venta extends javax.swing.JPanel {
             evt.consume();
         }
     }
-    
-     //Metodo para tipar solo numeros.
+
+    //Metodo para tipar solo numeros.
     private void KeyTipedNUM(java.awt.event.KeyEvent evt) {
         char car = evt.getKeyChar();
         if ((car < '0' || car > '9') && (car < '0' || car > '9')) {
             evt.consume();
         }
     }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +78,7 @@ public class Vista_venta extends javax.swing.JPanel {
 
         pnlVenta = new javax.swing.JPanel();
         txtMostrarDatosProducto = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtResibeCliente = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -109,14 +109,13 @@ public class Vista_venta extends javax.swing.JPanel {
             }
         });
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(242, 242, 242));
-        jTextField4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextField4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Cliente :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        jTextField4.setOpaque(true);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtResibeCliente.setBackground(new java.awt.Color(242, 242, 242));
+        txtResibeCliente.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtResibeCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Cliente :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtResibeCliente.setOpaque(true);
+        txtResibeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtResibeClienteActionPerformed(evt);
             }
         });
 
@@ -218,12 +217,15 @@ public class Vista_venta extends javax.swing.JPanel {
             .addGroup(pnlVentaLayout.createSequentialGroup()
                 .addGroup(pnlVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlVentaLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlVentaLayout.createSequentialGroup()
                         .addGap(385, 385, 385)
                         .addGroup(pnlVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlVentaLayout.createSequentialGroup()
                                 .addGroup(pnlVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtMostrarDatosProducto)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtResibeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnAgregarVCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,10 +241,7 @@ public class Vista_venta extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3))))
-                    .addGroup(pnlVentaLayout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButton3)))))
                 .addContainerGap(159, Short.MAX_VALUE))
             .addGroup(pnlVentaLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
@@ -262,11 +261,11 @@ public class Vista_venta extends javax.swing.JPanel {
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtResibeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregarVCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMostrarDatosProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMostrarDatosProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregarVProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(pnlVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +297,7 @@ public class Vista_venta extends javax.swing.JPanel {
 
     private void btnAgregarVClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVClienteActionPerformed
         // TODO add your handling code here:
-        DialogVentaCliente dialog = new DialogVentaCliente(null,true);
+        DialogVentaCliente dialog = new DialogVentaCliente(null, true);
         Vista_venta vv = new Vista_venta();
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setResizable(false);
@@ -308,7 +307,7 @@ public class Vista_venta extends javax.swing.JPanel {
 
     private void btnAgregarVProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVProductoActionPerformed
         // TODO add your handling code here:
-        DialogVentaProducto dialog = new DialogVentaProducto(null,true);
+        DialogVentaProducto dialog = new DialogVentaProducto(null, true);
         Vista_venta vv = new Vista_venta();
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setResizable(false);
@@ -323,7 +322,7 @@ public class Vista_venta extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        FinalizarVenta dialog = new FinalizarVenta(null,true);
+        FinalizarVenta dialog = new FinalizarVenta(null, true);
         Vista_venta vv = new Vista_venta();
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setResizable(false);
@@ -331,9 +330,9 @@ public class Vista_venta extends javax.swing.JPanel {
         dialog.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtResibeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResibeClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtResibeClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -351,8 +350,8 @@ public class Vista_venta extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel pnlVenta;
     private javax.swing.JTextField txtMostrarDatosProducto;
+    public static javax.swing.JTextField txtResibeCliente;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,19 +4,38 @@
  */
 package Vistas_formularios;
 
+import Controlador.CRUD_Cliente;
+import Controlador.CRUD_Venta;
+import Modelo.Cliente;
+import Modelo.Venta;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Windows 10
  */
 public class DialogVentaCliente extends javax.swing.JDialog {
+
+    int datoSeleccionado = -1;
+    String Hora, Minuto, Segundo;
 
     /**
      * A return status code - returned if Cancel button has been pressed
@@ -33,7 +52,10 @@ public class DialogVentaCliente extends javax.swing.JDialog {
     public DialogVentaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        mostrar();
+        txtFecha_venta.setVisible(false);
+        txtHora_venta.setVisible(false);
+        txtIDCliente.setVisible(false);
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -53,6 +75,43 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         return returnStatus;
     }
 
+    public void guardarVenta() {
+        CRUD_Venta cv = new CRUD_Venta();
+
+        Venta venta = new Venta(
+                Date.valueOf(txtFecha_venta.getText()),
+                Time.valueOf(txtHora_venta.getText()),
+                Integer.parseInt(txtIDCliente.getText()));
+
+        cv.insertarVenta(venta);
+    }
+
+    public void mostrar() { //Método mostrar
+        try {
+            DefaultTableModel modelo;
+            CRUD_Cliente cli = new CRUD_Cliente(); //objeto de la clase CRUDCliente
+            modelo = cli.mostrarDatos();
+            tablaClientesDisponibles.setModel(modelo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }
+
+    //Metodo para mostrar la fecha
+    public static String Fecha() {
+        java.util.Date fecha = new java.util.Date();
+        SimpleDateFormat Formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+        return Formatofecha.format(fecha);
+    }
+
+    //Metodo para mostrar la hora
+    public String Hora() {
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        java.util.Date time = new java.util.Date();
+        return timeFormat.format(time);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,15 +122,18 @@ public class DialogVentaCliente extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cancelButton = new javax.swing.JButton();
-        txtMostrarDatosCliente = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        txtEnviaClientesDisponibles = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaCliente = new javax.swing.JTable();
+        tablaClientesDisponibles = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btnAgregarClienteVenta = new javax.swing.JButton();
+        txtIDCliente = new javax.swing.JTextField();
+        txtFecha_venta = new javax.swing.JTextField();
+        txtHora_venta = new javax.swing.JTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -81,24 +143,29 @@ public class DialogVentaCliente extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        cancelButton.setBackground(new java.awt.Color(255, 0, 0));
-        cancelButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
-        cancelButton.setText("Cancelar");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(255, 0, 0));
+        btnCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        txtMostrarDatosCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtMostrarDatosCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtEnviaClientesDisponibles.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtEnviaClientesDisponibles.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtEnviaClientesDisponibles.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEnviaClientesDisponiblesKeyReleased(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(0, 0, 0)), "Clientes registrados", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
         jPanel2.setLayout(new javax.swing.OverlayLayout(jPanel2));
 
-        tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientesDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -115,17 +182,17 @@ public class DialogVentaCliente extends javax.swing.JDialog {
                 "ID CLiente", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido", "Telefono"
             }
         ));
-        tablaCliente.setGridColor(new java.awt.Color(0, 204, 204));
-        tablaCliente.setRowHeight(25);
-        tablaCliente.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        tablaCliente.setShowHorizontalLines(true);
-        tablaCliente.setSurrendersFocusOnKeystroke(true);
-        tablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaClientesDisponibles.setGridColor(new java.awt.Color(0, 204, 204));
+        tablaClientesDisponibles.setRowHeight(25);
+        tablaClientesDisponibles.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        tablaClientesDisponibles.setShowHorizontalLines(true);
+        tablaClientesDisponibles.setSurrendersFocusOnKeystroke(true);
+        tablaClientesDisponibles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaClienteMouseClicked(evt);
+                tablaClientesDisponiblesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaCliente);
+        jScrollPane1.setViewportView(tablaClientesDisponibles);
 
         jPanel2.add(jScrollPane1);
 
@@ -141,13 +208,13 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         jSeparator1.setForeground(new java.awt.Color(4, 64, 98));
         jSeparator1.setOpaque(true);
 
-        jButton1.setBackground(new java.awt.Color(4, 64, 98));
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarClienteVenta.setBackground(new java.awt.Color(4, 64, 98));
+        btnAgregarClienteVenta.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnAgregarClienteVenta.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarClienteVenta.setText("Agregar");
+        btnAgregarClienteVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarClienteVentaActionPerformed(evt);
             }
         });
 
@@ -160,11 +227,19 @@ public class DialogVentaCliente extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 979, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtMostrarDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEnviaClientesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtFecha_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(txtHora_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAgregarClienteVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,13 +253,17 @@ public class DialogVentaCliente extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFecha_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtHora_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtMostrarDatosCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtEnviaClientesDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAgregarClienteVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -206,9 +285,9 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         doClose(RET_CANCEL);
-    }//GEN-LAST:event_cancelButtonActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * Closes the dialog
@@ -217,58 +296,69 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         doClose(RET_CANCEL);
     }//GEN-LAST:event_closeDialog
 
-    private void tablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClienteMouseClicked
-//        datoSeleccionado = tablaCliente.rowAtPoint(evt.getPoint());
-        //    int filaSeleccionada = tablaCliente.getSelectedRow();
-        //
-        //        if (filaSeleccionada != -1) {
-            ////            String IDCliente = tablaCliente.getValueAt(filaSeleccionada, 0).toString();
-            //            String nombreClienteUno = tablaCliente.getValueAt(filaSeleccionada, 1).toString();
-            //            String nombreClienteDos = tablaCliente.getValueAt(filaSeleccionada, 2).toString();
-            //            String apellidoClienteUno = tablaCliente.getValueAt(filaSeleccionada, 3).toString();
-            //            String apellidoClienteDos = tablaCliente.getValueAt(filaSeleccionada, 4).toString();
-            //            String genero = tablaCliente.getValueAt(filaSeleccionada, 5).toString();
-            //            String telefonoCliente = tablaCliente.getValueAt(filaSeleccionada,6 ).toString();
-            //            String direccionCliente = tablaCliente.getValueAt(filaSeleccionada, 7).toString();
-            //
-            ////            txtIDCliente.setText(IDCliente);
-            //            txtNombreClienteUno.setText(nombreClienteUno);
-            //            txtNombreClienteDos.setText(nombreClienteDos);
-            //            txtApellidoClienteUno.setText(apellidoClienteUno);
-            //            txtApellidoClienteDos.setText(apellidoClienteDos);
-            //            comboGenero.setSelectedItem(genero);
-            //            txtTelefonoCliente.setText(telefonoCliente);
-            //            txtDireccionCliente.setText(direccionCliente);
-            //        }
-        ////
-        //  if (datoSeleccionado >= 0) {
-            //
-            //                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
-            //            CRUD_Cliente cli = new CRUD_Cliente();
-            //            if (JOptionPane.showConfirmDialog(this.getRootPane(),
-                //                    "Se eliminará el registro, ¿desea continuar?",
-                //                    "Eliminar Registro",
-                //                    JOptionPane.WARNING_MESSAGE,
-                //                    JOptionPane.YES_NO_OPTION)
-            //                    == JOptionPane.YES_OPTION) {
-            //
-            //                cli.eliminar(dato);
-            //                mostrar();
-            //                JOptionPane.showMessageDialog(null,
-                //                        "Dato eliminado correctamente");
-            //            }
-        //        } else {
-        //            JOptionPane.showMessageDialog(null,
-            //                    "Debe seleccionar un registro de la tabla");
-        //        }
-        //
+    private void tablaClientesDisponiblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesDisponiblesMouseClicked
+        datoSeleccionado = tablaClientesDisponibles.rowAtPoint(evt.getPoint());
+        int fila = this.tablaClientesDisponibles.getSelectedRow();
 
-    }//GEN-LAST:event_tablaClienteMouseClicked
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente de la tabla.");
+        } else {
+            try {
+                String IDCliente = (String) this.tablaClientesDisponibles.getValueAt(fila, 1);
+                String nombreUno = (String) this.tablaClientesDisponibles.getValueAt(fila, 2);
+                String nombreDos = (String) this.tablaClientesDisponibles.getValueAt(fila, 3);
+                String apellidoUno = (String) this.tablaClientesDisponibles.getValueAt(fila, 4).toString();
+                String apellidoDos = (String) this.tablaClientesDisponibles.getValueAt(fila, 5).toString();
+                txtIDCliente.setText(IDCliente);
+                txtFecha_venta.setText(Fecha());
+                txtHora_venta.setText(Hora());
+                txtEnviaClientesDisponibles.setText(nombreUno + " " + nombreDos + " " + apellidoUno + " " + apellidoDos);
+                Vista_venta vc = new Vista_venta();
+                String enviarNombre = txtEnviaClientesDisponibles.getText();
+                Vista_venta.txtResibeCliente.setText(enviarNombre);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_tablaClientesDisponiblesMouseClicked
+
+    private void btnAgregarClienteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteVentaActionPerformed
         doClose(RET_OK);
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
+        CRUD_Venta cv = new CRUD_Venta();
+        try {
+            if (txtEnviaClientesDisponibles.getText().equals("")) {
+
+                JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+            } else {
+                guardarVenta();
+                JOptionPane.showMessageDialog(null, "Cliente preparado.");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+        Vista_venta vc = new Vista_venta();
+        String enviarNombre = txtEnviaClientesDisponibles.getText();
+        Vista_venta.txtResibeCliente.setText(enviarNombre);
+    }//GEN-LAST:event_btnAgregarClienteVentaActionPerformed
+
+    private void txtEnviaClientesDisponiblesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnviaClientesDisponiblesKeyReleased
+        // TODO add your handling code here:
+        try {
+            DefaultTableModel modelo;
+            CRUD_Cliente cli = new CRUD_Cliente();
+
+            modelo = cli.buscarDatos(txtEnviaClientesDisponibles.getText());
+            mostrar();
+
+            tablaClientesDisponibles.setModel(modelo);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }//GEN-LAST:event_txtEnviaClientesDisponiblesKeyReleased
+
     private void doClose(int retStatus) {
         returnStatus = retStatus;
         setVisible(false);
@@ -318,16 +408,19 @@ public class DialogVentaCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAgregarClienteVenta;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable tablaCliente;
-    private javax.swing.JTextField txtMostrarDatosCliente;
+    private javax.swing.JTable tablaClientesDisponibles;
+    private javax.swing.JTextField txtEnviaClientesDisponibles;
+    private javax.swing.JTextField txtFecha_venta;
+    private javax.swing.JTextField txtHora_venta;
+    private javax.swing.JTextField txtIDCliente;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;

@@ -106,6 +106,20 @@ public class CRUD_Proveedor {
             return false;
         }
     }
+       
+       public boolean verificarTelefonoProveedor(String Dato) {
+        ResultSet rs;
+
+        try {
+            CallableStatement call = cn.prepareCall("{call VerificarTelefono(?)}");
+            call.setString(1, Dato);
+            rs = call.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
       
        public void eliminar(String Dato) {
         try {
