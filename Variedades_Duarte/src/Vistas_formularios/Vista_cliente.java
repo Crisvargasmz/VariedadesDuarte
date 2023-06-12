@@ -139,8 +139,8 @@ public class Vista_cliente extends javax.swing.JPanel {
         txtIDcliente = new javax.swing.JTextField();
         txtidpersona = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         comboGenero = new javax.swing.JComboBox<>();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 580));
@@ -204,8 +204,8 @@ public class Vista_cliente extends javax.swing.JPanel {
             }
         });
 
-        jSeparator1.setBackground(new java.awt.Color(0, 204, 204));
-        jSeparator1.setForeground(new java.awt.Color(0, 204, 204));
+        jSeparator1.setBackground(new java.awt.Color(4, 64, 98));
+        jSeparator1.setForeground(new java.awt.Color(4, 64, 98));
         jSeparator1.setOpaque(true);
 
         jSplitPane1.setBackground(new java.awt.Color(4, 64, 98));
@@ -218,6 +218,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         btnAgregarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnAgregarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarCliente.setText("Agregar");
+        btnAgregarCliente.setPreferredSize(new java.awt.Dimension(93, 25));
         btnAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarClienteActionPerformed(evt);
@@ -229,6 +230,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         btnEditarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEditarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarCliente.setText("  Editar  ");
+        btnEditarCliente.setPreferredSize(new java.awt.Dimension(96, 25));
         btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarClienteActionPerformed(evt);
@@ -242,6 +244,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         btnActualizarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnActualizarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarCliente.setText("Actualizar");
+        btnActualizarCliente.setPreferredSize(new java.awt.Dimension(106, 25));
         btnActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarClienteActionPerformed(evt);
@@ -256,6 +259,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         btnLimpiarCamposCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnLimpiarCamposCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiarCamposCliente.setText("Limpiar");
+        btnLimpiarCamposCliente.setPreferredSize(new java.awt.Dimension(87, 25));
         btnLimpiarCamposCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarCamposClienteActionPerformed(evt);
@@ -267,6 +271,7 @@ public class Vista_cliente extends javax.swing.JPanel {
         btnEliminarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEliminarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarCliente.setText("Elimnar");
+        btnEliminarCliente.setPreferredSize(new java.awt.Dimension(88, 25));
         btnEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarClienteActionPerformed(evt);
@@ -330,12 +335,8 @@ public class Vista_cliente extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(4, 64, 98));
         jLabel2.setText("Gestion de Clientes");
-
-        jSeparator2.setBackground(new java.awt.Color(0, 204, 204));
-        jSeparator2.setForeground(new java.awt.Color(0, 204, 204));
-        jSeparator2.setOpaque(true);
 
         comboGenero.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Genero", "M", "F" }));
@@ -345,6 +346,10 @@ public class Vista_cliente extends javax.swing.JPanel {
             }
         });
 
+        jSeparator3.setBackground(new java.awt.Color(4, 64, 98));
+        jSeparator3.setForeground(new java.awt.Color(4, 64, 98));
+        jSeparator3.setOpaque(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -352,7 +357,6 @@ public class Vista_cliente extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 1231, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -386,8 +390,9 @@ public class Vista_cliente extends javax.swing.JPanel {
                                 .addComponent(txtIDcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator2)))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jSeparator3))))
+                    .addComponent(contenedorTablaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 1231, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -396,7 +401,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtApellidoClienteDos)
@@ -461,10 +466,14 @@ public class Vista_cliente extends javax.swing.JPanel {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                guardarCliente();
-                limpiar();
-                mostrar();
-                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                if (cc.verificarTelefonoCliente(txtTelefonoCliente.getText())) {
+                    JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
+                } else {
+                    guardarCliente();
+                    limpiar();
+                    mostrar();
+                    JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -587,7 +596,7 @@ public class Vista_cliente extends javax.swing.JPanel {
     private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
 
         try {
-
+            CRUD_Cliente cc = new CRUD_Cliente();
             if (txtNombreClienteUno.getText().equals("")
                     || txtNombreClienteDos.getText().equals("")
                     || txtApellidoClienteUno.getText().equals("")
@@ -597,12 +606,16 @@ public class Vista_cliente extends javax.swing.JPanel {
                     || txtDireccionCliente.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                editarCliente();
-                limpiar();
-                mostrar();
+                if (cc.verificarTelefonoCliente(txtTelefonoCliente.getText())) {
+                    JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
+                } else {
+                    editarCliente();
+                    limpiar();
+                    mostrar();
 
-                JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+                    JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
 
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -616,7 +629,7 @@ public class Vista_cliente extends javax.swing.JPanel {
 
         if (datoSeleccionado >= 0) {
 
-            String dato = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
+            String IDCliente = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
             CRUD_Cliente cli = new CRUD_Cliente();
             if (JOptionPane.showConfirmDialog(this.getRootPane(),
                     "Se eliminará el registro, ¿desea continuar?",
@@ -625,7 +638,7 @@ public class Vista_cliente extends javax.swing.JPanel {
                     JOptionPane.YES_NO_OPTION)
                     == JOptionPane.YES_OPTION) {
 
-                cli.eliminar(dato);
+                cli.eliminar(IDCliente);
                 mostrar();
                 JOptionPane.showMessageDialog(null,
                         "Dato eliminado correctamente");
@@ -755,7 +768,7 @@ public class Vista_cliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;

@@ -1,5 +1,6 @@
 //Crud venta
 package Controlador;
+import Modelo.Detalle_venta;
 import Modelo.Venta;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -38,7 +39,7 @@ public class CRUD_Venta {
     public DefaultTableModel buscarDatos(String Dato) {
         ResultSet rs;
         DefaultTableModel modelo;
-        String[] titulos = {"Fecha", "IDCliente"};
+        String[] titulos = {"IDVenta","Fecha", "Hora","IDCliente"};
         String[] registro = new String[3];
         modelo = new DefaultTableModel(null, titulos);
 
@@ -48,8 +49,10 @@ public class CRUD_Venta {
             rs = call.executeQuery();
 
             while (rs.next()) {
-                registro[0] = rs.getString("Fecha");
-                registro[1] = rs.getString("IDCliente");
+                registro[0] = rs.getString("IDVenta");
+                registro[1] = rs.getString("fecha_venta");
+                registro[2] = rs.getString("hora_venta");
+                registro[3] = rs.getString("IDCliente");
                 modelo.addRow(registro);
             }
             return modelo;
@@ -61,8 +64,11 @@ public class CRUD_Venta {
     
     public void insertarVenta(Venta venta) {
         try {
-            CallableStatement callableStatement = cn.prepareCall("{call InsertarVenta(?)}");
-            callableStatement.setString(1, venta.getFecha_venta());
+
+            CallableStatement callableStatement = cn.prepareCall("{call InsertarVenta(?,?,?)}");
+            callableStatement.setDate(1, venta.getFecha_venta());
+            callableStatement.setTime(2,venta.getHora_venta());
+            callableStatement.setInt(3, venta.getIDCliente());
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -70,41 +76,55 @@ public class CRUD_Venta {
         }
     }
     
-     public boolean verificarDatos(String dato) {
-        ResultSet rs;
+    public void insertarDetalle_venta(Detalle_venta detalle_venta) {
+        try {
 
-        try {
-            CallableStatement call = cn.prepareCall("{call ConsultarVenta(?)}");
-            call.setString(1, dato);
-            rs = call.executeQuery();
-            return rs.next();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            return false;
-        }
-    }
-     
-     public void eliminar(String IDVenta) {
-        try {
-            CallableStatement cbst = cn.prepareCall("{call EliminarVenta(?)}");
-            cbst.setString(1, IDVenta);
-            cbst.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-     
-      public void ActualizarCliente(Venta venta) {
-        try {
-           CallableStatement callableStatement = cn.prepareCall("{call ActualizarVenta(?,?,?,?,?,?,?,?)}");
-            callableStatement.setInt(1, venta.getID_venta());
-           callableStatement.setString(2, venta.getFecha_venta());
+            CallableStatement callableStatement = cn.prepareCall("{call InsertarVenta(?,?,?)}");
+            callableStatement.setInt(1, detalle_venta.getCantidad_venta());
+            callableStatement.setInt(2,detalle_venta.getIDVenta());
+            callableStatement.setInt(3, detalle_venta.getIDProducto());
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
             e.printStackTrace();
         }
     }
+    
+//     public boolean verificarDatos(String dato) {
+//        ResultSet rs;
+//
+//        try {
+//            CallableStatement call = cn.prepareCall("{call ConsultarVenta(?)}");
+//            call.setString(1, dato);
+//            rs = call.executeQuery();
+//            return rs.next();
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//            return false;
+//        }
+//    }
+     
+//     public void eliminar(String IDVenta) {
+//        try {
+//            CallableStatement cbst = cn.prepareCall("{call EliminarVenta(?)}");
+//            cbst.setString(1, IDVenta);
+//            cbst.executeUpdate();
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
+     
+//      public void ActualizarCliente(Venta venta) {
+//        try {
+//           CallableStatement callableStatement = cn.prepareCall("{call ActualizarVenta(?,?,?,?,?,?,?,?)}");
+//            callableStatement.setInt(1, venta.getID_venta());
+//           callableStatement.setString(2, venta.getFecha_venta());
+//            callableStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//            e.printStackTrace();
+//        }
+//    }
  
     
 }

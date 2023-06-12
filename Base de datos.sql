@@ -445,6 +445,56 @@ GO
 
 
 GO
+
+--Procedimiento almacenado para Insertar venta
+CREATE PROCEDURE InsertarVenta
+   @fecha_venta DATE,
+   @hora_venta TIME,
+   @IDCliente INT
+
+   AS
+
+   INSERT INTO [Venta] ([fecha_venta],[hora_venta],[IDCliente])
+   VALUES (@fecha_venta,@hora_venta,@IDCliente)
+   GO
+
+ 
+ Select * from Venta
+ 
+
+   --Procedimiento almacenado para insertar Detall_Venta
+   CREATE PROCEDURE InsertarDetalle_venta
+   @cantidad_venta INT,
+   @IDVenta INT,
+   @IDProducto INT
+
+   AS
+
+   INSERT INTO [Detalle_Venta] ([cantidad_venta],[IDVenta],[IDProducto])
+   VALUES (@cantidad_venta,@IDVenta,@IDProducto)
+   GO
+
+   EXEC InsertarDetalle_Venta @cantidad_venta = 5, @IDVenta = 7, @IDProducto = 2;
+ GO
+ Select * from Detalle_Venta
+ 
+ 
+BEGIN TRANSACTION;
+
+EXEC InsertarDetalle_Venta @cantidad_venta = 5, @IDVenta = 7, @IDProducto = 3;
+
+UPDATE Producto 
+SET cantidad_producto = cantidad_producto - Detalle_Venta.cantidad_venta 
+FROM Producto 
+INNER JOIN Detalle_Venta ON Detalle_Venta.IDProducto = Producto.IDProducto 
+WHERE Detalle_Venta.ID_DVenta = ID_DVenta;
+
+COMMIT;
+GO
+SELECT * FROM Producto
+SELECT * FROM Venta
+SELECT * FROM Detalle_Venta
+
 --------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -480,6 +530,22 @@ BEGIN
 END
 
 GO
+
+CREATE PROCEDURE BuscarClienteCombo
+ @Dato NVARCHAR (50)
+AS
+BEGIN
+    SELECT  Cliente.IDCliente,nombre1,nombre2,apellido1,apellido2
+    FROM Cliente inner join Persona
+	ON Cliente.IDCliente = Persona.IDPersona
+  WHERE nombre1 LIKE '%' + RTRIM(@Dato) + '%' OR nombre2 LIKE '%' + RTRIM(@Dato) + '%'
+    OR apellido1 LIKE '%' + RTRIM(@Dato) + '%' OR apellido2 LIKE '%' + RTRIM(@Dato) + '%'
+
+END
+
+GO
+
+Exec BuscarClienteCombo @Dato = 'Emma';
 
 --procedimiento almacenado para buscar proveedores
 CREATE PROCEDURE BuscarProveedor
@@ -542,6 +608,32 @@ BEGIN
 -----------------------------------------------------------------------------------------------------
 --PROCEDIMIENTOS ALMACENADOS PARA CONSULTAR 
 -----------------------------------------------------------------------------------------------------
+--PROCEDIMIENTO ALMACENADO PARA CONSULTAR UN COMPRA FINALIZADA
+CREATE PROCEDURE ConsultarClienteVentaDetalleVenta
+AS
+BEGIN
+    SELECT
+        p.nombre1 AS nombre1,
+        p.nombre2 AS nombre2,
+        p.apellido1 AS apellido1,
+        p.apellido2 AS apellido2,
+        v.fecha_venta AS fecha_venta,
+        v.hora_venta AS hora_venta,
+        dv.IDProducto,
+        pr.nombre_producto AS nombre_producto,
+        dv.cantidad_venta,
+        pr.precio_venta
+    FROM
+        Persona p
+        INNER JOIN cliente c ON p.IDPersona= c.IDPersona
+        INNER JOIN venta v ON c.IDCliente = v.IDCliente
+        INNER JOIN detalle_venta dv ON v.IDVenta = dv.IDVenta
+        INNER JOIN producto pr ON dv.IDProducto = pr.IDProducto;
+END
+GO
+
+EXEC ConsultarClienteVentaDetalleVenta;
+GO
 
 --PROCEDIMIENTO ALMACENADO PARA CONSULTAR CLIENTE
 
@@ -560,6 +652,17 @@ EXEC ConsultarCliente
 
 GO
 
+--Consultar Cliente en combo
+CREATE PROCEDURE ConsultarClienteCombo
+AS
+BEGIN
+  SELECT Persona.IDPersona,Cliente.IDCliente,Persona.nombre1,Persona.nombre2,Persona.apellido1,
+  Persona.apellido2
+
+  FROM Cliente inner join Persona on Cliente.IDPersona=Persona.IDPersona
+
+END
+GO
 --PROCEDIMIENTO ALMACENADO PARA CONSULTAR PROVEEDOR
 CREATE PROCEDURE ConsultarProveedor
 AS
@@ -619,7 +722,17 @@ END
 
 GO
 
+CREATE PROCEDURE VerificarTelefono
+@DatoTelefono NVARCHAR (9)
+AS
+BEGIN
+SELECT Persona.telefono
 
+FROM Persona
+	WHERE telefono LIKE '%' + RTRIM (@DatoTelefono)+'%'
+	
+END
+GO
 
 
 --PROCEDIMIENTO ALMACEADO PARA CONSULTAR CATEGORIA
@@ -850,21 +963,33 @@ GO
 ---PROCEDIMIENTO ALMACENADO PARA ELIMINAR 
 --------------------------------------------------------------------------------------------------
 
+ --PROCEDIMIENTO ALMACENADO PARA ELIMINAR CLIENTE
+CREATE PROCEDURE EliminarClienteVenta
+  @IDCliente INT
+AS
+BEGIN
+  -- Verificar si el cliente tiene ventas asociadas
+  IF EXISTS (SELECT 1 FROM Venta WHERE IDCliente = @IDCliente)
+  BEGIN
+    -- Eliminar los detalles de venta relacionados con el cliente
+    DELETE FROM Detalle_Venta WHERE IDVenta IN (SELECT IDVenta FROM Venta WHERE IDCliente = @IDCliente);
 
---PROCEDIMIENTO ALMACENADO PARA ELIMINAR CLIENTE
+    -- Eliminar las ventas del cliente
+    DELETE FROM Venta WHERE IDCliente = @IDCliente;
+  END
 
-   CREATE PROCEDURE EliminarClientePersona
-  @Dato NVARCHAR (150)
+  -- Eliminar el cliente de la tabla Cliente
+  DELETE FROM Cliente WHERE IDCliente = @IDCliente;
 
-  AS
+  -- Eliminar el cliente de la tabla Persona
+  DELETE FROM Persona WHERE IDPersona = @IDCliente;
+END
 
-  DELETE FROM Cliente WHERE IDCliente=@Dato
-  DELETE FROM Persona WHERE IDPersona=@Dato
-
-
-  GO
-
-
+  Select * from Cliente
+  Select * from Venta
+  Select * from Detalle_Venta
+  EXEC EliminarClienteVenta @IDCliente = 3;
+GO
 
 
   --PROCEDIMINETO ALMACENADO PARA ELIMINAR PROVEEDOR

@@ -210,6 +210,8 @@ public class Vista_proveedor extends javax.swing.JPanel {
         btnLimpiarCamposProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnLimpiarCamposProveedor.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiarCamposProveedor.setText("Limpiar");
+        btnLimpiarCamposProveedor.setMaximumSize(new java.awt.Dimension(87, 25));
+        btnLimpiarCamposProveedor.setMinimumSize(new java.awt.Dimension(87, 25));
         btnLimpiarCamposProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarCamposProveedorActionPerformed(evt);
@@ -221,6 +223,8 @@ public class Vista_proveedor extends javax.swing.JPanel {
         btnEliminarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEliminarProveedor.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarProveedor.setText("Elimnar");
+        btnEliminarProveedor.setMaximumSize(new java.awt.Dimension(88, 25));
+        btnEliminarProveedor.setMinimumSize(new java.awt.Dimension(88, 25));
         btnEliminarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProveedorActionPerformed(evt);
@@ -238,6 +242,8 @@ public class Vista_proveedor extends javax.swing.JPanel {
         btnAgregarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnAgregarProveedor.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarProveedor.setText("Agregar");
+        btnAgregarProveedor.setMaximumSize(new java.awt.Dimension(93, 25));
+        btnAgregarProveedor.setMinimumSize(new java.awt.Dimension(93, 25));
         btnAgregarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarProveedorActionPerformed(evt);
@@ -249,6 +255,8 @@ public class Vista_proveedor extends javax.swing.JPanel {
         btnEditarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEditarProveedor.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarProveedor.setText("  Editar  ");
+        btnEditarProveedor.setMaximumSize(new java.awt.Dimension(96, 25));
+        btnEditarProveedor.setMinimumSize(new java.awt.Dimension(96, 25));
         btnEditarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarProveedorActionPerformed(evt);
@@ -262,6 +270,8 @@ public class Vista_proveedor extends javax.swing.JPanel {
         btnActualizarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnActualizarProveedor.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarProveedor.setText("Actualizar");
+        btnActualizarProveedor.setMaximumSize(new java.awt.Dimension(106, 25));
+        btnActualizarProveedor.setMinimumSize(new java.awt.Dimension(106, 25));
         btnActualizarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarProveedorActionPerformed(evt);
@@ -300,16 +310,16 @@ public class Vista_proveedor extends javax.swing.JPanel {
             }
         });
 
-        jSeparator2.setBackground(new java.awt.Color(0, 204, 204));
-        jSeparator2.setForeground(new java.awt.Color(0, 204, 204));
+        jSeparator2.setBackground(new java.awt.Color(4, 64, 98));
+        jSeparator2.setForeground(new java.awt.Color(4, 64, 98));
         jSeparator2.setOpaque(true);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(4, 64, 98));
         jLabel2.setText("Gestion de Proveedores");
 
-        jSeparator1.setBackground(new java.awt.Color(0, 204, 204));
-        jSeparator1.setForeground(new java.awt.Color(0, 204, 204));
+        jSeparator1.setBackground(new java.awt.Color(4, 64, 98));
+        jSeparator1.setForeground(new java.awt.Color(4, 64, 98));
         jSeparator1.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -348,8 +358,8 @@ public class Vista_proveedor extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtApellidoProveedorDos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(223, 223, 223))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -366,7 +376,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,7 +408,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
                         .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(32, 32, 32))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -446,10 +456,14 @@ public class Vista_proveedor extends javax.swing.JPanel {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                guardarProveedor();
-                limpiar();
-                mostrar();
-                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                if (cc.verificarTelefonoProveedor(txtTelefonoProveedor.getText())) {
+                    JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
+                } else {
+                    guardarProveedor();
+                    limpiar();
+                    mostrar();
+                    JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -518,7 +532,7 @@ public class Vista_proveedor extends javax.swing.JPanel {
 
     private void btnActualizarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarProveedorActionPerformed
         try {
-
+            CRUD_Proveedor cp = new CRUD_Proveedor();
             if (txtNombreProveedorUno.getText().equals("")
                     || txtNombreProveedorDos.getText().equals("")
                     || txtApellidoProveedorUno.getText().equals("")
@@ -528,12 +542,16 @@ public class Vista_proveedor extends javax.swing.JPanel {
                     || txtDireccionProveedor.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                editarProveedor();
-                limpiar();
-                mostrar();
+                if (cp.verificarTelefonoProveedor(txtTelefonoProveedor.getText())) {
+                    JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
+                } else {
+                    editarProveedor();
+                    limpiar();
+                    mostrar();
 
-                JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
+                    JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
 
+                }
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);

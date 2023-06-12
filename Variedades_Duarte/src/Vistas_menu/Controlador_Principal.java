@@ -5,6 +5,7 @@
 package Vistas_menu;
 
 import Modelo.MenuBotones_color;
+import Vistas_formularios.Frame_cliente;
 import Vistas_formularios.Vista_producto;
 import Vistas_formularios.Vista_cliente;
 import Vistas_formularios.Vista_compra;
@@ -29,9 +30,6 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     String Hora, Minuto, Segundo, am_pm;
     Thread hilo;
-    private Color colorPredeterminado = new Color(29, 163, 83);
-    private Color colorSeleccionado = new Color(0, 151, 167);
-    private JButton botonSeleccionado;
 
     /**
      * Creates new form Controlador_Principal
@@ -87,32 +85,63 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         }
     }
 
-    //Pendiente
-//    ActionListener botonListener = new ActionListener() {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            JButton boton = (JButton) e.getSource();
+//    public void ActivoAction(JButton btn1, JButton btn2, JButton btn3, JButton btn4, JButton btn5, JButton btn6, ActionEvent evt) {
+//        if (evt.getSource() == btn1) {
+//            btn1.setOpaque(true);
+//            btn1.setBackground(new Color(4, 64, 98));
+//            btn2.setContentAreaFilled(false);
+//            btn3.setContentAreaFilled(false);
+//            btn4.setContentAreaFilled(false);
+//            btn5.setContentAreaFilled(false);
+//            btn6.setContentAreaFilled(false);
+//        } else if (evt.getSource() == btn2) {
+//            btn2.setOpaque(true);
+//            btn2.setBackground(new Color(4, 64, 98));
 //
-//            if (botonSeleccionado == boton) {
-//                // Si el botón seleccionado es el mismo que se tocó, restaurar el color predeterminado
-//                botonSeleccionado.setBackground(colorPredeterminado);
-//                botonSeleccionado = null;
-//            } else {
-//                // Restaurar el color del botón seleccionado anteriormente (si hay alguno)
-//                if (botonSeleccionado != null) {
-//                    botonSeleccionado.setContentAreaFilled(false);
-//                    botonSeleccionado.setBackground(colorPredeterminado);
-//                }
+//            btn1.setContentAreaFilled(false);
+//            btn3.setContentAreaFilled(false);
+//            btn4.setContentAreaFilled(false);
+//            btn5.setContentAreaFilled(false);
+//            btn6.setContentAreaFilled(false);
+//        } else if (evt.getSource() == btn3) {
+//            btn3.setOpaque(true);
+//            btn3.setContentAreaFilled(false);
+//            btn3.setBackground(new Color(4, 64, 98));
 //
-//                // Establecer el nuevo botón seleccionado
-//                botonSeleccionado = boton;
+//            btn1.setContentAreaFilled(false);
+//            btn2.setContentAreaFilled(false);
+//            btn4.setContentAreaFilled(false);
+//            btn5.setContentAreaFilled(false);
+//            btn6.setContentAreaFilled(false);
+//        } else if (evt.getSource() == btn4) {
+//            btn4.setOpaque(true);
+//            btn4.setBackground(new Color(4, 64, 98));
 //
-//                // Cambiar el color del botón seleccionado
-//                botonSeleccionado.setContentAreaFilled(true);
-//                botonSeleccionado.setBackground(colorSeleccionado);
-//            }
+//            btn1.setContentAreaFilled(false);
+//            btn2.setContentAreaFilled(false);
+//            btn3.setContentAreaFilled(false);
+//            btn5.setContentAreaFilled(false);
+//            btn6.setContentAreaFilled(false);
+//        } else if (evt.getSource() == btn5) {
+//            btn5.setOpaque(true);
+//            btn5.setBackground(new Color(4, 64, 98));
+//
+//            btn1.setContentAreaFilled(false);
+//            btn2.setContentAreaFilled(false);
+//            btn3.setContentAreaFilled(false);
+//            btn4.setContentAreaFilled(false);
+//            btn6.setContentAreaFilled(false);
+//        } else if (evt.getSource() == btn6) {
+//            btn6.setOpaque(true);
+//            btn6.setBackground(new Color(4, 64, 98));
+//
+//            btn1.setContentAreaFilled(false);
+//            btn2.setContentAreaFilled(false);
+//            btn3.setContentAreaFilled(false);
+//            btn4.setContentAreaFilled(false);
+//            btn5.setContentAreaFilled(false);
 //        }
-//    };
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -392,19 +421,21 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         pnlMostrarVentanas.add(vistaEstadistica, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
         pnlMostrarVentanas.repaint();
+
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseEntered
         // TODO add your handling code here:
         MenuBotones_color btn = new MenuBotones_color();
         btn.Activo(btnCliente);
+
     }//GEN-LAST:event_btnClienteMouseEntered
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         // TODO add your handling code here:
-        Vista_cliente vistaCliente = new Vista_cliente();
-        vistaCliente.setSize(1290, 660);
+        Frame_cliente vistaCliente = new Frame_cliente();
         vistaCliente.setLocation(0, 0);
+        vistaCliente.setVisible(true);
         pnlMostrarVentanas.removeAll();
         pnlMostrarVentanas.add(vistaCliente, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
