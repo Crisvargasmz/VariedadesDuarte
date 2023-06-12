@@ -5,6 +5,7 @@
 package Vistas_menu;
 
 import Modelo.MenuBotones_color;
+import Vistas_formularios.Frame_cliente;
 import Vistas_formularios.Vista_producto;
 import Vistas_formularios.Vista_cliente;
 import Vistas_formularios.Vista_compra;
@@ -432,9 +433,9 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         // TODO add your handling code here:
-        Vista_cliente vistaCliente = new Vista_cliente();
-        vistaCliente.setSize(1290, 660);
+        Frame_cliente vistaCliente = new Frame_cliente();
         vistaCliente.setLocation(0, 0);
+        vistaCliente.setVisible(true);
         pnlMostrarVentanas.removeAll();
         pnlMostrarVentanas.add(vistaCliente, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
