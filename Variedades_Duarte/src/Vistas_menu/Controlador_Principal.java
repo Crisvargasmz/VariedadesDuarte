@@ -6,6 +6,8 @@ package Vistas_menu;
 
 import Modelo.MenuBotones_color;
 import Vistas_formularios.Frame_cliente;
+import Vistas_formularios.Frame_producto;
+import Vistas_formularios.Frame_proveedor;
 import Vistas_formularios.Vista_producto;
 import Vistas_formularios.Vista_cliente;
 import Vistas_formularios.Vista_compra;
@@ -43,7 +45,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         hilo.start();
 
         Vista_estadisticas vistaEstadistica = new Vista_estadisticas();
-        vistaEstadistica.setSize(1290, 660);
+        vistaEstadistica.setSize(1280, 580);
         vistaEstadistica.setLocation(0, 0);
         pnlMostrarVentanas.removeAll();
         pnlMostrarVentanas.add(vistaEstadistica, BorderLayout.CENTER);
@@ -386,17 +388,17 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         });
         pnlMenu.add(btnCompra);
 
-        pnlMain.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1290, -1));
+        pnlMain.add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1280, -1));
 
         pnlMostrarVentanas.setBackground(new java.awt.Color(255, 255, 255));
         pnlMostrarVentanas.setLayout(new javax.swing.OverlayLayout(pnlMostrarVentanas));
-        pnlMain.add(pnlMostrarVentanas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1284, 580));
+        pnlMain.add(pnlMostrarVentanas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 1280, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,7 +417,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
         Vista_estadisticas vistaEstadistica = new Vista_estadisticas();
-        vistaEstadistica.setSize(1290, 660);
+        vistaEstadistica.setSize(1280, 580);
         vistaEstadistica.setLocation(0, 0);
         pnlMostrarVentanas.removeAll();
         pnlMostrarVentanas.add(vistaEstadistica, BorderLayout.CENTER);
@@ -434,6 +436,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         // TODO add your handling code here:
         Frame_cliente vistaCliente = new Frame_cliente();
+        vistaCliente.setSize(1280, 580);
         vistaCliente.setLocation(0, 0);
         vistaCliente.setVisible(true);
         pnlMostrarVentanas.removeAll();
@@ -451,8 +454,9 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
         // TODO add your handling code here:
         Vista_venta vistaVenta = new Vista_venta();
-        vistaVenta.setSize(1290, 660);
+        vistaVenta.setSize(1280, 580);
         vistaVenta.setLocation(0, 0);
+        vistaVenta.setVisible(true);
         pnlMostrarVentanas.removeAll();
         pnlMostrarVentanas.add(vistaVenta, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
@@ -467,11 +471,12 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
         // TODO add your handling code here:
-        Vista_producto vista = new Vista_producto();
-        vista.setSize(1290, 660);
-        vista.setLocation(0, 0);
+        Frame_producto vistaProducto = new Frame_producto();
+        vistaProducto.setSize(1280, 580);
+        vistaProducto.setLocation(0, 0);
+        vistaProducto.setVisible(true);
         pnlMostrarVentanas.removeAll();
-        pnlMostrarVentanas.add(vista, BorderLayout.CENTER);
+        pnlMostrarVentanas.add(vistaProducto, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
         pnlMostrarVentanas.repaint();
     }//GEN-LAST:event_btnCategoriaActionPerformed
@@ -484,9 +489,10 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
         // TODO add your handling code here:
-        Vista_proveedor vistaProveedor = new Vista_proveedor();
-        vistaProveedor.setSize(1290, 660);
+        Frame_proveedor vistaProveedor = new Frame_proveedor();
+        vistaProveedor.setSize(1280, 580);
         vistaProveedor.setLocation(0, 0);
+        vistaProveedor.setVisible(true);
         pnlMostrarVentanas.removeAll();
         pnlMostrarVentanas.add(vistaProveedor, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
