@@ -332,14 +332,14 @@ public class DialogVentaCliente extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
                 guardarVenta();
-                JOptionPane.showMessageDialog(null, "Cliente preparado.");
+                JOptionPane.showMessageDialog(null, "Cliente preparado."+txtEnviaClientesDisponibles.getText());
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
-        Vista_venta vc = new Vista_venta();
-        String enviarNombre = txtEnviaClientesDisponibles.getText();
-        Vista_venta.txtResibeCliente.setText(enviarNombre);
+       
+        String enviarNombre = txtEnviaClientesDisponibles.getText().toString();
+        Vista_venta.txtResibeCliente.setText("");
     }//GEN-LAST:event_btnAgregarClienteVentaActionPerformed
 
     private void txtEnviaClientesDisponiblesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnviaClientesDisponiblesKeyReleased

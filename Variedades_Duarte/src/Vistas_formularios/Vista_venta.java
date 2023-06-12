@@ -32,6 +32,7 @@ public class Vista_venta extends javax.swing.JPanel {
     public Vista_venta() {
         initComponents();
         txtResibeCliente.setEnabled(true);
+        txtResibeCliente.setText("Hola");
     }
 
     
@@ -551,7 +552,7 @@ public class Vista_venta extends javax.swing.JPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public static javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -562,7 +563,7 @@ public class Vista_venta extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JPanel pnlVenta;
+    public static javax.swing.JPanel pnlVenta;
     public static javax.swing.JTextField txtCantidadDisponible;
     public static javax.swing.JTextField txtCantidadProducto;
     public static javax.swing.JTextField txtPrecioProducto;
