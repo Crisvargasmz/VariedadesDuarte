@@ -153,6 +153,10 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCliente = new javax.swing.JTable();
 
+        setMaximumSize(new java.awt.Dimension(1280, 580));
+        setMinimumSize(new java.awt.Dimension(1280, 580));
+        setPreferredSize(new java.awt.Dimension(1280, 580));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -264,7 +268,6 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         btnAgregarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnAgregarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarCliente.setText("Agregar");
-        btnAgregarCliente.setPreferredSize(new java.awt.Dimension(93, 25));
         btnAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarClienteActionPerformed(evt);
@@ -276,7 +279,6 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         btnEditarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEditarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarCliente.setText("  Editar  ");
-        btnEditarCliente.setPreferredSize(new java.awt.Dimension(96, 25));
         btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarClienteActionPerformed(evt);
@@ -290,7 +292,6 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         btnActualizarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnActualizarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarCliente.setText("Actualizar");
-        btnActualizarCliente.setPreferredSize(new java.awt.Dimension(106, 25));
         btnActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarClienteActionPerformed(evt);
@@ -305,7 +306,6 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         btnLimpiarCamposCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnLimpiarCamposCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiarCamposCliente.setText("Limpiar");
-        btnLimpiarCamposCliente.setPreferredSize(new java.awt.Dimension(87, 25));
         btnLimpiarCamposCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarCamposClienteActionPerformed(evt);
@@ -317,7 +317,6 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         btnEliminarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEliminarCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarCliente.setText("Elimnar");
-        btnEliminarCliente.setPreferredSize(new java.awt.Dimension(88, 25));
         btnEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarClienteActionPerformed(evt);

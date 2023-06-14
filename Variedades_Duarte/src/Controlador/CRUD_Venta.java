@@ -12,6 +12,15 @@ public class CRUD_Venta {
     private final Conexion con = new Conexion();
     private final Connection cn = (Connection) con.conectar();
 
+    public DefaultTableModel mostrar(){
+        DefaultTableModel modelo;
+        
+        String[] titulos={"ID Producto", "Nombre Producto", "Cantidad", "Precio",};
+       modelo=new DefaultTableModel(null,titulos);
+       String[] registro =new String[6];
+       return modelo;
+     }
+    
     public DefaultTableModel mostrarDatos() {
 
         ResultSet rs;

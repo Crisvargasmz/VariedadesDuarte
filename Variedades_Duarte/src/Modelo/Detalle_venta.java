@@ -15,6 +15,10 @@ public class Detalle_venta {
     int IDVenta;
     int IDProducto;
 
+    public Detalle_venta() {
+    }
+
+    
     public Detalle_venta(int cantidad_venta, int IDVenta, int IDProducto) {
         this.cantidad_venta = cantidad_venta;
         this.IDVenta = IDVenta;
