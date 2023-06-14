@@ -53,9 +53,7 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         mostrar();
-        txtFecha_venta.setVisible(false);
-        txtHora_venta.setVisible(false);
-        txtIDCliente.setVisible(false);
+        txtIDDisponible.setVisible(false);
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -73,17 +71,6 @@ public class DialogVentaCliente extends javax.swing.JDialog {
      */
     public int getReturnStatus() {
         return returnStatus;
-    }
-
-    public void guardarVenta() {
-        CRUD_Venta cv = new CRUD_Venta();
-
-        Venta venta = new Venta(
-                Date.valueOf(txtFecha_venta.getText()),
-                Time.valueOf(txtHora_venta.getText()),
-                Integer.parseInt(txtIDCliente.getText()));
-
-        cv.insertarVenta(venta);
     }
 
     public void mostrar() { //Método mostrar
@@ -123,7 +110,7 @@ public class DialogVentaCliente extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
-        txtEnviaClientesDisponibles = new javax.swing.JTextField();
+        txtClienteSeleccionado = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientesDisponibles = new javax.swing.JTable();
@@ -131,9 +118,7 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         btnAgregarClienteVenta = new javax.swing.JButton();
-        txtIDCliente = new javax.swing.JTextField();
-        txtFecha_venta = new javax.swing.JTextField();
-        txtHora_venta = new javax.swing.JTextField();
+        txtIDDisponible = new javax.swing.JTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -153,11 +138,11 @@ public class DialogVentaCliente extends javax.swing.JDialog {
             }
         });
 
-        txtEnviaClientesDisponibles.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtEnviaClientesDisponibles.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        txtEnviaClientesDisponibles.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtClienteSeleccionado.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtClienteSeleccionado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtClienteSeleccionado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtEnviaClientesDisponiblesKeyReleased(evt);
+                txtClienteSeleccionadoKeyReleased(evt);
             }
         });
 
@@ -227,41 +212,41 @@ public class DialogVentaCliente extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 979, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtEnviaClientesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtClienteSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtFecha_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(txtHora_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAgregarClienteVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addComponent(btnAgregarClienteVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtIDDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFecha_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtHora_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtIDDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtEnviaClientesDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(txtClienteSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAgregarClienteVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,17 +290,16 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         } else {
             try {
                 String IDCliente = (String) this.tablaClientesDisponibles.getValueAt(fila, 1);
-                String nombreUno = (String) this.tablaClientesDisponibles.getValueAt(fila, 2);
-                String nombreDos = (String) this.tablaClientesDisponibles.getValueAt(fila, 3);
-                String apellidoUno = (String) this.tablaClientesDisponibles.getValueAt(fila, 4).toString();
-                String apellidoDos = (String) this.tablaClientesDisponibles.getValueAt(fila, 5).toString();
-                txtIDCliente.setText(IDCliente);
-                txtFecha_venta.setText(Fecha());
-                txtHora_venta.setText(Hora());
-                txtEnviaClientesDisponibles.setText(nombreUno + " " + nombreDos + " " + apellidoUno + " " + apellidoDos);
-                Vista_venta vc = new Vista_venta();
-                String enviarNombre = txtEnviaClientesDisponibles.getText();
-                Vista_venta.txtResibeCliente.setText(enviarNombre);
+                String NombreCompleto = (String) this.tablaClientesDisponibles.getValueAt(fila, 2) + " "
+                        + this.tablaClientesDisponibles.getValueAt(fila, 3) + " "
+                        + this.tablaClientesDisponibles.getValueAt(fila, 4).toString() + " "
+                        + this.tablaClientesDisponibles.getValueAt(fila, 5).toString();
+                
+                Frame_venta.txtFecha_venta.setText(Fecha());
+                Frame_venta.txtHora_venta.setText(Hora());
+                Frame_venta.txtIDCliente.setText(IDCliente);
+                Frame_venta.txtNombreCliente.setText(NombreCompleto);
+                this.dispose();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -324,31 +308,32 @@ public class DialogVentaCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_tablaClientesDisponiblesMouseClicked
 
     private void btnAgregarClienteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteVentaActionPerformed
-        doClose(RET_OK);
-        CRUD_Venta cv = new CRUD_Venta();
+
         try {
-            if (txtEnviaClientesDisponibles.getText().equals("")) {
+            if (txtClienteSeleccionado.getText().equals("")) {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                guardarVenta();
-                JOptionPane.showMessageDialog(null, "Cliente preparado."+txtEnviaClientesDisponibles.getText());
+                
+                Frame_venta.txtFecha_venta.setText(Fecha());
+                Frame_venta.txtHora_venta.setText(Hora());
+                Frame_venta.txtIDCliente.setText(txtIDDisponible.getText());
+                Frame_venta.txtNombreCliente.setText(txtClienteSeleccionado.getText());
+                this.dispose();
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
-       
-        String enviarNombre = txtEnviaClientesDisponibles.getText().toString();
-        Vista_venta.txtResibeCliente.setText("");
+
     }//GEN-LAST:event_btnAgregarClienteVentaActionPerformed
 
-    private void txtEnviaClientesDisponiblesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnviaClientesDisponiblesKeyReleased
+    private void txtClienteSeleccionadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteSeleccionadoKeyReleased
         // TODO add your handling code here:
         try {
             DefaultTableModel modelo;
             CRUD_Cliente cli = new CRUD_Cliente();
 
-            modelo = cli.buscarDatos(txtEnviaClientesDisponibles.getText());
+            modelo = cli.buscarDatos(txtClienteSeleccionado.getText());
             mostrar();
 
             tablaClientesDisponibles.setModel(modelo);
@@ -357,7 +342,7 @@ public class DialogVentaCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e);
 
         }
-    }//GEN-LAST:event_txtEnviaClientesDisponiblesKeyReleased
+    }//GEN-LAST:event_txtClienteSeleccionadoKeyReleased
 
     private void doClose(int retStatus) {
         returnStatus = retStatus;
@@ -417,10 +402,8 @@ public class DialogVentaCliente extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable tablaClientesDisponibles;
-    private javax.swing.JTextField txtEnviaClientesDisponibles;
-    private javax.swing.JTextField txtFecha_venta;
-    private javax.swing.JTextField txtHora_venta;
-    private javax.swing.JTextField txtIDCliente;
+    private javax.swing.JTextField txtClienteSeleccionado;
+    private javax.swing.JTextField txtIDDisponible;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;

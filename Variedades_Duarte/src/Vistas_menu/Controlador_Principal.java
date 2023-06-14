@@ -8,6 +8,7 @@ import Modelo.MenuBotones_color;
 import Vistas_formularios.Frame_cliente;
 import Vistas_formularios.Frame_producto;
 import Vistas_formularios.Frame_proveedor;
+import Vistas_formularios.Frame_venta;
 import Vistas_formularios.Vista_producto;
 import Vistas_formularios.Vista_cliente;
 import Vistas_formularios.Vista_compra;
@@ -453,7 +454,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
         // TODO add your handling code here:
-        Vista_venta vistaVenta = new Vista_venta();
+        Frame_venta vistaVenta = new Frame_venta();
         vistaVenta.setSize(1280, 580);
         vistaVenta.setLocation(0, 0);
         vistaVenta.setVisible(true);

@@ -194,6 +194,10 @@ public class Frame_producto extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
+        setMaximumSize(new java.awt.Dimension(1280, 580));
+        setMinimumSize(new java.awt.Dimension(1280, 580));
+        setPreferredSize(new java.awt.Dimension(1280, 580));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1280, 580));
         jPanel1.setMinimumSize(new java.awt.Dimension(1280, 580));
