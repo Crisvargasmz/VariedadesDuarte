@@ -460,23 +460,47 @@ CREATE PROCEDURE InsertarVenta
 
  
  Select * from Venta
+ GO
  
 
-   --Procedimiento almacenado para insertar Detall_Venta
-   CREATE PROCEDURE InsertarDetalle_venta
+CREATE PROCEDURE InsertarVentaConDetalle
+   @IDCliente INT,
    @cantidad_venta INT,
-   @IDVenta INT,
    @IDProducto INT
+AS
+BEGIN
+   DECLARE @fecha_venta DATE = GETDATE()
+   DECLARE @hora_venta TIME = CONVERT(TIME, GETDATE())
 
-   AS
+   DECLARE @IDVenta INT
 
-   INSERT INTO [Detalle_Venta] ([cantidad_venta],[IDVenta],[IDProducto])
-   VALUES (@cantidad_venta,@IDVenta,@IDProducto)
+   -- Insertar venta
+   INSERT INTO [Venta] ([fecha_venta], [hora_venta], [IDCliente])
+   VALUES (@fecha_venta, @hora_venta, @IDCliente)
+
+   -- Obtener el ID de la venta recién insertada
+   SET @IDVenta = SCOPE_IDENTITY()
+
+   -- Insertar detalle de venta
+   INSERT INTO [Detalle_Venta] ([cantidad_venta], [IDVenta], [IDProducto])
+   VALUES (@cantidad_venta, @IDVenta, @IDProducto)
+
+
+END
+
+GO
+
+
+EXEC InsertarVentaConDetalle
+   @IDCliente = 1,
+   @cantidad_venta = 5,
+   @IDProducto = 1;
+
    GO
-
    EXEC InsertarDetalle_Venta @cantidad_venta = 5, @IDVenta = 7, @IDProducto = 2;
  GO
  Select * from Detalle_Venta
+ select * from Venta
  
  
 BEGIN TRANSACTION;
