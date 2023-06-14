@@ -13,15 +13,15 @@ import java.awt.HeadlessException;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
 //import net.sf.jasperreports.engine.JRException;
 //import net.sf.jasperreports.engine.JasperCompileManager;
 //import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
+//import net.sf.jasperreports.engine.JasperReport;
+//import net.sf.jasperreports.view.JasperViewer;
+////import net.sf.jasperreports.engine.JRException;
+////import net.sf.jasperreports.engine.JasperCompileManager;
+////import net.sf.jasperreports.engine.JasperFillManager;
+//import net.sf.jasperreports.engine.JasperPrint;
 //import net.sf.jasperreports.engine.JasperReport;
 //import net.sf.jasperreports.view.JasperViewer;
 
@@ -689,22 +689,22 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarClienteActionPerformed
 
     private void btnLimpiarCamposClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposClienteActionPerformed
-      String path = "C:\\GIT\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_formularios\\report1.jasper";
-           Conexion con = new Conexion();
-     
-            JasperReport jr;
-     
-     try {Connection cn = (Connection) con.conectar();Conexion cc = new Conexion();
-          cc.conectar();
-          jr = JasperCompileManager.compileReport(path);
-         JasperPrint mostrarreporte = JasperFillManager.fillReport(jr,null,cn);
-         JasperViewer.viewReport(mostrarreporte);
-         
-         
-     }catch (JRException e) {
-         JOptionPane.showMessageDialog(null, e);
-     }
-     
+//      String path = "C:\\GIT\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_formularios\\report1.jasper";
+//           Conexion con = new Conexion();
+//     
+//            JasperReport jr;
+//     
+//     try {Connection cn = (Connection) con.conectar();Conexion cc = new Conexion();
+//          cc.conectar();
+//          jr = JasperCompileManager.compileReport(path);
+//         JasperPrint mostrarreporte = JasperFillManager.fillReport(jr,null,cn);
+//         JasperViewer.viewReport(mostrarreporte);
+//         
+//         
+//     }catch (JRException e) {
+//         JOptionPane.showMessageDialog(null, e);
+//     }
+//     
     }//GEN-LAST:event_btnLimpiarCamposClienteActionPerformed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed

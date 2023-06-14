@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Windows 10
@@ -25,8 +26,9 @@ import javax.swing.table.DefaultTableModel;
 public class Frame_venta extends javax.swing.JInternalFrame {
 
     ValidarCampos validar = new ValidarCampos();
-    
+
     CRUD_Venta func = new CRUD_Venta();
+
     /**
      * Creates new form Frame_venta
      */
@@ -36,7 +38,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtHora_venta.setVisible(false);
         mostrar();
     }
-    
+
     void mostrar() {
         try {
             DefaultTableModel modelo;
@@ -49,11 +51,11 @@ public class Frame_venta extends javax.swing.JInternalFrame {
 
         }
     }
+
     public void guardarVenta() {
         CRUD_Detalle_venta cv = new CRUD_Detalle_venta();
 
         Venta venta = new Venta(
-               
                 Integer.parseInt(txtIDCliente.getText()),
                 Integer.parseInt(txtIDProducto.getText()),
                 Integer.parseInt(txtCantidadProducto.getText()));
@@ -79,60 +81,63 @@ public class Frame_venta extends javax.swing.JInternalFrame {
 //
 //        }
 //    }
-    
     void AgregarProducto() {
         DefaultTableModel modelo = new DefaultTableModel();
-        double subtotal, impst, totalpagar;
+        double subtotal, cambio, totalpagar;
 
         modelo = (DefaultTableModel) listarProductos.getModel();
 
         int cant = Integer.parseInt(txtCantidadProducto.getText());
         double pre = Double.parseDouble(txtPrecioProducto.getText());
+        double paga = Double.parseDouble(txtPagar.getText());
 
-//        subtotal = cant * pre;
-//        totalpagar = subtotal + impst;
+        subtotal = cant * pre;
+        totalpagar = subtotal + subtotal;
+        cambio = paga - totalpagar;
+        if (totalpagar <= paga) {
 
-        ArrayList lista = new ArrayList();
-        lista.add(txtIDProducto.getText());
-        lista.add(txtProducto.getText());
-        lista.add(txtCantidadProducto.getText());
-        lista.add(txtPrecioProducto.getText());
+            ArrayList lista = new ArrayList();
+            lista.add(txtIDProducto.getText());
+            lista.add(txtProducto.getText());
+            lista.add(txtCantidadProducto.getText());
+            lista.add(txtPrecioProducto.getText());
 //        lista.add(impst);
 //        lista.add(totalpagar);
 
-        Object[] obj = new Object[6];
-        obj[0] = lista.get(0);
-        obj[1] = lista.get(1);
-        obj[2] = lista.get(2);
-        obj[3] = lista.get(3);
-        modelo.addRow(obj);
-        listarProductos.setModel(modelo);
-//        calcularTotal();
+            Object[] obj = new Object[6];
+            obj[0] = lista.get(0);
+            obj[1] = lista.get(1);
+            obj[2] = lista.get(2);
+            obj[3] = lista.get(3);
+            modelo.addRow(obj);
+            listarProductos.setModel(modelo);
+            calcularTotal();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "La cantidad de paga es menor al total.");
+        }
+    }
+
+    void calcularTotal() {
+        double cambio = 0.0;
+        double subtotal = 0.0;
+        double total = 0;
+
+        for (int i = 0; i < listarProductos.getRowCount(); i++) {
+            int cantidad = Integer.parseInt(listarProductos.getValueAt(i, 2).toString());
+            Double precio = Double.valueOf(listarProductos.getValueAt(i, 3).toString());
+
+            subtotal = subtotal + (cantidad * precio);
+            cambio = Double.parseDouble(String.valueOf(txtPagar.getText())) - total;
+            total = subtotal + subtotal;
+
+        }
+        txtSubtotal.setText("" + String.valueOf(subtotal));
+        txtCambio.setText("" + String.valueOf(cambio));
+        txtTotal.setText("" + String.valueOf(total));
 
     }
-    
-//    void calcularTotal() {
-//        double subtotal = 0.0;
-//        double tpagar = 0;
-//                
-//
-//        for (int i = 0; i < listarProductos.getRowCount(); i++) {
-//         int cantidad=Integer.parseInt(listarProductos.getValueAt(i,2).toString());
-//         Double precio=Double.parseDouble(listarProductos.getValueAt(i,3).toString());
-//         Double imp=Double.parseDouble(listarProductos.getValueAt(i,4).toString());
-//         
-//         subtotal=subtotal+(cantidad*precio);
-//         tpagar=subtotal+impuesto;
-//         
-//         
-//            
-//        }
-//        txtsubtotal.setText("" + subtotal);
-//        txtimpuesto.setText("" + impuesto);
-//        txttotalpagar.setText("" + tpagar);
-//       
-//        
-//    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,11 +160,12 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtCantidadProducto = new javax.swing.JTextField();
         txtCantidadDisponible = new javax.swing.JTextField();
         txtIDProducto = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtPagar = new javax.swing.JTextField();
+        txtCambio = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        txtSubtotal = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -262,31 +268,33 @@ public class Frame_venta extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 255));
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Pago :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtPagar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtPagar.setForeground(new java.awt.Color(0, 0, 255));
+        txtPagar.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Pago con :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtPagarActionPerformed(evt);
             }
         });
 
-        jTextField2.setEditable(false);
-        jTextField2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 0, 0));
-        jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Cambio :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        jTextField2.setOpaque(true);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtCambio.setEditable(false);
+        txtCambio.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtCambio.setForeground(new java.awt.Color(255, 0, 0));
+        txtCambio.setText("00.00");
+        txtCambio.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Cambio :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtCambio.setOpaque(true);
+        txtCambio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtCambioActionPerformed(evt);
             }
         });
 
-        jTextField3.setEditable(false);
-        jTextField3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(0, 153, 0));
-        jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Total :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
-        jTextField3.setOpaque(true);
+        txtTotal.setEditable(false);
+        txtTotal.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(0, 153, 0));
+        txtTotal.setText("00.00");
+        txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Total :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtTotal.setOpaque(true);
 
         jButton1.setText("jButton1");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -294,6 +302,17 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        txtSubtotal.setEditable(false);
+        txtSubtotal.setBackground(new java.awt.Color(242, 242, 242));
+        txtSubtotal.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtSubtotal.setText("00.00");
+        txtSubtotal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Sub Total :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -322,15 +341,18 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 6, Short.MAX_VALUE)
                                 .addComponent(jButton1))))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 33, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPagar)
+                    .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTotal)
+                    .addComponent(txtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,14 +369,17 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                     .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCantidadDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33))
+                    .addComponent(txtPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(4, 64, 98));
@@ -587,13 +612,13 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCambioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtCambioActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPagarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtPagarActionPerformed
 
     private void btnAgregarVCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVCliente1ActionPerformed
         // TODO add your handling code here:
@@ -648,38 +673,50 @@ public class Frame_venta extends javax.swing.JInternalFrame {
 
         }
 
+        if (txtPagar.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "¡Por favor!. Ingrese la cantidad que el cliente pago");
+            return;
+        }
+
         int cant, stock;
         cant = Integer.parseInt(txtCantidadProducto.getText());
         stock = Integer.parseInt(txtCantidadDisponible.getText());
+        
 
         if (stock >= cant) {
+            int cantidadActual = stock - cant;
+        txtCantidadDisponible.setText(String.valueOf(cantidadActual));
             AgregarProducto();
-        } else{
-            JOptionPane.showMessageDialog(rootPane,"No hay suficinete Stock","Sistema ventas",JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No hay suficinete Stock", "Sistema ventas", JOptionPane.ERROR_MESSAGE);
+         
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-         CRUD_Detalle_venta cp = new CRUD_Detalle_venta();
+        CRUD_Detalle_venta cp = new CRUD_Detalle_venta();
         try {
             if (txtCantidadProducto.toString().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
-            
+
 //                if (cp.verificarDatos(txtNombreProducto.getText())) {
 //                    JOptionPane.showMessageDialog(null, "Ya existe un producto con ese nombre");
-                } else {
-                    guardarVenta();
+            } else {
+                guardarVenta();
 //                    LimpiarCampos();
 //                    Mostrar();
-                    JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-                }
+                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+            }
 
-            
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
-}
+        }
 
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -700,10 +737,8 @@ public class Frame_venta extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable listarProductos;
+    private javax.swing.JTextField txtCambio;
     public static javax.swing.JTextField txtCantidadDisponible;
     public static javax.swing.JTextField txtCantidadProducto;
     public static javax.swing.JTextField txtFecha_venta;
@@ -711,7 +746,10 @@ public class Frame_venta extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtIDCliente;
     public static javax.swing.JTextField txtIDProducto;
     public static javax.swing.JTextField txtNombreCliente;
+    private javax.swing.JTextField txtPagar;
     public static javax.swing.JTextField txtPrecioProducto;
     public static javax.swing.JTextField txtProducto;
+    public static javax.swing.JTextField txtSubtotal;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
