@@ -28,6 +28,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
     ValidarCampos validar = new ValidarCampos();
 
     CRUD_Venta func = new CRUD_Venta();
+    DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form Frame_venta
@@ -82,20 +83,16 @@ public class Frame_venta extends javax.swing.JInternalFrame {
 //        }
 //    }
     void AgregarProducto() {
-        DefaultTableModel modelo = new DefaultTableModel();
-        double subtotal, cambio, totalpagar;
+
+        double subtotal,totalpagar;
 
         modelo = (DefaultTableModel) listarProductos.getModel();
 
         int cant = Integer.parseInt(txtCantidadProducto.getText());
         double pre = Double.parseDouble(txtPrecioProducto.getText());
-        double paga = Double.parseDouble(txtPagar.getText());
 
         subtotal = cant * pre;
-        totalpagar = subtotal + subtotal;
-        cambio = paga - totalpagar;
-        if (totalpagar <= paga) {
-
+        totalpagar = subtotal;
             ArrayList lista = new ArrayList();
             lista.add(txtIDProducto.getText());
             lista.add(txtProducto.getText());
@@ -104,7 +101,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
 //        lista.add(impst);
 //        lista.add(totalpagar);
 
-            Object[] obj = new Object[6];
+            Object[] obj = new Object[4];
             obj[0] = lista.get(0);
             obj[1] = lista.get(1);
             obj[2] = lista.get(2);
@@ -112,30 +109,70 @@ public class Frame_venta extends javax.swing.JInternalFrame {
             modelo.addRow(obj);
             listarProductos.setModel(modelo);
             calcularTotal();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "La cantidad de paga es menor al total.");
-        }
+            
     }
 
+    void limpiardetalle() {
+        txtIDProducto.setText("");
+        txtCantidadProducto.setText("");
+        txtPrecioProducto.setText("");
+        txtProducto.setText("");
+        txtCantidadDisponible.setText("");
+    }
+
+    void limpiarformulario() {
+        txtIDProducto.setText("");
+        txtNombreCliente.setText("");
+        txtSubtotal.setText("");
+        txtCambio.setText("");
+        txtTotal.setText("");
+        limpiardetalle();
+        limpiartabla();
+    }
+
+        
     void calcularTotal() {
-        double cambio = 0.0;
         double subtotal = 0.0;
         double total = 0;
 
         for (int i = 0; i < listarProductos.getRowCount(); i++) {
             int cantidad = Integer.parseInt(listarProductos.getValueAt(i, 2).toString());
             Double precio = Double.valueOf(listarProductos.getValueAt(i, 3).toString());
-
+    
             subtotal = subtotal + (cantidad * precio);
-            cambio = Double.parseDouble(String.valueOf(txtPagar.getText())) - total;
-            total = subtotal + subtotal;
+            total = subtotal;
 
         }
-        txtSubtotal.setText("" + String.valueOf(subtotal));
-        txtCambio.setText("" + String.valueOf(cambio));
-        txtTotal.setText("" + String.valueOf(total));
+        txtSubtotal.setText(String.valueOf(subtotal));
+        txtTotal.setText(String.valueOf(total));
 
+    }
+
+    void limpiartabla() {
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i = i - 1;
+
+        }
+    }
+
+    private void remover() {
+        DefaultTableModel compras = (DefaultTableModel) listarProductos.getModel();
+        int cantidadActual = 0;
+        int item = listarProductos.getSelectedRow();
+        if (item >= 0) {
+            compras.removeRow(item);
+            for (int i = 0; i < listarProductos.getRowCount(); i++) {
+            int cantidad = Integer.parseInt(listarProductos.getValueAt(i, 3).toString());
+            cantidadActual += cantidad;
+            txtCantidadDisponible.setText(String.valueOf(cantidadActual));
+        }
+        
+        calcularTotal();
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila", "Ventas", JOptionPane.WARNING_MESSAGE);
+
+        }
     }
 
     /**
@@ -280,7 +317,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtCambio.setEditable(false);
         txtCambio.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         txtCambio.setForeground(new java.awt.Color(255, 0, 0));
-        txtCambio.setText("00.00");
         txtCambio.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Cambio :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtCambio.setOpaque(true);
         txtCambio.addActionListener(new java.awt.event.ActionListener() {
@@ -292,7 +328,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(0, 153, 0));
-        txtTotal.setText("00.00");
+        txtTotal.setText("0");
         txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Total :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtTotal.setOpaque(true);
 
@@ -309,9 +345,8 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtSubtotal.setEditable(false);
-        txtSubtotal.setBackground(new java.awt.Color(242, 242, 242));
         txtSubtotal.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        txtSubtotal.setText("00.00");
+        txtSubtotal.setText("0");
         txtSubtotal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Sub Total :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -521,6 +556,11 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         btnQuitar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnQuitar.setForeground(new java.awt.Color(255, 255, 255));
         btnQuitar.setText("-");
+        btnQuitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -672,25 +712,23 @@ public class Frame_venta extends javax.swing.JInternalFrame {
             return;
 
         }
-
-        if (txtPagar.getText().length() == 0) {
-            JOptionPane.showMessageDialog(null, "¡Por favor!. Ingrese la cantidad que el cliente pago");
-            return;
-        }
+        
+        
 
         int cant, stock;
+        
         cant = Integer.parseInt(txtCantidadProducto.getText());
         stock = Integer.parseInt(txtCantidadDisponible.getText());
-        
 
         if (stock >= cant) {
             int cantidadActual = stock - cant;
-        txtCantidadDisponible.setText(String.valueOf(cantidadActual));
+            txtCantidadDisponible.setText(String.valueOf(cantidadActual));
             AgregarProducto();
         } else {
             JOptionPane.showMessageDialog(rootPane, "No hay suficinete Stock", "Sistema ventas", JOptionPane.ERROR_MESSAGE);
-         
+
         }
+        limpiardetalle();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -717,6 +755,11 @@ public class Frame_venta extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
+        // TODO add your handling code here:
+        remover();
+    }//GEN-LAST:event_btnQuitarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
