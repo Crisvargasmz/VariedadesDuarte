@@ -153,16 +153,12 @@ public class CRUD_Producto {
         
         callableStatement.executeUpdate();
        
-       
        }catch (SQLException e) {
            JOptionPane.showMessageDialog(null, e);
            e.printStackTrace();
        
-       
-   }   
-        
-            
-}
+   }            
+}    
 
     public void eliminar(String IDProducto) {
         try {

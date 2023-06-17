@@ -43,6 +43,11 @@ public class Producto {
         this.medida_numerica = medida_numerica;
     }
 
+    public Producto(int IDProducto, int cantidad_producto) {
+        this.IDProducto = IDProducto;
+        this.cantidad_producto = cantidad_producto;
+    }
+
     public int getIDProducto() {
         return IDProducto;
     }
