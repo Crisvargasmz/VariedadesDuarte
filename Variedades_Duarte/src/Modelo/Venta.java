@@ -9,33 +9,25 @@ public class Venta {
     Date fecha_venta;
     Time hora_venta;
     int IDCliente;
-    int IDProducto;
-    int cantidad_venta;
 
     public Venta() {
     }
 
-    public Venta(Date fecha_venta, Time hora_venta, int IDCliente, int IDProducto, int cantidad_venta) {
+    public Venta(Date fecha_venta, Time hora_venta, int IDCliente) {
         this.fecha_venta = fecha_venta;
         this.hora_venta = hora_venta;
         this.IDCliente = IDCliente;
-        this.IDProducto = IDProducto;
-        this.cantidad_venta = cantidad_venta;
     }
 
-    public Venta(int ID_venta, Date fecha_venta, Time hora_venta, int IDCliente, int IDProducto, int cantidad_venta) {
+    public Venta(int ID_venta, Date fecha_venta, Time hora_venta, int IDCliente) {
         this.ID_venta = ID_venta;
         this.fecha_venta = fecha_venta;
         this.hora_venta = hora_venta;
         this.IDCliente = IDCliente;
-        this.IDProducto = IDProducto;
-        this.cantidad_venta = cantidad_venta;
     }
 
-    public Venta(int IDCliente, int IDProducto, int cantidad_venta) {
+    public Venta(int IDCliente) {
         this.IDCliente = IDCliente;
-        this.IDProducto = IDProducto;
-        this.cantidad_venta = cantidad_venta;
     }
     
     
@@ -72,21 +64,6 @@ public class Venta {
         this.IDCliente = IDCliente;
     }
 
-    public int getIDProducto() {
-        return IDProducto;
-    }
-
-    public void setIDProducto(int IDProducto) {
-        this.IDProducto = IDProducto;
-    }
-
-    public int getCantidad_venta() {
-        return cantidad_venta;
-    }
-
-    public void setCantidad_venta(int cantidad_venta) {
-        this.cantidad_venta = cantidad_venta;
-    }
     
 
    

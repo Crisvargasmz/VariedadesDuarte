@@ -4,9 +4,11 @@
  */
 package Controlador;
 
+import Modelo.Detalle_venta;
 import Modelo.Venta;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +30,7 @@ public class CRUD_Detalle_venta {
 
         DefaultTableModel modelo;
 
-        String[] titulos = {"ID", "Cantidad","ID Venta", "ID Producto"};
+        String[] titulos = {"ID", "Cantidad", "ID Venta", "ID Producto"};
 
         String[] registro = new String[4];
 
@@ -53,18 +55,56 @@ public class CRUD_Detalle_venta {
             return null;
         }
     }
-    
-    public void insertarProducto(Venta detalle) {
-    try {
-        CallableStatement callableStatement = cn.prepareCall("{call InsertarVentaConDetalle(?,?,?)}");
-        callableStatement.setInt(1, detalle.getIDCliente());
-        callableStatement.setInt(2, detalle.getCantidad_venta());
-        callableStatement.setInt(3, detalle.getIDProducto());
-        callableStatement.executeUpdate();
 
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, e);
-        e.printStackTrace();
+    public void insertarProducto(Detalle_venta detalle) {
+        try {
+            CallableStatement callableStatement = cn.prepareCall("{call InsertarVentaConDetalle(?,?,?)}");
+            
+            callableStatement.setInt(2, detalle.getCantidad_venta());
+            callableStatement.setInt(1, detalle.getIDVenta());
+            callableStatement.setInt(3, detalle.getIDProducto());
+            callableStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            e.printStackTrace();
+        }
     }
-}
+    
+    public String IdVentas(){
+        ResultSet rs;
+      String idv="";
+             String sql =("Select max(IDVenta)  from Venta");
+            
+            
+            try {
+                PreparedStatement pst =cn.prepareStatement(sql);
+               rs=pst.executeQuery();
+               
+                while (rs.next()) {
+                    idv=rs.getString(1);
+                    
+                }
+               
+               
+            } catch (SQLException e1) {
+               
+            }
+            
+            return idv;
+        }  
+    
+    public void insertarDetalle_venta(Detalle_venta detalle_venta) {
+        try {
+
+            CallableStatement callableStatement = cn.prepareCall("{call Insertardetalle(?,?,?)}");
+            callableStatement.setInt(1, detalle_venta.getCantidad_venta());
+            callableStatement.setInt(2,detalle_venta.getIDVenta());
+            callableStatement.setInt(3, detalle_venta.getIDProducto());
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            e.printStackTrace();
+        }
+    }
 }

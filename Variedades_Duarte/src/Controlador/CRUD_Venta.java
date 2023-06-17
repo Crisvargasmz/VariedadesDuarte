@@ -85,19 +85,7 @@ public class CRUD_Venta {
         }
     }
     
-    public void insertarDetalle_venta(Detalle_venta detalle_venta) {
-        try {
-
-            CallableStatement callableStatement = cn.prepareCall("{call InsertarVenta(?,?,?)}");
-            callableStatement.setInt(1, detalle_venta.getCantidad_venta());
-            callableStatement.setInt(2,detalle_venta.getIDVenta());
-            callableStatement.setInt(3, detalle_venta.getIDProducto());
-            callableStatement.executeUpdate();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-        }
-    }
+    
     
 //     public boolean verificarDatos(String dato) {
 //        ResultSet rs;
