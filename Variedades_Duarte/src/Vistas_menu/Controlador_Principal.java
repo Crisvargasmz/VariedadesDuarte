@@ -10,10 +10,7 @@ import Vistas_formularios.Frame_producto;
 import Vistas_formularios.Frame_proveedor;
 import Vistas_formularios.Frame_venta;
 import Vistas_formularios.Vista_producto;
-import Vistas_formularios.Vista_cliente;
-import Vistas_formularios.Vista_compra;
 import Vistas_formularios.Vista_estadisticas;
-import Vistas_formularios.Vista_proveedor;
 import Vistas_formularios.Vista_venta;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -508,13 +505,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     private void btnCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraActionPerformed
         // TODO add your handling code here:
-        Vista_compra vistaCompra = new Vista_compra();
-        vistaCompra.setSize(1290, 660);
-        vistaCompra.setLocation(0, 0);
-        pnlMostrarVentanas.removeAll();
-        pnlMostrarVentanas.add(vistaCompra, BorderLayout.CENTER);
-        pnlMostrarVentanas.revalidate();
-        pnlMostrarVentanas.repaint();
+   
     }//GEN-LAST:event_btnCompraActionPerformed
 
     private void bntCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCerrarSesionActionPerformed

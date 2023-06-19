@@ -765,6 +765,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
 //                }
             } else {
                 guardarVenta();
+                limpiarformulario();
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
             }
 

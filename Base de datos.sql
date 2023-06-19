@@ -485,6 +485,47 @@ GO
    Select * from Detalle_Venta
    Select * from Producto
    GO
+
+   --PROCEDIMIENTO ALMACENADO PARA INSERTAR COMPRA
+   CREATE PROCEDURE InsertarCompra
+   @fecha_compra DATE,
+   @hora_compra TIME,
+   @IDProveedor INT
+
+   AS
+
+   INSERT INTO [Compra] ([fecha_compra],[hora_compra],[IDProveedor])
+   VALUES (@fecha_compra,@hora_compra,@IDProveedor)
+   GO
+--PROCEDIMIENTO ALMACENADO PARA INSERTAR DETALLECOMPRA
+CREATE PROCEDURE DetalleCompra
+@cantidad_compra INT,
+@IDCompra INT,
+@IDProducto INT
+
+AS
+BEGIN
+INSERT INTO Detalle_Compra (cantidad_compra,IDCompra,IDProducto)
+VALUES (@cantidad_compra,@IDCompra,@IDProducto)
+
+BEGIN TRANSACTION;
+
+UPDATE Producto
+SET cantidad_producto = cantidad_producto + @cantidad_compra
+WHERE IDProducto = @IDProducto;
+
+
+END
+
+GO
+
+
+
+
+SELECT * FROM Compra
+SELECT * FROM Detalle_Compra
+SELECT * FROM Proveedor
+SELECT * FROM Producto	
 --------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -536,6 +577,8 @@ END
 GO
 
 Exec BuscarClienteCombo @Dato = 'Emma';
+
+GO
 
 --procedimiento almacenado para buscar proveedores
 CREATE PROCEDURE BuscarProveedor

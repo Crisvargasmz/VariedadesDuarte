@@ -75,9 +75,10 @@ public class CRUD_Compra {
     
 public void insertarCompra(Compra compra){
         try{
-            CallableStatement callableStatement = cn.prepareCall("{call InsertarCompra(?)}");
+            CallableStatement callableStatement = cn.prepareCall("{call InsertarCompra(?,?,?)}");
             callableStatement.setString(1, compra.getFecha_compra());
-            callableStatement.setString(1, compra.getHora_compra());     
+            callableStatement.setString(2, compra.getHora_compra());
+            callableStatement.setInt(3,compra.getIDProveedor());
             callableStatement.executeUpdate();
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);

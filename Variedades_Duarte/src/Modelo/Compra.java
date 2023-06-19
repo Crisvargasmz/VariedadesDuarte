@@ -6,14 +6,15 @@ public class Compra {
     int IDCompra;
     String fecha_compra;
     String hora_compra;
+    int IDProveedor;
 
     public Compra() {
     }
 
-    public Compra(int IDCompra, String fecha_compra, String hora_compra) {
-        this.IDCompra = IDCompra;
+    public Compra(String fecha_compra, String hora_compra, int IDProveedor) {
         this.fecha_compra = fecha_compra;
         this.hora_compra = hora_compra;
+        this.IDProveedor = IDProveedor;
     }
 
     public int getIDCompra() {
@@ -39,6 +40,16 @@ public class Compra {
     public void setHora_compra(String hora_compra) {
         this.hora_compra = hora_compra;
     }
+
+    public int getIDProveedor() {
+        return IDProveedor;
+    }
+
+    public void setIDProveedor(int IDProveedor) {
+        this.IDProveedor = IDProveedor;
+    }
+
+   
     
     
 }
