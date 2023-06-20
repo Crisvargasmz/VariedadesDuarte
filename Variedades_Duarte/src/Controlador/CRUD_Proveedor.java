@@ -2,6 +2,7 @@
 package Controlador;
 import Modelo.Proveedor;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,6 +11,7 @@ public class CRUD_Proveedor {
 
     private final Conexion con = new Conexion();
     private final Connection cn = (Connection) con.conectar();
+    
 
     public DefaultTableModel mostrarDatos() {
 
@@ -41,6 +43,31 @@ public class CRUD_Proveedor {
             JOptionPane.showMessageDialog(null, e);
             return null;
         }
+    }
+    
+    
+           public ArrayList mostrarDatosCombo() {
+
+        ArrayList<Proveedor> Proveedores = new ArrayList();
+        
+          Proveedor proveedor = new Proveedor();
+    proveedor.setID_proveedor(0); // ID de categoría por defecto 
+    proveedor.setEmpresa_proveedor("Proveedor"); // Texto por defecto a mostrar
+    Proveedores.add(proveedor);
+
+        try {
+            CallableStatement cbstc = cn.prepareCall("{call LlenarProveedor}");
+            ResultSet rs = cbstc.executeQuery();
+            while (rs.next()) {
+                Proveedor provee = new Proveedor();
+                provee.setID_proveedor(Integer.parseInt(rs.getString("IDProveedor")));
+                provee.setEmpresa_proveedor(rs.getString("empresa_proveedor"));
+                Proveedores.add(provee);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return Proveedores;
     }
     
      public DefaultTableModel buscarDatos(String Dato) {

@@ -9,7 +9,6 @@ import Vistas_formularios.Frame_cliente;
 import Vistas_formularios.Frame_producto;
 import Vistas_formularios.Frame_proveedor;
 import Vistas_formularios.Frame_venta;
-import Vistas_formularios.Vista_producto;
 import Vistas_formularios.Vista_estadisticas;
 import Vistas_formularios.Vista_venta;
 import java.awt.BorderLayout;

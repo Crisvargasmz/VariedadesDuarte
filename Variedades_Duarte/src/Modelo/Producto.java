@@ -14,6 +14,7 @@ public class Producto {
     int IDCategoria;
     int IDPresentacion;
     BigDecimal medida_numerica;
+    int IDProveedor;
 
     public Producto() {
     }

@@ -24,9 +24,10 @@ public class CRUD_Producto {
 
         String[] titulos = {"ID Producto", "Nombre Producto", "Cantidad",
             "Precio Compra", "Precio Venta", "Descripcion",
-            "Fecha vencimiento","IDCategoria", "Categoria","ID_PPresentacion","Unidad de medida","IDPresentacion","Presentacion"};
+            "Fecha vencimiento","IDCategoria", "Categoria","ID_PPresentacion","Unidad de medida","IDPresentacion","Presentacion"
+                ,"IDProveedor","empresa_proveedor"};
 
-        String[] registro = new String[13];
+        String[] registro = new String[15];
 
         modelo = new DefaultTableModel(null, titulos);
         try {
@@ -48,6 +49,8 @@ public class CRUD_Producto {
                 registro[10] = rs.getString("medida_numerica");
                 registro[11] = rs.getString("IDPresentacion");
                 registro[12] = rs.getString("nombre_presentacion");
+                registro[13] = rs.getString("IDProveedor");
+                registro[14] = rs.getString("empresa_proveedor");
 
                 modelo.addRow(registro);
             }

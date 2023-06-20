@@ -544,28 +544,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
 
-        //        CRUD_Cliente cc = new CRUD_Cliente();
-        //    try {
-        //        if (txtNombreClienteUno.getText().equals("")
-        //                || txtNombreClienteDos.getText().equals("")
-        //                || txtApellidoClienteUno.getText().equals("")
-        //                || txtApellidoClienteDos.getText().equals("")
-        //                || txtTelefonoCliente.getText().equals("")
-        //                || txtDireccionCliente.getText().equals("")) {
-        //
-        //            JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
-        //        } else {
-        //            if (cc.verificarDatos(txtCedula.getText())) {
-        //                JOptionPane.showMessageDialog(null, "Ya existe un cliente con ese número de Cédula");
-        //            } else {
-        //                guardarCliente();
-        //                limpiar();
-        //                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-        //            }
-        //        }
-        //    } catch (HeadlessException e) {
-        //        JOptionPane.showMessageDialog(null, "Error: " + e);
-        //    }
+       
         //   String nombreCliente1 = txtNombreClienteUno.getText();
         //    String nombreCliente2 = txtNombreClienteDos.getText();
         //    String apellidoCliente1 = txtApellidoClienteUno.getText();
@@ -574,38 +553,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         //    String generoCliente = comboGenero.getSelectedItem().toString();
         //    String direccionCliente = txtDireccionCliente.getText();
         //
-        //    String url="jdbc:sqlserver://localhost:1433;databaseName=VariedadesDuarte;" + "integratedSecurity=true;" +
-        //                              "encrypt=true;trustServerCertificate=true; user=sa; password=2004";
-        //
-        //     try {
-        //        Connection conn = DriverManager.getConnection(url);
-        //
-        //        // Llama al procedimiento almacenado para insertar un cliente
-        //        String procedureCall = "{call InsertarCliente(?, ?, ?, ?, ?, ?, ?)}";
-        //        CallableStatement cstmt = conn.prepareCall(procedureCall);
-        //
-        //        // Define los parámetros de entrada
-        //        cstmt.setString(1, nombreCliente1);
-        //        cstmt.setString(2, nombreCliente2);
-        //        cstmt.setString(3, apellidoCliente1);
-        //        cstmt.setString(4, apellidoCliente2);
-        //        cstmt.setString(5, telefonoCliente);
-        //        cstmt.setString(6, generoCliente);
-        //        cstmt.setString(7, direccionCliente);
-        //
-        //        // Ejecuta el procedimiento almacenado
-        //        cstmt.execute();
-        //
-        //        // Cierra la conexión y el statement
-        //        cstmt.close();
-        //        conn.close();
-        //        limpiar();
-        //        // Realiza cualquier acción adicional después de guardar los datos
-        //
-        //    } catch (SQLException e) {
-        //        e.printStackTrace();
-        //        // Maneja la excepción si ocurre algún error al guardar los datos
-        //    }
+       
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void btnEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarClienteActionPerformed

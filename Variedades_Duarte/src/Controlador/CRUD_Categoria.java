@@ -2,6 +2,7 @@
 package Controlador;
 import Modelo.Categoria;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -13,25 +14,52 @@ public class CRUD_Categoria {
     
     
     
-public DefaultComboBoxModel<Categoria> Llenar() {
-    DefaultComboBoxModel<Categoria> modelo = new DefaultComboBoxModel<>();
-    modelo.addElement(new Categoria(-1, "Categoria"));
+       public ArrayList mostrarDatosCombo() {
 
-    try {
-        CallableStatement cbstc = cn.prepareCall("{call LlenarCategoria}");
-        ResultSet rs = cbstc.executeQuery();
-        while (rs.next()) {
-            int IDCategoria = rs.getInt(1);
-            String nombre_categoria = rs.getString(2);
-            Categoria categoria = new Categoria(IDCategoria, nombre_categoria);
-            modelo.addElement(categoria);
+        ArrayList<Categoria> Categorias = new ArrayList();
+        
+          Categoria categoria = new Categoria();
+    categoria.setIDCategoria(0); // ID de categoría por defecto 
+    categoria.setNombre_categoria("Categoria"); // Texto por defecto a mostrar
+    Categorias.add(categoria);
+
+        try {
+            CallableStatement cbstc = cn.prepareCall("{call LlenarCategoria}");
+            ResultSet rs = cbstc.executeQuery();
+            while (rs.next()) {
+                Categoria cate = new Categoria();
+                cate.setIDCategoria(Integer.parseInt(rs.getString("IDCategoria")));
+                cate.setNombre_categoria(rs.getString("nombre_categoria"));
+                Categorias.add(cate);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return Categorias;
     }
- 
-    return modelo;
-}
+
+    
+    
+    
+//public DefaultComboBoxModel<Categoria> Llenar() {
+//    DefaultComboBoxModel<Categoria> modelo = new DefaultComboBoxModel<>();
+//    modelo.addElement(new Categoria(-1, "Categoria"));
+//
+//    try {
+//        CallableStatement cbstc = cn.prepareCall("{call LlenarCategoria}");
+//        ResultSet rs = cbstc.executeQuery();
+//        while (rs.next()) {
+//            int IDCategoria = rs.getInt(1);
+//            String nombre_categoria = rs.getString(2);
+//            Categoria categoria = new Categoria(IDCategoria, nombre_categoria);
+//            modelo.addElement(categoria);
+//        }
+//    } catch (SQLException e) {
+//        e.printStackTrace();
+//    }
+// 
+//    return modelo;
+//}
 
     
     public void insertarCategoria(Categoria categoria) {

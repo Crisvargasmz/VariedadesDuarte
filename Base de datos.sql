@@ -5,25 +5,6 @@ GO
 -- Base de datos.
 USE VariedadesDuarte
 GO
-
--- Creación de la tabla "Proveedor".
-CREATE TABLE [Proveedor] (
-  [IDProveedor] INTEGER IDENTITY (1,1)PRIMARY KEY,
-  [empresa_proveedor] NVARCHAR(30)NOT NULL,
-  IDPersona INTEGER UNIQUE 
-
-)
-GO
-
--- Creación de la tabla "Cliente".
-CREATE TABLE [Cliente] (
-  [IDCliente] INTEGER IDENTITY(1,1) PRIMARY KEY,
-  [genero_cliente] CHAR (1) NOT NULL,
-  IDPersona INTEGER UNIQUE 
-  
-)
-GO
-
 -- Creación de la tabla "Persona".
 CREATE TABLE [Persona](
 IDPersona INTEGER IDENTITY (1,1) PRIMARY KEY,
@@ -37,21 +18,25 @@ direccion NVARCHAR (150)NOT NULL
 )
 GO
 
---Select * from IniciodeSesion
---Agregar clave foránea IDPersona en la tabla "Proveedores"
-ALTER TABLE dbo.Proveedor
-ADD CONSTRAINT FK_Persona_Proveedor
-FOREIGN KEY (IDPersona)
-REFERENCES dbo.Persona(IDPersona)
+-- Creación de la tabla "Proveedor".
+CREATE TABLE [Proveedor] (
+  [IDProveedor] INTEGER IDENTITY (1,1)PRIMARY KEY,
+  [empresa_proveedor] NVARCHAR(30)NOT NULL,
+  IDPersona INTEGER UNIQUE,
+  CONSTRAINT FK_Proveedor_Persona FOREIGN KEY (IDPersona) REFERENCES Persona (IDPersona)
+  
 
+)
 GO
 
---Agregar Clave foránea IDPersona en la tabla "Clientes"
-ALTER TABLE dbo.Cliente
-ADD CONSTRAINT FK_Persona_Cliente
-FOREIGN KEY (IDPersona)
-REFERENCES dbo.Persona(IDPersona)
-
+-- Creación de la tabla "Cliente".
+CREATE TABLE [Cliente] (
+  [IDCliente] INTEGER IDENTITY(1,1) PRIMARY KEY,
+  [genero_cliente] CHAR (1) NOT NULL,
+  IDPersona INTEGER UNIQUE,
+  CONSTRAINT FK_Cliente_Persona FOREIGN KEY (IDPersona) REFERENCES Persona (IDPersona)
+  
+)
 GO
 
 -- Creación de la tabla "Categoria".
@@ -59,6 +44,23 @@ CREATE TABLE [Categoria] (
   [IDCategoria] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [nombre_categoria] NVARCHAR(30) NOT NULL,
 
+)
+GO
+
+-- Creación de la tabla "Producto".
+CREATE TABLE [Producto] (
+  [IDProducto] INTEGER IDENTITY(1,1) PRIMARY KEY,
+  [nombre_producto] NVARCHAR(40)NOT NULL,
+  [cantidad_producto] INTEGER NOT NULL,
+  [precio_compra] DECIMAL(12,2) NOT NULL,
+  [precio_venta] DECIMAL(12,2) NOT NULL,
+  [descripcion] NVARCHAR(200) NOT NULL,
+  [fecha_vencimiento] DATE NOT NULL,
+  IDCategoria INT,
+  IDProveedor INT,
+  CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria),
+  CONSTRAINT FK_Producto_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor)
+ 
 )
 GO
 
@@ -81,28 +83,13 @@ CREATE TABLE [Venta] (
 )
 GO
 
--- Creación de la tabla "Producto".
-CREATE TABLE [Producto] (
-  [IDProducto] INTEGER IDENTITY(1,1) PRIMARY KEY,
-  [nombre_producto] NVARCHAR(40)NOT NULL,
-  [cantidad_producto] INTEGER NOT NULL,
-  [precio_compra] DECIMAL(12,2) NOT NULL,
-  [precio_venta] DECIMAL(12,2) NOT NULL,
-  [descripcion] NVARCHAR(200) NOT NULL,
-  [fecha_vencimiento] DATE NOT NULL,
-  IDCategoria INT,
-  CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria)
- 
-)
-GO
 
 -- Creación de la tabla "Compra".
 CREATE TABLE [Compra] (
   [IDCompra] INTEGER IDENTITY(1,1) PRIMARY KEY,
   [fecha_compra] DATE NOT NULL,
   [hora_compra] TIME NOT NULL,
-  IDProveedor INT,
-  CONSTRAINT FK_Compra_Proveedor FOREIGN KEY (IDProveedor) REFERENCES Proveedor (IDProveedor)
+
 
 )
 GO
@@ -129,14 +116,15 @@ CREATE TABLE [Detalle_Venta] (
 )
 GO
 
--- Creación de la tabla Intermedia "Detalle_Compra".
-CREATE TABLE [Detalle_Compra] (
-  [ID_DCompra] INTEGER IDENTITY(1,1) PRIMARY KEY,
-  cantidad_compra INTEGER NOT NULL,
-    IDCompra INT,
-  CONSTRAINT FK_DetalleV_Compra FOREIGN KEY (IDCompra) REFERENCES Compra (IDCompra),
-  IDProducto INT,
-  CONSTRAINT FK_DetalleCompra_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto)
+--Creacion de la tabla Intermedia "ProductoCompra".
+CREATE TABLE ProductoCompra (
+IDPCompra INTEGER IDENTITY (1,1) PRIMARY KEY,
+cantidad_compra INTEGER  NOT NULL,
+IDCompra INT,
+CONSTRAINT FK_ProductoC_Compra FOREIGN KEY (IDCompra) REFERENCES Compra (IDCompra),
+IDProducto INT,
+CONSTRAINT FK_ProductoC1_Producto FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto)
+
 
 )
 GO
@@ -198,21 +186,21 @@ GO
 SELECT * FROM Cliente
 SELECT * FROM Persona
 
-EXEC InsertarPersonaCliente 'Montiel','Marenco','Vargas','Torrez','Juigalpa','57867406','M'
-EXEC InsertarPersonaCliente 'John', 'Doe', 'Smith', 'Johnson', 'New York', '123456789', 'M'
-EXEC InsertarPersonaCliente 'Jane', 'Doe', 'Taylor', 'Anderson', 'Los Angeles', '987654321', 'F'
-EXEC InsertarPersonaCliente 'Michael', 'Brown', 'Wilson', 'Davis', 'Chicago', '456789123', 'M'
-EXEC InsertarPersonaCliente 'Emily', 'Johnson', 'Martinez', 'Garcia', 'Miami', '789123456', 'F'
-EXEC InsertarPersonaCliente 'Daniel', 'Smith', 'Lopez', 'Thomas', 'Houston', '654321987', 'M'
-EXEC InsertarPersonaCliente 'Sophia', 'Garcia', 'Lee', 'Perez', 'San Francisco', '9876543210', 'F'
-EXEC InsertarPersonaCliente 'Matthew', 'Johnson', 'Miller', 'Smith', 'Seattle', '5432109876', 'M'
-EXEC InsertarPersonaCliente 'Olivia', 'Brown', 'Wilson', 'Davis', 'Boston', '7890654321', 'F'
-EXEC InsertarPersonaCliente 'William', 'Anderson', 'Clark', 'Taylor', 'Dallas', '3210987654', 'M'
-EXEC InsertarPersonaCliente 'Isabella', 'Thomas', 'White', 'Jones', 'Phoenix', '8765432109', 'F'
-EXEC InsertarPersonaCliente 'Liam', 'Hernandez', 'Adams', 'Wang', 'San Diego', '1234509876', 'M'
-EXEC InsertarPersonaCliente 'Emma', 'Gonzalez', 'Harris', 'Lopez', 'Denver', '9087612345', 'F'
-EXEC InsertarPersonaCliente 'Noah', 'Rivera', 'Robinson', 'Scott', 'Austin', '6789054321', 'M'
-EXEC InsertarPersonaCliente 'Ava', 'Martinez', 'Turner', 'Morales', 'Orlando', '5432178906', 'F'
+EXEC InsertarPersonaCliente 'Montiel','Marenco','Vargas','Torrez','Juigalpa','5786-7406','M'
+EXEC InsertarPersonaCliente 'John', 'Doe', 'Smith', 'Johnson', 'New York', '1234-5678', 'M'
+EXEC InsertarPersonaCliente 'Jane', 'Doe', 'Taylor', 'Anderson', 'Los Angeles', '9876-5432', 'F'
+EXEC InsertarPersonaCliente 'Michael', 'Brown', 'Wilson', 'Davis', 'Chicago', '4567-8912', 'M'
+EXEC InsertarPersonaCliente 'Emily', 'Johnson', 'Martinez', 'Garcia', 'Miami', '7891-2345', 'F'
+EXEC InsertarPersonaCliente 'Daniel', 'Smith', 'Lopez', 'Thomas', 'Houston', '6543-2199', 'M'
+EXEC InsertarPersonaCliente 'Sophia', 'Garcia', 'Lee', 'Perez', 'San Francisco', '9876-5432', 'F'
+EXEC InsertarPersonaCliente 'Matthew', 'Johnson', 'Miller', 'Smith', 'Seattle', '5432-1098', 'M'
+EXEC InsertarPersonaCliente 'Olivia', 'Brown', 'Wilson', 'Davis', 'Boston', '7890-6543', 'F'
+EXEC InsertarPersonaCliente 'William', 'Anderson', 'Clark', 'Taylor', 'Dallas', '3210-9876', 'M'
+EXEC InsertarPersonaCliente 'Isabella', 'Thomas', 'White', 'Jones', 'Phoenix', '8765-4321', 'F'
+EXEC InsertarPersonaCliente 'Liam', 'Hernandez', 'Adams', 'Wang', 'San Diego', '1234-5098', 'M'
+EXEC InsertarPersonaCliente 'Emma', 'Gonzalez', 'Harris', 'Lopez', 'Denver', '9087-6123', 'F'
+EXEC InsertarPersonaCliente 'Noah', 'Rivera', 'Robinson', 'Scott', 'Austin', '6789-0543', 'M'
+EXEC InsertarPersonaCliente 'Ava', 'Martinez', 'Turner', 'Morales', 'Orlando', '5432-1789', 'F'
 EXEC InsertarPersonaCliente 'James', 'Lee', 'Cooper', 'Mitchell', 'Atlanta', '9876501234', 'M'
 
 GO
@@ -254,22 +242,22 @@ GO
 SELECT * FROM Persona
 SELECT * FROM Proveedor
 
-EXEC InsertarPersonaProveedor'Cristhian','Cesar','Vargas','Martinez','Juigalpa','57867406','Casa Pellas'
-EXEC InsertarPersonaProveedor 'Gabriel', 'Cordero', 'Ramírez', 'López', 'Managua', '123456789', 'Empresa X'
-EXEC InsertarPersonaProveedor 'Isabella', 'Torres', 'Guzmán', 'Sánchez', 'León', '987654321', 'Empresa Y'
-EXEC InsertarPersonaProveedor 'Sebastián', 'Rojas', 'Flores', 'Pérez', 'Granada', '456789123', 'Empresa Z'
-EXEC InsertarPersonaProveedor 'Valentina', 'Gutierrez', 'Herrera', 'Ortiz', 'Matagalpa', '789123456', 'Empresa A'
-EXEC InsertarPersonaProveedor 'Mateo', 'Navarro', 'Silva', 'Gómez', 'Chinandega', '654321987', 'Empresa B'
-EXEC InsertarPersonaProveedor 'Lucía', 'Ortega', 'Díaz', 'Lara', 'Estelí', '987650123', 'Empresa C'
-EXEC InsertarPersonaProveedor 'Emilio', 'Mendoza', 'Castro', 'Ramón', 'Rivas', '123450987', 'Empresa D'
-EXEC InsertarPersonaProveedor 'Valeria', 'Cabrera', 'Fuentes', 'Soto', 'Masaya', '908761234', 'Empresa E'
-EXEC InsertarPersonaProveedor 'Matías', 'Chávez', 'Ríos', 'Núñez', 'Puerto Cabezas', '678905432', 'Empresa F'
-EXEC InsertarPersonaProveedor 'Amelia', 'Suárez', 'Santana', 'Vega', 'Jinotega', '543217890', 'Empresa G'
-EXEC InsertarPersonaProveedor 'Elena', 'Castillo', 'Morales', 'Fuentes', 'Boaco', '456789012', 'Empresa H'
-EXEC InsertarPersonaProveedor 'Gabriel', 'Méndez', 'Cortez', 'López', 'Somoto', '890123456', 'Empresa I'
-EXEC InsertarPersonaProveedor 'Valentina', 'Guerrero', 'Romero', 'Pérez', 'Puerto Cabezas', '567890123', 'Empresa J'
-EXEC InsertarPersonaProveedor 'Joaquín', 'Rivas', 'Santos', 'Gómez', 'Jinotega', '901234567', 'Empresa K'
-EXEC InsertarPersonaProveedor 'Carolina', 'Mendoza', 'Aguilar', 'Vega', 'Chinandega', '678901234', 'Empresa L'
+EXEC InsertarPersonaProveedor'Cristhian','Cesar','Vargas','Martinez','Juigalpa','5786-7406','Casa Pellas'
+EXEC InsertarPersonaProveedor 'Gabriel', 'Cordero', 'Ramírez', 'López', 'Managua', '1234-5678', 'Empresa X'
+EXEC InsertarPersonaProveedor 'Isabella', 'Torres', 'Guzmán', 'Sánchez', 'León', '9876-5432', 'Empresa Y'
+EXEC InsertarPersonaProveedor 'Sebastián', 'Rojas', 'Flores', 'Pérez', 'Granada', '4567-8912', 'Empresa Z'
+EXEC InsertarPersonaProveedor 'Valentina', 'Gutierrez', 'Herrera', 'Ortiz', 'Matagalpa', '7891-2345', 'Empresa A'
+EXEC InsertarPersonaProveedor 'Mateo', 'Navarro', 'Silva', 'Gómez', 'Chinandega', '6543-2198', 'Empresa B'
+EXEC InsertarPersonaProveedor 'Lucía', 'Ortega', 'Díaz', 'Lara', 'Estelí', '9876-5019', 'Empresa C'
+EXEC InsertarPersonaProveedor 'Emilio', 'Mendoza', 'Castro', 'Ramón', 'Rivas', '1234-5098', 'Empresa D'
+EXEC InsertarPersonaProveedor 'Valeria', 'Cabrera', 'Fuentes', 'Soto', 'Masaya', '9087-6123', 'Empresa E'
+EXEC InsertarPersonaProveedor 'Matías', 'Chávez', 'Ríos', 'Núñez', 'Puerto Cabezas', '6789-0543', 'Empresa F'
+EXEC InsertarPersonaProveedor 'Amelia', 'Suárez', 'Santana', 'Vega', 'Jinotega', '5432-1789', 'Empresa G'
+EXEC InsertarPersonaProveedor 'Elena', 'Castillo', 'Morales', 'Fuentes', 'Boaco', '4567-8901', 'Empresa H'
+EXEC InsertarPersonaProveedor 'Gabriel', 'Méndez', 'Cortez', 'López', 'Somoto', '8901-2345', 'Empresa I'
+EXEC InsertarPersonaProveedor 'Valentina', 'Guerrero', 'Romero', 'Pérez', 'Puerto Cabezas', '5678-9012', 'Empresa J'
+EXEC InsertarPersonaProveedor 'Joaquín', 'Rivas', 'Santos', 'Gómez', 'Jinotega', '9012-3456', 'Empresa K'
+EXEC InsertarPersonaProveedor 'Carolina', 'Mendoza', 'Aguilar', 'Vega', 'Chinandega', '6789-0123', 'Empresa L'
 
 GO
 
@@ -349,15 +337,16 @@ CREATE PROCEDURE InsertarProducto
     @fecha_vencimiento DATE,
     @IDCategoria INTEGER,
     @IDPresentacion INTEGER,
-    @medida_numerica DECIMAL(12,2)
+    @medida_numerica DECIMAL(12,2),
+	@IDProveedor INTEGER
 AS
 BEGIN
     DECLARE @IDProducto INT
     
 
     -- Insertar en la tabla principal "Producto" con el IDCategoria correspondiente
-    INSERT INTO Producto (nombre_producto, cantidad_producto, precio_compra, precio_venta, descripcion,fecha_vencimiento,IDCategoria)
-    VALUES (@nombre_producto, @cantidad_producto, @precio_compra, @precio_venta, @descripcion, @fecha_vencimiento,@IDCategoria)
+    INSERT INTO Producto (nombre_producto, cantidad_producto, precio_compra, precio_venta, descripcion,fecha_vencimiento,IDCategoria,IDProveedor)
+    VALUES (@nombre_producto, @cantidad_producto, @precio_compra, @precio_venta, @descripcion, @fecha_vencimiento,@IDCategoria,@IDProveedor)
 
     -- Obtener el ID generado para el nuevo producto
     SET @IDProducto = SCOPE_IDENTITY()
@@ -368,6 +357,7 @@ BEGIN
     VALUES (@IDProducto, @IDPresentacion, @medida_numerica)
 END
 GO
+SELECT * FROM Producto
 
 
 
@@ -380,7 +370,8 @@ GO
     @fecha_vencimiento = '2023-01-01',
     @IDCategoria = 1,
     @IDPresentacion = 1,
-    @medida_numerica = 1.5;
+    @medida_numerica = 1.5,
+	@IDProveedor=1;
 
 	EXEC InsertarProducto
     @nombre_producto = 'Pan',
@@ -391,7 +382,8 @@ GO
     @fecha_vencimiento = '2023-02-01',
     @IDCategoria = 2,
     @IDPresentacion = 2,
-    @medida_numerica = 1;
+    @medida_numerica = 1,
+	@IDProveedor=2;
 
 	EXEC InsertarProducto
     @nombre_producto = 'Manzanas',
@@ -402,7 +394,8 @@ GO
     @fecha_vencimiento = '2023-03-01',
     @IDCategoria = 2,
     @IDPresentacion = 2,
-    @medida_numerica = 2.5;
+    @medida_numerica = 2.5,
+	@IDProveedor=3;
 
 
 	EXEC InsertarProducto
@@ -414,7 +407,8 @@ GO
     @fecha_vencimiento = '2023-04-01',
     @IDCategoria = 4,
     @IDPresentacion = 4,
-    @medida_numerica = 500.0;
+    @medida_numerica = 500.0,
+	@IDProveedor=4;
 
 	EXEC InsertarProducto
     @nombre_producto = 'Atún',
@@ -425,7 +419,8 @@ GO
     @fecha_vencimiento = '2023-05-01',
     @IDCategoria = 5,
     @IDPresentacion = 5,
-    @medida_numerica = 160.0
+    @medida_numerica = 160.0,
+	@IDProveedor=5;
 
 	EXEC InsertarProducto
     @nombre_producto = 'Papas',
@@ -436,7 +431,8 @@ GO
     @fecha_vencimiento = '2023-06-01',
     @IDCategoria = 6,
     @IDPresentacion = 6,
-    @medida_numerica = 200.0;
+    @medida_numerica = 200.0,
+	@IDProveedor=6;
 
     SELECT * FROM Producto
 	SELECT * FROM Categoria
@@ -454,7 +450,7 @@ CREATE PROCEDURE InsertarVenta
 
    AS
 
-   INSERT INTO [Venta] ([fecha_venta],[hora_venta],[IDCliente])
+   INSERT INTO [Venta] ([fecha_venta],[hora_venta],IDCliente)
    VALUES (@fecha_venta,@hora_venta,@IDCliente)
    GO
 
@@ -487,44 +483,28 @@ GO
    GO
 
    --PROCEDIMIENTO ALMACENADO PARA INSERTAR COMPRA
-   CREATE PROCEDURE InsertarCompra
-   @fecha_compra DATE,
-   @hora_compra TIME,
-   @IDProveedor INT
-
-   AS
-
-   INSERT INTO [Compra] ([fecha_compra],[hora_compra],[IDProveedor])
-   VALUES (@fecha_compra,@hora_compra,@IDProveedor)
-   GO
---PROCEDIMIENTO ALMACENADO PARA INSERTAR DETALLECOMPRA
-CREATE PROCEDURE DetalleCompra
-@cantidad_compra INT,
-@IDCompra INT,
-@IDProducto INT
-
+  CREATE PROCEDURE InsertarCompra
+   @cantidad_compra INT,
+   @IDProducto INT
 AS
 BEGIN
-INSERT INTO Detalle_Compra (cantidad_compra,IDCompra,IDProducto)
-VALUES (@cantidad_compra,@IDCompra,@IDProducto)
+   DECLARE @fecha_compra DATE = GETDATE();
+   DECLARE @hora_compra TIME = GETDATE();
 
-BEGIN TRANSACTION;
+   INSERT INTO [Compra] ([fecha_compra],[hora_compra])
+   VALUES (@fecha_compra,@hora_compra);
 
-UPDATE Producto
-SET cantidad_producto = cantidad_producto + @cantidad_compra
-WHERE IDProducto = @IDProducto;
+   BEGIN TRANSACTION;
 
+   UPDATE Producto
+   SET cantidad_producto = cantidad_producto + @cantidad_compra
+   WHERE IDProducto = @IDProducto;
 
+   COMMIT TRANSACTION;
 END
-
 GO
 
-
-
-
 SELECT * FROM Compra
-SELECT * FROM Detalle_Compra
-SELECT * FROM Proveedor
 SELECT * FROM Producto	
 --------------------------------------------------------------------------------------------------------------------------------
 
@@ -721,11 +701,14 @@ CREATE PROCEDURE ConsultarProducto
 AS
 BEGIN 
     SELECT Producto.IDProducto, Producto.nombre_producto,Producto.cantidad_producto,Producto.precio_compra, Producto.precio_venta, Producto.descripcion,
-    Producto.fecha_vencimiento,Categoria.IDCategoria ,Categoria.nombre_categoria, ProductoPresentacion.ID_PPresentacion ,ProductoPresentacion.medida_numerica ,Presentacion.IDPresentacion,Presentacion.nombre_presentacion
+    Producto.fecha_vencimiento,Categoria.IDCategoria ,Categoria.nombre_categoria, ProductoPresentacion.ID_PPresentacion ,ProductoPresentacion.medida_numerica ,Presentacion.IDPresentacion,Presentacion.nombre_presentacion,
+	Producto.IDProveedor,Proveedor.empresa_proveedor
     FROM Producto 
     INNER JOIN ProductoPresentacion ON Producto.IDProducto = ProductoPresentacion.IDProducto
     INNER JOIN Presentacion ON ProductoPresentacion.IDPresentacion = Presentacion.IDPresentacion
     INNER JOIN Categoria ON Producto.IDCategoria = Categoria.IDCategoria
+	INNER JOIN Proveedor ON Producto.IDProveedor = Proveedor.IDProveedor
+
 END
 
 GO
@@ -802,6 +785,14 @@ END;
 
   AS
   SELECT IDPresentacion,nombre_presentacion FROM Presentacion
+
+  GO
+
+  --PROCEDIMINETO PARA LLENARCOMBOBOX
+
+  CREATE PROCEDURE LlenarProveedor
+  AS
+  SELECT IDProveedor,empresa_proveedor FROM Proveedor
 
   GO
   -------------------------------------------------------------------------------------------------------
@@ -896,7 +887,8 @@ GO
     @fecha_vencimiento DATE,
     @IDCategoria INTEGER,
     @IDPresentacion INTEGER,
-    @medida_numerica DECIMAL(12,2)
+    @medida_numerica DECIMAL(12,2),
+	@IDProveedor INTEGER
 AS
 BEGIN
     -- Actualizar la tabla principal "Producto"
@@ -908,7 +900,8 @@ BEGIN
         precio_venta = @precio_venta,
         descripcion = @descripcion,
         fecha_vencimiento = @fecha_vencimiento,
-        IDCategoria = @IDCategoria
+        IDCategoria = @IDCategoria,
+		IDProveedor=@IDProveedor
     WHERE IDProducto = @IDProducto
 
     -- Actualizar la tabla intermedia "ProductoPresentacion"
@@ -918,18 +911,6 @@ BEGIN
         medida_numerica = @medida_numerica
     WHERE IDProducto = @IDProducto
 END
-
---EXEC ActualizarProducto
---    @IDProducto = 1,
---    @nombre_producto = 'MAterno',
---    @cantidad_producto = 1,
---    @precio_compra = 20.50,
---    @precio_venta = 30.00,
---    @descripcion = 'BEBE',
---    @fecha_vencimiento = '2023-12-31',
---    @IDCategoria = 4,
---    @IDPresentacion = 4,
---    @medida_numerica = 5.25
 
     SELECT * FROM Producto
     SELECT * FROM ProductoPresentacion

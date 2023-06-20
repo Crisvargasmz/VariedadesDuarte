@@ -8,6 +8,13 @@ public class Proveedor extends Persona {
     public Proveedor() {
     }
 
+    public Proveedor(int ID_proveedor, String empresa_proveedor) {
+        this.ID_proveedor = ID_proveedor;
+        this.empresa_proveedor = empresa_proveedor;
+    }
+    
+    
+
     public Proveedor(String nombre1, String nombre2, String apellido1, String apellido2,String empresa_proveedor, String telefono, String direccion) {
         super(nombre1, nombre2, apellido1, apellido2, telefono, direccion);
         this.empresa_proveedor = empresa_proveedor;
@@ -99,5 +106,11 @@ public class Proveedor extends Persona {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+    
+        @Override
+    public String toString() {
+        return ID_proveedor + " - " + empresa_proveedor;
+    }
+
     
 }

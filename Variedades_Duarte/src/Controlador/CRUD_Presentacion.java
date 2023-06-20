@@ -17,7 +17,7 @@ public class CRUD_Presentacion {
       
 public DefaultComboBoxModel<Presentacion> Llenar() {
     DefaultComboBoxModel<Presentacion> modelo = new DefaultComboBoxModel<>();
-    modelo.addElement(new Presentacion(-1, "Unidad de medida"));
+    modelo.addElement(new Presentacion(0, "Unidad de medida"));
 
     try {
         CallableStatement cbstc = cn.prepareCall("{call LlenarPresentacion}");
