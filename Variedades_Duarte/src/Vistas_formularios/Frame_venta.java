@@ -25,9 +25,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Windows 10
  */
 public class Frame_venta extends javax.swing.JInternalFrame {
-
+    
     ValidarCampos validar = new ValidarCampos();
-
+    
     CRUD_Venta func = new CRUD_Venta();
     DefaultTableModel modelo = new DefaultTableModel();
 
@@ -41,20 +41,20 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtIDVenta.setVisible(false);
         mostrar();
     }
-
+    
     void mostrar() {
         try {
             DefaultTableModel modelo;
             CRUD_Venta func = new CRUD_Venta();
             modelo = func.mostrar();
             listarProductos.setModel(modelo);
-
+            
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
-
+            
         }
     }
-
+    
     public void guardarVenta() {
         //Ensertar Venta
         CRUD_Venta cv = new CRUD_Venta();
@@ -63,7 +63,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 Time.valueOf(txtHora_venta.getText()),
                 Integer.parseInt(txtIDCliente.getText()));
         cv.insertarVenta(vt);
-        
+
         //----------------------
         //Insertar Detalle_venta
         Detalle_venta dts = new Detalle_venta();
@@ -76,16 +76,16 @@ public class Frame_venta extends javax.swing.JInternalFrame {
             cd.insertarDetalle_venta(dts);
         }
     }
-
+    
     void AgregarProducto() {
-
+        
         double subtotal, totalpagar;
-
+        
         modelo = (DefaultTableModel) listarProductos.getModel();
-
+        
         int cant = Integer.parseInt(txtCantidadProducto.getText());
         double pre = Double.parseDouble(txtPrecioProducto.getText());
-
+        
         subtotal = cant * pre;
         totalpagar = subtotal;
         ArrayList lista = new ArrayList();
@@ -94,7 +94,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         lista.add(txtCantidadProducto.getText());
         lista.add(txtPrecioProducto.getText());
         lista.add(subtotal);
-
+        
         Object[] obj = new Object[5];
         obj[0] = lista.get(0);
         obj[1] = lista.get(1);
@@ -104,9 +104,9 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         modelo.addRow(obj);
         listarProductos.setModel(modelo);
         calcularTotal();
-
+        
     }
-
+    
     void limpiardetalle() {
         txtIDProducto.setText("");
         txtCantidadProducto.setText("");
@@ -114,7 +114,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtProducto.setText("");
         txtCantidadDisponible.setText("");
     }
-
+    
     void limpiarformulario() {
         txtIDCliente.setText("");
         txtNombreCliente.setText("");
@@ -124,37 +124,37 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         limpiartabla();
         limpiarCalculos();
     }
-
+    
     void limpiarCalculos() {
         txtPagar.setText("");
         txtCambio.setText("");
         txtTotal.setText("");
     }
-
+    
     void calcularTotal() {
         double subtotal = 0.0;
         double total = 0;
-
+        
         for (int i = 0; i < listarProductos.getRowCount(); i++) {
             int cantidad = Integer.parseInt(listarProductos.getValueAt(i, 2).toString());
             Double precio = Double.valueOf(listarProductos.getValueAt(i, 3).toString());
-
+            
             subtotal = subtotal + (cantidad * precio);
             total = subtotal;
-
+            
         }
         txtTotal.setText(String.valueOf(total));
-
+        
     }
-
+    
     void limpiartabla() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.removeRow(i);
             i = i - 1;
-
+            
         }
     }
-
+    
     private void remover() {
         DefaultTableModel compras = (DefaultTableModel) listarProductos.getModel();
         int cantidadActual = 0;
@@ -162,7 +162,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         if (item >= 0) {
             compras.removeRow(item);
             for (int i = 0; i < listarProductos.getRowCount(); i++) {
-
+                
                 int cantidad = Integer.parseInt(listarProductos.getValueAt(i, 2).toString());
                 Double precio = Double.valueOf(listarProductos.getValueAt(i, 3).toString());
                 Double subt = Double.valueOf(listarProductos.getValueAt(i, 4).toString());
@@ -171,7 +171,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 txtTotal.setText(String.valueOf(actCal));
                 calcularTotal();
             }
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila", "Ventas", JOptionPane.WARNING_MESSAGE);
         }
@@ -262,7 +262,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(4, 64, 98)), "Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
 
         txtProducto.setEditable(false);
-        txtProducto.setBackground(new java.awt.Color(242, 242, 242));
         txtProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Producto :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
@@ -279,7 +278,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtPrecioProducto.setEditable(false);
-        txtPrecioProducto.setBackground(new java.awt.Color(242, 242, 242));
         txtPrecioProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtPrecioProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Precio :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtPrecioProducto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -292,7 +290,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtCantidadProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Cantidad :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
         txtCantidadDisponible.setEditable(false);
-        txtCantidadDisponible.setBackground(new java.awt.Color(242, 242, 242));
         txtCantidadDisponible.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtCantidadDisponible.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Stock :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtCantidadDisponible.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -302,7 +299,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtIDProducto.setEditable(false);
-        txtIDProducto.setBackground(new java.awt.Color(242, 242, 242));
         txtIDProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtIDProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "ID :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtIDProducto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -327,7 +323,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtCambio.setEditable(false);
-        txtCambio.setBackground(new java.awt.Color(242, 242, 242));
         txtCambio.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         txtCambio.setForeground(new java.awt.Color(255, 0, 0));
         txtCambio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -340,7 +335,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtTotal.setEditable(false);
-        txtTotal.setBackground(new java.awt.Color(242, 242, 242));
         txtTotal.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(0, 153, 0));
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -498,7 +492,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtIDCliente.setEditable(false);
-        txtIDCliente.setBackground(new java.awt.Color(242, 242, 242));
         txtIDCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtIDCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "ID :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtIDCliente.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -508,7 +501,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtNombreCliente.setEditable(false);
-        txtNombreCliente.setBackground(new java.awt.Color(242, 242, 242));
         txtNombreCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtNombreCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Cliente :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtNombreCliente.setOpaque(true);
@@ -724,19 +716,19 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         if (txtProducto.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Seleccione un producto");
             return;
-
+            
         }
         if (txtCantidadProducto.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Ingrese una cantidad a la venta");
             return;
-
+            
         }
-
+        
         int cant, stock;
-
+        
         cant = Integer.parseInt(txtCantidadProducto.getText());
         stock = Integer.parseInt(txtCantidadDisponible.getText());
-
+        
         if (stock >= cant) {
             int cantidadActual = stock - cant;
             AgregarProducto();
@@ -746,7 +738,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 txtCambio.setText(String.valueOf(totalPagar));
                 txtCantidadDisponible.setText(String.valueOf(cantidadActual));
             } catch (NumberFormatException e) {
-
+                
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "No hay suficinete Stock", "Sistema ventas", JOptionPane.ERROR_MESSAGE);
@@ -768,7 +760,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 limpiarformulario();
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
@@ -783,14 +775,14 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         remover();
         try {
-
+            
             double paga = Double.parseDouble(txtPagar.getText());
             double totalPagar = paga - Double.parseDouble(txtTotal.getText());
             txtCambio.setText(String.valueOf(totalPagar));
             if (listarProductos.getRowCount() == 0) {
                 limpiarCalculos();
             }
-
+            
         } catch (NumberFormatException e) {
         }
 
@@ -799,9 +791,13 @@ public class Frame_venta extends javax.swing.JInternalFrame {
     private void txtPagarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagarKeyReleased
         // TODO add your handling code here:
         try {
-            double paga = Double.parseDouble(txtPagar.getText());
-            double totalPagar = paga - Double.parseDouble(txtTotal.getText());
-            txtCambio.setText(String.valueOf(totalPagar));
+            if (txtPagar.getText().length() == 0) {
+                txtCambio.setText("");
+            } else {
+                double paga = Double.parseDouble(txtPagar.getText());
+                double totalPagar = paga - Double.parseDouble(txtTotal.getText());
+                txtCambio.setText(String.valueOf(totalPagar));
+            }
         } catch (NumberFormatException e) {
         }
     }//GEN-LAST:event_txtPagarKeyReleased
