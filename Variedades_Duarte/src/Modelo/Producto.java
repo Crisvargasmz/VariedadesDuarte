@@ -19,7 +19,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombre_producto, int cantidad_producto, BigDecimal precio_compra, BigDecimal precio_venta, String descripcion, Date fecha_vencimiento, int IDCategoria, int IDPresentacion, BigDecimal medida_numerica) {
+    public Producto(String nombre_producto, int cantidad_producto, BigDecimal precio_compra, BigDecimal precio_venta, String descripcion, Date fecha_vencimiento, int IDCategoria, int IDPresentacion, BigDecimal medida_numerica, int IDProveedor) {
         this.nombre_producto = nombre_producto;
         this.cantidad_producto = cantidad_producto;
         this.precio_compra = precio_compra;
@@ -29,9 +29,10 @@ public class Producto {
         this.IDCategoria = IDCategoria;
         this.IDPresentacion = IDPresentacion;
         this.medida_numerica = medida_numerica;
+        this.IDProveedor = IDProveedor;
     }
 
-    public Producto(int IDProducto, String nombre_producto, int cantidad_producto, BigDecimal precio_compra, BigDecimal precio_venta, String descripcion, Date fecha_vencimiento, int IDCategoria, int IDPresentacion, BigDecimal medida_numerica) {
+    public Producto(int IDProducto, String nombre_producto, int cantidad_producto, BigDecimal precio_compra, BigDecimal precio_venta, String descripcion, Date fecha_vencimiento, int IDCategoria, int IDPresentacion, BigDecimal medida_numerica,int IDProveedor) {
         this.IDProducto = IDProducto;
         this.nombre_producto = nombre_producto;
         this.cantidad_producto = cantidad_producto;
@@ -42,6 +43,7 @@ public class Producto {
         this.IDCategoria = IDCategoria;
         this.IDPresentacion = IDPresentacion;
         this.medida_numerica = medida_numerica;
+        this.IDProveedor = IDProveedor;
     }
 
     public Producto(int IDProducto, int cantidad_producto) {
@@ -127,6 +129,16 @@ public class Producto {
 
     public void setMedida_numerica(BigDecimal medida_numerica) {
         this.medida_numerica = medida_numerica;
+    }
+    
+    public int getIDProveedor(){
+     return IDProveedor;
+    
+    }
+    
+    public void setIDProveedor(int IDProveedor){
+    
+    this.IDProveedor = IDProveedor;
     }
     
     

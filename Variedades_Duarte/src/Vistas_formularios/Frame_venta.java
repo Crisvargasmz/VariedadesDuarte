@@ -203,7 +203,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtCambio = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
@@ -262,7 +261,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(4, 64, 98)), "Producto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 14))); // NOI18N
 
         txtProducto.setEditable(false);
-        txtProducto.setBackground(new java.awt.Color(242, 242, 242));
         txtProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Producto :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
@@ -279,7 +277,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtPrecioProducto.setEditable(false);
-        txtPrecioProducto.setBackground(new java.awt.Color(242, 242, 242));
         txtPrecioProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtPrecioProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Precio :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtPrecioProducto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -292,7 +289,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtCantidadProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Cantidad :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
 
         txtCantidadDisponible.setEditable(false);
-        txtCantidadDisponible.setBackground(new java.awt.Color(242, 242, 242));
         txtCantidadDisponible.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtCantidadDisponible.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Stock :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtCantidadDisponible.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -302,7 +298,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtIDProducto.setEditable(false);
-        txtIDProducto.setBackground(new java.awt.Color(242, 242, 242));
         txtIDProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtIDProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "ID :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtIDProducto.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -327,7 +322,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtCambio.setEditable(false);
-        txtCambio.setBackground(new java.awt.Color(242, 242, 242));
         txtCambio.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         txtCambio.setForeground(new java.awt.Color(255, 0, 0));
         txtCambio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -340,25 +334,12 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtTotal.setEditable(false);
-        txtTotal.setBackground(new java.awt.Color(242, 242, 242));
         txtTotal.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(0, 153, 0));
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTotal.setText("0");
         txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Total :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtTotal.setOpaque(true);
-
-        jButton1.setText("jButton1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -380,15 +361,11 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnAgregarVProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 6, Short.MAX_VALUE)
-                                .addComponent(jButton1))))
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 33, Short.MAX_VALUE))
+                        .addComponent(btnAgregarVProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 60, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 104, Short.MAX_VALUE))))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -412,8 +389,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCantidadDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtCantidadDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -498,7 +474,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtIDCliente.setEditable(false);
-        txtIDCliente.setBackground(new java.awt.Color(242, 242, 242));
         txtIDCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtIDCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "ID :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtIDCliente.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -508,7 +483,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         });
 
         txtNombreCliente.setEditable(false);
-        txtNombreCliente.setBackground(new java.awt.Color(242, 242, 242));
         txtNombreCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtNombreCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)), "Cliente :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtNombreCliente.setOpaque(true);
@@ -754,31 +728,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         limpiardetalle();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        CRUD_Detalle_venta cp = new CRUD_Detalle_venta();
-        try {
-            if (txtCantidadProducto.toString().equals("")) {
-                JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
-
-//                if (cp.verificarDatos(txtProducto.getText())) {
-//                    JOptionPane.showMessageDialog(null, "Ya existe un producto con ese nombre");
-//                }
-            } else {
-                guardarVenta();
-                limpiarformulario();
-                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e);
-        }
-
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         // TODO add your handling code here:
         remover();
@@ -815,7 +764,6 @@ public class Frame_venta extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnQuitar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

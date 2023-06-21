@@ -202,6 +202,11 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
 
         comboGenero.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Genero", "M", "F" }));
+        comboGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboGeneroActionPerformed(evt);
+            }
+        });
         comboGenero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 comboGeneroKeyPressed(evt);
@@ -725,6 +730,10 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         //        }
         //
     }//GEN-LAST:event_tablaClienteMouseClicked
+
+    private void comboGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGeneroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboGeneroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

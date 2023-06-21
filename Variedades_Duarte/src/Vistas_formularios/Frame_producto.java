@@ -6,7 +6,6 @@ package Vistas_formularios;
 
 import Controlador.CRUD_Categoria;
 import Controlador.CRUD_Presentacion;
-import Controlador.CRUD_Cliente;
 import Controlador.CRUD_Producto;
 import Controlador.CRUD_Proveedor;
 import Modelo.Categoria;
@@ -16,15 +15,11 @@ import Modelo.Producto;
 import Modelo.Proveedor;
 import Modelo.ValidarCampos;
 import java.awt.HeadlessException;
-import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -33,7 +28,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Frame_producto extends javax.swing.JInternalFrame {
 
-    private ValidarCampos validar = new ValidarCampos();
+
+   private ValidarCampos validar = new ValidarCampos();
     private Desplazar_txtFields des = new Desplazar_txtFields();
     int datoSeleccionado = -1;
     /**
@@ -100,6 +96,9 @@ public class Frame_producto extends javax.swing.JInternalFrame {
 
         Presentacion presenSeleccionada = (Presentacion) comboPresentacion.getSelectedItem();
         int ID_Presentacion = presenSeleccionada.getIDPresentacion();
+        
+        Proveedor proveeSeleccionada = (Proveedor) ComboBoxproveedor.getSelectedItem();
+        int ID_Proveedor = proveeSeleccionada.getID_proveedor();
 
         Producto p1;
         p1 = new Producto(txtNombreProducto.getText(),
@@ -110,7 +109,8 @@ public class Frame_producto extends javax.swing.JInternalFrame {
                 java.sql.Date.valueOf(txtFechaVencimiento.getText()),
                 ID_Categoria,
                 ID_Presentacion,
-                BigDecimal.valueOf(Double.parseDouble(txtMedidaNumerica.getText())));
+                BigDecimal.valueOf(Double.parseDouble(txtMedidaNumerica.getText())),
+                ID_Proveedor);
 
         cp.insertarProducto(p1);
     }
@@ -127,6 +127,7 @@ public class Frame_producto extends javax.swing.JInternalFrame {
         txtMedidaNumerica.setText("");
         txtidppresentacion.setText("");
         
+        ComboBoxproveedor.setSelectedIndex(0);
         // Establecer selección por defecto en los combo boxes
         comboCategoria.setSelectedIndex(0);  // Índice de la opción por defecto que hace referencia a un objeto por default
 //        que hay en crud categoria que es con un valor 0,con un titulo que es categoria.
@@ -145,6 +146,9 @@ public class Frame_producto extends javax.swing.JInternalFrame {
 
         Presentacion presenSeleccionada = (Presentacion) comboPresentacion.getSelectedItem();
         int ID_Presentacion = presenSeleccionada.getIDPresentacion();
+        
+        Proveedor proveeSeleccionada = (Proveedor) ComboBoxproveedor.getSelectedItem();
+        int ID_Proveedor = proveeSeleccionada.getID_proveedor();
 
         Producto p1 = new Producto(Integer.parseInt(txtIDProducto.getText()),
                 txtNombreProducto.getText(),
@@ -155,7 +159,9 @@ public class Frame_producto extends javax.swing.JInternalFrame {
                 java.sql.Date.valueOf(txtFechaVencimiento.getText()),
                 ID_Categoria,
                 ID_Presentacion,
-                BigDecimal.valueOf(Double.parseDouble(txtMedidaNumerica.getText())));
+                BigDecimal.valueOf(Double.parseDouble(txtMedidaNumerica.getText())),
+                ID_Proveedor);
+                
 
         cp.ActualizarProducto(p1);
 
@@ -473,6 +479,52 @@ public class Frame_producto extends javax.swing.JInternalFrame {
         jSeparator1.setForeground(new java.awt.Color(4, 64, 98));
         jSeparator1.setOpaque(true);
 
+        tablaProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tablaProducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID Producto", "Nombre", "Cantidad", "Precio compra", "Precio venta", "Descripcion", "Fecha vencimiento", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaProducto.setGridColor(new java.awt.Color(0, 204, 204));
+        tablaProducto.setRowHeight(25);
+        tablaProducto.setShowHorizontalLines(true);
+        tablaProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProductoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaProducto);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -509,7 +561,7 @@ public class Frame_producto extends javax.swing.JInternalFrame {
                                                 .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(33, 33, 33)
                                                 .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 33, Short.MAX_VALUE))
+                                                .addGap(0, 0, Short.MAX_VALUE))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
                                                 .addComponent(txtDescripcion))))
@@ -526,6 +578,7 @@ public class Frame_producto extends javax.swing.JInternalFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(19, 19, 19)))
                 .addGap(30, 30, 30))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,62 +604,28 @@ public class Frame_producto extends javax.swing.JInternalFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(337, 337, 337))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        tablaProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tablaProducto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID Producto", "Nombre", "Cantidad", "Precio compra", "Precio venta", "Descripcion", "Fecha vencimiento"
-            }
-        ));
-        tablaProducto.setGridColor(new java.awt.Color(0, 204, 204));
-        tablaProducto.setRowHeight(25);
-        tablaProducto.setShowHorizontalLines(true);
-        tablaProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaProductoMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablaProducto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(273, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -899,7 +918,7 @@ public class Frame_producto extends javax.swing.JInternalFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
-    private javax.swing.JTable tablaProducto;
+    public static javax.swing.JTable tablaProducto;
     private javax.swing.JTextField txtBuscarProducto;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescripcion;
