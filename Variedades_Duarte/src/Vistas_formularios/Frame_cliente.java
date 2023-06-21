@@ -13,6 +13,7 @@ import java.awt.HeadlessException;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 //import net.sf.jasperreports.engine.JRException;
 //import net.sf.jasperreports.engine.JasperCompileManager;
 //import net.sf.jasperreports.engine.JasperFillManager;
@@ -41,6 +42,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
     public Frame_cliente() {
         initComponents();
         mostrar();
+        ocultartabla();
         txtIDcliente.setVisible(false);
         txtidpersona.setVisible(false);
     }
@@ -123,6 +125,22 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         }
 
     }
+         public void ocultartabla() {
+    int columnIndex = 0; // Aquí pones el índice de la columna que deseas ocultar
+    int columnIdex1 = 1;
+
+    TableColumnModel columnModel = tablaCliente.getColumnModel();
+    columnModel.getColumn(columnIndex).setWidth(0);
+    columnModel.getColumn(columnIndex).setMinWidth(0);
+    columnModel.getColumn(columnIndex).setMaxWidth(0);
+    columnModel.getColumn(columnIndex).setPreferredWidth(0);
+    columnModel.getColumn(columnIdex1).setWidth(0);
+    columnModel.getColumn(columnIdex1).setMinWidth(0);
+    columnModel.getColumn(columnIdex1).setMaxWidth(0);
+    columnModel.getColumn(columnIdex1).setPreferredWidth(0);
+
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -334,6 +352,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         });
         jSplitPane3.setLeftComponent(btnEliminarCliente);
 
+        tablaCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -542,6 +561,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
                     guardarCliente();
                     limpiar();
                     mostrar();
+                    ocultartabla();
                     JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
                 }
             }
@@ -629,6 +649,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
                     editarCliente();
                     limpiar();
                     mostrar();
+                    ocultartabla();
 
                     JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
 
@@ -675,6 +696,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
 
                 cli.eliminar(IDCliente);
                 mostrar();
+                ocultartabla();
                 JOptionPane.showMessageDialog(null,
                         "Dato eliminado correctamente");
             }

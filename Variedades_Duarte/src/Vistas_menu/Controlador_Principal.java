@@ -6,6 +6,7 @@ package Vistas_menu;
 
 import Modelo.MenuBotones_color;
 import Vistas_formularios.Frame_cliente;
+import Vistas_formularios.Frame_compra;
 import Vistas_formularios.Frame_producto;
 import Vistas_formularios.Frame_proveedor;
 import Vistas_formularios.Frame_venta;
@@ -141,7 +142,6 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 //            btn5.setContentAreaFilled(false);
 //        }
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -504,7 +504,14 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     private void btnCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraActionPerformed
         // TODO add your handling code here:
-   
+        Frame_compra vistaCompra = new Frame_compra();
+        vistaCompra.setSize(1280, 580);
+        vistaCompra.setLocation(0, 0);
+        vistaCompra.setVisible(true);
+        pnlMostrarVentanas.removeAll();
+        pnlMostrarVentanas.add(vistaCompra, BorderLayout.CENTER);
+        pnlMostrarVentanas.revalidate();
+        pnlMostrarVentanas.repaint();
     }//GEN-LAST:event_btnCompraActionPerformed
 
     private void bntCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCerrarSesionActionPerformed

@@ -5,14 +5,10 @@
 package Vistas_formularios;
 
 import Controlador.CRUD_Detalle_venta;
-import Controlador.CRUD_Producto;
 import Controlador.CRUD_Venta;
 import Modelo.Detalle_venta;
-import Modelo.Producto;
 import Modelo.ValidarCampos;
 import Modelo.Venta;
-import java.awt.HeadlessException;
-import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -20,14 +16,10 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Windows 10
- */
 public class Frame_venta extends javax.swing.JInternalFrame {
-
+    
     ValidarCampos validar = new ValidarCampos();
-
+    
     CRUD_Venta func = new CRUD_Venta();
     DefaultTableModel modelo = new DefaultTableModel();
 
@@ -41,20 +33,20 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtIDVenta.setVisible(false);
         mostrar();
     }
-
+    
     void mostrar() {
         try {
             DefaultTableModel modelo;
             CRUD_Venta func = new CRUD_Venta();
             modelo = func.mostrar();
             listarProductos.setModel(modelo);
-
+            
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
-
+            
         }
     }
-
+    
     public void guardarVenta() {
         //Ensertar Venta
         CRUD_Venta cv = new CRUD_Venta();
@@ -63,7 +55,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 Time.valueOf(txtHora_venta.getText()),
                 Integer.parseInt(txtIDCliente.getText()));
         cv.insertarVenta(vt);
-        
+
         //----------------------
         //Insertar Detalle_venta
         Detalle_venta dts = new Detalle_venta();
@@ -76,16 +68,16 @@ public class Frame_venta extends javax.swing.JInternalFrame {
             cd.insertarDetalle_venta(dts);
         }
     }
-
+    
     void AgregarProducto() {
-
+        
         double subtotal, totalpagar;
-
+        
         modelo = (DefaultTableModel) listarProductos.getModel();
-
+        
         int cant = Integer.parseInt(txtCantidadProducto.getText());
         double pre = Double.parseDouble(txtPrecioProducto.getText());
-
+        
         subtotal = cant * pre;
         totalpagar = subtotal;
         ArrayList lista = new ArrayList();
@@ -94,7 +86,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         lista.add(txtCantidadProducto.getText());
         lista.add(txtPrecioProducto.getText());
         lista.add(subtotal);
-
+        
         Object[] obj = new Object[5];
         obj[0] = lista.get(0);
         obj[1] = lista.get(1);
@@ -104,9 +96,9 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         modelo.addRow(obj);
         listarProductos.setModel(modelo);
         calcularTotal();
-
+        
     }
-
+    
     void limpiardetalle() {
         txtIDProducto.setText("");
         txtCantidadProducto.setText("");
@@ -114,7 +106,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         txtProducto.setText("");
         txtCantidadDisponible.setText("");
     }
-
+    
     void limpiarformulario() {
         txtIDCliente.setText("");
         txtNombreCliente.setText("");
@@ -124,37 +116,37 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         limpiartabla();
         limpiarCalculos();
     }
-
+    
     void limpiarCalculos() {
         txtPagar.setText("");
         txtCambio.setText("");
         txtTotal.setText("");
     }
-
+    
     void calcularTotal() {
         double subtotal = 0.0;
         double total = 0;
-
+        
         for (int i = 0; i < listarProductos.getRowCount(); i++) {
             int cantidad = Integer.parseInt(listarProductos.getValueAt(i, 2).toString());
             Double precio = Double.valueOf(listarProductos.getValueAt(i, 3).toString());
-
+            
             subtotal = subtotal + (cantidad * precio);
             total = subtotal;
-
+            
         }
         txtTotal.setText(String.valueOf(total));
-
+        
     }
-
+    
     void limpiartabla() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.removeRow(i);
             i = i - 1;
-
+            
         }
     }
-
+    
     private void remover() {
         DefaultTableModel compras = (DefaultTableModel) listarProductos.getModel();
         int cantidadActual = 0;
@@ -162,7 +154,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         if (item >= 0) {
             compras.removeRow(item);
             for (int i = 0; i < listarProductos.getRowCount(); i++) {
-
+                
                 int cantidad = Integer.parseInt(listarProductos.getValueAt(i, 2).toString());
                 Double precio = Double.valueOf(listarProductos.getValueAt(i, 3).toString());
                 Double subt = Double.valueOf(listarProductos.getValueAt(i, 4).toString());
@@ -171,7 +163,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 txtTotal.setText(String.valueOf(actCal));
                 calcularTotal();
             }
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila", "Ventas", JOptionPane.WARNING_MESSAGE);
         }
@@ -698,19 +690,19 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         if (txtProducto.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Seleccione un producto");
             return;
-
+            
         }
         if (txtCantidadProducto.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Ingrese una cantidad a la venta");
             return;
-
+            
         }
-
+        
         int cant, stock;
-
+        
         cant = Integer.parseInt(txtCantidadProducto.getText());
         stock = Integer.parseInt(txtCantidadDisponible.getText());
-
+        
         if (stock >= cant) {
             int cantidadActual = stock - cant;
             AgregarProducto();
@@ -720,7 +712,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
                 txtCambio.setText(String.valueOf(totalPagar));
                 txtCantidadDisponible.setText(String.valueOf(cantidadActual));
             } catch (NumberFormatException e) {
-
+                
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "No hay suficinete Stock", "Sistema ventas", JOptionPane.ERROR_MESSAGE);
@@ -728,18 +720,45 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         limpiardetalle();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        CRUD_Detalle_venta cp = new CRUD_Detalle_venta();
+        try {
+            if (txtCantidadProducto.toString().equals("")) {
+                JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
+
+//                if (cp.verificarDatos(txtProducto.getText())) {
+//                    JOptionPane.showMessageDialog(null, "Ya existe un producto con ese nombre");
+//                }
+            } else {
+                guardarVenta();
+                limpiarformulario();
+                JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         // TODO add your handling code here:
         remover();
         try {
-
+            
             double paga = Double.parseDouble(txtPagar.getText());
             double totalPagar = paga - Double.parseDouble(txtTotal.getText());
             txtCambio.setText(String.valueOf(totalPagar));
             if (listarProductos.getRowCount() == 0) {
                 limpiarCalculos();
             }
-
+            
         } catch (NumberFormatException e) {
         }
 
@@ -748,9 +767,13 @@ public class Frame_venta extends javax.swing.JInternalFrame {
     private void txtPagarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagarKeyReleased
         // TODO add your handling code here:
         try {
-            double paga = Double.parseDouble(txtPagar.getText());
-            double totalPagar = paga - Double.parseDouble(txtTotal.getText());
-            txtCambio.setText(String.valueOf(totalPagar));
+            if (txtPagar.getText().length() == 0) {
+                txtCambio.setText("");
+            } else {
+                double paga = Double.parseDouble(txtPagar.getText());
+                double totalPagar = paga - Double.parseDouble(txtTotal.getText());
+                txtCambio.setText(String.valueOf(totalPagar));
+            }
         } catch (NumberFormatException e) {
         }
     }//GEN-LAST:event_txtPagarKeyReleased

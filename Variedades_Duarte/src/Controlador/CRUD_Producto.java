@@ -23,9 +23,9 @@ public class CRUD_Producto {
     ResultSet rs;
     DefaultTableModel modelo;
     
-    String[] titulos = {"ID Producto", "Nombre Producto", "Cantidad", "Precio Compra", "Precio Venta", "Descripcion",
-            "Fecha vencimiento","IDCategoria", "Categoria","ID_PPresentacion","Unidad de medida","IDPresentacion",
-            "Presentacion","IDProveedor","empresa_proveedor"};
+    String[] titulos = {"IDProducto", "Nombre", "Cantidad", "Precio Compra", "Precio Venta", "Descripcion",
+            "Vencimiento","IDCategoria", "Categoria","ID_PPresentacion","Unidad numerica","IDPresentacion",
+            "Presentacion","IDProveedor","Proveedor"};
 
     String[] registro = new String[15];
 
@@ -171,7 +171,7 @@ public class CRUD_Producto {
     
     public void insertarProducto(Producto producto) {
     try {
-        CallableStatement callableStatement = cn.prepareCall("{call InsertarProducto(?,?,?,?,?,?,?,?,?)}");
+        CallableStatement callableStatement = cn.prepareCall("{call InsertarProducto(?,?,?,?,?,?,?,?,?,?)}");
         callableStatement.setString(1, producto.getNombre_producto());
         callableStatement.setInt(2, producto.getCantidad_producto());
         callableStatement.setBigDecimal(3, producto.getPrecio_compra());
@@ -181,6 +181,7 @@ public class CRUD_Producto {
         callableStatement.setInt(7, producto.getIDCategoria());
         callableStatement.setInt(8, producto.getIDPresentacion());
         callableStatement.setBigDecimal(9, producto.getMedida_numerica());
+        callableStatement.setInt(10, producto.getIDProveedor());
 
         callableStatement.executeUpdate();
 
@@ -193,7 +194,7 @@ public class CRUD_Producto {
     public void ActualizarProducto(Producto producto){
     
    try{
-       CallableStatement callableStatement = cn.prepareCall ("{call ActualizarProducto(?,?,?,?,?,?,?,?,?,?)}");
+       CallableStatement callableStatement = cn.prepareCall ("{call ActualizarProducto(?,?,?,?,?,?,?,?,?,?,?)}");
        callableStatement.setInt(1, producto.getIDProducto());
        callableStatement.setString(2, producto.getNombre_producto());
         callableStatement.setInt(3, producto.getCantidad_producto());
@@ -204,6 +205,7 @@ public class CRUD_Producto {
         callableStatement.setInt(8, producto.getIDCategoria());
         callableStatement.setInt(9, producto.getIDPresentacion());
         callableStatement.setBigDecimal(10, producto.getMedida_numerica());
+        callableStatement.setInt(11,producto.getIDProveedor());
         
         callableStatement.executeUpdate();
        

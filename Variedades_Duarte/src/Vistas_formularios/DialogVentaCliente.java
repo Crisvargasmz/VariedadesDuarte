@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -53,6 +54,7 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         mostrar();
+        ocultartabla();
         txtIDDisponible.setVisible(false);
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
@@ -98,6 +100,21 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         java.util.Date time = new java.util.Date();
         return timeFormat.format(time);
     }
+     public void ocultartabla() {
+    int columnIndex = 0; // Aquí pones el índice de la columna que deseas ocultar
+    int columnIdex1 = 1;
+
+    TableColumnModel columnModel = tablaClientesDisponibles.getColumnModel();
+    columnModel.getColumn(columnIndex).setWidth(0);
+    columnModel.getColumn(columnIndex).setMinWidth(0);
+    columnModel.getColumn(columnIndex).setMaxWidth(0);
+    columnModel.getColumn(columnIndex).setPreferredWidth(0);
+    columnModel.getColumn(columnIdex1).setWidth(0);
+    columnModel.getColumn(columnIdex1).setMinWidth(0);
+    columnModel.getColumn(columnIdex1).setMaxWidth(0);
+    columnModel.getColumn(columnIdex1).setPreferredWidth(0);
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

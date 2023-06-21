@@ -17,6 +17,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -41,6 +42,7 @@ public class DialogVentaProducto extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Mostrar();
+        ocultartabla();
         txtIDProducto.setVisible(false);
         txtCantidad.setVisible(false);
         txtPrecio.setVisible(false);
@@ -74,6 +76,36 @@ public class DialogVentaProducto extends javax.swing.JDialog {
         }
 
     }
+    
+     public void ocultartabla() {
+    int columnIndex = 0; // Aquí pones el índice de la columna que deseas ocultar
+    int columnIdex1 = 7;
+    int columnIdex2 = 9;
+    int columnIdex3 = 11;
+    int columnIdex4 = 13;
+
+    TableColumnModel columnModel = tablaProductos.getColumnModel();
+    columnModel.getColumn(columnIndex).setWidth(0);
+    columnModel.getColumn(columnIndex).setMinWidth(0);
+    columnModel.getColumn(columnIndex).setMaxWidth(0);
+    columnModel.getColumn(columnIndex).setPreferredWidth(0);
+    columnModel.getColumn(columnIdex1).setWidth(0);
+    columnModel.getColumn(columnIdex1).setMinWidth(0);
+    columnModel.getColumn(columnIdex1).setMaxWidth(0);
+    columnModel.getColumn(columnIdex1).setPreferredWidth(0);
+    columnModel.getColumn(columnIdex2).setWidth(0);
+    columnModel.getColumn(columnIdex2).setMinWidth(0);
+    columnModel.getColumn(columnIdex2).setMaxWidth(0);
+    columnModel.getColumn(columnIdex2).setPreferredWidth(0);
+    columnModel.getColumn(columnIdex3).setWidth(0);
+    columnModel.getColumn(columnIdex3).setMinWidth(0);
+    columnModel.getColumn(columnIdex3).setMaxWidth(0);
+    columnModel.getColumn(columnIdex3).setPreferredWidth(0);
+    columnModel.getColumn(columnIdex4).setWidth(0);
+    columnModel.getColumn(columnIdex4).setMinWidth(0);
+    columnModel.getColumn(columnIdex4).setMaxWidth(0);
+    columnModel.getColumn(columnIdex4).setPreferredWidth(0);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

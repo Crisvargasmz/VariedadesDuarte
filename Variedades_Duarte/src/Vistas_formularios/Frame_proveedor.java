@@ -7,6 +7,7 @@ import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 /**
  *
  * @author Darikson
@@ -19,6 +20,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
     public Frame_proveedor() {
         initComponents();
         mostrar();
+        ocultartabla();
         txtidproveedor.setVisible(false);
         txtidpersona.setVisible(false);
     }
@@ -76,6 +78,22 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
         }
 
     }
+    
+             public void ocultartabla() {
+    int columnIndex = 0; // Aquí pones el índice de la columna que deseas ocultar
+    int columnIdex1 = 1;
+
+    TableColumnModel columnModel = tablaProveedor.getColumnModel();
+    columnModel.getColumn(columnIndex).setWidth(0);
+    columnModel.getColumn(columnIndex).setMinWidth(0);
+    columnModel.getColumn(columnIndex).setMaxWidth(0);
+    columnModel.getColumn(columnIndex).setPreferredWidth(0);
+    columnModel.getColumn(columnIdex1).setWidth(0);
+    columnModel.getColumn(columnIdex1).setMinWidth(0);
+    columnModel.getColumn(columnIdex1).setMaxWidth(0);
+    columnModel.getColumn(columnIdex1).setPreferredWidth(0);
+
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -496,6 +514,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
 
             provee.eliminar(dato);
             mostrar();
+            ocultartabla();
             JOptionPane.showMessageDialog(null,
                 "Dato eliminado correctamente");
         }
@@ -525,6 +544,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
                     guardarProveedor();
                     limpiar();
                     mostrar();
+                    ocultartabla();
                     JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
                 }
             }
@@ -586,6 +606,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
                     editarProveedor();
                     limpiar();
                     mostrar();
+                    ocultartabla();
 
                     JOptionPane.showMessageDialog(null, "Datos Actualizados Correctamente");
 
