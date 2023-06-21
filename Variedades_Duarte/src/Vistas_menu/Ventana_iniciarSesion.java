@@ -17,6 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+//Usuarios
+/* Administrador , @1234567
+    Empleado , @vendedor*/
 /**
  *
  * @author Windows 10
@@ -127,6 +130,13 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             this.dispose();
             lbAdvertencia.setForeground(new Color(0, 204, 0));
             lbAdvertencia.setText("Acceso concedido.");
+             //Permisos de usuario basico.
+                if(txtUsuario.getText().equals("Empleado")){
+                    Controlador_Principal.btnProveedor.setVisible(false);
+                    Controlador_Principal.btnCompra.setVisible(false);
+                    Controlador_Principal.btnCategoria.setVisible(false);
+                    
+                }
         } else {
             lbAdvertencia.setForeground(new Color(255, 0, 0));
             lbAdvertencia.setText("Acceso denegado.");
@@ -148,6 +158,17 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
                 this.dispose();
                 lbAdvertencia.setForeground(new Color(0, 204, 0));
                 lbAdvertencia.setText("Acceso concedido.");
+                 //Permisos de usuario basico.
+                if(txtUsuario.getText().equals("Empleado")){
+                    Controlador_Principal.btnProveedor.setVisible(false);
+                    Controlador_Principal.btnCompra.setVisible(false);
+                    Controlador_Principal.btnCategoria.setVisible(false);
+                    
+                }else{
+                    Controlador_Principal.btnProveedor.setVisible(true);
+                    Controlador_Principal.btnCompra.setVisible(true);
+                    Controlador_Principal.btnCategoria.setVisible(true);
+                }
             } else {
                 lbAdvertencia.setForeground(new Color(255, 0, 0));
                 lbAdvertencia.setText("Acceso denegado.");
@@ -163,7 +184,7 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             JTexFields.requestFocus();
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -193,9 +214,7 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
         cuadroEstilo_Siete = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1095, 660));
         setMinimumSize(new java.awt.Dimension(1095, 660));
-        setPreferredSize(new java.awt.Dimension(1095, 660));
         setResizable(false);
 
         pnlPanelContenedor.setBackground(new java.awt.Color(59, 156, 210));
@@ -523,6 +542,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
     private javax.swing.JSeparator separadorEstilo_Dos;
     private javax.swing.JSeparator separadorEstilo_Uno;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsuario;
+    public static javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
