@@ -12,6 +12,7 @@ import Vistas_formularios.Frame_proveedor;
 import Vistas_formularios.Frame_venta;
 import Vistas_formularios.Vista_estadisticas;
 import Vistas_formularios.Vista_venta;
+import static Vistas_menu.Ventana_iniciarSesion.txtUsuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -42,6 +43,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         hilo = new Thread(this);
         hilo.start();
 
+        lbUsuario.setText(" " + Ventana_iniciarSesion.txtUsuario.getText());
         Vista_estadisticas vistaEstadistica = new Vista_estadisticas();
         vistaEstadistica.setSize(1280, 580);
         vistaEstadistica.setLocation(0, 0);
@@ -49,6 +51,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         pnlMostrarVentanas.add(vistaEstadistica, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
         pnlMostrarVentanas.repaint();
+      
     }
 
     //Metodo para mostrar la fecha
@@ -558,11 +561,11 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntCerrarSesion;
-    private javax.swing.JButton btnCategoria;
+    public static javax.swing.JButton btnCategoria;
     private javax.swing.JButton btnCliente;
-    private javax.swing.JButton btnCompra;
+    public static javax.swing.JButton btnCompra;
     private javax.swing.JButton btnInicio;
-    private javax.swing.JButton btnProveedor;
+    public static javax.swing.JButton btnProveedor;
     private javax.swing.JButton btnVenta;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbDate;
