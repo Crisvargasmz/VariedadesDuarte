@@ -482,45 +482,74 @@ GO
    Select * from Producto
    GO
 
-      --PROCEDIMIENTO ALMACENADO PARA INSERTAR COMPRA
-  CREATE PROCEDURE InsertarCompra
+--      --PROCEDIMIENTO ALMACENADO PARA INSERTAR COMPRA
+--  CREATE PROCEDURE InsertarCompra
+--AS
+--BEGIN
+--   DECLARE @fecha_compra DATE = GETDATE();
+--   DECLARE @hora_compra TIME = GETDATE();
+
+--   INSERT INTO [Compra] ([fecha_compra],[hora_compra])
+--   VALUES (@fecha_compra,@hora_compra);
+
+--END
+--GO
+
+----PROCEDIMIENTO ALMACENADO PARA INSERTAR PRODUCTO COMPRA
+--   CREATE PROCEDURE ProductoCompra
+--   @cantidad_compra INT,
+--   @IDCompra INT,
+--   @IDProducto INT
+
+--   AS
+--   BEGIN
+
+--   INSERT INTO ProductoCompra (cantidad_compra)
+--   VALUES (@cantidad_compra);
+
+--   BEGIN TRANSACTION;
+
+--   UPDATE Producto
+--   SET cantidad_producto = cantidad_producto + @cantidad_compra
+--   WHERE IDProducto = @IDProducto
+
+--   COMMIT TRANSACTION;
+--   END
+--   GO
+
+CREATE PROCEDURE InsertarCompraProducto
+   @cantidad_compra INT,
+   @IDProducto INT
 AS
 BEGIN
    DECLARE @fecha_compra DATE = GETDATE();
    DECLARE @hora_compra TIME = GETDATE();
 
    INSERT INTO [Compra] ([fecha_compra],[hora_compra])
-   VALUES (@fecha_compra,@hora_compra);
+   VALUES (@fecha_compra, @hora_compra);
 
-END
-GO
+   DECLARE @IDCompra INT = SCOPE_IDENTITY();
 
-   --PROCEDIMIENTO ALMACENADO PARA INSERTAR PRODUCTO COMPRA
-   CREATE PROCEDURE ProductoCompra
-   @cantidad_compra INT,
-   @IDCompra INT,
-   @IDProducto INT
-
-   AS
-   BEGIN
-
-   INSERT INTO ProductoCompra (cantidad_compra)
-   VALUES (@cantidad_compra);
+   INSERT INTO ProductoCompra (cantidad_compra, IDCompra, IDProducto)
+   VALUES (@cantidad_compra, @IDCompra, @IDProducto);
 
    BEGIN TRANSACTION;
 
    UPDATE Producto
    SET cantidad_producto = cantidad_producto + @cantidad_compra
-   WHERE IDProducto = @IDProducto
+   WHERE IDProducto = @IDProducto;
 
    COMMIT TRANSACTION;
-   END
-   GO
+END
+GO
+
+
 
 
 
 
 SELECT * FROM Compra
+SELECT * FROM ProductoCompra
 SELECT * FROM Producto	
 --------------------------------------------------------------------------------------------------------------------------------
 
