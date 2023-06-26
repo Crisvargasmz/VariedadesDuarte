@@ -479,6 +479,11 @@ public class Frame_producto extends javax.swing.JInternalFrame {
 
         txtBuscarProducto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtBuscarProducto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarProductoActionPerformed(evt);
+            }
+        });
         txtBuscarProducto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarProductoKeyReleased(evt);
@@ -905,8 +910,10 @@ public class Frame_producto extends javax.swing.JInternalFrame {
 
             modelo = cli.buscarDatos(txtBuscarProducto.getText());
             Mostrar();
+            
 
             tablaProducto.setModel(modelo);
+            ocultartabla();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -933,6 +940,10 @@ public class Frame_producto extends javax.swing.JInternalFrame {
     private void txtMedidaNumericaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMedidaNumericaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMedidaNumericaActionPerformed
+
+    private void txtBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

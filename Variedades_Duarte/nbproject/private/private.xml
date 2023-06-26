@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Modelo/Categoria.java</file>
+            <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Vistas_formularios/Frame_compra.java</file>
             <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Vistas_formularios/Frame_producto.java</file>
-            <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Modelo/Producto.java</file>
             <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Vistas_formularios/Frame_venta.java</file>
+            <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Vistas_menu/Controlador_Principal.java</file>
             <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Controlador/CRUD_Producto.java</file>
-            <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Controlador/CRUD_Categoria.java</file>
-            <file>file:/C:/GIT/VariedadesDuarte/Variedades_Duarte/src/Vistas_formularios/Frame_cliente.java</file>
-=======
-            <file>file:/C:/Users/Windows%2010/Desktop/Repositorios/VariedadesDuarte/Variedades_Duarte/src/Vistas_formularios/Frame_producto.java</file>
-            <file>file:/C:/Users/Windows%2010/Desktop/Repositorios/VariedadesDuarte/Variedades_Duarte/src/Vistas_formularios/Frame_venta.java</file>
->>>>>>> ccd3cb37e461f509fc20f6e17dd78de71d3ba805
         </group>
     </open-files>
 </project-private>

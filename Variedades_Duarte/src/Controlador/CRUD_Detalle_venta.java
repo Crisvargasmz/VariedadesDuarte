@@ -56,21 +56,6 @@ public class CRUD_Detalle_venta {
         }
     }
 
-    public void insertarProducto(Detalle_venta detalle) {
-        try {
-            CallableStatement callableStatement = cn.prepareCall("{call InsertarVentaConDetalle(?,?,?)}");
-            
-            callableStatement.setInt(2, detalle.getCantidad_venta());
-            callableStatement.setInt(1, detalle.getIDVenta());
-            callableStatement.setInt(3, detalle.getIDProducto());
-            callableStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-        }
-    }
-    
     public String IdVentas(){
         ResultSet rs;
       String idv="";

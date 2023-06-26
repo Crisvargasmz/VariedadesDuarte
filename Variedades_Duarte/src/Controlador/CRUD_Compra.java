@@ -34,7 +34,6 @@ public class CRUD_Compra {
                 registro[0] = rs.getString("IDCompra");
                 registro[1] = rs.getString("fecha_compra");
                 registro[2] = rs.getString("hora_compra");
-                registro[3] = rs.getString("IDProveedor");
                 modelo.addRow(registro);
             }
             return modelo;
@@ -75,10 +74,9 @@ public class CRUD_Compra {
     
 public void insertarCompra(Compra compra){
         try{
-            CallableStatement callableStatement = cn.prepareCall("{call InsertarCompra(?,?,?)}");
-            callableStatement.setString(1, compra.getFecha_compra());
-            callableStatement.setString(2, compra.getHora_compra());
-            callableStatement.setInt(3,compra.getIDProveedor());
+            CallableStatement callableStatement = cn.prepareCall("{call InsertarCompraProducto(?,?)}");
+            callableStatement.setInt(1, compra.getCantidad_compra());
+            callableStatement.setInt(2, compra.getIDProducto());
             callableStatement.executeUpdate();
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
