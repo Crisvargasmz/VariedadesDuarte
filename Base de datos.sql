@@ -23,7 +23,7 @@ CREATE TABLE [Proveedor] (
   [IDProveedor] INTEGER IDENTITY (1,1)PRIMARY KEY,
   [empresa_proveedor] NVARCHAR(30)NOT NULL,
   IDPersona INTEGER UNIQUE,
-  CONSTRAINT FK_Proveedor_Persona FOREIGN KEY (IDPersona) REFERENCES Persona (IDPersona)
+  CONSTRAINT FK_Proveedor_Persona1 FOREIGN KEY (IDPersona) REFERENCES Persona (IDPersona)
   
 
 )
@@ -38,6 +38,9 @@ CREATE TABLE [Cliente] (
   
 )
 GO
+
+
+
 
 -- Creación de la tabla "Categoria".
 CREATE TABLE [Categoria] (
@@ -1049,30 +1052,44 @@ BEGIN
   DELETE FROM Persona WHERE IDPersona = @IDCliente;
 END
 
-  Select * from Cliente
-  Select * from Venta
-  Select * from Detalle_Venta
-  EXEC EliminarClienteVenta @IDCliente = 3;
+ 
 GO
 
 
-  --PROCEDIMINETO ALMACENADO PARA ELIMINAR PROVEEDOR
- CREATE PROCEDURE EliminarProveedorPersona
-  @Dato NVARCHAR (150)
-
-  AS
-
-  DELETE FROM Proveedor WHERE IDProveedor=@Dato
-  DELETE FROM Persona WHERE IDPersona=@Dato
-
-
+ Select * from Cliente
+ select * from Persona
+  Select * from Venta
+  Select * from Detalle_Venta
+  EXEC EliminarClienteVenta @IDCliente = 3;
   GO
+
+
+  --PROCEDIMINETO ALMACENADO PARA ELIMINAR PROVEEDOR
+CREATE PROCEDURE EliminarProveedorPersona
+ @Dato VARCHAR (150)
+AS
+BEGIN
+
+
+ DELETE FROM Proveedor 
+  WHERE IDProveedor = @Dato;
+
+DELETE FROM Persona
+  WHERE IDPersona = @Dato;
+
+
+END
+GO
+
+
+
 
   SELECT * FROM Cliente
   SELECT* FROM Proveedor
   SELECT * FROM Persona
 
-  EXEC EliminarProveedorPersona @Dato = 1
+  EXEC EliminarProveedorPersona 4
+
 
   GO
  
