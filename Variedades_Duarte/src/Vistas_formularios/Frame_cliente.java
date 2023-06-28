@@ -268,6 +268,11 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         txtBuscarCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtBuscarCliente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtBuscarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
+        txtBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarClienteActionPerformed(evt);
+            }
+        });
         txtBuscarCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarClienteKeyReleased(evt);
@@ -344,7 +349,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         btnEliminarCliente.setBackground(new java.awt.Color(4, 64, 98));
         btnEliminarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEliminarCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarCliente.setText("Elimnar");
+        btnEliminarCliente.setText("Eliminar");
         btnEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarClienteActionPerformed(evt);
@@ -521,8 +526,9 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
 
             modelo = cli.buscarDatos(txtBuscarCliente.getText());
             mostrar();
-
+            
             tablaCliente.setModel(modelo);
+            ocultartabla();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -568,16 +574,6 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
-
-       
-        //   String nombreCliente1 = txtNombreClienteUno.getText();
-        //    String nombreCliente2 = txtNombreClienteDos.getText();
-        //    String apellidoCliente1 = txtApellidoClienteUno.getText();
-        //    String apellidoCliente2 = txtApellidoClienteDos.getText();
-        //    String telefonoCliente = txtTelefonoCliente.getText();
-        //    String generoCliente = comboGenero.getSelectedItem().toString();
-        //    String direccionCliente = txtDireccionCliente.getText();
-        //
        
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
@@ -708,54 +704,15 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
 
     private void tablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClienteMouseClicked
         datoSeleccionado = tablaCliente.rowAtPoint(evt.getPoint());
-        //    int filaSeleccionada = tablaCliente.getSelectedRow();
-        //
-        //        if (filaSeleccionada != -1) {
-        ////            String IDCliente = tablaCliente.getValueAt(filaSeleccionada, 0).toString();
-        //            String nombreClienteUno = tablaCliente.getValueAt(filaSeleccionada, 1).toString();
-        //            String nombreClienteDos = tablaCliente.getValueAt(filaSeleccionada, 2).toString();
-        //            String apellidoClienteUno = tablaCliente.getValueAt(filaSeleccionada, 3).toString();
-        //            String apellidoClienteDos = tablaCliente.getValueAt(filaSeleccionada, 4).toString();
-        //            String genero = tablaCliente.getValueAt(filaSeleccionada, 5).toString();
-        //            String telefonoCliente = tablaCliente.getValueAt(filaSeleccionada,6 ).toString();
-        //            String direccionCliente = tablaCliente.getValueAt(filaSeleccionada, 7).toString();
-        //
-        ////            txtIDCliente.setText(IDCliente);
-        //            txtNombreClienteUno.setText(nombreClienteUno);
-        //            txtNombreClienteDos.setText(nombreClienteDos);
-        //            txtApellidoClienteUno.setText(apellidoClienteUno);
-        //            txtApellidoClienteDos.setText(apellidoClienteDos);
-        //            comboGenero.setSelectedItem(genero);
-        //            txtTelefonoCliente.setText(telefonoCliente);
-        //            txtDireccionCliente.setText(direccionCliente);
-        //        }
-        ////
-        //  if (datoSeleccionado >= 0) {
-        //
-        //                    String dato  = String.valueOf(tablaCliente.getValueAt(datoSeleccionado, 0));
-        //            CRUD_Cliente cli = new CRUD_Cliente();
-        //            if (JOptionPane.showConfirmDialog(this.getRootPane(),
-        //                    "Se eliminará el registro, ¿desea continuar?",
-        //                    "Eliminar Registro",
-        //                    JOptionPane.WARNING_MESSAGE,
-        //                    JOptionPane.YES_NO_OPTION)
-        //                    == JOptionPane.YES_OPTION) {
-        //
-        //                cli.eliminar(dato);
-        //                mostrar();
-        //                JOptionPane.showMessageDialog(null,
-        //                        "Dato eliminado correctamente");
-        //            }
-        //        } else {
-        //            JOptionPane.showMessageDialog(null,
-        //                    "Debe seleccionar un registro de la tabla");
-        //        }
-        //
     }//GEN-LAST:event_tablaClienteMouseClicked
 
     private void comboGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGeneroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboGeneroActionPerformed
+
+    private void txtBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

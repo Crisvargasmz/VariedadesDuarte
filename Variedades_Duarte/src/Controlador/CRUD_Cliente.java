@@ -85,9 +85,9 @@ public class CRUD_Cliente {
     public DefaultTableModel buscarDatos(String Dato) {
         ResultSet rs;
         DefaultTableModel modelo;
-        String[] titulos = {"IDCliente", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
+        String[] titulos = {"IDPersona","IDCliente", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido",
             "Telefono", "Genero", "Direcion"};
-        String[] registro = new String[8];
+        String[] registro = new String[9];
         modelo = new DefaultTableModel(null, titulos);
 
         try {
@@ -96,14 +96,15 @@ public class CRUD_Cliente {
             rs = call.executeQuery();
 
             while (rs.next()) {
-                registro[0] = rs.getString("IDCliente");
-                registro[1] = rs.getString("nombre1");//estas variables tienen que ser las misma como se declararon en la base de datos
-                registro[2] = rs.getString("nombre2");
-                registro[3] = rs.getString("apellido1");
-                registro[4] = rs.getString("apellido2");
-                registro[5] = rs.getString("telefono");
-                registro[6] = rs.getString("genero_cliente");
-                registro[7] = rs.getString("direccion");
+                registro[0] = rs.getString("IDPersona");
+                registro[1] = rs.getString("IDCliente");
+                registro[2] = rs.getString("nombre1");//estas variables tienen que ser las misma como se declararon en la base de datos
+                registro[3] = rs.getString("nombre2");
+                registro[4] = rs.getString("apellido1");
+                registro[5] = rs.getString("apellido2");
+                registro[6] = rs.getString("telefono");
+                registro[7] = rs.getString("genero_cliente");
+                registro[8] = rs.getString("direccion");
 
                 modelo.addRow(registro);
             }
@@ -204,16 +205,16 @@ public class CRUD_Cliente {
 
     public void ActualizarCliente(Cliente cliente) {
         try {
-            CallableStatement callableStatement = cn.prepareCall("{call ActualizarPersonaCliente(?,?,?,?,?,?,?,?)}");
+            CallableStatement callableStatement = cn.prepareCall("{call ActualizarPersonaCliente(?,?,?,?,?,?,?,?,?)}");
             callableStatement.setInt(1, cliente.getIDPersona());
-//            callableStatement.setInt(2, cliente.getIDCliente());
-            callableStatement.setString(2, cliente.getNombre1());
-            callableStatement.setString(3, cliente.getNombre2());
-            callableStatement.setString(4, cliente.getApellido1());
-            callableStatement.setString(5, cliente.getApellido2());
-            callableStatement.setString(6, cliente.getTelefono());
-            callableStatement.setString(7, String.valueOf(cliente.getGenero_cliente()));
-            callableStatement.setString(8, cliente.getDireccion());
+             callableStatement.setInt(2, cliente.getIDCliente());
+            callableStatement.setString(3, cliente.getNombre1());
+            callableStatement.setString(4, cliente.getNombre2());
+            callableStatement.setString(5, cliente.getApellido1());
+            callableStatement.setString(6, cliente.getApellido2());
+            callableStatement.setString(7, cliente.getTelefono());
+            callableStatement.setString(8, String.valueOf(cliente.getGenero_cliente()));
+            callableStatement.setString(9, cliente.getDireccion());
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);

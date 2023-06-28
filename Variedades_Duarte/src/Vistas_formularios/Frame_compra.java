@@ -50,8 +50,7 @@ int datoSeleccionado = -1;
            Compra cp = new Compra(
       
            canti,
-
-           Integer.parseInt(idproducto.getText()));
+  Integer.parseInt(idproducto.getText()));
            comp.insertarCompra(cp);
            
         }

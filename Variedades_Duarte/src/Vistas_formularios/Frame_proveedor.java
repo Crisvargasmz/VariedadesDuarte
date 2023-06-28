@@ -8,10 +8,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-/**
- *
- * @author Darikson
- */
+
 public class Frame_proveedor extends javax.swing.JInternalFrame {
     private ValidarCampos validar = new ValidarCampos();
     private Desplazar_txtFields des = new Desplazar_txtFields();
@@ -241,7 +238,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
         btnEliminarProveedor.setBackground(new java.awt.Color(4, 64, 98));
         btnEliminarProveedor.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnEliminarProveedor.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminarProveedor.setText("Elimnar");
+        btnEliminarProveedor.setText("Eliminar");
         btnEliminarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProveedorActionPerformed(evt);
@@ -303,8 +300,8 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
         txtBuscarProveedor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtBuscarProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(4, 64, 98)), "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 12))); // NOI18N
         txtBuscarProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBuscarProveedorKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarProveedorKeyReleased(evt);
             }
         });
 
@@ -503,7 +500,9 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
 
         if (datoSeleccionado >= 0) {
 
-            String dato = String.valueOf(tablaProveedor.getValueAt(datoSeleccionado, 0));
+            int pr = Integer.parseInt((String) tablaProveedor.getValueAt(datoSeleccionado, 1));
+            int perso = Integer.parseInt((String) tablaProveedor.getValueAt(datoSeleccionado, 0));
+            
             CRUD_Proveedor provee = new CRUD_Proveedor();
             if (JOptionPane.showConfirmDialog(this.getRootPane(),
                 "Se eliminará el registro, ¿desea continuar?",
@@ -512,7 +511,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
                 JOptionPane.YES_NO_OPTION)
             == JOptionPane.YES_OPTION) {
 
-            provee.eliminar(dato);
+            provee.eliminar(pr,perso);
             mostrar();
             ocultartabla();
             JOptionPane.showMessageDialog(null,
@@ -621,14 +620,29 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
         des.Desplazar(evt, txtNombreProveedorUno, txtTelefonoProveedor);
     }//GEN-LAST:event_txtDireccionProveedorKeyPressed
 
-    private void txtBuscarProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProveedorKeyTyped
-        // Llamando metodo KeyTipedTXT
-        validar.KeyTipedTXT(evt);
-    }//GEN-LAST:event_txtBuscarProveedorKeyTyped
-
     private void txtTelefonoProveedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProveedorKeyPressed
         des.Desplazar(evt, txtDireccionProveedor, txtEmpresaProveedor);
     }//GEN-LAST:event_txtTelefonoProveedorKeyPressed
+
+    private void txtBuscarProveedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProveedorKeyReleased
+        // TODO add your handling code here:
+        try {
+            DefaultTableModel modelo;
+            CRUD_Proveedor cli = new CRUD_Proveedor();
+
+            modelo = cli.buscarDatos(txtBuscarProveedor.getText());
+            mostrar();
+            
+            tablaProveedor.setModel(modelo);
+            ocultartabla();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+
+        validar.KeyTipedTXT(evt);      
+    }//GEN-LAST:event_txtBuscarProveedorKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
