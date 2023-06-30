@@ -12,10 +12,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author CHONTAL
- */
 public class CRUD_Compra {
     private final Conexion con = new Conexion();
     private final Connection cn = (Connection) con.conectar();

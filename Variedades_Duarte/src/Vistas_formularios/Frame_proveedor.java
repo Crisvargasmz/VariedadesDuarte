@@ -5,6 +5,9 @@ import Modelo.Proveedor;
 import Modelo.ValidarCampos;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -498,29 +501,35 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
 
     private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
 
-        if (datoSeleccionado >= 0) {
+   if (datoSeleccionado >= 0) {
+    int pr = Integer.parseInt((String) tablaProveedor.getValueAt(datoSeleccionado, 1));
+    int perso = Integer.parseInt((String) tablaProveedor.getValueAt(datoSeleccionado, 0));
 
-            int pr = Integer.parseInt((String) tablaProveedor.getValueAt(datoSeleccionado, 1));
-            int perso = Integer.parseInt((String) tablaProveedor.getValueAt(datoSeleccionado, 0));
-            
-            CRUD_Proveedor provee = new CRUD_Proveedor();
-            if (JOptionPane.showConfirmDialog(this.getRootPane(),
-                "Se eliminará el registro, ¿desea continuar?",
-                "Eliminar Registro",
-                JOptionPane.WARNING_MESSAGE,
-                JOptionPane.YES_NO_OPTION)
-            == JOptionPane.YES_OPTION) {
+    CRUD_Proveedor provee = new CRUD_Proveedor();
+    
+       try {
+           // Verificar si existen productos asociados al proveedor
+           if (provee.tieneProductosAsociados(pr)) {
+               JOptionPane.showMessageDialog(null, "No se puede eliminar el proveedor. Tiene productos asociados.");
+           } else {
+               if (JOptionPane.showConfirmDialog(this.getRootPane(),
+                       "Se eliminará el registro, ¿desea continuar?",
+                       "Eliminar Registro",
+                       JOptionPane.WARNING_MESSAGE,
+                       JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                   
+                   provee.eliminar(pr, perso);
+                   mostrar();
+                   ocultartabla();
+                   JOptionPane.showMessageDialog(null, "Dato eliminado correctamente");
+               }
+           }  } catch (SQLException e) {
+              e.printStackTrace();
+       }
+} else {
+    JOptionPane.showMessageDialog(null, "Debe seleccionar un registro de la tabla");
+}
 
-            provee.eliminar(pr,perso);
-            mostrar();
-            ocultartabla();
-            JOptionPane.showMessageDialog(null,
-                "Dato eliminado correctamente");
-        }
-        } else {
-            JOptionPane.showMessageDialog(null,
-                "Debe seleccionar un registro de la tabla");
-        }
     }//GEN-LAST:event_btnEliminarProveedorActionPerformed
 
     private void btnAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedorActionPerformed

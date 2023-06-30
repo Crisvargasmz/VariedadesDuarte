@@ -134,6 +134,18 @@ public class CRUD_Proveedor {
             return false;
         }
     }
+     public boolean tieneProductosAsociados(int IDProveedor) throws SQLException {
+    try {
+        String query = "SELECT 1 FROM Producto WHERE IDProveedor = ?";
+        PreparedStatement statement = cn.prepareStatement(query);
+        statement.setInt(1, IDProveedor);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e);
+        return false;
+    }
+}
       
        public void eliminar(int pr,int perso) {
         try {
