@@ -485,15 +485,21 @@ BEGIN
     WHERE nombre_producto LIKE '%' + RTRIM (@Dato)+'%'
 END
 GO
+
+--VALIDAR NUMNERO DE TELEFONO
 CREATE PROCEDURE VerificarTelefono
-@DatoTelefono NVARCHAR (9)
+    @IDPersona INT,
+    @DatoTelefono NVARCHAR(9)
+    
 AS
 BEGIN
-   SELECT Persona.telefono
-   FROM Persona
-   WHERE telefono LIKE '%' + RTRIM (@DatoTelefono)+'%'
+    SELECT Persona.telefono
+    FROM Persona
+    WHERE telefono LIKE '%' + RTRIM(@DatoTelefono) + '%'
+    AND IDPersona != @IDPersona;
 END
 GO
+
 --PROCEDIMIENTO ALMACEADO PARA CONSULTAR CATEGORIA
 CREATE PROCEDURE ConsultarCategoria
 @nombre_categoria NVARCHAR(30)

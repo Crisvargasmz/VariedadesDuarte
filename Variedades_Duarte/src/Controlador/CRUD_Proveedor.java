@@ -121,12 +121,13 @@ public class CRUD_Proveedor {
         }
     }
       
-     public boolean verificarTelefonoProveedor(String Dato) {
+     public boolean verificarTelefonoProveedor(int IDPersona, String numeroTelefono) {
         ResultSet rs;
 
         try {
-            CallableStatement call = cn.prepareCall("{call VerificarTelefono(?)}");
-            call.setString(1, Dato);
+            CallableStatement call = cn.prepareCall("{call VerificarTelefono(?,?)}");
+            call.setInt(1, IDPersona);
+            call.setString(2, numeroTelefono);
             rs = call.executeQuery();
             return rs.next();
         } catch (SQLException e) {

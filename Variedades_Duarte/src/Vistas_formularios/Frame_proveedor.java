@@ -546,7 +546,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                if (cc.verificarTelefonoProveedor(txtTelefonoProveedor.getText())) {
+                if (cc.verificarTelefonoProveedor(Integer.parseInt(txtidpersona.getText()),txtTelefonoProveedor.getText())) {
                     JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
                 } else {
                     guardarProveedor();
@@ -608,7 +608,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
                 || txtDireccionProveedor.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                if (cp.verificarTelefonoProveedor(txtTelefonoProveedor.getText())) {
+                if (cp.verificarTelefonoProveedor(Integer.parseInt(txtidpersona.getText()),txtTelefonoProveedor.getText())) {
                     JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
                 } else {
                     editarProveedor();
