@@ -562,7 +562,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                if (cc.verificarTelefonoCliente(Integer.parseInt(txtidpersona.getText()),txtTelefonoCliente.getText())) {
+                if (cc.verificarTelefonoCliente(txtTelefonoCliente.getText())) {
                     JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
                 } else {
                     guardarCliente();
@@ -640,7 +640,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
                     || txtDireccionCliente.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                if (cc.verificarTelefonoCliente(Integer.parseInt(txtidpersona.getText()),txtTelefonoCliente.getText())) {
+                if (cc.verificarTelefonoClienteActualizado(Integer.parseInt(txtidpersona.getText()),txtTelefonoCliente.getText())) {
                     JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
                 } else {
                     editarCliente();

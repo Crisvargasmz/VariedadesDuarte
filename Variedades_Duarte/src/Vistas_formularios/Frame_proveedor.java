@@ -315,6 +315,8 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         txtTelefonoProveedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTelefonoProveedor.setMinimumSize(new java.awt.Dimension(64, 41));
+        txtTelefonoProveedor.setPreferredSize(new java.awt.Dimension(64, 41));
         txtTelefonoProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtTelefonoProveedorKeyPressed(evt);
@@ -400,7 +402,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmpresaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelefonoProveedor))
+                            .addComponent(txtTelefonoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -434,7 +436,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 567, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -546,7 +548,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                if (cc.verificarTelefonoProveedor(Integer.parseInt(txtidpersona.getText()),txtTelefonoProveedor.getText())) {
+                if (cc.verificarTelefonoProveedor(txtTelefonoProveedor.getText())) {
                     JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
                 } else {
                     guardarProveedor();
@@ -608,7 +610,7 @@ public class Frame_proveedor extends javax.swing.JInternalFrame {
                 || txtDireccionProveedor.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                if (cp.verificarTelefonoProveedor(Integer.parseInt(txtidpersona.getText()),txtTelefonoProveedor.getText())) {
+                if (cp.verificarTelefonoProveedorActualizado(Integer.parseInt(txtidpersona.getText()),txtTelefonoProveedor.getText())) {
                     JOptionPane.showMessageDialog(null, "El numero de telefono que ingreso ya existe.");
                 } else {
                     editarProveedor();

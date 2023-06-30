@@ -179,11 +179,25 @@ public class CRUD_Cliente {
         }
     }
 
-    public boolean verificarTelefonoCliente(int IDPersona, String numeroTelefono) {
+    public boolean verificarTelefonoCliente(String numeroTelefono) {
         ResultSet rs;
 
         try {
-            CallableStatement call = cn.prepareCall("{call VerificarTelefono(?,?)}");
+            CallableStatement call = cn.prepareCall("{call VerificarTelefonoExistente(?)}");
+            call.setString(1, numeroTelefono);
+            rs = call.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            return false;
+        }
+    }
+    
+    public boolean verificarTelefonoClienteActualizado(int IDPersona, String numeroTelefono) {
+        ResultSet rs;
+
+        try {
+            CallableStatement call = cn.prepareCall("{call VerificarTelefonoActualizado(?,?)}");
             call.setInt(1, IDPersona);
             call.setString(2, numeroTelefono);
             rs = call.executeQuery();
