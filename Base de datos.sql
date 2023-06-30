@@ -144,7 +144,7 @@ CREATE PROCEDURE InsertarPersonaCliente
 @nombre2 NVARCHAR (15),
 @apellido1 NVARCHAR (15),
 @apellido2 NVARCHAR (15),
-@direccion NVARCHAR (150),
+@direccion NVARCHAR (200),
 @telefono NVARCHAR (9),
 @genero_cliente CHAR (1)
 AS
@@ -173,9 +173,9 @@ CREATE PROCEDURE InsertarPersonaProveedor
 @nombre2 NVARCHAR (15),
 @apellido1 NVARCHAR (15),
 @apellido2 NVARCHAR (15),
-@direccion NVARCHAR (150),
+@direccion NVARCHAR (200),
 @telefono NVARCHAR (9),
-@empresa_proveedor NVARCHAR (15)
+@empresa_proveedor NVARCHAR (150)
 AS
 BEGIN
   INSERT INTO Persona (nombre1,nombre2,apellido1,apellido2,telefono,direccion)
@@ -651,10 +651,6 @@ END
      -- Eliminar el cliente de la tabla Persona
      DELETE FROM Persona WHERE IDPersona = @IDCliente;
 END
-GO
-EXEC EliminarProveedorPersona 
-SELECT * FROM Proveedor
-SELECT * FROM Persona
 GO
 --PROCEDIMINETO ALMACENADO PARA ELIMINAR PROVEEDOR
 CREATE PROCEDURE EliminarProveedorPersona
