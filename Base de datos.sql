@@ -486,8 +486,19 @@ BEGIN
 END
 GO
 
---VALIDAR NUMNERO DE TELEFONO
-CREATE PROCEDURE VerificarTelefono
+--VALIDAR NUMERO DE TELEFONO EXISTENTE INGRESADO
+CREATE PROCEDURE VerificarTelefonoExistente
+    @DatoTelefono NVARCHAR(9)
+AS
+BEGIN
+    SELECT Persona.telefono
+    FROM Persona
+    WHERE telefono LIKE '%' + RTRIM(@DatoTelefono) + '%'
+END
+GO
+
+--VALIDAR NUMERO DE TELEFONO EXISTENTE PARA ACTUALIZAR
+CREATE PROCEDURE VerificarTelefonoActualizado
     @IDPersona INT,
     @DatoTelefono NVARCHAR(9)
     

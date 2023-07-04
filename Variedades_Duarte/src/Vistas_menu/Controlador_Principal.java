@@ -7,6 +7,7 @@ package Vistas_menu;
 import Modelo.MenuBotones_color;
 import Vistas_formularios.Frame_cliente;
 import Vistas_formularios.Frame_compra;
+import Vistas_formularios.Frame_inicio;
 import Vistas_formularios.Frame_producto;
 import Vistas_formularios.Frame_proveedor;
 import Vistas_formularios.Frame_venta;
@@ -44,11 +45,12 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         hilo.start();
 
         lbUsuario.setText(" " + Ventana_iniciarSesion.txtUsuario.getText());
-        Vista_estadisticas vistaEstadistica = new Vista_estadisticas();
-        vistaEstadistica.setSize(1280, 580);
-        vistaEstadistica.setLocation(0, 0);
+        Frame_inicio vistaInicio = new Frame_inicio();
+        vistaInicio.setSize(1280, 580);
+        vistaInicio.setLocation(0, 0);
+        vistaInicio.setVisible(true);
         pnlMostrarVentanas.removeAll();
-        pnlMostrarVentanas.add(vistaEstadistica, BorderLayout.CENTER);
+        pnlMostrarVentanas.add(vistaInicio, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
         pnlMostrarVentanas.repaint();
       
@@ -228,9 +230,9 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
                 .addComponent(lbTime, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bntCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -416,14 +418,16 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         // TODO add your handling code here:
-        Vista_estadisticas vistaEstadistica = new Vista_estadisticas();
-        vistaEstadistica.setSize(1280, 580);
-        vistaEstadistica.setLocation(0, 0);
+        Frame_inicio vistaInicio = new Frame_inicio();
+        vistaInicio.setSize(1280, 580);
+        vistaInicio.setLocation(0, 0);
+        vistaInicio.setVisible(true);
         pnlMostrarVentanas.removeAll();
-        pnlMostrarVentanas.add(vistaEstadistica, BorderLayout.CENTER);
+        pnlMostrarVentanas.add(vistaInicio, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
         pnlMostrarVentanas.repaint();
-
+        
+        
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseEntered

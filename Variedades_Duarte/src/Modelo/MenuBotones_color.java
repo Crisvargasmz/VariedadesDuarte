@@ -13,7 +13,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.ColorUIResource;
 
 /**
  *
@@ -53,7 +56,24 @@ public class MenuBotones_color {
 
         });
     }
-    
+
+    public void ActivoAction(JButton btnActivo) {
+        btnActivo.setBackground(new Color(4, 64, 98));
+        btnActivo.setForeground(new Color(255, 255, 255));
+        btnActivo.setFont(new Font("Tahoma", 1, 18));
+        btnActivo.setOpaque(true);
+        btnActivo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg) {
+                btnActivo.setBackground(new Color(4, 64, 98));
+                btnActivo.setFont(new Font("Tahoma", 1, 18));
+                btnActivo.setOpaque(true);
+                btnActivo.setOpaque(true);
+                btnActivo.setBackground(new Color(4, 64, 98));
+
+            }
+        });
+    } 
 
     public void SubMenu(JButton btnMenu, JPanel subMenu) {
 
