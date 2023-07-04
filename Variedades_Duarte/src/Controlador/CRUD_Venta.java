@@ -21,6 +21,34 @@ public class CRUD_Venta {
        return modelo;
      }
     
+    public DefaultTableModel mostrarventadia() {
+    ResultSet rs;
+    DefaultTableModel modelo;
+    String []titulos = {
+        "IDVenta", "Nombre", "Apellido","Producto", "Fecha","Hora"};
+    String [] registro = new String [6];
+    modelo = new DefaultTableModel (null,titulos);
+    try{
+       CallableStatement ct= cn.prepareCall("{call MostrarVentasDelDia}");
+       rs = ct.executeQuery();
+       while (rs.next()) {
+           registro [0] = rs.getString("IDVenta");
+           registro [1] = rs.getString("nombre1");
+           registro [2] = rs.getString("apellido1");
+           registro [3] = rs.getString("nombre_producto");
+           registro [4] = rs.getString("fecha_venta");
+           registro [5] = rs.getString("hora_venta");
+           modelo.addRow(registro);
+       }
+       return modelo;
+    }catch (SQLException e) {
+       JOptionPane.showMessageDialog(null, e);
+            return null; 
+    }
+    
+    
+    }
+    
     public DefaultTableModel mostrarDatos() {
 
         ResultSet rs;

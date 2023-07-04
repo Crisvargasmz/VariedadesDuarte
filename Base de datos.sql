@@ -408,6 +408,19 @@ BEGIN
 -----------------------------------------------------------------------------------------------------
 --PROCEDIMIENTOS ALMACENADOS PARA CONSULTAR 
 -----------------------------------------------------------------------------------------------------
+--PROCEDIMIENTO ALMACENADO PARA MOSTRAR VENTAS DEL DIA
+CREATE PROCEDURE MostrarVentasDelDia
+AS
+BEGIN
+	DECLARE @dia DATE;
+		SET @dia = CAST(GETDATE() AS DATE);
+			SELECT Venta.IDVenta,Persona.nombre1,Persona.apellido1,Producto.nombre_producto,Venta.fecha_venta,Venta.hora_venta
+		    FROM Venta
+			INNER JOIN Persona ON Venta.IDVenta = Persona.IDPersona
+			INNER JOIN Producto ON Venta.IDVenta = Producto.IDProducto
+			WHERE CAST (fecha_venta AS DATE)= @dia;
+END
+GO
 --PROCEDIMIENTO ALMACENADO PARA CONSULTAR UNA VENTA FINALIZADA
 CREATE PROCEDURE ConsultarClienteVentaDetalleVenta
 AS
