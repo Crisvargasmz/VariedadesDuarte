@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abff9348-8a2e-4946-bbcd-729e89251e02">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9fa5bbbb-6f43-438f-9896-e0f15902b120">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
-			<pen lineWidth="1.0" lineColor="#000000"/>
+			<pen lineWidth="1.0" lineColor="#044062"/>
 		</box>
 	</style>
 	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#044062"/>
+			<bottomPen lineWidth="0.5" lineColor="#044062"/>
 		</box>
 	</style>
 	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#044062"/>
+			<bottomPen lineWidth="0.5" lineColor="#044062"/>
 		</box>
 	</style>
 	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#044062"/>
+			<bottomPen lineWidth="0.5" lineColor="#044062"/>
 		</box>
 	</style>
-	<subDataset name="Table Dataset 1" uuid="a6533397-a628-4fa1-bad2-ee0ed8bed960"/>
+	<subDataset name="Table Dataset 1" uuid="cddd1210-0abe-416b-ac4f-057763a82a27"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT 
 Cliente.IDCliente,
@@ -34,6 +37,7 @@ Persona.apellido2,
 Persona.telefono,
 Cliente.genero_cliente,
 Persona.direccion
+
  FROM Cliente inner join Persona on Cliente.IDPersona=Persona.IDPersona]]>
 	</queryString>
 	<field name="IDCliente" class="java.lang.Integer"/>
@@ -50,37 +54,106 @@ Persona.direccion
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="150" y="0" width="257" height="30" forecolor="#044062" uuid="8c8bc530-b801-4dac-b16d-05d1a80612a9"/>
-				<textElement>
-					<font fontName="Verdana" size="24" isBold="true"/>
+				<reportElement x="266" y="0" width="228" height="34" uuid="7068712f-101e-40a0-9d59-09e9020b5ff3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="24"/>
 				</textElement>
 				<text><![CDATA[Variedades Duarte]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="150" y="42" width="257" height="23" uuid="937274cf-8804-4148-9cb1-5187cc083fac"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Verdana" size="18" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Lista Clientes]]></text>
-			</staticText>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="23" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
-		<band height="90" splitType="Stretch">
-			<textField>
-				<reportElement x="44" y="48" width="100" height="20" uuid="eb32b031-249b-4a71-8d0c-cc3b7d1fe0e4"/>
-				<textFieldExpression><![CDATA[$F{nombre1}]]></textFieldExpression>
-			</textField>
+		<band height="32" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="32" backcolor="#044062" uuid="24ce2586-2b24-41ff-a328-3cdb6c280257"/>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="32" forecolor="#FFFFFF" uuid="93af0697-7624-48dc-ac55-cf5911037567"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="100" y="0" width="200" height="32" forecolor="#FFFFFF" uuid="4f5a3af8-5130-48a6-82d4-2c373bce21e5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="12"/>
+					</textElement>
+					<text><![CDATA[Nombres]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="300" y="0" width="200" height="32" forecolor="#FFFFFF" uuid="be591674-fa2e-4715-8813-2fffde967c8e"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="12"/>
+					</textElement>
+					<text><![CDATA[Apellidos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="500" y="0" width="142" height="32" forecolor="#FFFFFF" uuid="01129bdc-76c4-4d7c-9da1-5d79d67fa941"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="12"/>
+					</textElement>
+					<text><![CDATA[Telefono]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="642" y="0" width="160" height="32" forecolor="#FFFFFF" uuid="1f62f21c-4948-4a7f-8286-beb6a9a7f90b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Verdana" size="12"/>
+					</textElement>
+					<text><![CDATA[Genero]]></text>
+				</staticText>
+			</frame>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="12" y="19" width="100" height="20" uuid="52d9c607-2cf0-4581-9bda-8250def12efd"/>
+				<reportElement x="100" y="0" width="100" height="20" uuid="15a0e577-4516-4ac5-a6d3-25cc19cbc96f"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="f05bca8c-4715-4aa2-b7e7-a74c97b6b713"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{IDCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="c039cf50-106b-4684-8726-916e055109bb"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20" uuid="f1ad05f2-9f10-4060-9104-00bcdb9ca6ed"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="0" width="100" height="20" uuid="fb8d4f50-ff21-4ddf-9c8c-66de5e4e2fe9"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="0" width="142" height="20" uuid="0886904d-0e9a-492b-8146-f2830d2c1e23"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="642" y="0" width="160" height="20" uuid="02ed2cc5-bca0-4707-bb1e-df89279db383"/>
+				<textElement>
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{genero_cliente}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

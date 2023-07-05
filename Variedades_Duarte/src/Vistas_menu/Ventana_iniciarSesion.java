@@ -60,10 +60,10 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             principal.setResizable(false);
             this.setVisible(false);
             lbAdvertencia.setForeground(new Color(0, 204, 0));
-            lbAdvertencia.setText("Acceso correcto.");
+            lbAdvertencia.setText("Acceso consedido.");
         } else {
             lbAdvertencia.setForeground(new Color(255, 0, 0));
-            lbAdvertencia.setText("Acceso incorrecto.");
+            lbAdvertencia.setText("Acceso denegado.");
             txtUsuario.setText("");
             txtPassword.setText("");
         }

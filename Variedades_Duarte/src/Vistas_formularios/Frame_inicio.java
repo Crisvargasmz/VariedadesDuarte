@@ -285,6 +285,7 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
             jr = JasperCompileManager.compileReport(path);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
             JasperViewer.viewReport(mostrarReporte);
+            
 
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
