@@ -2,7 +2,9 @@ package Vistas_formularios;
 
 import Controlador.CRUD_Venta;
 import Controlador.Conexion;
+import java.awt.Dimension;
 import java.sql.Connection;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
@@ -86,6 +88,11 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
         btnReporteProveedores.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         btnReporteProveedores.setText("Proveedores");
         btnReporteProveedores.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnReporteProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReporteProveedoresMouseClicked(evt);
+            }
+        });
         btnReporteProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteProveedoresActionPerformed(evt);
@@ -95,6 +102,11 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
         btnReporteProductos.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         btnReporteProductos.setText("Productos");
         btnReporteProductos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnReporteProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReporteProductosMouseClicked(evt);
+            }
+        });
 
         btnReporteVentas.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         btnReporteVentas.setText("Ventas");
@@ -286,12 +298,46 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
             JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
             JasperViewer.viewReport(mostrarReporte);
             
+            
 
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         
     }//GEN-LAST:event_btnReporteClientesMouseClicked
+
+    private void btnReporteProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteProveedoresMouseClicked
+                // Generar reporte de los proveedores.
+        Conexion con = new Conexion();
+        Connection cn = (Connection) con.conectar();
+ 
+        String path = "C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_reportes\\reporteProveedores.jrxml";
+        JasperReport jr;
+        try {
+            jr = JasperCompileManager.compileReport(path);
+            JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
+            JasperViewer.viewReport(mostrarReporte);
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnReporteProveedoresMouseClicked
+
+    private void btnReporteProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteProductosMouseClicked
+        // Generar reporte de los productos.
+        Conexion con = new Conexion();
+        Connection cn = (Connection) con.conectar();
+ 
+        String path = "C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_reportes\\reporteProductos.jrxml";
+        JasperReport jr;
+        try {
+            jr = JasperCompileManager.compileReport(path);
+            JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
+            JasperViewer.viewReport(mostrarReporte);
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }//GEN-LAST:event_btnReporteProductosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

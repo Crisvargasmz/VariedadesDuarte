@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db7b8aa8-02da-40d7-9fe8-3b62c2a9bd80">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+Persona.IDPersona,
+Proveedor.IDProveedor,
+Persona.nombre1,
+Persona.nombre2,
+Persona.apellido1,
+Persona.apellido2,
+Persona.telefono,
+Proveedor.empresa_proveedor,
+Persona.direccion
+
+  FROM Proveedor inner join Persona on Proveedor.IDPersona=Persona.IDPersona]]>
+	</queryString>
+	<field name="IDPersona" class="java.lang.Integer"/>
+	<field name="IDProveedor" class="java.lang.Integer"/>
+	<field name="nombre1" class="java.lang.String"/>
+	<field name="nombre2" class="java.lang.String"/>
+	<field name="apellido1" class="java.lang.String"/>
+	<field name="apellido2" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="empresa_proveedor" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="34" backcolor="#044062" uuid="63282c7f-43fb-463b-a539-b5616389e9c0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="278" y="34" width="228" height="27" uuid="f5169498-cc87-4fa4-993c-9b6bfdf159eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="18"/>
+				</textElement>
+				<text><![CDATA[Lista de proveedores]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="0" width="228" height="34" forecolor="#FFFFFF" uuid="344b2bad-f7d3-4604-a6ff-7ce5a1f1f12f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="24"/>
+				</textElement>
+				<text><![CDATA[Variedades Duarte]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="32" backcolor="#044062" uuid="1be16ab9-8d17-4afd-9512-55476660b477"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="31" height="33" forecolor="#FFFFFF" uuid="43923d7c-6c8d-44b6-9a52-c9143844cda8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="1" width="259" height="32" forecolor="#FFFFFF" uuid="6c44c5f2-be42-4289-935c-8edd0de8cef1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="1" width="238" height="32" forecolor="#FFFFFF" uuid="0967b7c6-9b3e-4782-8b46-452fc2789220"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="528" y="1" width="114" height="32" forecolor="#FFFFFF" uuid="c5286ce8-5fb5-4f5b-9381-d1fdc2ba42bb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="642" y="1" width="160" height="32" forecolor="#FFFFFF" uuid="8a386ec7-e8ee-4ffd-953d-791bbf586efc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="31" height="20" uuid="0bb5aa10-8850-4c40-8a02-c805b1403a59"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IDProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="31" y="0" width="132" height="20" uuid="f30d25b9-4f6f-4d61-8a0d-2d77fd0d6e79"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="0" width="127" height="20" uuid="13283bc4-8698-4ff1-842c-99a907ae79f6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="116" height="20" uuid="6eda1205-8739-4fcb-a70d-26391c7130c6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="0" width="122" height="20" uuid="7efa2eda-0ee0-4ba5-b1e6-f2a59b434616"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="528" y="0" width="114" height="20" uuid="c31bdcd1-ce2f-4f1e-ba5a-6b323b296eae"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="642" y="0" width="160" height="20" uuid="41e80b76-e43f-4b2e-a246-7210d2d2ffad"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_proveedor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

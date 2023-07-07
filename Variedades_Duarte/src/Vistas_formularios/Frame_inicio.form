@@ -153,6 +153,7 @@
                 <Property name="horizontalAlignment" type="int" value="2"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnReporteProveedoresMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteProveedoresActionPerformed"/>
               </Events>
             </Component>
@@ -164,6 +165,9 @@
                 <Property name="text" type="java.lang.String" value="Productos"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnReporteProductosMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnReporteVentas">
               <Properties>

@@ -54,8 +54,18 @@ Persona.direccion
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="266" y="0" width="228" height="34" uuid="7068712f-101e-40a0-9d59-09e9020b5ff3"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="283" y="34" width="228" height="27" uuid="36659cdc-1dc3-47fb-b2d0-fe75b599ac86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="18"/>
+				</textElement>
+				<text><![CDATA[Lista de clientes]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="34" backcolor="#044062" uuid="14abc909-778c-4be1-a6d1-a66f613b38e5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="283" y="0" width="228" height="34" forecolor="#FFFFFF" uuid="74dab7b0-2d4b-45b5-bdbf-dad8635e58e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Verdana" size="24"/>
 				</textElement>
 				<text><![CDATA[Variedades Duarte]]></text>
