@@ -3,7 +3,9 @@ package Vistas_formularios;
 import Controlador.CRUD_Venta;
 import Controlador.Conexion;
 import java.awt.Dimension;
+import java.io.File;
 import java.sql.Connection;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +20,12 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Windows 10
  */
-public class Frame_inicio extends javax.swing.JInternalFrame {
+public final class Frame_inicio extends javax.swing.JInternalFrame {
+
+    Conexion con = new Conexion();
+    Connection cn = (Connection) con.conectar();
+
+    CRUD_Venta cv = new CRUD_Venta();
 
     /**
      * Creates new form Frame_inicio
@@ -26,9 +33,13 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
     public Frame_inicio() {
         initComponents();
         mostrarventasdia();
+        int sumaVentas = cv.obtenerSumaVentasPorDia();
+        double sumaTotales = cv.ObtenerTotalProductosPorDia();
+        lbTotalVentas.setText(String.valueOf(sumaVentas));
+        lbTotalGanancias.setText("C$ " + String.valueOf(sumaTotales));
     }
-    
-    public void mostrarventasdia(){
+
+    public void mostrarventasdia() {
         try {
             DefaultTableModel modelo;
             CRUD_Venta vt = new CRUD_Venta(); //objeto de la clase CRUD_Producto
@@ -60,12 +71,12 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaventasdia = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnMostrarVenta = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbTotalVentas = new javax.swing.JLabel();
+        lbTotalGanancias = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
 
@@ -171,10 +182,15 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaventasdia);
 
-        jToggleButton1.setBackground(new java.awt.Color(29, 163, 83));
-        jToggleButton1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("Mostrar");
+        btnMostrarVenta.setBackground(new java.awt.Color(29, 163, 83));
+        btnMostrarVenta.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        btnMostrarVenta.setForeground(new java.awt.Color(255, 255, 255));
+        btnMostrarVenta.setText("Mostrar");
+        btnMostrarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarVentaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
@@ -186,13 +202,13 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("0");
+        lbTotalVentas.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lbTotalVentas.setForeground(new java.awt.Color(51, 51, 51));
+        lbTotalVentas.setText("0");
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("0.0");
+        lbTotalGanancias.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lbTotalGanancias.setForeground(new java.awt.Color(51, 51, 51));
+        lbTotalGanancias.setText("0.0");
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setText("Ventas Realizadas en el dia");
@@ -207,17 +223,17 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
                         .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMostrarVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(53, 53, 53)
-                                .addComponent(jLabel3)
+                                .addComponent(lbTotalVentas)
                                 .addGap(66, 66, 66)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(55, 55, 55)
                                 .addComponent(jLabel2)
                                 .addGap(59, 59, 59)
-                                .addComponent(jLabel4))
+                                .addComponent(lbTotalGanancias))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(248, 248, 248)
                                 .addComponent(jLabel5))))
@@ -236,14 +252,14 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMostrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(lbTotalVentas)
+                    .addComponent(lbTotalGanancias))
                 .addGap(33, 33, 33))
         );
 
@@ -288,33 +304,23 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
 
     private void btnReporteClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteClientesMouseClicked
         // Generar reporte de los clientes.
-        Conexion con = new Conexion();
-        Connection cn = (Connection) con.conectar();
- 
-        String path = "C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_reportes\\reporteClientes.jrxml";
+        String path = "/src/Vistas_reportes/reporteClientes.jrxml";
         JasperReport jr;
         try {
-            jr = JasperCompileManager.compileReport(path);
+            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
             JasperViewer.viewReport(mostrarReporte);
-            
-            
-
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
     }//GEN-LAST:event_btnReporteClientesMouseClicked
 
     private void btnReporteProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteProveedoresMouseClicked
-                // Generar reporte de los proveedores.
-        Conexion con = new Conexion();
-        Connection cn = (Connection) con.conectar();
- 
-        String path = "C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_reportes\\reporteProveedores.jrxml";
+        // Generar reporte de los proveedores.
+        String path = "/src/Vistas_reportes/reporteProveedores.jrxml";
         JasperReport jr;
         try {
-            jr = JasperCompileManager.compileReport(path);
+            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
             JasperViewer.viewReport(mostrarReporte);
         } catch (JRException e) {
@@ -324,23 +330,29 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
 
     private void btnReporteProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteProductosMouseClicked
         // Generar reporte de los productos.
-        Conexion con = new Conexion();
-        Connection cn = (Connection) con.conectar();
- 
-        String path = "C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_reportes\\reporteProductos.jrxml";
+        String path = "/src/Vistas_reportes/reporteProductos.jrxml";
         JasperReport jr;
         try {
-            jr = JasperCompileManager.compileReport(path);
+            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
             JasperViewer.viewReport(mostrarReporte);
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
     }//GEN-LAST:event_btnReporteProductosMouseClicked
+
+    private void btnMostrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarVentaActionPerformed
+        DialogVentaRealizada dialog = new DialogVentaRealizada(null, true);
+        Frame_inicio fi = new Frame_inicio();
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setResizable(false);
+        dialog.setLocationRelativeTo(fi);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnMostrarVentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnMostrarVenta;
     private javax.swing.JButton btnReporteClientes;
     private javax.swing.JButton btnReporteCompras;
     private javax.swing.JButton btnReporteProductos;
@@ -348,8 +360,6 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnReporteVentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -359,7 +369,8 @@ public class Frame_inicio extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lbTotalGanancias;
+    private javax.swing.JLabel lbTotalVentas;
     private javax.swing.JTable tablaventasdia;
     // End of variables declaration//GEN-END:variables
 }

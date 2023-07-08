@@ -19,6 +19,12 @@ public class Producto {
     public Producto() {
     }
 
+    public Producto(int IDProducto, String nombre_producto, BigDecimal precio_venta) {
+        this.IDProducto = IDProducto;
+        this.nombre_producto = nombre_producto;
+        this.precio_venta = precio_venta;
+    }
+    
     public Producto(String nombre_producto, int cantidad_producto, BigDecimal precio_compra, BigDecimal precio_venta, String descripcion, Date fecha_vencimiento, int IDCategoria, int IDPresentacion, BigDecimal medida_numerica, int IDProveedor) {
         this.nombre_producto = nombre_producto;
         this.cantidad_producto = cantidad_producto;

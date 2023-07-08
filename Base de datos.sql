@@ -414,13 +414,74 @@ AS
 BEGIN
 	DECLARE @dia DATE;
 		SET @dia = CAST(GETDATE() AS DATE);
-			SELECT Venta.IDVenta,Persona.nombre1,Persona.apellido1,Producto.nombre_producto,Venta.fecha_venta,Venta.hora_venta
+			SELECT Venta.IDVenta,Persona.nombre1,Persona.apellido1,Venta.fecha_venta,Venta.hora_venta
 		    FROM Venta
 			INNER JOIN Persona ON Venta.IDVenta = Persona.IDPersona
 			INNER JOIN Producto ON Venta.IDVenta = Producto.IDProducto
 			WHERE CAST (fecha_venta AS DATE)= @dia;
 END
 GO
+
+--PROCEDIMIENTO ALMACENADO PARA SUMAR VENTAS POR DIA
+CREATE PROCEDURE ObtenerSumaVentasPorDia
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF EXISTS (
+        SELECT * FROM sys.objects
+        WHERE object_id = OBJECT_ID(N'tempdb..#tmpVentas')
+            AND type IN (N'U')
+    )
+    BEGIN
+        DROP TABLE #tmpVentas;
+    END
+
+    SELECT fecha_venta, COUNT(*) AS suma_ventas
+    INTO #tmpVentas
+    FROM Venta
+    WHERE CAST(fecha_venta AS DATE) = CAST(GETDATE() AS DATE)
+    GROUP BY fecha_venta;
+
+    SELECT fecha_venta, suma_ventas
+    FROM #tmpVentas;
+END
+GO
+
+EXEC ObtenerSumaVentasPorDia;
+GO
+
+--PROCEDIMIENTO ALMACENADO PARA SUMAR TOTAL DE PRODUCTOS EN UNA VENTA POR DIA
+CREATE PROCEDURE ObtenerTotalProductosPorDia
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF EXISTS (
+        SELECT * FROM sys.objects
+        WHERE object_id = OBJECT_ID(N'tempdb..#tmpVentas')
+            AND type IN (N'U')
+    )
+    BEGIN
+        DROP TABLE #tmpVentas;
+    END
+
+    SELECT v.fecha_venta, SUM(dv.cantidad_venta * p.precio_venta) AS total_productos
+    INTO #tmpVentas
+    FROM Venta v
+    INNER JOIN Detalle_Venta dv ON v.IDVenta = dv.IDVenta
+	INNER JOIN Producto p ON dv.IDProducto = p.IDProducto
+    WHERE CAST(v.fecha_venta AS DATE) = CAST(GETDATE() AS DATE)
+    GROUP BY v.fecha_venta;
+
+    SELECT fecha_venta, total_productos
+    FROM #tmpVentas;
+END
+GO
+
+EXEC ObtenerTotalProductosPorDia;
+GO
+
 --PROCEDIMIENTO ALMACENADO PARA CONSULTAR UNA VENTA FINALIZADA
 CREATE PROCEDURE ConsultarClienteVentaDetalleVenta
 AS
