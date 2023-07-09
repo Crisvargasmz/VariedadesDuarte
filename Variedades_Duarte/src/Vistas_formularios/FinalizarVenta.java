@@ -6,11 +6,29 @@ package Vistas_formularios;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+import Controlador.Conexion;
+import java.sql.Connection;
 
 /**
  *
@@ -18,6 +36,8 @@ import javax.swing.KeyStroke;
  */
 public class FinalizarVenta extends javax.swing.JDialog {
 
+    Conexion con = new Conexion();
+    Connection cn = (Connection) con.conectar();
     /**
      * A return status code - returned if Cancel button has been pressed
      */
@@ -103,6 +123,11 @@ public class FinalizarVenta extends javax.swing.JDialog {
         btnImprimir.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnImprimir.setForeground(new java.awt.Color(255, 255, 255));
         btnImprimir.setText("Imprimir");
+        btnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImprimirMouseClicked(evt);
+            }
+        });
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirActionPerformed(evt);
@@ -190,8 +215,23 @@ public class FinalizarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        doClose(RET_OK);
+        
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
+        // Generar comprobante venta.
+        String path = "/src/Vistas_reportes/comprobanteVenta.jrxml";
+        JasperReport jr;
+        try {
+            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);
+            JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
+            JasperViewer.viewReport(mostrarReporte);
+            FinalizarVenta dialog = new FinalizarVenta(null, true);
+            dialog.toBack();
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnImprimirMouseClicked
     
     private void doClose(int retStatus) {
         returnStatus = retStatus;

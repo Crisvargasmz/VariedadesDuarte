@@ -168,7 +168,7 @@
                               <Component id="txtHoraVenta" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="217" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtNombreCliente" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNombreCliente" alignment="0" pref="561" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

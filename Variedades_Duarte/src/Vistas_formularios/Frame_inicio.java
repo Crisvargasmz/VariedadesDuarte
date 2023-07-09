@@ -5,6 +5,8 @@ import Controlador.Conexion;
 import java.awt.Dimension;
 import java.io.File;
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -308,8 +310,10 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
         JasperReport jr;
         try {
             jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);
-            JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
-            JasperViewer.viewReport(mostrarReporte);
+            JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, this.cn);
+            JasperViewer view = new JasperViewer(mostrarReporte,false);
+            view.setTitle("Reporte Clientes");
+            view.setVisible(true);
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -322,7 +326,9 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
         try {
             jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
-            JasperViewer.viewReport(mostrarReporte);
+            JasperViewer view = new JasperViewer(mostrarReporte,false);
+            view.setTitle("Reporte Proveedores");
+            view.setVisible(true);
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -335,7 +341,9 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
         try {
             jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);
             JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, cn);
-            JasperViewer.viewReport(mostrarReporte);
+            JasperViewer view = new JasperViewer(mostrarReporte,false);
+            view.setTitle("Reporte Productos");
+            view.setVisible(true);
         } catch (JRException e) {
             JOptionPane.showMessageDialog(null, e);
         }

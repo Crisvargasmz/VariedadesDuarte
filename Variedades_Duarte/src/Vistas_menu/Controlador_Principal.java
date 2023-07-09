@@ -46,6 +46,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
 
         lbUsuario.setText(" " + Ventana_iniciarSesion.txtUsuario.getText());
         Frame_inicio vistaInicio = new Frame_inicio();
+        vistaInicio.mostrarventasdia();
         vistaInicio.setSize(1280, 580);
         vistaInicio.setLocation(0, 0);
         vistaInicio.setVisible(true);

@@ -30,8 +30,7 @@ public class CRUD_Venta {
     public DefaultTableModel mostrarventadia() {
         ResultSet rs;
         DefaultTableModel modelo;
-        String[] titulos = {
-            "IDVenta", "Nombre", "Apellido", "Fecha", "Hora"};
+        String[] titulos = {"IDVenta", "Nombre", "Apellido", "Fecha", "Hora"};
         String[] registro = new String[5];
         modelo = new DefaultTableModel(null, titulos);
         try {
@@ -183,67 +182,20 @@ public class CRUD_Venta {
         }
         return 0.0;
     }
-
-//    private void obtenerDatosVenta() {
-//        // Llamar al procedimiento almacenado
-//        String query = "EXEC ConsultarClienteVentaDetalleVenta";
-//
-//        try {
-//            CallableStatement ct = cn.prepareCall("{call ConsultarClienteVentaDetalleVenta}");
-//            ResultSet rs;
-//            rs = ct.executeQuery();
-//            // Variables para almacenar los datos obtenidos
-//            String nombreCliente = "";
-//            Date fechaVenta = null;
-//            Time horaVenta = null;
-//            List<Producto> productos = new ArrayList<>();
-//
-//            // Obtener los datos del resultado de la consulta
-//            while (rs.next()) {
-//                nombreCliente = rs.getString("nombre1") + " " + rs.getString("nombre2")
-//                        + " " + rs.getString("apellido1") + " " + rs.getString("apellido2");
-//                fechaVenta = rs.getDate("fecha_venta");
-//                horaVenta = rs.getTime("hora_venta");
-//
-//                int idProducto = rs.getInt("IDProducto");
-//                String nombreProducto = rs.getString("nombre_producto");
-//                int cantidadVenta = rs.getInt("cantidad_venta");
-//                double precioVenta = rs.getDouble("precio_venta");
-//
-//                Producto producto = new Producto(idProducto, nombreProducto, BigDecimal.valueOf(precioVenta));
-//                Detalle_venta dv = new Detalle_venta(cantidadVenta);
-//                productos.add(producto);
-//            }
-//
-//            // Actualizar los componentes de la interfaz de usuario
-//            DialogVentaRealizada.txtNombreCliente.setText(nombreCliente);
-//            DialogVentaRealizada.txtFechaVenta.setText(fechaVenta.toString());
-//            DialogVentaRealizada.txtHoraVenta.setText(horaVenta.toString());
-//
-//            DefaultTableModel tableModel = new DefaultTableModel();
-//            tableModel.addColumn("ID Producto");
-//            tableModel.addColumn("Nombre Producto");
-//            tableModel.addColumn("Cantidad");
-//            tableModel.addColumn("Precio");
-//
-//            for (Producto producto : productos) {
-//                Object[] rowData = {
-//                    producto.getIDProducto(),
-//                    producto.getNombre_producto(),
-//                    producto.getCantidad_producto(),
-//                producto.getPrecio_venta(),
-//            };
-//            tableModel.addRow(rowData);
-//        }
-//
-//        DialogVentaRealizada.tableProductosComprado.setModel(tableModel);
-//
-//    }
-//    catch (SQLException e
-//
-//    
-//        ) {
-//            e.printStackTrace();
-//    }
-//}
+    
+    public String IdVentas(){
+        ResultSet rs;
+      String idv = "";
+      String sql = "";
+             sql =("SELECT MAX(IDVenta)  FROM Venta");
+            try {
+                PreparedStatement pst =cn.prepareStatement(sql);
+               rs=pst.executeQuery();
+                while (rs.next()) {
+                    idv=rs.getString(1);
+                }
+            } catch (SQLException e1) {
+            }
+            return idv;
+        }   
 }

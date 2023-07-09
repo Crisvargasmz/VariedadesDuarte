@@ -412,14 +412,18 @@ BEGIN
 CREATE PROCEDURE MostrarVentasDelDia
 AS
 BEGIN
-	DECLARE @dia DATE;
-		SET @dia = CAST(GETDATE() AS DATE);
-			SELECT Venta.IDVenta,Persona.nombre1,Persona.apellido1,Venta.fecha_venta,Venta.hora_venta
-		    FROM Venta
-			INNER JOIN Persona ON Venta.IDVenta = Persona.IDPersona
-			INNER JOIN Producto ON Venta.IDVenta = Producto.IDProducto
-			WHERE CAST (fecha_venta AS DATE)= @dia;
+    DECLARE @dia DATE;
+    SET @dia = CAST(GETDATE() AS DATE);
+
+    SELECT Venta.IDVenta, Persona.nombre1, Persona.apellido1, Venta.fecha_venta, Venta.hora_venta
+    FROM Venta
+    INNER JOIN Cliente ON Venta.IDCliente = Cliente.IDCliente
+    INNER JOIN Persona ON Cliente.IDPersona = Persona.IDPersona
+    WHERE CAST(fecha_venta AS DATE) = @dia;
 END
+GO
+
+EXEC MostrarVentasDelDia;
 GO
 
 --PROCEDIMIENTO ALMACENADO PARA SUMAR VENTAS POR DIA

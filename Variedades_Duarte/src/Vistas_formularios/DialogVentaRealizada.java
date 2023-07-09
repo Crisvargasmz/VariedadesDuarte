@@ -145,7 +145,7 @@ public class DialogVentaRealizada extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(txtHoraVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtNombreCliente)))
+                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
