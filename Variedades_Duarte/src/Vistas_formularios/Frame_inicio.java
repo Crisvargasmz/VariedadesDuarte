@@ -66,14 +66,12 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
         btnReporteClientes = new javax.swing.JButton();
         btnReporteProveedores = new javax.swing.JButton();
         btnReporteProductos = new javax.swing.JButton();
-        btnReporteVentas = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        btnReporteCompras = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaventasdia = new javax.swing.JTable();
-        btnMostrarVenta = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -81,6 +79,7 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
         lbTotalGanancias = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        btnReporteVentas = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -89,7 +88,9 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
         jPanel2.setForeground(new java.awt.Color(153, 153, 153));
         jPanel2.setOpaque(false);
 
+        btnReporteClientes.setBackground(new java.awt.Color(4, 64, 98));
         btnReporteClientes.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        btnReporteClientes.setForeground(new java.awt.Color(255, 255, 255));
         btnReporteClientes.setText("Clientes");
         btnReporteClientes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnReporteClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +99,9 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReporteProveedores.setBackground(new java.awt.Color(4, 64, 98));
         btnReporteProveedores.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        btnReporteProveedores.setForeground(new java.awt.Color(255, 255, 255));
         btnReporteProveedores.setText("Proveedores");
         btnReporteProveedores.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnReporteProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,7 +115,9 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReporteProductos.setBackground(new java.awt.Color(4, 64, 98));
         btnReporteProductos.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        btnReporteProductos.setForeground(new java.awt.Color(255, 255, 255));
         btnReporteProductos.setText("Productos");
         btnReporteProductos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnReporteProductos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,32 +126,28 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
             }
         });
 
-        btnReporteVentas.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        btnReporteVentas.setText("Ventas");
-        btnReporteVentas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        btnReporteCompras.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        btnReporteCompras.setText("Compras");
-        btnReporteCompras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel3.setText("© 2023 Variedades Duarte");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnReporteProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnReporteClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnReporteProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReporteVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSeparator2)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnReporteCompras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(101, 101, 101))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,11 +162,9 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
                 .addComponent(btnReporteProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporteVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReporteCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -183,16 +182,6 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(tablaventasdia);
-
-        btnMostrarVenta.setBackground(new java.awt.Color(29, 163, 83));
-        btnMostrarVenta.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        btnMostrarVenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnMostrarVenta.setText("Mostrar");
-        btnMostrarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarVentaActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
@@ -215,6 +204,16 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setText("Ventas Realizadas en el dia");
 
+        btnReporteVentas.setBackground(new java.awt.Color(4, 64, 98));
+        btnReporteVentas.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnReporteVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporteVentas.setText("Ventas realizadas por semana");
+        btnReporteVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReporteVentasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -223,9 +222,8 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
-                            .addComponent(btnMostrarVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(53, 53, 53)
@@ -238,7 +236,8 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
                                 .addComponent(lbTotalGanancias))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(248, 248, 248)
-                                .addComponent(jLabel5))))
+                                .addComponent(jLabel5))
+                            .addComponent(btnReporteVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(228, 228, 228)
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -254,8 +253,8 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMostrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(btnReporteVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
@@ -349,25 +348,31 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnReporteProductosMouseClicked
 
-    private void btnMostrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarVentaActionPerformed
-        DialogVentaRealizada dialog = new DialogVentaRealizada(null, true);
-        Frame_inicio fi = new Frame_inicio();
-        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setResizable(false);
-        dialog.setLocationRelativeTo(fi);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_btnMostrarVentaActionPerformed
+    private void btnReporteVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteVentasMouseClicked
+        // TODO add your handling code here:
+        // Generar reporte de los clientes.
+        String path = "/src/Vistas_reportes/reporteVentaSemanal.jrxml";
+        JasperReport jr;
+        try {
+            jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);
+            JasperPrint mostrarReporte = JasperFillManager.fillReport(jr, null, this.cn);
+            JasperViewer view = new JasperViewer(mostrarReporte,false);
+            view.setTitle("Reporte Clientes");
+            view.setVisible(true);
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnReporteVentasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnMostrarVenta;
     private javax.swing.JButton btnReporteClientes;
-    private javax.swing.JButton btnReporteCompras;
     private javax.swing.JButton btnReporteProductos;
     private javax.swing.JButton btnReporteProveedores;
     private javax.swing.JButton btnReporteVentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -263,6 +263,13 @@ GROUP BY
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="1" width="416" height="37" forecolor="#044062" uuid="2a8d8130-6301-449b-8177-d0059995e8bd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="18"/>
+				</textElement>
+				<text><![CDATA[¡Gracias por su compra, vuelva pronto!]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 </jasperReport>
