@@ -351,7 +351,7 @@ public final class Frame_inicio extends javax.swing.JInternalFrame {
     private void btnReporteVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteVentasMouseClicked
         // TODO add your handling code here:
         // Generar reporte de los clientes.
-        String path = "/src/Vistas_reportes/reporteVentaSemanal.jrxml";
+        String path = "/src/Vistas_reportes/reporteVentaSemana.jrxml";
         JasperReport jr;
         try {
             jr = JasperCompileManager.compileReport(new File("").getAbsolutePath() + path);

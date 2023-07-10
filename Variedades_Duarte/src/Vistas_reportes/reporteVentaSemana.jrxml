@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8e297ce6-0c72-46d4-9eba-53e25e3228f8">
+	<property name="ireport.zoom" value="0.9090909090909101"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+    cliente,
+    total_detalle,
+    (SELECT SUM(total_detalle) FROM (
+        SELECT (Detalle_Venta.cantidad_venta * Producto.precio_venta) AS total_detalle
+        FROM dbo.Persona Persona
+        INNER JOIN dbo.Cliente Cliente ON Persona.IDPersona = Cliente.IDPersona
+        INNER JOIN dbo.Venta Venta ON Cliente.IDCliente = Venta.IDCliente
+        INNER JOIN dbo.Detalle_Venta Detalle_Venta ON Venta.IDVenta = Detalle_Venta.IDVenta
+        INNER JOIN dbo.Producto Producto ON Detalle_Venta.IDProducto = Producto.IDProducto
+        WHERE DATEPART(ISO_WEEK, Venta.fecha_venta) = DATEPART(ISO_WEEK, GETDATE()) -- Filtrar por semana actual
+    ) AS subquery) AS total,
+    (SELECT SUM(subquery.sumaventas) FROM (
+        SELECT COUNT(*) AS sumaventas
+        FROM dbo.Persona Persona
+        INNER JOIN dbo.Cliente Cliente ON Persona.IDPersona = Cliente.IDPersona
+        INNER JOIN dbo.Venta Venta ON Cliente.IDCliente = Venta.IDCliente
+        INNER JOIN dbo.Detalle_Venta Detalle_Venta ON Venta.IDVenta = Detalle_Venta.IDVenta
+        INNER JOIN dbo.Producto Producto ON Detalle_Venta.IDProducto = Producto.IDProducto
+        WHERE DATEPART(ISO_WEEK, Venta.fecha_venta) = DATEPART(ISO_WEEK, GETDATE()) -- Filtrar por semana actual
+        GROUP BY Cliente.IDCliente
+    ) AS subquery) AS sumaventas_totales,
+    Venta_fecha_venta,
+    Venta_hora_venta,
+    Producto_nombre_producto,
+    Producto_precio_venta,
+    Detalle_Venta_cantidad_venta,
+    Cliente_genero_cliente,
+    Persona_telefono
+FROM
+    (SELECT
+        CONCAT(Persona.nombre1, ' ', Persona.nombre2, ' ', Persona.apellido1, ' ', Persona.apellido2) AS cliente,
+        (Detalle_Venta.cantidad_venta * Producto.precio_venta) AS total_detalle,
+        Venta.fecha_venta AS Venta_fecha_venta,
+        Venta.hora_venta AS Venta_hora_venta,
+        Producto.nombre_producto AS Producto_nombre_producto,
+        Producto.precio_venta AS Producto_precio_venta,
+        Detalle_Venta.cantidad_venta AS Detalle_Venta_cantidad_venta,
+        Cliente.genero_cliente AS Cliente_genero_cliente,
+        Persona.telefono AS Persona_telefono
+    FROM
+        dbo.Persona Persona
+        INNER JOIN dbo.Cliente Cliente ON Persona.IDPersona = Cliente.IDPersona
+        INNER JOIN dbo.Venta Venta ON Cliente.IDCliente = Venta.IDCliente
+        INNER JOIN dbo.Detalle_Venta Detalle_Venta ON Venta.IDVenta = Detalle_Venta.IDVenta
+        INNER JOIN dbo.Producto Producto ON Detalle_Venta.IDProducto = Producto.IDProducto
+    ) AS subquery
+WHERE
+    DATEPART(ISO_WEEK, Venta_fecha_venta) <= DATEPART(ISO_WEEK, GETDATE()) -- Filtrar hasta la semana actual
+GROUP BY
+    cliente, total_detalle, Venta_fecha_venta, Venta_hora_venta, Producto_nombre_producto,
+    Producto_precio_venta, Detalle_Venta_cantidad_venta, Cliente_genero_cliente, Persona_telefono
+ORDER BY
+    Venta_fecha_venta DESC, Venta_hora_venta DESC]]>
+	</queryString>
+	<field name="cliente" class="java.lang.String"/>
+	<field name="total_detalle" class="java.math.BigDecimal"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="sumaventas_totales" class="java.lang.Integer"/>
+	<field name="Venta_fecha_venta" class="java.sql.Date"/>
+	<field name="Venta_hora_venta" class="java.sql.Time"/>
+	<field name="Producto_nombre_producto" class="java.lang.String"/>
+	<field name="Producto_precio_venta" class="java.math.BigDecimal"/>
+	<field name="Detalle_Venta_cantidad_venta" class="java.lang.Integer"/>
+	<field name="Cliente_genero_cliente" class="java.lang.String"/>
+	<field name="Persona_telefono" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="53" backcolor="#044062" uuid="a5bb274f-c558-4922-ab2f-17e752a98df8"/>
+			</rectangle>
+			<image>
+				<reportElement x="253" y="0" width="355" height="44" uuid="e2590278-a944-4401-9a57-61c74cb23c74"/>
+				<imageExpression><![CDATA["C:\\GIT\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="253" y="44" width="322" height="35" forecolor="#044062" uuid="5010c547-f46a-4d93-b4c3-6c1d38e76e63"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos Ventas Semanales]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="23" width="802" height="38" backcolor="#044062" uuid="9bfd1d44-7438-4ee7-8793-e31f30f7c894"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="21" width="75" height="40" forecolor="#FFFFFF" uuid="ee86c523-d4df-44a8-bd6c-c4f57e09f03d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="21" width="71" height="40" forecolor="#FFFFFF" uuid="dcb9a3c6-c656-49e6-b124-2b889208db0a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="21" width="47" height="40" forecolor="#FFFFFF" uuid="08ce6e90-6949-4c21-ad00-4596f6736f71"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[G]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="21" width="94" height="40" forecolor="#FFFFFF" uuid="674ff98a-2a52-47f2-a798-2a5a3425c2aa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="21" width="52" height="40" forecolor="#FFFFFF" uuid="f96b1912-73ba-42de-966f-75c33c06902a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="21" width="70" height="40" forecolor="#FFFFFF" uuid="27205d98-59b6-4488-b541-c5f32903f1d9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="491" y="21" width="60" height="40" forecolor="#FFFFFF" uuid="867416c8-15c5-417d-b876-08ed2702109b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="575" y="21" width="48" height="40" forecolor="#FFFFFF" uuid="02983109-b481-4046-9665-ed839155b87a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="669" y="21" width="60" height="40" forecolor="#FFFFFF" uuid="3927a2c4-574e-4067-8698-ff996e464bad"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="226" y="4" width="37" height="20" uuid="605b0051-44c3-4bdd-83c0-2c3dae03588c"/>
+				<textFieldExpression><![CDATA[$F{Producto_nombre_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="328" y="4" width="20" height="20" uuid="e9841d32-25a5-42fb-88cd-93af98cc1bb9"/>
+				<textFieldExpression><![CDATA[$F{Producto_precio_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="6" width="28" height="18" uuid="d3d0d257-3291-4255-b2f6-30f5388ad4e6"/>
+				<textFieldExpression><![CDATA[$F{Detalle_Venta_cantidad_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="501" y="6" width="27" height="18" uuid="84a44d61-3377-41d4-ab6d-b3be66dc06ed"/>
+				<textFieldExpression><![CDATA[$F{total_detalle}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="575" y="6" width="94" height="18" uuid="2676f52c-e5d9-4f57-9c9e-246c7c1edc1c"/>
+				<textFieldExpression><![CDATA[$F{Venta_hora_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="4" width="75" height="20" uuid="ff53c589-1c91-4d96-be7f-8e8025a0b907"/>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="4" width="60" height="20" uuid="5a5b86db-b186-4f36-9e8b-98616ed1927e"/>
+				<textFieldExpression><![CDATA[$F{Persona_telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="4" width="13" height="20" uuid="0aee0869-cc23-473c-b7f9-95e0765a658b"/>
+				<textFieldExpression><![CDATA[$F{Cliente_genero_cliente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="669" y="4" width="100" height="20" uuid="53d68619-5938-4613-8e17-46bfec07b5bb"/>
+				<textFieldExpression><![CDATA[$F{Venta_fecha_venta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="679" y="12" width="100" height="20" uuid="609ccbca-74a4-49fd-894f-a55231f3d3b7"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="436" y="12" width="115" height="20" uuid="65ba327a-c8b6-4a98-93b8-0e0ff60213c8"/>
+				<text><![CDATA[Total ventas realizadas:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="551" y="12" width="24" height="20" uuid="00347de2-4410-4487-a408-8373d056644a"/>
+				<textFieldExpression><![CDATA[$F{sumaventas_totales}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="614" y="12" width="65" height="20" uuid="ad785c7b-be5e-480f-b4a3-4663de404e52"/>
+				<text><![CDATA[Monto Total:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

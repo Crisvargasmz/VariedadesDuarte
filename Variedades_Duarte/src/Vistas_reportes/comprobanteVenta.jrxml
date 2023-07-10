@@ -69,8 +69,8 @@ GROUP BY
 				<reportElement x="0" y="0" width="802" height="53" backcolor="#044062" uuid="0f514868-d7de-45bf-b6b4-c3d08a9db4db"/>
 			</rectangle>
 			<image>
-				<reportElement x="221" y="5" width="355" height="44" uuid="7ae4655b-1e46-425a-b15c-b58a7107407f"/>
-				<imageExpression><![CDATA["C:\\Users\\Windows 10\\Desktop\\Repositorios\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
+				<reportElement x="244" y="0" width="355" height="44" uuid="83b8da73-f88b-425e-8be2-f53c2b19cd4d"/>
+				<imageExpression><![CDATA["C:\\GIT\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
