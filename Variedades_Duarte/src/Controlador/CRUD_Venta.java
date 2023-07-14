@@ -21,9 +21,9 @@ public class CRUD_Venta {
     public DefaultTableModel mostrar() {
         DefaultTableModel modelo;
 
-        String[] titulos = {"ID Producto", "Nombre Producto", "Cantidad", "Precio", "Sub Total"};
+        String[] titulos = {"ID Producto", "Nombre Producto","Unidad Numerica","Presentacion", "Cantidad", "Precio", "Sub Total"};
         modelo = new DefaultTableModel(null, titulos);
-        String[] registro = new String[6];
+        String[] registro = new String[7];
         return modelo;
     }
 

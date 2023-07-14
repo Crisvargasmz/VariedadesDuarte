@@ -46,6 +46,8 @@ public class DialogVentaProducto extends javax.swing.JDialog {
         txtIDProducto.setVisible(false);
         txtCantidad.setVisible(false);
         txtPrecio.setVisible(false);
+        txtunidad.setVisible(false);
+        txtPresentacion.setVisible(false);
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
         InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -116,6 +118,7 @@ public class DialogVentaProducto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtPrecio1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
         txtSeleccionarProducto = new javax.swing.JTextField();
@@ -129,6 +132,8 @@ public class DialogVentaProducto extends javax.swing.JDialog {
         txtIDProducto = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
+        txtunidad = new javax.swing.JTextField();
+        txtPresentacion = new javax.swing.JTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -245,6 +250,10 @@ public class DialogVentaProducto extends javax.swing.JDialog {
                         .addComponent(jSeparator2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +270,9 @@ public class DialogVentaProducto extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addComponent(txtIDProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,6 +331,9 @@ public class DialogVentaProducto extends javax.swing.JDialog {
                 Frame_venta.txtProducto.setText(txtSeleccionarProducto.getText());
                 Frame_venta.txtCantidadDisponible.setText(txtCantidad.getText());
                 Frame_venta.txtPrecioProducto.setText(txtPrecio.getText());
+                Frame_venta.txtUnidadnume.setText(txtunidad.getText());
+                Frame_venta.txtpresentacion.setText(txtPresentacion.getText());
+                
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -336,6 +350,7 @@ public class DialogVentaProducto extends javax.swing.JDialog {
             Mostrar();
 
             tablaProductos.setModel(modelo);
+            ocultartabla();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -356,11 +371,16 @@ public class DialogVentaProducto extends javax.swing.JDialog {
                 String Producto = (String) this.tablaProductos.getValueAt(fila, 1);
                 String Cantidad = (String) this.tablaProductos.getValueAt(fila, 2);
                 String Precio = (String) this.tablaProductos.getValueAt(fila, 4).toString();
+                String Presentacion = (String) this.tablaProductos.getValueAt(fila, 12);
+                String UnidadNumerica = (String) this.tablaProductos.getValueAt(fila, 10);
 
                 Frame_venta.txtIDProducto.setText(IDProducto);
                 Frame_venta.txtProducto.setText(Producto);
                 Frame_venta.txtCantidadDisponible.setText(Cantidad);
                 Frame_venta.txtPrecioProducto.setText(Precio);
+                Frame_venta.txtpresentacion.setText(Presentacion);
+                Frame_venta.txtUnidadnume.setText(UnidadNumerica);
+                
                 this.dispose();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -429,7 +449,10 @@ public class DialogVentaProducto extends javax.swing.JDialog {
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtIDProducto;
     private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtPrecio1;
+    private javax.swing.JTextField txtPresentacion;
     private javax.swing.JTextField txtSeleccionarProducto;
+    private javax.swing.JTextField txtunidad;
     // End of variables declaration//GEN-END:variables
 
     private int returnStatus = RET_CANCEL;

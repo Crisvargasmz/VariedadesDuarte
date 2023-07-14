@@ -354,6 +354,7 @@ public class DialogVentaCliente extends javax.swing.JDialog {
             mostrar();
 
             tablaClientesDisponibles.setModel(modelo);
+            ocultartabla();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
