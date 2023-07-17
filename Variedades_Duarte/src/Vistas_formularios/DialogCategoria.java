@@ -7,13 +7,17 @@ package Vistas_formularios;
 import Controlador.CRUD_Categoria;
 import Controlador.Conexion;
 import Modelo.Categoria;
+import Vistas_formularios.Frame_producto;
 import java.awt.HeadlessException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+
+
 
 /**
  *
@@ -21,8 +25,8 @@ import javax.swing.JOptionPane;
  */
 public class DialogCategoria extends javax.swing.JDialog {
 
-    private final Conexion con = new Conexion();
-    private final Connection cn = (Connection) con.conectar();
+
+   
     /**
      * Creates new form DialogCategoria
      */
@@ -32,22 +36,12 @@ public class DialogCategoria extends javax.swing.JDialog {
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
     }
+ private final Conexion con = new Conexion();
+    private final Connection cn = (Connection) con.conectar();
 
-    public DefaultComboBoxModel LlenarAlSalir ()
-   {
-    DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-    modelo.addElement("Categoria");
-    try {
-   CallableStatement cbstc = cn.prepareCall("{call LlenarCombo}");
-   ResultSet rs = cbstc.executeQuery();
-   while(rs.next())//realizamos un recorrido para buscar los datos existentes
-   {
-       modelo.addElement(rs.getString(1));
-     }  
-  } catch (Exception e) {
-  }
-    return modelo;
-}
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,7 +157,7 @@ public class DialogCategoria extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        CRUD_Categoria cc = new CRUD_Categoria();
+           CRUD_Categoria cc = new CRUD_Categoria();
             if (txtcategoria.getText().equals("")) {
 
             } else {
@@ -171,7 +165,7 @@ public class DialogCategoria extends javax.swing.JDialog {
                 String catego = txtcategoria.getText();
                 Categoria cat = new Categoria(catego);
                 cc.insertarCategoria(cat);
-                LlenarAlSalir();
+    
                 this.dispose();
             }
     }//GEN-LAST:event_btnAgregarActionPerformed

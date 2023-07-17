@@ -37,9 +37,10 @@ public class Frame_producto extends javax.swing.JInternalFrame {
         initComponents();
        
         Mostrar();
-         ocultartabla();
        llenarCategoria();
        llenarProveedor();
+       ocultartabla();
+   
 //        llenarcomboboxCategoria();//se va rellenar con combobox
         //en el formulario cuando inicie este
         llenarComboBoxPresentacion();
@@ -47,14 +48,7 @@ public class Frame_producto extends javax.swing.JInternalFrame {
         txtidppresentacion.setVisible(false);
 
     }
-//
-//    public void llenarcomboboxCategoria() {
-//        CRUD_Categoria cate = new CRUD_Categoria();
-//        DefaultComboBoxModel<Categoria> modelo = cate.Llenar();
-//        comboCategoria.setModel(modelo);
-//    }
-//    
-      public void llenarCategoria() {
+       public void llenarCategoria() {
 
           CRUD_Categoria cate = new CRUD_Categoria();
         ArrayList<Categoria> listaCategoria = cate.mostrarDatosCombo();
@@ -950,7 +944,7 @@ public class Frame_producto extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEliminarProducto;
     private javax.swing.JButton btnLimpiarCamposProducto;
-    public static javax.swing.JComboBox<Categoria> comboCategoria;
+    public javax.swing.JComboBox<Categoria> comboCategoria;
     private javax.swing.JComboBox<Presentacion> comboPresentacion;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

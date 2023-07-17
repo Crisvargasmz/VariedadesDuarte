@@ -3,7 +3,6 @@ package Controlador;
 import Modelo.Categoria;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 
