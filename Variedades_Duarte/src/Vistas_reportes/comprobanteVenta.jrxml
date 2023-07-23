@@ -69,8 +69,8 @@ GROUP BY
 				<reportElement x="0" y="0" width="802" height="53" backcolor="#044062" uuid="0f514868-d7de-45bf-b6b4-c3d08a9db4db"/>
 			</rectangle>
 			<image>
-				<reportElement x="244" y="0" width="355" height="44" uuid="83b8da73-f88b-425e-8be2-f53c2b19cd4d"/>
-				<imageExpression><![CDATA["C:\\GIT\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
+				<reportElement x="244" y="3" width="355" height="44" uuid="82fb2b5d-af95-4220-973b-04b759a97301"/>
+				<imageExpression><![CDATA["C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -148,7 +148,7 @@ GROUP BY
 			<line>
 				<reportElement x="19" y="134" width="758" height="2" forecolor="#00CCCC" uuid="ad1bb335-03c6-4317-b4ad-a61e4e73d25a"/>
 			</line>
-			<textField pattern="h.mm.ss a">
+			<textField pattern="h.mm a">
 				<reportElement x="647" y="97" width="130" height="20" uuid="f9d2db3f-238e-460e-a385-e2b3450f5491"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Verdana" size="12"/>

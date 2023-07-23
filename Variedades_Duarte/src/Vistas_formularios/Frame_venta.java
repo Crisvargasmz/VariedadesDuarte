@@ -76,7 +76,7 @@ public class Frame_venta extends javax.swing.JInternalFrame {
         dts.setIDVenta(Integer.parseInt(IDVenta));
         for (int i = 0; i < listarProductos.getRowCount(); i++) {
             dts.setIDProducto(Integer.parseInt(listarProductos.getValueAt(i, 0).toString()));
-            dts.setCantidad_venta(Integer.parseInt(listarProductos.getValueAt(i, 2).toString()));
+            dts.setCantidad_venta(Integer.parseInt(listarProductos.getValueAt(i, 4).toString()));
             cd.insertarDetalle_venta(dts);
         }
     }

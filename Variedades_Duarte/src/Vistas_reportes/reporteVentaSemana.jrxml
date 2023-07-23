@@ -78,10 +78,6 @@ ORDER BY
 			<rectangle>
 				<reportElement x="0" y="0" width="802" height="53" backcolor="#044062" uuid="a5bb274f-c558-4922-ab2f-17e752a98df8"/>
 			</rectangle>
-			<image>
-				<reportElement x="253" y="0" width="355" height="44" uuid="e2590278-a944-4401-9a57-61c74cb23c74"/>
-				<imageExpression><![CDATA["C:\\GIT\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="253" y="44" width="322" height="35" forecolor="#044062" uuid="5010c547-f46a-4d93-b4c3-6c1d38e76e63"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -89,6 +85,10 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[Datos Ventas Semanales]]></text>
 			</staticText>
+			<image>
+				<reportElement x="236" y="0" width="355" height="44" uuid="fbddc76b-398b-4b89-ba8b-e310aceea58d"/>
+				<imageExpression><![CDATA["C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

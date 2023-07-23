@@ -678,6 +678,7 @@ public class Frame_cliente extends javax.swing.JInternalFrame {
 //         JOptionPane.showMessageDialog(null, e);
 //     }
 //     
+        limpiar();
     }//GEN-LAST:event_btnLimpiarCamposClienteActionPerformed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed

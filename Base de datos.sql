@@ -135,7 +135,7 @@ GO
 --Insertando usuarios.
 Insert Into IniciodeSesion (usuario_sesion, contrasena_sesion)
 Values('Administrador', '@1234567'),
-	  ('UsuarioUno', '@vendedor');
+	  ('Empleado', '@vendedor');
 
 GO
 --PROCEDIMIENTO ALMACENADO INSERTAR CLIENTE
@@ -155,18 +155,7 @@ BEGIN
   VALUES (SCOPE_IDENTITY(),@genero_cliente);
 END 
 GO
-EXEC InsertarPersonaCliente 'Montiel','Marenco','Vargas','Torrez','Calle Principal, Barrio El Centro, Ciudad Managua, Managua','5786-7406','M'
-EXEC InsertarPersonaCliente 'John', 'Doe', 'Smith', 'Johnson', 'De la Estación de Policía, 1 cuadra al sur, Barrio San Judas, Ciudad León, León', '8123-4567', 'M'
-EXEC InsertarPersonaCliente 'Jane', 'Doe', 'Taylor', 'Anderson', 'Costado Este del Parque Central, Barrio El Rosario, Ciudad Granada, Granada', '8345-6712', 'F'
-EXEC InsertarPersonaCliente 'Michael', 'Brown', 'Wilson', 'Davis', 'Carretera Masaya, Kilómetro 6, Barrio Monimbó, Ciudad Masaya, Masaya', '8567-8123', 'M'
-EXEC InsertarPersonaCliente 'Emily', 'Johnson', 'Martinez', 'Garcia', 'Del Mercado Central, 2 cuadras al norte, Barrio El Calvario, Ciudad Estelí, Estelí', '7891-2345', 'F'
-EXEC InsertarPersonaCliente 'Daniel', 'Smith', 'Lopez', 'Thomas', 'Del Estadio Nacional, 2 cuadras al oeste, Barrio Sutiaba, Ciudad Chinandega, Chinandega', '8789-1234', 'M'
-EXEC InsertarPersonaCliente 'Sophia', 'Garcia', 'Lee', 'Perez', 'Avenida de Bolívar a Chávez, Contiguo a la Catedral, Barrio San Sebastián, Ciudad Matagalpa, Matagalpa', '8901-2345', 'F'
-EXEC InsertarPersonaCliente 'Matthew', 'Johnson', 'Miller', 'Smith', 'Del Parque Central, 3 cuadras al este, Barrio La Recoleta, Ciudad Jinotega, Jinotega', '8126-5437', 'M'
-EXEC InsertarPersonaCliente 'Olivia', 'Brown', 'Wilson', 'Davis', 'Carretera Panamericana, Kilómetro 10, Barrio Las Colinas, Ciudad Tipitapa, Managua', '7890-6543', 'F'
-EXEC InsertarPersonaCliente 'William', 'Anderson', 'Clark', 'Taylor', 'De la Iglesia La Merced, 1 cuadra al sur, Barrio San Felipe, Ciudad Rivas, Rivas', '8970-2314', 'M'
 
-GO
 --PROCEDIMIENTO ALMECENADO INSERTAR PROVEEDOR
 CREATE PROCEDURE InsertarPersonaProveedor
 @nombre1 NVARCHAR (15),
@@ -184,18 +173,6 @@ BEGIN
   VALUES (SCOPE_IDENTITY(),@empresa_proveedor);
 END 
 GO
-EXEC InsertarPersonaProveedor'Cristhian','Cesar','Vargas','Martinez','Juigalpa','5786-7406','Distribuidora Morales'
-EXEC InsertarPersonaProveedor 'Gabriel', 'Cordero', 'Ramírez', 'López', 'Managua', '5829-7408', 'Mayorista Los Pinos'
-EXEC InsertarPersonaProveedor 'Isabella', 'Torres', 'Guzmán', 'Sánchez', 'León', '8032-0045', 'Distribuidora La Economía'
-EXEC InsertarPersonaProveedor 'Sebastián', 'Rojas', 'Flores', 'Pérez', 'Granada', '8021-0067', 'Mayorista San Judas'
-EXEC InsertarPersonaProveedor 'Valentina', 'Gutierrez', 'Herrera', 'Ortiz', 'Matagalpa', '7891-2345', 'Distribuidora Mercantil'
-EXEC InsertarPersonaProveedor 'Mateo', 'Navarro', 'Silva', 'Gómez', 'Chinandega', '7298-0003', 'Mayorista El Trébol'
-EXEC InsertarPersonaProveedor 'Lucía', 'Ortega', 'Díaz', 'Lara', 'Estelí', '8021-0067', 'Distribuidora El Sol'
-EXEC InsertarPersonaProveedor 'Emilio', 'Mendoza', 'Castro', 'Ramón', 'Rivas', '8294-0087', 'Mayorista El Progreso'
-EXEC InsertarPersonaProveedor 'Valeria', 'Cabrera', 'Fuentes', 'Soto', 'Masaya', '7682-0006', 'Distribuidora Comercial Mayor'
-EXEC InsertarPersonaProveedor 'Matías', 'Chávez', 'Ríos', 'Núñez', 'Puerto Cabezas', '7124-0009', 'Mayorista La Unión'
-
-GO
 
  --PROCEDIMIENTO ALMACENADO INSERTAR CATEGORIA
 
@@ -205,21 +182,6 @@ AS
   INSERT INTO [Categoria] ([nombre_categoria])
   VALUES (@nombre_categoria)
 GO
-
-EXEC InsertarCategoria 'Lacteos';
-EXEC InsertarCategoria 'Frutas';
-EXEC InsertarCategoria 'Electrodomésticos';
-EXEC InsertarCategoria 'Ropa';
-EXEC InsertarCategoria 'Bebidas';
-EXEC InsertarCategoria 'Hogar y Jardín';
-EXEC InsertarCategoria 'Juguetes';
-EXEC InsertarCategoria 'Cosméticos';
-EXEC InsertarCategoria 'Electrodomésticos';
-EXEC InsertarCategoria 'Productos de belleza';
-EXEC InsertarCategoria 'Artículos deportivos';
-EXEC InsertarCategoria 'Instrumentos musicales';
-EXEC InsertarCategoria 'Comida preparada';
-GO
 --PROCEDIMIENTO ALMACENADO INSERTAR PRESENTACION 
 CREATE PROCEDURE InsertarPresentacion
 @nombre_presentacion NVARCHAR (20)
@@ -227,21 +189,16 @@ AS
    INSERT INTO [Presentacion] ([nombre_presentacion])
    VALUES (@nombre_presentacion)
 GO
-EXEC InsertarPresentacion 'Libra';
-EXEC InsertarPresentacion 'Kilogramo';
-EXEC InsertarPresentacion 'Litro';
-EXEC InsertarPresentacion 'Metro';
-EXEC InsertarPresentacion 'Unidad';
 EXEC InsertarPresentacion 'Gramo';
+EXEC InsertarPresentacion 'Kilogramo';
+EXEC InsertarPresentacion 'Libra';
 EXEC InsertarPresentacion 'Onza';
 EXEC InsertarPresentacion 'Litro';
-EXEC InsertarPresentacion 'Galón';
-EXEC InsertarPresentacion 'Pieza';
-EXEC InsertarPresentacion 'Metro cuadrado';
-EXEC InsertarPresentacion 'Centímetro cúbico';
-EXEC InsertarPresentacion 'Caja';
-EXEC InsertarPresentacion 'Botella';
-EXEC InsertarPresentacion 'Paquete'; 
+EXEC InsertarPresentacion 'Mililitro';
+EXEC InsertarPresentacion 'Galones';
+EXEC InsertarPresentacion 'Metro';
+EXEC InsertarPresentacion 'Centímetro';
+EXEC InsertarPresentacion 'Pulgada';
 GO
 
 --PROCEDIMIENTO ALMACENADO INSERTAR PRODUCTO
@@ -274,13 +231,7 @@ BEGIN
     VALUES (@IDProducto, @IDPresentacion, @medida_numerica)
 END
 GO
-EXEC InsertarProducto 'Leche', 10, 100.00, 150.00, 'Leche de vaca', '2023-01-01', 1, 1, 1.5, 1;
-EXEC InsertarProducto 'Pan', 20, 50.00, 80.00, 'Pan artesanal', '2023-02-01', 2, 2, 1, 2;
-EXEC InsertarProducto 'Manzanas', 15, 80.00, 120.00, 'Manzanas frescas', '2023-03-01', 2, 2, 2.5, 3;
-EXEC InsertarProducto 'Azúcar', 5, 20.00, 35.00, 'Azúcar refinada', '2023-04-01', 4, 4, 500.0, 4;
-EXEC InsertarProducto 'Atún', 12, 15.00, 25.00, 'Atún en lata', '2023-05-01', 5, 5, 160.0, 5;
-EXEC InsertarProducto 'Papas', 8, 30.00, 50.00, 'Papas fritas', '2023-06-01', 6, 6, 200.0, 6;
-GO
+
 --Procedimiento almacenado para Insertar venta
 CREATE PROCEDURE InsertarVenta
    @fecha_venta DATE,

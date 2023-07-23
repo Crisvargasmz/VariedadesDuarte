@@ -724,6 +724,7 @@ public class Frame_producto extends javax.swing.JInternalFrame {
                     GuardarProducto();
                     LimpiarCampos();
                     Mostrar();
+                    ocultartabla();
                     JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
                 }
 
@@ -918,8 +919,13 @@ public class Frame_producto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboPresentacionActionPerformed
 
+    private void txtBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarProductoActionPerformed
+
     private void txtMedidaNumericaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMedidaNumericaKeyTyped
         // TODO add your handling code here:
+        validar.KeyTipedNUMPUN(evt);
     }//GEN-LAST:event_txtMedidaNumericaKeyTyped
 
     private void txtMedidaNumericaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMedidaNumericaKeyPressed
@@ -929,10 +935,6 @@ public class Frame_producto extends javax.swing.JInternalFrame {
     private void txtMedidaNumericaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMedidaNumericaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMedidaNumericaActionPerformed
-
-    private void txtBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
