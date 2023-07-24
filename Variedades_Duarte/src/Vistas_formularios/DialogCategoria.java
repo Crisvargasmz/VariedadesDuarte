@@ -7,6 +7,7 @@ package Vistas_formularios;
 import Controlador.CRUD_Categoria;
 import Controlador.Conexion;
 import Modelo.Categoria;
+import javax.swing.ImageIcon;
 import Vistas_formularios.Frame_producto;
 import java.awt.HeadlessException;
 import java.sql.CallableStatement;
@@ -17,31 +18,28 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author Cristhian
  */
 public class DialogCategoria extends javax.swing.JDialog {
 
-
-   
     /**
      * Creates new form DialogCategoria
      */
     public DialogCategoria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        String ico = "/Vistas_iconos/IconoLogo.png"; // Ruta relativa desde el directorio de recursos
+        ImageIcon icono = new ImageIcon(getClass().getResource(ico));
+        setIconImage(icono.getImage());
+
+        setTitle("Nueva categoria");
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
     }
- private final Conexion con = new Conexion();
+    private final Conexion con = new Conexion();
     private final Connection cn = (Connection) con.conectar();
-
-
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,17 +155,17 @@ public class DialogCategoria extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-           CRUD_Categoria cc = new CRUD_Categoria();
-            if (txtcategoria.getText().equals("")) {
+        CRUD_Categoria cc = new CRUD_Categoria();
+        if (txtcategoria.getText().equals("")) {
 
-            } else {
-                 
-                String catego = txtcategoria.getText();
-                Categoria cat = new Categoria(catego);
-                cc.insertarCategoria(cat);
-    
-                this.dispose();
-            }
+        } else {
+
+            String catego = txtcategoria.getText();
+            Categoria cat = new Categoria(catego);
+            cc.insertarCategoria(cat);
+
+            this.dispose();
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**

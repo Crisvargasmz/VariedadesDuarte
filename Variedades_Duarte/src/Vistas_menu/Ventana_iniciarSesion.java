@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -34,6 +35,10 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
      */
     public Ventana_iniciarSesion() {
         initComponents();
+        String ico = "/Vistas_iconos/IconoLogo.png"; // Ruta relativa desde el directorio de recursos
+        ImageIcon icono = new ImageIcon(getClass().getResource(ico));
+        setIconImage(icono.getImage());
+
         pnlFormularioSesion.setSize(520, 450);
         DimencionesFields();
         setTitle("Iniciar Sesion");
@@ -130,13 +135,13 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             this.dispose();
             lbAdvertencia.setForeground(new Color(0, 204, 0));
             lbAdvertencia.setText("Acceso concedido.");
-             //Permisos de usuario basico.
-                if(txtUsuario.getText().equals("Empleado")){
-                    Controlador_Principal.btnProveedor.setVisible(false);
-                    Controlador_Principal.btnCompra.setVisible(false);
-                    Controlador_Principal.btnCategoria.setVisible(false);
-                    
-                }
+            //Permisos de usuario basico.
+            if (txtUsuario.getText().equals("Empleado")) {
+                Controlador_Principal.btnProveedor.setVisible(false);
+                Controlador_Principal.btnCompra.setVisible(false);
+                Controlador_Principal.btnCategoria.setVisible(false);
+
+            }
         } else {
             lbAdvertencia.setForeground(new Color(255, 0, 0));
             lbAdvertencia.setText("Acceso denegado.");
@@ -158,13 +163,13 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
                 this.dispose();
                 lbAdvertencia.setForeground(new Color(0, 204, 0));
                 lbAdvertencia.setText("Acceso concedido.");
-                 //Permisos de usuario basico.
-                if(txtUsuario.getText().equals("Empleado")){
+                //Permisos de usuario basico.
+                if (txtUsuario.getText().equals("Empleado")) {
                     Controlador_Principal.btnProveedor.setVisible(false);
                     Controlador_Principal.btnCompra.setVisible(false);
                     Controlador_Principal.btnCategoria.setVisible(false);
-                    
-                }else{
+
+                } else {
                     Controlador_Principal.btnProveedor.setVisible(true);
                     Controlador_Principal.btnCompra.setVisible(true);
                     Controlador_Principal.btnCategoria.setVisible(true);
@@ -184,7 +189,7 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             JTexFields.requestFocus();
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -218,7 +223,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
         setResizable(false);
 
         pnlPanelContenedor.setBackground(new java.awt.Color(59, 156, 210));
-        pnlPanelContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cuadroEstilo_Uno.setBackground(new java.awt.Color(29, 163, 83));
 
@@ -233,8 +237,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             .addGap(0, 220, Short.MAX_VALUE)
         );
 
-        pnlPanelContenedor.add(cuadroEstilo_Uno, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
-
         cuadroEstilo_Dos.setBackground(new java.awt.Color(250, 15, 15));
 
         javax.swing.GroupLayout cuadroEstilo_DosLayout = new javax.swing.GroupLayout(cuadroEstilo_Dos);
@@ -248,8 +250,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             .addGap(0, 220, Short.MAX_VALUE)
         );
 
-        pnlPanelContenedor.add(cuadroEstilo_Dos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
-
         cuadroEstilo_Tres.setBackground(new java.awt.Color(255, 35, 5));
 
         javax.swing.GroupLayout cuadroEstilo_TresLayout = new javax.swing.GroupLayout(cuadroEstilo_Tres);
@@ -262,8 +262,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             cuadroEstilo_TresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 160, Short.MAX_VALUE)
         );
-
-        pnlPanelContenedor.add(cuadroEstilo_Tres, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, -1, -1));
 
         pnlFormularioSesion.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -378,8 +376,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
                 .addComponent(separadorEstilo_Uno, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pnlPanelContenedor.add(pnlFormularioSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
-
         cuadroEstilo_Cuatro.setBackground(new java.awt.Color(250, 15, 15));
 
         javax.swing.GroupLayout cuadroEstilo_CuatroLayout = new javax.swing.GroupLayout(cuadroEstilo_Cuatro);
@@ -392,8 +388,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             cuadroEstilo_CuatroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 70, Short.MAX_VALUE)
         );
-
-        pnlPanelContenedor.add(cuadroEstilo_Cuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, -1, -1));
 
         cuadroEstilo_Cinco.setBackground(new java.awt.Color(29, 163, 83));
 
@@ -408,8 +402,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             .addGap(0, 60, Short.MAX_VALUE)
         );
 
-        pnlPanelContenedor.add(cuadroEstilo_Cinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
-
         cuadroEstilo_Seis.setBackground(new java.awt.Color(224, 203, 8));
 
         javax.swing.GroupLayout cuadroEstilo_SeisLayout = new javax.swing.GroupLayout(cuadroEstilo_Seis);
@@ -422,8 +414,6 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             cuadroEstilo_SeisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 60, Short.MAX_VALUE)
         );
-
-        pnlPanelContenedor.add(cuadroEstilo_Seis, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, -1, -1));
 
         cuadroEstilo_Siete.setBackground(new java.awt.Color(224, 203, 8));
 
@@ -438,7 +428,51 @@ public class Ventana_iniciarSesion extends javax.swing.JFrame {
             .addGap(0, 320, Short.MAX_VALUE)
         );
 
-        pnlPanelContenedor.add(cuadroEstilo_Siete, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 480, -1));
+        javax.swing.GroupLayout pnlPanelContenedorLayout = new javax.swing.GroupLayout(pnlPanelContenedor);
+        pnlPanelContenedor.setLayout(pnlPanelContenedorLayout);
+        pnlPanelContenedorLayout.setHorizontalGroup(
+            pnlPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPanelContenedorLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(pnlPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cuadroEstilo_Uno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cuadroEstilo_Dos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPanelContenedorLayout.createSequentialGroup()
+                        .addComponent(cuadroEstilo_Cuatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140)
+                        .addComponent(cuadroEstilo_Tres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cuadroEstilo_Cinco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlFormularioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlPanelContenedorLayout.createSequentialGroup()
+                        .addGap(440, 440, 440)
+                        .addGroup(pnlPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cuadroEstilo_Siete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cuadroEstilo_Seis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        );
+        pnlPanelContenedorLayout.setVerticalGroup(
+            pnlPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPanelContenedorLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(pnlPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPanelContenedorLayout.createSequentialGroup()
+                        .addComponent(cuadroEstilo_Uno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140)
+                        .addComponent(cuadroEstilo_Dos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlPanelContenedorLayout.createSequentialGroup()
+                        .addComponent(cuadroEstilo_Siete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addGroup(pnlPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPanelContenedorLayout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(cuadroEstilo_Cuatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cuadroEstilo_Tres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cuadroEstilo_Seis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cuadroEstilo_Cinco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlPanelContenedorLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(pnlFormularioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -70,7 +70,7 @@ GROUP BY
 			</rectangle>
 			<image>
 				<reportElement x="244" y="3" width="355" height="44" uuid="82fb2b5d-af95-4220-973b-04b759a97301"/>
-				<imageExpression><![CDATA["C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["Vistas_iconos\\Logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

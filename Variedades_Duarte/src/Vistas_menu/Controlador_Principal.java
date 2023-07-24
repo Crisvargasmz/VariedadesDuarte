@@ -7,6 +7,7 @@ package Vistas_menu;
 import Modelo.MenuBotones_color;
 import Vistas_formularios.Frame_cliente;
 import Vistas_formularios.Frame_compra;
+import javax.swing.ImageIcon;
 import Vistas_formularios.Frame_inicio;
 import Vistas_formularios.Frame_producto;
 import Vistas_formularios.Frame_proveedor;
@@ -38,6 +39,11 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
      */
     public Controlador_Principal() {
         initComponents();
+        String ico = "/Vistas_iconos/IconoLogo.png"; // Ruta relativa desde el directorio de recursos
+        ImageIcon icono = new ImageIcon(getClass().getResource(ico));
+        setIconImage(icono.getImage());
+
+        setTitle("Menu principal");
         setLocationRelativeTo(null);
         lbDate.setText(Fecha());
 
@@ -54,7 +60,7 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         pnlMostrarVentanas.add(vistaInicio, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
         pnlMostrarVentanas.repaint();
-      
+
     }
 
     //Metodo para mostrar la fecha
@@ -449,8 +455,8 @@ public class Controlador_Principal extends javax.swing.JFrame implements Runnabl
         pnlMostrarVentanas.add(vistaInicio, BorderLayout.CENTER);
         pnlMostrarVentanas.revalidate();
         pnlMostrarVentanas.repaint();
-        
-        
+
+
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseEntered

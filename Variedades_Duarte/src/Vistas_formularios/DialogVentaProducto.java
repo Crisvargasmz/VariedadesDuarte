@@ -10,6 +10,7 @@ import static Vistas_formularios.DialogVentaCliente.Fecha;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -41,6 +42,11 @@ public class DialogVentaProducto extends javax.swing.JDialog {
     public DialogVentaProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Obtener productos");
+        String ico = "/Vistas_iconos/IconoLogo.png"; // Ruta relativa desde el directorio de recursos
+        ImageIcon icono = new ImageIcon(getClass().getResource(ico));
+        setIconImage(icono.getImage());
+
         Mostrar();
         ocultartabla();
         txtIDProducto.setVisible(false);
@@ -78,36 +84,36 @@ public class DialogVentaProducto extends javax.swing.JDialog {
         }
 
     }
-    
-     public void ocultartabla() {
-    int columnIndex = 0; // Aquí pones el índice de la columna que deseas ocultar
-    int columnIdex1 = 7;
-    int columnIdex2 = 9;
-    int columnIdex3 = 11;
-    int columnIdex4 = 13;
 
-    TableColumnModel columnModel = tablaProductos.getColumnModel();
-    columnModel.getColumn(columnIndex).setWidth(0);
-    columnModel.getColumn(columnIndex).setMinWidth(0);
-    columnModel.getColumn(columnIndex).setMaxWidth(0);
-    columnModel.getColumn(columnIndex).setPreferredWidth(0);
-    columnModel.getColumn(columnIdex1).setWidth(0);
-    columnModel.getColumn(columnIdex1).setMinWidth(0);
-    columnModel.getColumn(columnIdex1).setMaxWidth(0);
-    columnModel.getColumn(columnIdex1).setPreferredWidth(0);
-    columnModel.getColumn(columnIdex2).setWidth(0);
-    columnModel.getColumn(columnIdex2).setMinWidth(0);
-    columnModel.getColumn(columnIdex2).setMaxWidth(0);
-    columnModel.getColumn(columnIdex2).setPreferredWidth(0);
-    columnModel.getColumn(columnIdex3).setWidth(0);
-    columnModel.getColumn(columnIdex3).setMinWidth(0);
-    columnModel.getColumn(columnIdex3).setMaxWidth(0);
-    columnModel.getColumn(columnIdex3).setPreferredWidth(0);
-    columnModel.getColumn(columnIdex4).setWidth(0);
-    columnModel.getColumn(columnIdex4).setMinWidth(0);
-    columnModel.getColumn(columnIdex4).setMaxWidth(0);
-    columnModel.getColumn(columnIdex4).setPreferredWidth(0);
-}
+    public void ocultartabla() {
+        int columnIndex = 0; // Aquí pones el índice de la columna que deseas ocultar
+        int columnIdex1 = 7;
+        int columnIdex2 = 9;
+        int columnIdex3 = 11;
+        int columnIdex4 = 13;
+
+        TableColumnModel columnModel = tablaProductos.getColumnModel();
+        columnModel.getColumn(columnIndex).setWidth(0);
+        columnModel.getColumn(columnIndex).setMinWidth(0);
+        columnModel.getColumn(columnIndex).setMaxWidth(0);
+        columnModel.getColumn(columnIndex).setPreferredWidth(0);
+        columnModel.getColumn(columnIdex1).setWidth(0);
+        columnModel.getColumn(columnIdex1).setMinWidth(0);
+        columnModel.getColumn(columnIdex1).setMaxWidth(0);
+        columnModel.getColumn(columnIdex1).setPreferredWidth(0);
+        columnModel.getColumn(columnIdex2).setWidth(0);
+        columnModel.getColumn(columnIdex2).setMinWidth(0);
+        columnModel.getColumn(columnIdex2).setMaxWidth(0);
+        columnModel.getColumn(columnIdex2).setPreferredWidth(0);
+        columnModel.getColumn(columnIdex3).setWidth(0);
+        columnModel.getColumn(columnIdex3).setMinWidth(0);
+        columnModel.getColumn(columnIdex3).setMaxWidth(0);
+        columnModel.getColumn(columnIdex3).setPreferredWidth(0);
+        columnModel.getColumn(columnIdex4).setWidth(0);
+        columnModel.getColumn(columnIdex4).setMinWidth(0);
+        columnModel.getColumn(columnIdex4).setMaxWidth(0);
+        columnModel.getColumn(columnIdex4).setPreferredWidth(0);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -320,20 +326,20 @@ public class DialogVentaProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_txtSeleccionarProductoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         CRUD_Venta cv = new CRUD_Venta();
+        CRUD_Venta cv = new CRUD_Venta();
         try {
             if (txtSeleccionarProducto.getText().equals("")) {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                
+
                 Frame_venta.txtIDProducto.setText(txtIDProducto.getText());
                 Frame_venta.txtProducto.setText(txtSeleccionarProducto.getText());
                 Frame_venta.txtCantidadDisponible.setText(txtCantidad.getText());
                 Frame_venta.txtPrecioProducto.setText(txtPrecio.getText());
                 Frame_venta.txtUnidadnume.setText(txtunidad.getText());
                 Frame_venta.txtpresentacion.setText(txtPresentacion.getText());
-                
+
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -380,7 +386,7 @@ public class DialogVentaProducto extends javax.swing.JDialog {
                 Frame_venta.txtPrecioProducto.setText(Precio);
                 Frame_venta.txtpresentacion.setText(Presentacion);
                 Frame_venta.txtUnidadnume.setText(UnidadNumerica);
-                
+
                 this.dispose();
             } catch (Exception e) {
                 e.printStackTrace();

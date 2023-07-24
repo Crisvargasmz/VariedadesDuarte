@@ -87,7 +87,7 @@ ORDER BY
 			</staticText>
 			<image>
 				<reportElement x="236" y="0" width="355" height="44" uuid="fbddc76b-398b-4b89-ba8b-e310aceea58d"/>
-				<imageExpression><![CDATA["C:\\Users\\Darikson\\Desktop\\Proyecto\\VariedadesDuarte\\Variedades_Duarte\\src\\Vistas_iconos\\Logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["Vistas_iconos\\Logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

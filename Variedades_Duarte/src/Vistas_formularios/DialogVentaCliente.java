@@ -8,6 +8,7 @@ import Controlador.CRUD_Cliente;
 import Controlador.CRUD_Venta;
 import Modelo.Cliente;
 import Modelo.Venta;
+import javax.swing.ImageIcon;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -53,6 +54,11 @@ public class DialogVentaCliente extends javax.swing.JDialog {
     public DialogVentaCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Obtener cliente");
+        String ico = "/Vistas_iconos/IconoLogo.png"; // Ruta relativa desde el directorio de recursos
+        ImageIcon icono = new ImageIcon(getClass().getResource(ico));
+        setIconImage(icono.getImage());
+
         mostrar();
         ocultartabla();
         txtIDDisponible.setVisible(false);
@@ -100,21 +106,22 @@ public class DialogVentaCliente extends javax.swing.JDialog {
         java.util.Date time = new java.util.Date();
         return timeFormat.format(time);
     }
-     public void ocultartabla() {
-    int columnIndex = 0; // Aquí pones el índice de la columna que deseas ocultar
-    int columnIdex1 = 1;
 
-    TableColumnModel columnModel = tablaClientesDisponibles.getColumnModel();
-    columnModel.getColumn(columnIndex).setWidth(0);
-    columnModel.getColumn(columnIndex).setMinWidth(0);
-    columnModel.getColumn(columnIndex).setMaxWidth(0);
-    columnModel.getColumn(columnIndex).setPreferredWidth(0);
-    columnModel.getColumn(columnIdex1).setWidth(0);
-    columnModel.getColumn(columnIdex1).setMinWidth(0);
-    columnModel.getColumn(columnIdex1).setMaxWidth(0);
-    columnModel.getColumn(columnIdex1).setPreferredWidth(0);
+    public void ocultartabla() {
+        int columnIndex = 0; // Aquí pones el índice de la columna que deseas ocultar
+        int columnIdex1 = 1;
 
-}
+        TableColumnModel columnModel = tablaClientesDisponibles.getColumnModel();
+        columnModel.getColumn(columnIndex).setWidth(0);
+        columnModel.getColumn(columnIndex).setMinWidth(0);
+        columnModel.getColumn(columnIndex).setMaxWidth(0);
+        columnModel.getColumn(columnIndex).setPreferredWidth(0);
+        columnModel.getColumn(columnIdex1).setWidth(0);
+        columnModel.getColumn(columnIdex1).setMinWidth(0);
+        columnModel.getColumn(columnIdex1).setMaxWidth(0);
+        columnModel.getColumn(columnIdex1).setPreferredWidth(0);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -311,7 +318,7 @@ public class DialogVentaCliente extends javax.swing.JDialog {
                         + this.tablaClientesDisponibles.getValueAt(fila, 3) + " "
                         + this.tablaClientesDisponibles.getValueAt(fila, 4).toString() + " "
                         + this.tablaClientesDisponibles.getValueAt(fila, 5).toString();
-                
+
                 Frame_venta.txtFecha_venta.setText(Fecha());
                 Frame_venta.txtHora_venta.setText(Hora());
                 Frame_venta.txtIDCliente.setText(IDCliente);
@@ -331,7 +338,7 @@ public class DialogVentaCliente extends javax.swing.JDialog {
 
                 JOptionPane.showMessageDialog(null, "Tiene datos vacíos");
             } else {
-                
+
                 Frame_venta.txtFecha_venta.setText(Fecha());
                 Frame_venta.txtHora_venta.setText(Hora());
                 Frame_venta.txtIDCliente.setText(txtIDDisponible.getText());
