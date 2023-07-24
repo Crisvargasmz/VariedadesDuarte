@@ -1,0 +1,18 @@
+
+
+Version:	3.50
+CmdLine:	C:\Users\Windows 10\Desktop\Repositorios\VariedadesDuarte\Variedades_Duarte\dist\Variedades Duarte.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\Windows 10\Desktop\Repositorios\VariedadesDuarte\Variedades_Duarte\dist\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	1.008.000
+Java max ver:	
+JRE paths:	C:\Program Files\Java\jdk1.8.0_151
+Check launcher:	C:\Program Files\Java\jdk1.8.0_151\bin\javaw.exe (OK)
+Version string: 1.008.000_151 / 64-Bit (OK)
+Launcher:	C:\Program Files\Java\jdk1.8.0_151\bin\javaw.exe
+Launcher args:	-jar "C:\Users\Windows 10\Desktop\Repositorios\VariedadesDuarte\Variedades_Duarte\dist\Variedades Duarte.exe"
+Args length:	109/32768 chars
+Exit code:	0

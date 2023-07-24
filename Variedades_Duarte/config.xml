@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\Windows 10\Desktop\Repositorios\VariedadesDuarte\Variedades_Duarte\dist\Proyecto_VD.jar</jar>
+  <outfile>C:\Users\Windows 10\Desktop\Repositorios\VariedadesDuarte\Variedades_Duarte\dist\Variedades Duarte.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\Windows 10\Desktop\Repositorios\VariedadesDuarte\Variedades_Duarte\src\Vistas_iconos\IconoLogo.ico</icon>
+  <jre>
+    <path>C:\Program Files\Java\jdk1.8.0_151</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>1.8</minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>
